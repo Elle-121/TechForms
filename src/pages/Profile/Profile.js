@@ -1,9 +1,13 @@
+import MainContainer from "../../components/MainContainer";
+
 function Profile(){
     return (
-        <div>
-            <h1>Profile Page</h1>
-            <p>Welcome to the Profile page!</p>
-        </div>
+        <MainContainer>
+            <div>
+                <h1>Profile Page</h1>
+                <p>Welcome to the Profile page!</p>
+            </div>    
+        </MainContainer>
     );
 }
 

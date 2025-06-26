@@ -1,9 +1,13 @@
+import MainContainer from "../../components/MainContainer";
+
 function Accounts(){
     return (
-        <div>
-            <h1>Accounts Page</h1>
-            <p>Welcome to the Accounts page!</p>
-        </div>
+        <MainContainer>
+            <div>
+                <h1>Accounts Page</h1>
+                <p>Welcome to the Accounts page!</p>
+            </div>
+        </MainContainer>
     );
 }
 
