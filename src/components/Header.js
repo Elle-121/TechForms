@@ -33,6 +33,7 @@ function Header() {
 
   // constants
   const icon_size = 30
+  const profile_icon_size = 40
 
   return (
     <Navbar expand="lg" className='top-header py-2 px-3'>
@@ -85,16 +86,16 @@ function Header() {
           </Navbar>
 
           <Dropdown className='header-top'>
-            <Dropdown.Toggle className='user-dropdown' variant="clear" bsPrefix="custom-toggle">
-              <div className="d-flex align-items-center">
-                <img src={image} width="40" height="40" className="me-2" alt="User" />
+            <Dropdown.Toggle className='user-dropdown w-100' variant="clear" bsPrefix="custom-toggle">
+              <div className="d-flex align-items-center justify-content-end w-100">
+                <img src={image} width={profile_icon_size} height={profile_icon_size} className="me-2" alt="User" />
                 <div className="d-flex flex-column text-start">
                   <span className="fw-bold">Rayu Ma Masakit</span>
                   <span className="text-muted">Full-Stack Developer</span>
                 </div>
               </div>
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="w-100">
               <Dropdown.Item onClick={profile}>Profile</Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
             </Dropdown.Menu>
