@@ -1,4 +1,4 @@
-function Home(){
+function Accounts(){
     return (
         <div>
             <h1>Accounts Page</h1>
@@ -7,4 +7,4 @@ function Home(){
     );
 }
 
-export default Home;
+export default Accounts;
