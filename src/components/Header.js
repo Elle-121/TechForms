@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark px-3">
-      <Link className="navbar-brand" to="/">MyApp</Link>
+      <Link className="navbar-brand" to="/">TechFactors</Link>
       <div className="navbar-nav">
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/accounts">Accounts</Link>
@@ -43,7 +43,6 @@ function Header() {
           </div>
         )}
 
-        <Link className="nav-link" to="/profile">Profile</Link>
       </div>
     </nav>
   );
