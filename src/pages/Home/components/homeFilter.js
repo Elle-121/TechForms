@@ -58,7 +58,7 @@ export default function DashboardFilter({view, setFilterView}) {
 
                         <Row>
                             <Col>
-                                <Form.Group>
+                                <Form.Group className="mb-3">
                                     <Form.Label>Form Type</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
@@ -71,7 +71,7 @@ export default function DashboardFilter({view, setFilterView}) {
                             </Col>
 
                             <Col>
-                                <Form.Group>
+                                <Form.Group className="mb-3">
                                     <Form.Label>Status</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
@@ -85,7 +85,7 @@ export default function DashboardFilter({view, setFilterView}) {
                             </Col>
 
                             <Col>
-                                <Form.Group>
+                                <Form.Group className="mb-3">
                                     <Form.Label>Purpose of Travel</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
@@ -99,8 +99,8 @@ export default function DashboardFilter({view, setFilterView}) {
 
                         <Row>
                             <Col>
-                                <Form.Group>
-                                    <Form.Label>date Submitted</Form.Label>
+                                <Form.Group className="mb-3 text-center">
+                                    <Form.Label>Date Submitted</Form.Label>
                                     <Row>
                                         <Col>
                                             <Form.Control type="date" placeholder="Start Range"/>
@@ -111,7 +111,57 @@ export default function DashboardFilter({view, setFilterView}) {
                                     </Row>
                                 </Form.Group>
                             </Col>
-                            
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Departure</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter City"/>
+                                        <Form.Control type="date" placeholder="Start Range"/>
+                                        <Form.Control type="date" placeholder="End Range"/>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Return</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter City"/>
+                                        <Form.Control type="date" placeholder="Start Range"/>
+                                        <Form.Control type="date" placeholder="End Range"/>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3 text-center">
+                                    <Form.Label>Start Date of Business</Form.Label>
+                                    <Row>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="Start Range"/>
+                                        </Col>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="End Range"/>
+                                        </Col>
+                                    </Row>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3 text-center">
+                                    <Form.Label>End Date of Business</Form.Label>
+                                    <Row>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="Start Range"/>
+                                        </Col>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="End Range"/>
+                                        </Col>
+                                    </Row>
+                                </Form.Group>
+                            </Col>
                         </Row>
                     </Form>
                 </div>
