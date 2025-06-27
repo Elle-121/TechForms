@@ -25,15 +25,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
-import SearchBar from '../../components/searchbar';
+import SearchBarFilter from '../../components/SearchBarFilter';
+
+import RequestList from './RequestList'; // Assuming you have a RequestList component
 import { Row } from 'react-bootstrap';
 
-function Dashboard() {
+function Home() {
   return (
     <MainContainer>
       <div className="row h-100 m-0">
         {/* Left Side */}
-        <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '30%', borderRight: '5px solid #EE9337' }}>
+        <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '30%', borderRight: '5px solid var(--tforange-color)' }}>
 
         </div>
 
@@ -47,21 +49,13 @@ function Dashboard() {
                 Button 4
             </Row> */}
 
-            {/* Request filter */}
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                 <SearchBar />
+            {/* Header - Requests + Searchbar + Filter */}
+            <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
+                <h4 className="tf-header">Requests</h4>
+                <SearchBarFilter />
             </div>
-            
 
-            { /* Scrollable list of Requests*/}
-            {/* <div className="border border-black">
-                Item 1
-                Item 2
-                Item 3
-                Item 4
-                Item 5
-            </div> */}
-
+            <RequestList />
 
         </div>
       </div>
@@ -74,4 +68,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Home;
