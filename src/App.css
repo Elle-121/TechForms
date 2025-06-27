@@ -10,9 +10,9 @@
 
 .text-label {
   font-weight: bold;
+  color: #ff0000;
   font-family: 'Poppins', sans-serif;
 }
-
 
 
 /* Default */
@@ -54,3 +54,5 @@
     transform: rotate(360deg);
   }
 }
+
+

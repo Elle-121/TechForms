@@ -4,7 +4,7 @@ function Accounts(){
     return (
         <MainContainer>
             <div>
-                <h1>Accounts Page</h1>
+                <h1 className="text-tforange">Accounts Page</h1>
                 <p>Welcome to the Accounts page!</p>
             </div>
         </MainContainer>
