@@ -18,7 +18,7 @@ function Home(){
             <DashboardFilter view={filterView} setFilterView={setFilterView}/>
             
             <div>
-                <button onClick={openFilterView}>Contact Us</button>
+                <button onClick={openFilterView}>Filter</button>
             </div>
 
         </MainContainer>
