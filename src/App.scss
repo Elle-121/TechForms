@@ -1,0 +1,116 @@
+/* Custom Colors */
+:root {
+  --tforange-color: #EE9337;
+  --tfblue-color: #033C7C;
+
+  --tf-gray-1: #CCCCCC;
+  --tf-gray-2: #A5A5A5;
+  --tf-gray-3: #575757;
+  --tf-gray-4: #323232;
+
+  --tf-green-text: #148224;
+  --tf-green-bg: #79E088;
+
+  --tf-yellow-text: #B8720F;
+  --tf-yellow-bg: #FFE992;
+
+  --tf-red-text: #A70B0B;
+  --tf-red-bg: #FFA892;
+  --tf-red-dark-bg: #FF5C5C;
+
+}
+
+/* Colors Styles */
+.text-tforange {color: var(--tforange-color);}
+.text-tfblue {color: var(--tfblue-color);}
+$--tforange-color: #EE9337;
+$--tfblue-color: #033C7C;
+
+.tf-header {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: bold;
+  color: var(--tforange-color);
+}
+
+/* Status Badges */
+
+.status-badge {
+  font-size: 0.85rem;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-draft {
+  color: var(--tf-gray-3);
+  background: var(--tf-gray-1);
+}
+
+.status-pending {
+  color: var(--tf-yellow-text);
+  background: var(--tf-yellow-bg);
+}
+
+.status-rejected {
+  color: var(--tf-red-text);
+  background: var(--tf-red-bg);
+}
+
+.status-approved {
+  color:var(--tf-green-text);
+  background: var(--tf-green-bg);
+}
+
+.badge-formtype{
+  font-size: 0.85rem;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: 500;
+  display: inline-block;
+  color: var(--tf-gray-3);
+  background: var(--tf-gray-1);
+}
+
+/* Default */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
