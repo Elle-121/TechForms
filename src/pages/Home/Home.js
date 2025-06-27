@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardFilter from './components/homeFilter'
+import MainContainer from "../../components/MainContainer";
 
 function Home(){
 
@@ -10,7 +11,7 @@ function Home(){
     }
 
     return (
-        <div>
+        <MainContainer>
             <h1>Home Page</h1>
             <p>Welcome to the home page!</p>
 
@@ -20,7 +21,7 @@ function Home(){
                 <button onClick={openFilterView}>Contact Us</button>
             </div>
 
-        </div>
+        </MainContainer>
     );
 }
 
