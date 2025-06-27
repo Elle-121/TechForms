@@ -23,6 +23,8 @@
 /* Colors Styles */
 .text-tforange {color: var(--tforange-color);}
 .text-tfblue {color: var(--tfblue-color);}
+$--tforange-color: #EE9337;
+$--tfblue-color: #033C7C;
 
 .tf-header {
   font-family: 'Poppins', sans-serif;
@@ -30,8 +32,6 @@
   font-weight: bold;
   color: var(--tforange-color);
 }
-
-
 
 /* Status Badges */
 
@@ -72,8 +72,6 @@
   color: var(--tf-gray-3);
   background: var(--tf-gray-1);
 }
-
-
 
 /* Default */
 .App {

@@ -1,25 +1,4 @@
-// import MainContainer from "../../components/MainContainer";
 
-// function Home(){
-//     return (
-//         <MainContainer>
-//         <div className="d-flex" style={{height:'100vh', overflowY:'auto'}}>
-//             <div class="border" style={{width:'30%'}}>
-//                 Left
-
-
-//             </div>
-
-
-//             <div class="border" style={{width:'70%'  }}> 
-//                 Right
-
-
-//             </div>
-//         </div>
-//         </MainContainer>
-//     );
-// }
 
 // export default Home;
 import React from 'react';
