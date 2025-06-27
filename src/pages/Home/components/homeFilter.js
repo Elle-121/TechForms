@@ -101,9 +101,17 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group>
                                     <Form.Label>date Submitted</Form.Label>
-                                    <Form.Control type="date" placeholder="Start"/>
+                                    <Row>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="Start Range"/>
+                                        </Col>
+                                        <Col>
+                                            <Form.Control type="date" placeholder="End Range"/>
+                                        </Col>
+                                    </Row>
                                 </Form.Group>
                             </Col>
+                            
                         </Row>
                     </Form>
                 </div>
