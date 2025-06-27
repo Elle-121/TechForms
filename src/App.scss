@@ -42,10 +42,10 @@ $--tfblue-color: #033C7C;
   color: #61dafb;
 }
 
-/* CSS */
-.button-62 {
+.button-affirm {
   background: #EE9337;
-  border: 0;
+  border: 2px solid;
+  border-color: transparent;
   border-radius: 15px;
   color: #FFFFFF;
   cursor: pointer;
@@ -57,20 +57,47 @@ $--tfblue-color: #033C7C;
   outline: transparent;
   padding: 0 1rem;
   text-align: center;
-  text-decoration: none;
-  transition: box-shadow .2s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   white-space: nowrap;
 }
 
-.button-62:not([disabled]):focus {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+.button-affirm:active {
+  background-color: #B55B00;
+  border-color: #B55B00;
 }
 
-.button-62:not([disabled]):hover {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+.button-affirm:hover {
+  background: white;
+  border-color: #EE9337;
+  color: #EE9337;
+}
+
+.button-neg {
+  background: #f5ece2;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #EE9337;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button-neg:active {
+  background-color: #B55B00;
+  border-color: #B55B00;
+}
+
+.button-neg:hover {
+  background: white;
+  border-color: #EE9337;
+  color: #EE9337;
 }
 
 @keyframes App-logo-spin {

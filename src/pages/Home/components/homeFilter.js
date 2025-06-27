@@ -113,17 +113,17 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Departure</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter City"/>
-                                        <Form.Control type="date" placeholder="Start Range"/>
-                                        <Form.Control type="date" placeholder="End Range"/>
+                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Return</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter City"/>
-                                        <Form.Control type="date" placeholder="Start Range"/>
-                                        <Form.Control type="date" placeholder="End Range"/>
+                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -164,9 +164,8 @@ export default function DashboardFilter({view, setFilterView}) {
             </Modal.Body>
 
             <Modal.Footer>
-                <button type='button' onClick={clearForm}>Clear</button>
-                <button type='button' onClick={()=>setFilterView(false)}>Apply</button>
-                <button class="button-62">Apply</button>
+                <button class='button-neg' type="button" onClick={clearForm}>Clear</button>
+                <button class='button-affirm' onClick={()=>setFilterView(false)}>Apply</button>
             </Modal.Footer>
 
         </Modal>
