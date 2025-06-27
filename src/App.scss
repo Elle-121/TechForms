@@ -1,19 +1,15 @@
 /* Custom Colors */
-:root {
-  --tforange-color: #EE9337;
-  --tfblue-color: #033C7C;
-}
+$--tforange-color: #EE9337;
+$--tfblue-color: #033C7C;
 
 /* Global Styles */
-.text-tforange {color: var(--tforange-color);}
-.text-tfblue {color: var(--tfblue-color);}
+.text-tforange {color: $--tforange-color;}
+.text-tfblue {color: $--tfblue-color;}
 
 .text-label {
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
 }
-
-
 
 /* Default */
 .App {
