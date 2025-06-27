@@ -6,7 +6,7 @@ import companylogofull from '../assets/TechFactorsIncFull.png' // <-- Make sure 
 import homeicon from '../assets/HomeIcon.svg'
 import notificationsicon from '../assets/NotificationsIcon.svg'
 import accountsicon from '../assets/AccountsIcon.svg'
-import image from '../assets/ImageIcon.svg'
+import image from '../assets/PNGIcon.svg'
 
 function Header() {
 
@@ -14,15 +14,12 @@ function Header() {
     await window.localStorage.clear()
     window.location.href = "/";
   }
-
   const profile = async () => {
     window.location.href = "/profile";
   }
-
   const home = async () => {
     window.location.href = "/";
   }
-
   const notifications = async () => {
     window.location.href = "/notifications";
   }

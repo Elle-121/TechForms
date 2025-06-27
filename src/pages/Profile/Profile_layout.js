@@ -1,19 +1,34 @@
 import React from 'react'
-import {Container, Row, Col} from 'react-bootstrap'
 
 function Layout({ sidebar, main }) {
+  const containerStyle = {
+    height: '100vh',
+    display: 'flex',
+  };
+
+  const sidebarStyle = {
+    flex: '0 0 41.6667%',
+    borderRight: '5px solid #ee9377',
+    padding: '1rem',
+    height: '75%',
+  };
+
+  const mainStyle = {
+    flex: '0 0 58.3333%',
+    padding: '1rem',
+  };
+
   return (
-    <Container fluid className="vh-100">
-      <Row className="h-100">
-        <Col md={5} className="border-end p-4">
-          {sidebar}
-        </Col>
-        <Col md={7} className="p-4">
-          {main}
-        </Col>
-      </Row>
-    </Container>
+    <div style={containerStyle}>
+      <div style={sidebarStyle}>
+        {sidebar}
+      </div>
+      <div style={mainStyle}>
+        {main}
+      </div>
+    </div>
   )
 }
 
 export default Layout
+
