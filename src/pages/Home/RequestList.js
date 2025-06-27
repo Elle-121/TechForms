@@ -15,14 +15,13 @@ const statusActions = {
 
 function BookingList({data}) {
   return (
-    <div style={{ maxHeight: '400px', overflowY: 'auto' }} className="border border-black">
+    <div style={{ overflowY: 'auto' }} className=" border-black">
     {data.map((item) => (
-        <div
-        key={item.id}
-        className="d-flex align-items-center justify-content-between py-2"
-
-        style={{ gap: '16x' , borderBottom: '1px solid var(--tf-gray-1)'}}
-        >
+    <div
+    key={item.id}
+    className="d-flex align-items-center justify-content-between py-3"
+    style={{ gap: '16x' , borderBottom: '0px solid var(--tf-gray-1)'}}
+    >
         {/* Subject and date */}
         <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
             <div className="fw-bold">{item.subject}</div>
