@@ -2,11 +2,11 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const dummyData = [
-    { id: 1, subject: 'Flight equest to spain Im goin', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
-    { id: 2, subject: 'TOKYO → SOMEWHERE SOMEWHERE SOMEWHERE SOMEWHERE SOMEWHERE SOMEWHERE', date: '6/24/2025', formType: 'WOWOWOOWW Request', status: 'Pending' },
-    { id: 3, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'hotdog Request Reques tReques tRequesttRequesttRequestt ', status: 'Rejected' },
-    { id: 4, subject: 'TOKYO', date: '6/24/2025', formType: 'a', status: 'Approved' },
-];
+    { id: 1, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
+    { id: 2, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Pending' },
+    { id: 3, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Rejected' },
+    { id: 4, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Approved' },
+  ];
 
 // Actions are dependent on the status of the request
 const statusActions = {
@@ -21,7 +21,7 @@ const statusActions = {
 
 function BookingList() {
   return (
-    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+    <div style={{ maxHeight: '400px', overflowY: 'auto' }} className="border border-black">
     {dummyData.map((item) => (
         <div
         key={item.id}
@@ -39,7 +39,7 @@ function BookingList() {
 
         {/* Form Type */}
         <div style={{ flex: 2, minWidth: '120px', maxWidth: '200px', textAlign: 'center',whiteSpace: 'normal',wordBreak: 'break-word', display: 'block',}} className="">
-            <span className="badge badge-formtype" style={{whiteSpace: 'normal',  wordBreak: 'break-word', width: '100%', display: 'inline-block', }}>
+            <span className="badge badge-formtype" style={{whiteSpace: 'normal',  wordBreak: 'break-word', display: 'inline-block', }}>
                 {item.formType}
         </span>
         </div>
