@@ -8,7 +8,7 @@ function Layout({ sidebar, main }) {
 
   const sidebarStyle = {
     flex: '0 0 41.6667%',
-    borderRight: '7px solid #ee9377',
+    borderRight: '7px solid #EE9337',
     height: '95%',
   };
 

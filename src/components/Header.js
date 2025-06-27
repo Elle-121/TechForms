@@ -20,9 +20,6 @@ function Header() {
   const home = async () => {
     window.location.href = "/";
   }
-  const notifications = async () => {
-    window.location.href = "/notifications";
-  }
 
   const accounts = async () => {
     window.location.href = "/accounts";
@@ -68,21 +65,23 @@ function Header() {
               </Navbar.Brand>
             </Container>
           </Navbar>
-          <Navbar>
-            <Container>
-              <Navbar.Brand href="/notifications" onClick={notifications}>
-                <img
-                  src={notificationsicon}
-                  width={icon_size}
-                  height={icon_size}
-                  className="d-inline-block align-center"
-                  alt="Notifications"
-                />
-              </Navbar.Brand>
-            </Container>
-          </Navbar>
-
           <Dropdown className='header-top'>
+            <Dropdown.Toggle className='notification-dropdown d-flex align-items-center justify-content-center w-100' variant="clear" bsPrefix="custom-toggle">
+              <img
+                src={notificationsicon}
+                width={icon_size}
+                height={icon_size}
+                className="me-2"
+                alt="Notifications"
+              />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="dropdown-center-menu text-center">
+              <Dropdown.Item>Placeholder</Dropdown.Item>
+            </Dropdown.Menu>
+
+          </Dropdown>
+
+          <Dropdown className='header-top me-5'>
             <Dropdown.Toggle className='user-dropdown w-100' variant="clear" bsPrefix="custom-toggle">
               <div className="d-flex align-items-center justify-content-end w-100">
                 <img src={image} width={profile_icon_size} height={profile_icon_size} className="me-2" alt="User" />
