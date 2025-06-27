@@ -1,14 +1,23 @@
-import MainContainer from "../../components/MainContainer";
+import ProfileContainer from "../../pages/Profile/Profile_container";
 
-function Profile(){
-    return (
-        <MainContainer>
-            <div>
-                <h1>Profile Page</h1>
-                <p>Welcome to the Profile page!</p>
-            </div>    
-        </MainContainer>
-    );
+const sidebar_content = (
+  <div>
+    <h3>Sidebar</h3>
+    <p>Navigation or menu goes here</p>
+  </div>
+);
+
+const main_content = (
+  <div>
+    <h3>Main Content</h3>
+    <p>This is where the main data or components go.</p>
+  </div>
+);
+
+function Profile() {
+  return (
+    <ProfileContainer sidebar={sidebar_content} main={main_content} />
+  );
 }
 
 export default Profile;

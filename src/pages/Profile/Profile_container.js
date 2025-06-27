@@ -1,10 +1,8 @@
-// PLACEHOLDER edit page containers for layout (TEMPLATE)
-
 import React from 'react'
-import Header from './Header'
-import Layout from './Layout'
+import Header from "../../components/Header"
+import Layout from "../../pages/Profile/Profile_layout"
 
-function MainContainer({ headerVisible = true, fluid, loading = false, activeHeader, style, sidebar, main }) {
+function ProfileContainer({ headerVisible = true, fluid, loading = false, activeHeader, style, sidebar, main }) {
   return (
     <React.Fragment>
       {headerVisible && <Header activeHeader={activeHeader} />}
@@ -19,5 +17,5 @@ function MainContainer({ headerVisible = true, fluid, loading = false, activeHea
   );
 }
 
-export default MainContainer
+export default ProfileContainer
 

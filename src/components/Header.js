@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Navbar, Col, Dropdown, Button } from 'react-bootstrap'
+import {Container, Navbar, Dropdown} from 'react-bootstrap'
 
 // Assets
 import companylogofull from '../assets/TechFactorsIncFull.png' // <-- Make sure you have this file and path correct
