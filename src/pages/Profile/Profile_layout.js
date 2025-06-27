@@ -2,15 +2,14 @@ import React from 'react'
 
 function Layout({ sidebar, main }) {
   const containerStyle = {
-    height: '100vh',
+    height: '85vh',
     display: 'flex',
   };
 
   const sidebarStyle = {
     flex: '0 0 41.6667%',
-    borderRight: '5px solid #ee9377',
-    padding: '1rem',
-    height: '75%',
+    borderRight: '7px solid #ee9377',
+    height: '95%',
   };
 
   const mainStyle = {

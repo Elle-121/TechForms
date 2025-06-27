@@ -2,7 +2,7 @@ import React from 'react'
 import {Container, Navbar, Dropdown} from 'react-bootstrap'
 
 // Assets
-import companylogofull from '../assets/TechFactorsIncFull.png' // <-- Make sure you have this file and path correct
+import companylogofull from '../assets/TechFactorsIncFull.png' 
 import homeicon from '../assets/HomeIcon.svg'
 import notificationsicon from '../assets/NotificationsIcon.svg'
 import accountsicon from '../assets/AccountsIcon.svg'
