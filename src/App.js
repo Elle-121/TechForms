@@ -1,8 +1,9 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import "./App.scss";
+import 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import Header from "./components/Header";
 
 function App() {
