@@ -23,7 +23,7 @@ function SearchBarWithFilter() {
             borderRadius: '30px',
             paddingLeft: '10px',
             fontSize: '14px',
-            width: '200px',
+            width: '400px',
           }}
         />
         <button
@@ -40,11 +40,11 @@ function SearchBarWithFilter() {
         </button>
       </div>
 
-      {/* Filter by */}
+      {/* Filter by
       <div className="d-flex align-items-center" style={{ gap: '6px', cursor: 'pointer' }}>
         <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
         <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
-      </div>
+      </div> */}
     </div>
   );
 }

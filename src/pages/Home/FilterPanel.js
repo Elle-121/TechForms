@@ -25,12 +25,12 @@ const styles = {
     marginBottom: '0.5rem',
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: 500,
   },
   count: {
-    fontSize: '1.75rem',
-    fontWeight: 'bold',
-    color: '#f4a000',
+    fontSize: '3rem',
+    fontWeight: 700,
+    color: 'var(--tfblue-color)',
   },
 };
 
@@ -41,46 +41,53 @@ const requestStats = [
   { icon: totalreqicon, label: 'Requests This Month', count: 3 },
 ];
 
-function FilterCard({ icon, label, count }) {
-  const [hovered, setHovered] = useState(false);
-
-  const cardStyle = hovered
-    ? { ...styles.card, ...styles.hover }
-    : styles.card;
-  const countStyle = hovered
-    ? { ...styles.count, color: '#fff' }
-    : styles.count;
-
-  return (
-    <div
-      style={cardStyle}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <img src={icon}
-        style={{
-            filter: hovered ? 'brightness(0) invert(1)' : 'none',
-            transition: 'filter 0.3s',
-            marginBottom: '0.5rem',
-            height: '32px', 
-        }}/>
-      <div style={styles.label}>{label}</div>
-      <div style={countStyle}>{count}</div>
-    </div>
-  );
-}
-
-
-function FilterPanels() {
-  return (
-    <div className="row g-3 mb-4">
-      {requestStats.map((item, idx) => (
-        <div className="col-sm-6 col-md-3" key={idx}>
-          <FilterCard {...item} />
+function FilterCard({ icon, label, count, onClick }) {
+    const [hovered, setHovered] = useState(false);
+  
+    const cardStyle = hovered
+      ? { ...styles.card, ...styles.hover }
+      : styles.card;
+    const countStyle = hovered
+      ? { ...styles.count, color: '#fff' }
+      : styles.count;
+  
+    return (
+      <div
+        style={cardStyle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={onClick} // <-- add this
+      >
+        <img src={icon}
+          style={{
+              filter: hovered ? 'brightness(0) invert(1)' : 'none',
+              transition: 'filter 0.3s',
+              marginBottom: '0.5rem',
+              height: '32px', 
+          }}/>
+        <div style={styles.label}>{label}</div>
+        <div style={countStyle}>{count}</div>
+      </div>
+    );
+  }
+  
+  function FilterPanels({ onFilter }) {
+    return (
+      <div className="row g-3 mb-4">
+        <div className="col-sm-6 col-md-3">
+          <FilterCard {...requestStats[0]} onClick={() => onFilter('ALL')} />
         </div>
-      ))}
-    </div>
-  );
-}
-
-export default FilterPanels;
+        <div className="col-sm-6 col-md-3">
+          <FilterCard {...requestStats[1]} onClick={() => onFilter('Pending')} />
+        </div>
+        <div className="col-sm-6 col-md-3">
+          <FilterCard {...requestStats[2]} onClick={() => onFilter('Approved')} />
+        </div>
+        <div className="col-sm-6 col-md-3">
+          <FilterCard {...requestStats[3]} onClick={() => onFilter('ThisMonth')} />
+        </div>
+      </div>
+    );
+  }
+  
+  export default FilterPanels;

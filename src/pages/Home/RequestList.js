@@ -24,9 +24,9 @@ function BookingList({data}) {
     >
         {/* Subject and date */}
         <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
-            <div className="fw-bold">{item.subject}</div>
+            <div className="fw-bold" style={{fontSize:'1.25rem'}}>{item.subject}</div>
             <div className="text-muted" style={{ fontSize: '0.85rem' }}>
-            <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
+            <   span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
             </div>
         </div>
 
