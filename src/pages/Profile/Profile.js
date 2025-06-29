@@ -26,7 +26,7 @@ const ProfileInfo = () => (
       <h2 className="profile-title">
         Profile <span className="profile-id" style={{ fontSize: '1rem', marginLeft: '1.5rem', color: '#A5A5A5'}}>#RAYU-0604</span>
       </h2>
-      <span><img src={editicon} className='edit-icon'alt="edit icon" width={20} height={20} /><a href="#Profile" className="edit-link" style={{color: '#ee9337', textDecoration: 'none'}}>Edit</a></span>
+      <span><img src={editicon} className='edit-icon' alt="edit icon" width={20} height={20} /><a href="#Profile_edit" className="edit-link" style={{color: '#ee9337', textDecoration: 'none'}}>Edit</a></span>
     </div>
 
     <div className="profile-info" style={{ gap: '2rem', marginTop: '1rem' }}>
