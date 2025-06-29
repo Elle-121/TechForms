@@ -23,8 +23,6 @@
 /* Colors Styles */
 .text-tforange {color: var(--tforange-color);}
 .text-tfblue {color: var(--tfblue-color);}
-$--tforange-color: #EE9337;
-$--tfblue-color: #033C7C;
 
 .tf-header {
   font-family: 'Poppins', sans-serif;
@@ -83,17 +81,17 @@ $--tfblue-color: #033C7C;
     font-weight: bold;
     background-color: transparent;
     border: none;
+  }
 
-    
-    :hover, 
-    :focus, 
-    :active {
-      color: var(--tfblue-color);
-    }
+  :hover, 
+  :focus, 
+  :active {
+    color: var(--tfblue-color);
+  }
 
-    :focus {
-      border-bottom: 2px solid var(--tfblue-color);
-    }
+  :focus {
+    border-bottom: 2px solid var(--tfblue-color);
+    outline: none;
   }
 }
 

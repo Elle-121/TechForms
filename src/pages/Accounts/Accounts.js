@@ -18,7 +18,7 @@ export default function Accounts(){
                 <h1 className="tf-header">Account Management</h1>
                 <div className="d-flex justify-content-between mb-3">
                     <div className="btn-group-role">
-                        <button onClick={()=>setRole()}>All</button>
+                        <button onClick={()=>setRole()} autoFocus>All</button>
                         <button onClick={()=>setRole("HR")}>HR</button>
                         <button onClick={()=>setRole("Employee")}>Employee</button>
                     </div>
