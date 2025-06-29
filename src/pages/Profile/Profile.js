@@ -1,7 +1,10 @@
-import React from 'react';
 import ProfileContainer from "../../pages/Profile/Profile_container";
 import homeicon from '../../assets/PNGIcon.svg';
 import editicon from '../../assets/EditIcon.svg';
+
+const profile_edit = async () => {
+    window.location.href = "/profile_edit";
+  }
 
 const profileIconSize = 300;
 
@@ -16,7 +19,11 @@ const ProfileSidebar = () => (
 const ProfileInfoGroup = ({ label, value }) => (
   <div className="info-group" style={{ marginBottom: '3rem' }}>
     <label style={{ fontSize: '1.2rem', color: '#EE9337', fontWeight: 'bold' }}>{label}</label>
-    <p style={{ fontSize: '1rem', color: 'black', fontWeight: 'bold' }}>{value}</p>
+    <form>
+      <p style={{ fontSize: '1rem', color: 'black', fontWeight: 'bold' }}>
+        <input type="text" value={value} readOnly style={{ border: 'none', background: 'transparent', width: '100%' }} />
+      </p>
+    </form>
   </div>
 );
 
@@ -24,9 +31,13 @@ const ProfileInfo = () => (
   <div className="profile-container" style={{ maxWidth: '770px' }}>
     <div className="profile-header" style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #ccc', paddingBottom: '0.1rem'}}>
       <h2 className="profile-title">
-        Profile <span className="profile-id" style={{ fontSize: '1rem', marginLeft: '1.5rem', color: '#A5A5A5'}}>#RAYU-0604</span>
+        Profile 
+        <span className="profile-id" style={{ fontSize: '1rem', marginLeft: '1.5rem', color: '#A5A5A5'}}>#RAYU-0604</span>
       </h2>
-      <span><img src={editicon} className='edit-icon' alt="edit icon" width={20} height={20} /><a href="#Profile_edit" className="edit-link" style={{color: '#ee9337', textDecoration: 'none'}}>Edit</a></span>
+      <span>
+        <img src={editicon} className='edit-icon' alt="edit icon" width={20} height={20} />
+        <span onClick={profile_edit} className="edit-link" style={{color: '#ee9337', textDecoration: 'none', cursor: 'pointer'}}>Confirm</span>
+        </span>
     </div>
 
     <div className="profile-info" style={{ gap: '2rem', marginTop: '1rem' }}>

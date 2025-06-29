@@ -1,4 +1,3 @@
-import React from 'react'
 import {Container, Navbar, Dropdown} from 'react-bootstrap'
 
 // Assets
