@@ -19,11 +19,7 @@ const ProfileSidebar = () => (
 const ProfileInfoGroup = ({ label, value }) => (
   <div className="info-group" style={{ marginBottom: '3rem' }}>
     <label style={{ fontSize: '1.2rem', color: '#EE9337', fontWeight: 'bold' }}>{label}</label>
-    <form>
-      <p style={{ fontSize: '1rem', color: 'black', fontWeight: 'bold' }}>
-        <input type="text" value={value} readOnly style={{ border: 'none', background: 'transparent', width: '100%' }} />
-      </p>
-    </form>
+    <p style={{ fontSize: '1rem', color: 'black', fontWeight: 'bold' }}>{value}</p>
   </div>
 );
 
@@ -36,7 +32,7 @@ const ProfileInfo = () => (
       </h2>
       <span>
         <img src={editicon} className='edit-icon' alt="edit icon" width={20} height={20} />
-        <span onClick={profile_edit} className="edit-link" style={{color: '#ee9337', textDecoration: 'none', cursor: 'pointer'}}>Confirm</span>
+        <span onClick={profile_edit} className="edit-link" style={{color: '#ee9337', textDecoration: 'none', cursor: 'pointer'}}>Edit</span>
         </span>
     </div>
 
