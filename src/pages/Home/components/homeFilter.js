@@ -159,14 +159,13 @@ export default function DashboardFilter({view, setFilterView}) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <div>
+                            <input class='button-neg' type='reset' value='Clear'/>
+                            <button class='button-affirm' onClick={()=>setFilterView(false)}>Apply</button>
+                        </div>
                     </Form>
                 </div>
             </Modal.Body>
-
-            <Modal.Footer>
-                <button class='button-neg' type="button" onClick={clearForm}>Clear</button>
-                <button class='button-affirm' onClick={()=>setFilterView(false)}>Apply</button>
-            </Modal.Footer>
 
         </Modal>
 

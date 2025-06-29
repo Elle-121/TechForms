@@ -22,7 +22,7 @@ function Home() {
         setFilterView(true);
     }
 
-    const [currentPage, setCurrentPage] = React.useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
@@ -40,7 +40,7 @@ function Home() {
             {/* Header - Requests + Searchbar + Filter */}
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                 <h4 className="tf-header">Requests</h4>
-                <SearchBarFilter />
+                <SearchBarFilter/>
             </div>
         </div>
 
@@ -54,6 +54,11 @@ function Home() {
                 <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                     <h4 className="tf-header">Requests</h4>
                     <SearchBarFilter />
+
+                    <DashboardFilter view={filterView} setFilterView={setFilterView}/>
+                    <div>
+                      <button onClick={openFilterView}>Filter</button>
+                    </div>
                 </div>
 
                 <RequestList data={paginatedRequests} />
@@ -64,15 +69,6 @@ function Home() {
             </div>
 
         </div>
-
-        {/* Dashboard Filter */}
-        <div className="position-fixed" style={{ top: '20px', right: '20px', zIndex: 1000 }}>
-            <DashboardFilter view={filterView} setFilterView={setFilterView}/>
-            <div>
-              <button onClick={openFilterView}>Filter</button>
-            </div>
-        </div>
-
 
         {/* Floating Action Button */}
         <button className="btn btn-warning rounded-circle position-fixed" style={{ bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px' }}>+</button>
