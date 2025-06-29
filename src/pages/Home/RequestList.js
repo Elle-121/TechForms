@@ -1,12 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const dummyData = [
-    { id: 1, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
-    { id: 2, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Pending' },
-    { id: 3, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Rejected' },
-    { id: 4, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Approved' },
-  ];
 
 // Actions are dependent on the status of the request
 const statusActions = {
@@ -19,16 +13,15 @@ const statusActions = {
       ]
 }
 
-function BookingList() {
+function BookingList({data}) {
   return (
-    <div style={{ maxHeight: '400px', overflowY: 'auto' }} className="border border-black">
-    {dummyData.map((item) => (
-        <div
-        key={item.id}
-        className="d-flex align-items-center justify-content-between py-2"
-
-        style={{ gap: '16x' , borderBottom: '1px solid var(--tf-gray-1)'}}
-        >
+    <div style={{ overflowY: 'auto' }} className=" border-black">
+    {data.map((item) => (
+    <div
+    key={item.id}
+    className="d-flex align-items-center justify-content-between py-3"
+    style={{ gap: '16x' , borderBottom: '0px solid var(--tf-gray-1)'}}
+    >
         {/* Subject and date */}
         <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
             <div className="fw-bold">{item.subject}</div>
