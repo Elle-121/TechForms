@@ -73,6 +73,30 @@ $--tfblue-color: #033C7C;
   background: var(--tf-gray-1);
 }
 
+/* Accounts Page Buttons */
+.nav-tabs,
+.btn-group-role {
+
+  button {
+    padding: 8px 16px;
+    color: var(--tf-gray-2);
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+
+    
+    :hover, 
+    :focus, 
+    :active {
+      color: var(--tfblue-color);
+    }
+
+    :focus {
+      border-bottom: 2px solid var(--tfblue-color);
+    }
+  }
+}
+
 /* Default */
 .App {
   text-align: center;
