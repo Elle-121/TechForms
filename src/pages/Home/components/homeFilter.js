@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, Row, Col } from "react-bootstrap";
+import { Modal, Form, Row, Col, Button } from "react-bootstrap";
+import { departments, formTypes, status, reasons } from "./filterData";
+import "../../../App.scss";
 
 export default function DashboardFilter({view, setFilterView}) {
 
@@ -37,20 +39,11 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label>Department</Form.Label>
                                     <Form.Select>
                                         <option>Select Department</option>
-                                        <option value='1'>2tech</option>
-                                        <option value='2'>Accounting</option>
-                                        <option value='3'>Customer Service</option>
-                                        <option value='4'>ETS</option>
-                                        <option value='5'>Finance</option>
-                                        <option value='6'>HR/Admin</option>
-                                        <option value='7'>Marketing</option>
-                                        <option value='8'>Production, Logistics, Purchasing</option>
-                                        <option value='9'>R&D</option>
-                                        <option value='10'>Sales</option>
-                                        <option value='11'>SHS</option>
-                                        <option value='12'>TFI Academy</option>
-                                        <option value='13'>Product Training & Support</option>
-                                        <option value='14'>CoreDev</option>
+                                        {
+                                            departments.map(item => 
+                                                <option value={item.name}>{item.name}</option>        
+                                            )
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -62,10 +55,11 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label>Form Type</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
-                                        <option value="1">Equipment Request</option>
-                                        <option value="2">Flight Request</option>
-                                        <option value="3">Leave Request</option>
-                                        <option value="4">Grievance Form</option>
+                                        {
+                                            formTypes.map(item => 
+                                                <option value={item.name}>{item.name}</option>        
+                                            )
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -75,11 +69,11 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label>Status</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
-                                        <option value="1">Approved</option>
-                                        <option value="2">Pending</option>
-                                        <option value="3">Declined</option>
-                                        <option value="4">For Review</option>
-                                        <option value="5">In Progress</option>
+                                        {
+                                            status.map(item => 
+                                                <option value={item.name}>{item.name}</option>        
+                                            )
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -89,9 +83,11 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label>Purpose of Travel</Form.Label>
                                     <Form.Select>
                                         <option>Select Answer</option>
-                                        <option value="1">Reason 1</option>
-                                        <option value="2">Reason 2</option>
-                                        <option value="3">Reason 3</option>
+                                        {
+                                            reasons.map(item => 
+                                                <option value={item.name}>{item.name}</option>        
+                                            )
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -117,17 +113,17 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Departure</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter City"/>
-                                        <Form.Control type="date" placeholder="Start Range"/>
-                                        <Form.Control type="date" placeholder="End Range"/>
+                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Return</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter City"/>
-                                        <Form.Control type="date" placeholder="Start Range"/>
-                                        <Form.Control type="date" placeholder="End Range"/>
+                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -163,14 +159,13 @@ export default function DashboardFilter({view, setFilterView}) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <div>
+                            <input class='button-neg' type='reset' value='Clear'/>
+                            <button class='button-affirm' onClick={()=>setFilterView(false)}>Apply</button>
+                        </div>
                     </Form>
                 </div>
             </Modal.Body>
-
-            <Modal.Footer>
-                <button type='button' onClick={clearForm}>Clear</button>
-                <button type='button' onClick={()=>setFilterView(false)}>Apply</button>
-            </Modal.Footer>
 
         </Modal>
 
