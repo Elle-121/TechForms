@@ -1,15 +1,22 @@
 
 
 // export default Home;
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 import SearchBarFilter from '../../components/SearchBarFilter';
+import DashboardFilter from './components/homeFilter';
 
 import RequestList from './RequestList'; // Assuming you have a RequestList component
 import { Row } from 'react-bootstrap';
 
 function Home() {
+  const [filterView, setFilterView] = useState(false)
+
+    const openFilterView = () => {
+        setFilterView(true);
+    }
+
   return (
     <MainContainer>
       <div className="row h-100 m-0">
@@ -32,6 +39,10 @@ function Home() {
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                 <h4 className="tf-header">Requests</h4>
                 <SearchBarFilter />
+                <DashboardFilter view={filterView} setFilterView={setFilterView}/>
+                <div>
+                  <button onClick={openFilterView}>Filter</button>
+                </div>
             </div>
 
             <RequestList />
