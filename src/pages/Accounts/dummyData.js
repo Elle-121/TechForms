@@ -1,4 +1,4 @@
-export const dummyAccounts = [
+export const dummyData = [
     {
         "id": "#MSLI-2025",
         "firstName": "Marcus",
