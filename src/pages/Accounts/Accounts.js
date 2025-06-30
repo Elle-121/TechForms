@@ -1,7 +1,7 @@
 import MainContainer from "../../components/MainContainer";
 import { dummyAccounts } from "./dummyData";
 import { useState } from "react";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "../../components/SearchBar";
 
 export default function Accounts(){
 

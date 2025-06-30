@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
 // components
-import SearchBarFilter from '../../components/SearchBarFilter';
+import SearchBar from '../../components/SearchBar';
 import Pagination from '../../components/Pagination'; // Assuming you have a Pagination component
 import RequestList from './RequestList'; // Assuming you have a RequestList component
 import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel component
@@ -40,7 +40,7 @@ function Home() {
             {/* Header - Requests + Searchbar + Filter */}
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                 <h4 className="tf-header">Requests</h4>
-                <SearchBarFilter/>
+                <SearchBar />
             </div>
         </div>
 
@@ -53,7 +53,7 @@ function Home() {
                 {/* Header - Requests + Searchbar + Filter */}
                 <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                     <h4 className="tf-header">Requests</h4>
-                    <SearchBarFilter />
+                    <SearchBar />
 
                     <DashboardFilter view={filterView} setFilterView={setFilterView}/>
                     <div>
