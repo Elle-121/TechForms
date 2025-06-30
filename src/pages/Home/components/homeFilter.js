@@ -90,10 +90,10 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label className='filter-form-label'>Date Submitted</Form.Label>
                                     <Row>
                                         <Col>
-                                            <Form.Control type="date" placeholder="Start Range"/>
+                                            <Form.Control type="date"/>
                                         </Col>
                                         <Col>
-                                            <Form.Control type="date" placeholder="End Range"/>
+                                            <Form.Control type="date"/>
                                         </Col>
                                     </Row>
                                 </Form.Group>
