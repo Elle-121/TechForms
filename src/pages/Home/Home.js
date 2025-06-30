@@ -1,7 +1,7 @@
 
 
 // export default Home;
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
@@ -16,6 +16,11 @@ import DashboardFilter from './components/homeFilter';
 import dummyData from './dummyData';
 
 function Home() {
+  const [filterView, setFilterView] = useState(false)
+
+    const openFilterView = () => {
+        setFilterView(true);
+    }
 
     // State for pagination
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -34,7 +39,12 @@ function Home() {
             {/* Left Side */}
             <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '30%', borderRight: '5px solid var(--tforange-color)' }}>
 
+            {/* Header - Requests + Searchbar + Filter */}
+            <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
+                <h4 className="tf-header">Requests</h4>
+                <SearchBarFilter/>
             </div>
+        </div>
 
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto border" style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
@@ -65,12 +75,6 @@ function Home() {
             </div>
 
         </div>
-
-        {/* Dashboard Filter */}
-        <div className="position-fixed" style={{ top: '20px', right: '20px', zIndex: 1000 }}>
-            <DashboardFilter />
-        </div>
-
 
         {/* Floating Action Button */}
         <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
