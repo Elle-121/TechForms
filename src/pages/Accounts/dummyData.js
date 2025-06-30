@@ -37,10 +37,10 @@ export const dummyAccounts = [
         "phoneNo": "+639444444444",
         "username": "egaza",
         "department": "ETS",
-        "role": "HR",
+        "role": "Employee",
     },
     {
-        "id": "#ANHZ-2021",
+        "id": "#ALHZ-2021",
         "firstName": "Angel",
         "lastName": "Hernandez",
         "email": "ahernandez@techfactors.com",
@@ -49,4 +49,14 @@ export const dummyAccounts = [
         "department": "ETS",
         "role": "Employee",
     },
+    {
+        "id": "#ANHZ-2021",
+        "firstName": "Gelo",
+        "lastName": "Paciencia",
+        "email": "gpaciencia@techfactors.com",
+        "phoneNo": "+639000000000",
+        "username": "gpaciencia",
+        "department": "ETS",
+        "role": "HR",
+    }
 ]
