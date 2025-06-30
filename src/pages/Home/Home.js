@@ -1,12 +1,12 @@
 
 
 // export default Home;
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
 // components
-import SearchBarFilter from '../../components/SearchBarFilter';
+import SearchBar from '../../components/SearchBar';
 import Pagination from '../../components/Pagination'; // Assuming you have a Pagination component
 import RequestList from './RequestList'; // Assuming you have a RequestList component
 import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel component
@@ -22,7 +22,8 @@ function Home() {
         setFilterView(true);
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
+    // State for pagination
+    const [currentPage, setCurrentPage] = React.useState(1);
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
@@ -30,6 +31,7 @@ function Home() {
     (currentPage - 1) * requestsPerPage,
     currentPage * requestsPerPage
     );
+
 
     return (
         <MainContainer>
@@ -39,8 +41,7 @@ function Home() {
 
             {/* Header - Requests + Searchbar + Filter */}
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
-                <h4 className="tf-header">Requests</h4>
-                <SearchBarFilter/>
+                <h4 className="tf-header">LEFT SIDE</h4>
             </div>
         </div>
 
@@ -51,13 +52,36 @@ function Home() {
                 <FilterPanel />
 
                 {/* Header - Requests + Searchbar + Filter */}
-                <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
-                    <h4 className="tf-header">Requests</h4>
-                    <SearchBarFilter />
+                <div
+                    className="d-flex justify-content-between align-items-center pb-3"
+                    style={{ borderBottom: '2px solid #C8C8C8' }}
+                    >
+                    <h2 className="tf-header">Requests</h2>
+                    <div className="d-flex align-items-center" style={{ gap: '12px' }}>
+                        <SearchBar />
 
-                    <DashboardFilter view={filterView} setFilterView={setFilterView}/>
-                    <div>
-                      <button onClick={openFilterView}>Filter</button>
+                        <button
+                            type="button"
+                            onClick={openFilterView}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                margin: 0,
+                                cursor: 'pointer',
+                                outline: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                position: 'relative',
+                            }}
+                            className="hover-underline"
+                            >
+                            <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
+                            <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
+                            </button>
+
+                        <DashboardFilter view={filterView} setFilterView={setFilterView}/>
                     </div>
                 </div>
 
@@ -71,7 +95,7 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="btn btn-warning rounded-circle position-fixed" style={{ bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px' }}>+</button>
+        <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
         </MainContainer>
     );
 }

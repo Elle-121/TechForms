@@ -33,6 +33,25 @@ $--tfblue-color: #033C7C;
   color: var(--tforange-color);
 }
 
+
+.hover-underline {
+  border: none;
+  background: none;
+  position: relative;
+}
+
+.hover-underline:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: orange;
+  border-radius: 1px;
+}
+
 /* Status Badges */
 
 .status-badge {
