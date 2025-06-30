@@ -1,7 +1,7 @@
 
 
 // export default Home;
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
@@ -42,7 +42,7 @@ function Home() {
             {/* Header - Requests + Searchbar + Filter */}
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
                 <h4 className="tf-header">Requests</h4>
-                <SearchBarFilter/>
+                <SearchBar/>
             </div>
         </div>
 
