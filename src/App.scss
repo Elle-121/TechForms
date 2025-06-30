@@ -23,14 +23,31 @@
 /* Colors Styles */
 .text-tforange {color: var(--tforange-color);}
 .text-tfblue {color: var(--tfblue-color);}
-$--tforange-color: #EE9337;
-$--tfblue-color: #033C7C;
 
 .tf-header {
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.04em;
   font-weight: bold;
   color: var(--tforange-color);
+}
+
+
+.hover-underline {
+  border: none;
+  background: none;
+  position: relative;
+}
+
+.hover-underline:hover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: orange;
+  border-radius: 1px;
 }
 
 /* Status Badges */
@@ -73,6 +90,30 @@ $--tfblue-color: #033C7C;
   background: var(--tf-gray-1);
 }
 
+/* Accounts Page Buttons */
+.nav-tabs,
+.btn-group-role {
+
+  button {
+    padding: 8px 16px;
+    color: var(--tf-gray-2);
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+  }
+
+  :hover, 
+  :focus, 
+  :active {
+    color: var(--tfblue-color);
+  }
+
+  :focus {
+    border-bottom: 2px solid var(--tfblue-color);
+    outline: none;
+  }
+}
+
 /* Default */
 .App {
   text-align: center;
@@ -102,6 +143,70 @@ $--tfblue-color: #033C7C;
 
 .App-link {
   color: #61dafb;
+}
+
+.button-affirm {
+  background: #EE9337;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button-affirm:active {
+  background-color: #B55B00;
+  border-color: #B55B00;
+}
+
+.button-affirm:hover {
+  background: white;
+  border-color: #EE9337;
+  color: #EE9337;
+}
+
+.button-neg {
+  background: #f5ece2;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #EE9337;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button-neg:active {
+  background-color: #B55B00;
+  border-color: #B55B00;
+}
+
+.button-neg:hover {
+  background: white;
+  border-color: #EE9337;
+  color: #EE9337;
+}
+
+.filter-form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #EE9337;
 }
 
 @keyframes App-logo-spin {

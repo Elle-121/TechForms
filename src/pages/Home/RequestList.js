@@ -1,14 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const dummyData = [
-    { id: 1, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
-    { id: 2, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Pending' },
-    { id: 3, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Rejected' },
-    { id: 4, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Approved' },
-  ];
 
-// Actions are dependent on the status of the request
+// Actions linked to each status as well as their icons and classes
 const statusActions = {
     Draft:  [{ label: 'Edit', icon: 'bi-pencil', className: 'text-tforange' }],
     Pending:[{ label: 'View Details', icon: 'bi-eye', className: 'text-tforange' }],
@@ -19,51 +13,50 @@ const statusActions = {
       ]
 }
 
-function BookingList() {
+function BookingList({data}) {
   return (
-    <div style={{ maxHeight: '400px', overflowY: 'auto' }} className="border border-black">
-    {dummyData.map((item) => (
+    <div style={{ overflowY: 'auto' }} className=" border-black">
+    {data.map((item) => (
         <div
-        key={item.id}
-        className="d-flex align-items-center justify-content-between py-2"
-
-        style={{ gap: '16x' , borderBottom: '1px solid var(--tf-gray-1)'}}
+            key={item.id}
+            className="d-flex align-items-center justify-content-between py-3"
+            style={{ gap: '16x' , borderBottom: '0px solid var(--tf-gray-1)'}}
         >
-        {/* Subject and date */}
-        <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
-            <div className="fw-bold">{item.subject}</div>
-            <div className="text-muted" style={{ fontSize: '0.85rem' }}>
-            <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
+            {/* Subject and date */}
+            <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
+                <div className="fw-bold" style={{fontSize:'1.25rem'}}>{item.subject}</div> 
+                <div className="text-muted" style={{ fontSize: '0.85rem' }}>
+                    <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
+                </div>
             </div>
-        </div>
 
-        {/* Form Type */}
-        <div style={{ flex: 2, minWidth: '120px', maxWidth: '200px', textAlign: 'center',whiteSpace: 'normal',wordBreak: 'break-word', display: 'block',}} className="">
-            <span className="badge badge-formtype" style={{whiteSpace: 'normal',  wordBreak: 'break-word', display: 'inline-block', }}>
-                {item.formType}
-        </span>
-        </div>
+            {/* Form Type */}
+            <div style={{ flex: 2, minWidth: '120px', maxWidth: '200px', textAlign: 'center',whiteSpace: 'normal',wordBreak: 'break-word', display: 'block',}} className="">
+                <span className="badge badge-formtype" style={{whiteSpace: 'normal',  wordBreak: 'break-word', display: 'inline-block', }}>
+                    {item.formType}
+                </span>
+            </div>
 
-        {/* Status Badge */}
-        <div style={{ flex: 1, minWidth: '120px', maxWidth: '160px', textAlign: 'center' }} className=''>
-            <span className={`badge status-badge status-${item.status.toLowerCase()}`}> {item.status} </span>
-        </div>
+            {/* Status Badge */}
+            <div style={{ flex: 1, minWidth: '120px', maxWidth: '160px', textAlign: 'center' }} className=''>
+                <span className={`badge status-badge status-${item.status.toLowerCase()}`}> {item.status} </span>
+            </div>
 
-        {/* Action links */}
-        <div className="d-flex flex-column align-items-start " style={{ flex: 1, maxWidth: '150px' }}>
-            {statusActions[item.status]?.map((action, idx) => (
-            <button
-                key={idx}
-                className={`btn btn-sm ${action.className} d-flex align-items-center`}
-                style={{ fontSize: '0.85rem', padding: '0px 5px' }}
-            >
-                <i className={`bi ${action.icon} me-1`}></i> {action.label}
-            </button>
-            ))}
+            {/* Action links */}
+            <div className="d-flex flex-column align-items-start " style={{ flex: 1, maxWidth: '150px' }}>
+                {statusActions[item.status]?.map((action, idx) => (
+                <button
+                    key={idx}
+                    className={`btn btn-sm ${action.className} d-flex align-items-center`}
+                    style={{ fontSize: '0.85rem', padding: '0px 5px' }}
+                >
+                    <i className={`bi ${action.icon} me-1`}></i> {action.label}
+                </button>
+                ))}
+            </div>
+            </div>
+        ))}
         </div>
-        </div>
-    ))}
-    </div>
 
   );
 }
