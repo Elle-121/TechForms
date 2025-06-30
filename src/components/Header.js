@@ -27,6 +27,8 @@ function Header() {
   // constants
   const icon_size = 30
   const profile_icon_size = 40
+  const dummy_profile = "Rayu Ma Masakit"
+  const dummy_role = "Employee"
 
   return (
     <Navbar expand="lg" className='top-header py-2 px-3'>
@@ -85,8 +87,8 @@ function Header() {
               <div className="d-flex align-items-center justify-content-end w-100">
                 <img src={image} width={profile_icon_size} height={profile_icon_size} className="me-2" alt="User" />
                 <div className="d-flex flex-column text-start">
-                  <span className="fw-bold">Rayu Ma Masakit</span>
-                  <span className="text-muted">Full-Stack Developer</span>
+                  <span className="fw-bold">{dummy_profile}</span>
+                  <span className="text-muted">{dummy_role}</span>
                 </div>
               </div>
             </Dropdown.Toggle>
