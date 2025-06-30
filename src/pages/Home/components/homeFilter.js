@@ -5,15 +5,6 @@ import "../../../App.scss";
 
 export default function DashboardFilter({view, setFilterView}) {
 
-    // State variables for the filter form
-    const [department, setDepartment] = useState("");
-    const [role, setRole] = useState("");
-
-    const clearForm = () => {
-        setDepartment("");
-        setRole("");
-    };
-
     return ( 
 
         <Modal show={view} size="lg">
@@ -159,9 +150,50 @@ export default function DashboardFilter({view, setFilterView}) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3 text-center">
+                                    <Form.Label>To be approved by</Form.Label>
+                                    <div key={`inline-radio`} className="mb-3">
+                                    <Form.Check
+                                        inline
+                                        label="ARC"
+                                        value="ARC"
+                                        name="group1"
+                                        type="radio"
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="JDLC"
+                                        value="JDLC"
+                                        name="group1"
+                                        type="radio"
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="ATP"
+                                        value="ATP"
+                                        name="group1"
+                                        type="radio"
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="DFS"
+                                        value="DFS"
+                                        name="group1"
+                                        type="radio"
+                                    />
+                                    </div>
+                                </Form.Group>
+                            </Col>
+                        </Row>
                         <div>
-                            <input class='button-neg' type='reset' value='Clear'/>
-                            <button class='button-affirm' onClick={()=>setFilterView(false)}>Apply</button>
+                            <Row>
+                                <Col className="text-end">
+                                    <input class='button-neg ms-2' type='reset' value='Clear'/>                            
+                                    <button class='button-affirm ms-2' onClick={()=>setFilterView(false)}>Apply</button>
+                                </Col>
+                            </Row>
                         </div>
                     </Form>
                 </div>
