@@ -1,14 +1,3 @@
-// const dummyData = [
-//     { id: 1, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
-//     { id: 2, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Pending' },
-//     { id: 3, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Rejected' },
-//     { id: 4, subject: 'TOKYO → SOMEWHERE', date: '6/24/2025', formType: 'Flight Request', status: 'Approved' },
-//     // ...add more as needed
-    
-//   ];
-  
-
-
 const dummyData = [
     { id: 1, subject: '1', date: '6/24/2025', formType: 'Flight Request', status: 'Draft' },
     { id: 2, subject: '2', date: '6/24/2025', formType: 'Flight Request', status: 'Pending' },

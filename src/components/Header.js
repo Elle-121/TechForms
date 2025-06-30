@@ -31,7 +31,7 @@ function Header() {
   const dummy_role = "Employee"
 
   return (
-    <Navbar expand="lg" className='top-header py-2 px-3'>
+    <Navbar expand="lg" className='top-header py-2 px-3 bg-white' style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
       <Container fluid className="justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           {/* Logo */}
