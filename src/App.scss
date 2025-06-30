@@ -209,6 +209,14 @@
   color: var(--tforange-color);
 }
 
+.fr-form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 1px;
+  color: var(--tf-gray-4);
+}
+
 .text-icon-button {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
@@ -220,6 +228,29 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.form-h1{
+  border-bottom: #575757 solid 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-h2{
+  border-bottom: var(--tforange-color) solid 5px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.remarks-box {
+  background-color: var(--tf-yellow-bg);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 160px;
+  overflow-x: hidden;
 }
 
 @keyframes App-logo-spin {
