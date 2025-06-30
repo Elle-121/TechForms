@@ -5,10 +5,20 @@ export default function RegisterForm({view, setFormView}) {
     return ( 
 
         <Modal show={view} size="lg">
+            <Modal.Header>
+                <div className="tf-form-title">
+                    <h1 className="tf-header text-black">Register User</h1>
+                </div>
+            </Modal.Header>
 
             <Modal.Body>
                 <div>
                     <Form>
+                        <div className="tf-form-section">
+                            <h2>User</h2>
+                            <p>User Information</p>
+                        </div>
+
                         {/* Name */}
                         <Row>
                             <Col>
@@ -72,9 +82,9 @@ export default function RegisterForm({view, setFormView}) {
                         <Row>
                             {/* Email */}
                             <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Company Email</Form.Label>
-                                    <Form.Control type="email" placeholder="email@techfactors.com"/>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control type="email" placeholder="Enter email" />
                                 </Form.Group>
                             </Col>
                             {/* Phone Number */}
@@ -86,6 +96,11 @@ export default function RegisterForm({view, setFormView}) {
                             </Col>
                         </Row>
 
+                        <div className="tf-form-section">
+                            <h2>Account Credentials</h2>
+                            <p>Username and Password</p>
+                        </div>
+                        
                         <Row>
                             {/* Username */}
                             <Col>
