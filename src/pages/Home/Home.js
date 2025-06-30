@@ -70,6 +70,7 @@ function Home() {
 
         {/* Floating Action Button */}
         <button className="btn btn-warning rounded-circle position-fixed" style={{ bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px' }}>+</button>
+        
         </MainContainer>
     );
 }
