@@ -108,7 +108,8 @@
     color: var(--tfblue-color);
   }
 
-  :focus {
+  :focus, 
+  :active {
     border-bottom: 2px solid var(--tfblue-color);
     outline: none;
   }

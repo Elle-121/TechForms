@@ -53,6 +53,8 @@ export default function Accounts(){
                     </tbody>
                 </table>
             </div>
+
+            <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
         </MainContainer>
     );
 }
