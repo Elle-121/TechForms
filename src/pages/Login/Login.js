@@ -5,6 +5,7 @@ import { Form, Row, Col } from "react-bootstrap";
 // TODO: Separate Logo and NavBar
 
 function Login(){
+
     return (
         <MainContainer>
         <div className="row h-100 m-0">
@@ -28,7 +29,7 @@ function Login(){
                     </Form.Group>
                     <button>HIDE PASSWORD</button>
 
-                    <a href="">Forgot your password?</a>
+                    <a href="/reset-password">Forgot your password?</a>
 
                     <button class='button-affirm ms-2' >Log In</button>
 

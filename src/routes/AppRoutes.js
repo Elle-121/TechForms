@@ -5,12 +5,14 @@ import Profile from "../pages/Profile/Profile";
 import Accounts from "../pages/Accounts/Accounts";
 import Notifications from "../pages/Notifications/Notifications";
 import Login from "../pages/Login/Login";
+import ResetPassword from "../pages/Login/ResetPassword"
 import FlightRequestForm from "../pages/FlightRequestForm/FlightRequestForm";
 
 function AppRoutes() { // TODO: Change Home Route
   return (
     <Routes>
-      <Route path="/Login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/accounts" element={<Accounts />} />
