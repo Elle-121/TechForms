@@ -115,6 +115,9 @@
   }
 }
 
+
+
+
 /* Default */
 .App {
   text-align: center;
@@ -233,3 +236,20 @@
 }
 
 
+.custom-toggle,
+.custom-toggle:focus,
+.custom-toggle:active,
+.custom-toggle:focus-visible,
+.custom-toggle.show,
+.custom-toggle:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  transition: none !important;
+}
+
+// .custom-toggle:focus-within {
+//   outline: none !important;
+//   box-shadow: none !important;
+//   border-color: transparent !important;
+// }
