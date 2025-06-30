@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Form, Row, Col, Button } from "react-bootstrap";
+import { Modal, Form, Row, Col } from "react-bootstrap";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
