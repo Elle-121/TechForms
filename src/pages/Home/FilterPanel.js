@@ -3,7 +3,10 @@ import archiveicon from '../../assets/ArchiveIcon.svg'
 import bookmarkicon from '../../assets/BookmarkIcon.svg'
 import smallcheckicon from '../../assets/SmallcheckIcon.svg'
 import totalreqicon from '../../assets/TotalReqIcon.svg'
+import rejectedicon from '../../assets/RejectedIcon.svg'
 
+
+// Syles for the Cards
 const styles = {
   card: {
     border: '1px solid #f4a000',
@@ -34,13 +37,22 @@ const styles = {
   },
 };
 
+// Request Stats Data
 const requestStats = [
   { icon: archiveicon, label: 'Total Requests', count: 12 },
   { icon: bookmarkicon, label: 'Pending Requests', count: 5 },
   { icon: smallcheckicon, label: 'Approved Requests', count: 7 },
+  { icon: rejectedicon, label: 'Rejected Requests', count: 21 },
   { icon: totalreqicon, label: 'Requests This Month', count: 3 },
+
 ];
 
+function onFilter(filter) {
+    return;
+  }
+
+// Functions -- Filter Card and Filter Panels
+// FilterCard component
 function FilterCard({ icon, label, count, onClick }) {
     const [hovered, setHovered] = useState(false);
   
@@ -56,7 +68,7 @@ function FilterCard({ icon, label, count, onClick }) {
         style={cardStyle}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onClick={onClick} // <-- add this
+        onClick={onClick} 
       >
         <img src={icon}
           style={{
@@ -71,23 +83,22 @@ function FilterCard({ icon, label, count, onClick }) {
     );
   }
   
-  function FilterPanels({ onFilter }) {
+  function FilterPanels({activeFilter }) {
+    const filterKeys = ['ALL', 'Pending', 'Approved', 'Rejected', 'ThisMonth'];
     return (
-      <div className="row g-3 mb-4">
-        <div className="col-sm-6 col-md-3">
-          <FilterCard {...requestStats[0]} onClick={() => onFilter('ALL')} />
-        </div>
-        <div className="col-sm-6 col-md-3">
-          <FilterCard {...requestStats[1]} onClick={() => onFilter('Pending')} />
-        </div>
-        <div className="col-sm-6 col-md-3">
-          <FilterCard {...requestStats[2]} onClick={() => onFilter('Approved')} />
-        </div>
-        <div className="col-sm-6 col-md-3">
-          <FilterCard {...requestStats[3]} onClick={() => onFilter('ThisMonth')} />
-        </div>
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+        {requestStats.map((stat, idx) => (
+            <div style={{ flex: 1 }} key={stat.label}>
+            <FilterCard
+              {...stat}
+              active={activeFilter === filterKeys[idx]}
+              onClick={() => onFilter(filterKeys[idx])}
+            />
+          </div>
+        ))}
       </div>
     );
   }
-  
   export default FilterPanels;
+
+  
