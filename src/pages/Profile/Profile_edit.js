@@ -1,7 +1,7 @@
 import ProfileContainer from "./Profile_container";
 import homeicon from '../../assets/PNGIcon.svg';
 import confirmicon from '../../assets/ConfirmIcon.svg';
-import cancelicon from '../../assets/CancelIcon.svg';
+import cancelicon from '../../assets/CloseIcon.svg';
 
 const profile = () => {
     window.location.href = "/profile";
