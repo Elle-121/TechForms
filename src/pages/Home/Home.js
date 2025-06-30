@@ -41,8 +41,7 @@ function Home() {
 
             {/* Header - Requests + Searchbar + Filter */}
             <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
-                <h4 className="tf-header">Requests</h4>
-                <SearchBar/>
+                <h4 className="tf-header">LEFT SIDE</h4>
             </div>
         </div>
 
@@ -52,20 +51,39 @@ function Home() {
                 {/* Filters */}
                 <FilterPanel />
 
-            {/* Header - Requests + Searchbar + Filter */}
-            <div
-            className="d-flex justify-content-between align-items-center pb-3"
-            style={{ borderBottom: '2px solid #C8C8C8' }}
-            >
-            <h2 className="tf-header">Requests</h2>
-            <div className="d-flex align-items-center" style={{ gap: '12px' }}>
-                <SearchBar />
-                <div className="d-flex align-items-center" style={{ gap: '6px', cursor: 'pointer' }}>
-                <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
-                <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
+                {/* Header - Requests + Searchbar + Filter */}
+                <div
+                    className="d-flex justify-content-between align-items-center pb-3"
+                    style={{ borderBottom: '2px solid #C8C8C8' }}
+                    >
+                    <h2 className="tf-header">Requests</h2>
+                    <div className="d-flex align-items-center" style={{ gap: '12px' }}>
+                        <SearchBar />
+
+                        <button
+                            type="button"
+                            onClick={openFilterView}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                margin: 0,
+                                cursor: 'pointer',
+                                outline: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                position: 'relative',
+                            }}
+                            className="hover-underline"
+                            >
+                            <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
+                            <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
+                            </button>
+
+                        <DashboardFilter view={filterView} setFilterView={setFilterView}/>
+                    </div>
                 </div>
-            </div>
-            </div>
 
                 <RequestList data={paginatedRequests} />
 
