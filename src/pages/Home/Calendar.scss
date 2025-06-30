@@ -1,0 +1,142 @@
+// .react-datepicker {
+//     width: 340px;
+//     min-width: 320px;
+//     max-width: 320px;
+//     height: 340px;
+//     min-height: 340px;
+//     max-height: 340px;
+//     box-sizing: border-box;
+//     border: 2px solid var(--tforange-color); // Change border color here
+//     border-radius: 18px; // Change border radius here
+//     background: #fff; // Optional: ensure background is white
+// }
+
+
+.react-datepicker {
+    width: 340px;
+    min-width: 320px;
+    max-width: 320px;
+    height: 340px;
+    min-height: 340px;
+    max-height: 340px;
+    box-sizing: border-box;
+    border: 1px solid var(--tforange-color); // Change border color here
+    border-radius: 5%; // Change border radius here
+    background: #fff; // Optional: ensure background is white }
+}
+
+.react-datepicker__header {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.8rem;
+    // border: 1px solid black;
+    background-color: transparent;
+}
+
+// days
+.react-datepicker__day {
+    color: black;
+    font-weight: 400;
+    border-radius: 50%;
+    transition: background 0.2s;
+    // border: 1px solid black;
+}
+
+// today highlight
+.react-datepicker__day--today {
+    border: 1px solid var(--tforange-color);
+    background: white;
+    color: var(--tfblue-color);
+    font-weight: 700;
+}
+
+// react calendar spacing and sizing
+.react-datepicker__month-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Remove justify-content: center; */
+}
+
+.react-datepicker__month {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // horizontally center the weeks grid
+    justify-content: center; // vertically center if parent has fixed height
+    height: 100%; // fill the container
+    // border: 1px solid black
+}
+
+.react-datepicker__week {
+    margin-bottom: 0.8rem;
+}
+
+// Navigation
+.react-datepicker__navigation {
+    top: 20px;
+}
+
+// -- Selection --
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+    background: var(--tforange-color) !important; // background color for start/end
+    color: #fff !important; // text color for start/end
+    border-radius: 50% !important; // keep them circular
+    border-bottom: none !important; // remove underline if you have one
+    font-weight: bold;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__day--in-range:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--range-start:hover,
+.react-datepicker__day--range-end:hover,
+.react-datepicker__day--today:hover {
+    background-color: var(--tforange-color) !important;
+    color: black !important;
+    border-radius: 10px !important;
+}
+
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range {
+    background: var(--tfblue-color); // Remove background fill
+    color: white; // Keep your text color
+    border-radius: 10 !important; // Remove rounded background
+    // border-bottom: 3px solid var(--tforange-color); // Add orange underline
+    font-weight: bold;
+}
+
+.react-datepicker__day--in-range.react-datepicker__day--today,
+.react-datepicker__day--in-selecting-range.react-datepicker__day--today {
+    background: var(--tfblue-color) !important;
+    color: rgb(228, 239, 255) !important;
+    border-radius: 10 !important;
+    border-bottom: 3px solid var(--tforange-color) !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+
+.react-datepicker__day--range-start.react-datepicker__day--today,
+.react-datepicker__day--range-end.react-datepicker__day--today {
+    background: var(--tforange-color) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+    border-bottom: none !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+
+.react-datepicker__day--in-selecting-range {
+    background: var(--tforange-color) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+    font-weight: 100; 
+}
