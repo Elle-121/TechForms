@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// components
 import MainContainer from '../../components/MainContainer';
 
 // Components
@@ -41,15 +39,16 @@ function Home() {
 
 
     return (
-        <MainContainer>
+    <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
-            <div className="p-4 h-100 overflow-auto border" style={{width: '30%',display: 'flex',flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
+            
+            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto  " style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
                 <Calendar />
             </div>
-            
+
             {/* Right Content */}
-            <div className="p-4 h-100 overflow-auto border" style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
+            <div className="p-4 h-100 overflow-auto " style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
                 {/* Filters */}
                 <FilterPanel />
@@ -99,7 +98,7 @@ function Home() {
 
         {/* Floating Action Button */}
         <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
-        </MainContainer>
+    </MainContainer>
     );
 }
 
