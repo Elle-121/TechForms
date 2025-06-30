@@ -1,23 +1,27 @@
 
 
-// export default Home;
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
-// components
+// Components
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../../components/Pagination'; // Assuming you have a Pagination component
 import RequestList from './RequestList'; // Assuming you have a RequestList component
 import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel component
+import Calendar from './Calendar';
+
+// Popup Modal
 import DashboardFilter from './components/homeFilter';
 
-// data
+
+// Dummy Data
 import dummyData from './dummyData';
 
 function Home() {
-  const [filterView, setFilterView] = useState(false)
 
+    // Function to open the filter view
+    const [filterView, setFilterView] = useState(false)
     const openFilterView = () => {
         setFilterView(true);
     }
@@ -27,9 +31,10 @@ function Home() {
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
+    // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
     const paginatedRequests = dummyData.slice(
-    (currentPage - 1) * requestsPerPage,
-    currentPage * requestsPerPage
+        (currentPage - 1) * requestsPerPage,
+        currentPage * requestsPerPage
     );
 
 
@@ -37,14 +42,10 @@ function Home() {
         <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
-            <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '30%', borderRight: '5px solid var(--tforange-color)' }}>
-
-            {/* Header - Requests + Searchbar + Filter */}
-            <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
-                <h4 className="tf-header">LEFT SIDE</h4>
+            <div className="p-4 h-100 overflow-auto border" style={{width: '30%',display: 'flex',flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
+                <Calendar />
             </div>
-        </div>
-
+            
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto border" style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
