@@ -9,9 +9,17 @@ import AccountList from "./AccountList";
 
 // data
 import { dummyData } from "./dummyData";
+import RegisterForm from './components/RegisterForm';
 
 export default function Accounts(){
 
+    const [formView, setFormView] = useState(false)
+    
+    const openFormView = () => {
+        setFormView(true);
+    }
+
+    // State for roles
     const [role, setRole] = useState();
 
     // State for pagination
@@ -45,7 +53,9 @@ export default function Accounts(){
                 </div>
             </div>
 
-            <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+            <button onClick={openFormView} className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+            <RegisterForm view={formView} setFormView={setFormView} />
+        
         </MainContainer>
     );
 }
