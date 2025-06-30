@@ -2,7 +2,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function SearchBarWithFilter() {
+export default function SearchBar() {
   return (
     <div className="d-flex align-items-center gap-3">
       {/* Search Bar */}
@@ -48,5 +48,3 @@ function SearchBarWithFilter() {
     </div>
   );
 }
-
-export default SearchBarWithFilter;

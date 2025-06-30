@@ -1,21 +1,27 @@
 import MainContainer from "../../components/MainContainer";
 import { dummyAccounts } from "./dummyData";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import SearchBar from "./components/searchBar";
+import { useState } from "react";
+import SearchBar from "../../components/SearchBar";
 
 export default function Accounts(){
+
+    const [role, setRole] = useState()
+
+
+    // const filterData = (value) =>{
+    //     return dummyAccounts.filter(item => {item.role===value})
+    // }
 
     return (
         <MainContainer>
             <div className="mx-5 my-3">
-                <h1 className="text-label text-tforange">Account Management</h1>
-                <div className="d-flex justify-content-between">
-                    <Tabs defaultActiveKey="all" class="mb-3 nav nav-tabs">
-                        <Tab eventkey="all" title="All" class="filter-role">All</Tab>
-                        <Tab eventkey="hr" title="HR" class="filter-role">HR</Tab>
-                        <Tab eventkey="employee" title="Employee" class="filter-role">Employee</Tab>
-                    </Tabs>
+                <h1 className="tf-header">Account Management</h1>
+                <div className="d-flex justify-content-between mb-3">
+                    <div className="btn-group-role">
+                        <button onClick={()=>setRole()} autoFocus>All</button>
+                        <button onClick={()=>setRole("HR")}>HR</button>
+                        <button onClick={()=>setRole("Employee")}>Employee</button>
+                    </div>
                     <SearchBar/>
                 </div>
                 <table className="table">
@@ -32,7 +38,7 @@ export default function Accounts(){
                     </thead>
                     <tbody>
                          {
-                            dummyAccounts.map(item =>
+                            dummyAccounts.filter(item=> role ? item.role===role : item.role).map(item =>
                                 <tr>
                                     <td>{item.id}</td>
                                     <td>{item.firstName + " " + item.lastName}</td>
