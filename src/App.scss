@@ -253,6 +253,13 @@
   overflow-x: hidden;
 }
 
+.sub-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--tf-gray-2);
+  font-size: 16px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

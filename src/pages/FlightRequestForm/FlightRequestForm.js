@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
 
 //components
 import MainContainer from '../../components/MainContainer';
@@ -8,6 +9,10 @@ import MainContainer from '../../components/MainContainer';
 import { departments, formTypes, status, reasons } from "../Home/components/filterData";
 
 export default function FlightRequestForm() {
+
+    const [othersChecked, setOthersChecked] = useState(false);
+    const [othersValue, setOthersValue] = useState("");
+
     return(
         <MainContainer>
             <Row>
@@ -65,7 +70,7 @@ export default function FlightRequestForm() {
                             {/* Requestor Details */}
                             <div>
                                 <div className='form-h2'>
-                                    <h3 className='tf-header'>Requestor Information</h3>
+                                    <h3 className='tf-header mt-5'>Requestor Information</h3>
                                 </div>
 
                                 <Row className='mb-2'>
@@ -101,7 +106,7 @@ export default function FlightRequestForm() {
                             {/* Flight Request Details */}
                             <div>
                                 <div className='form-h2'>
-                                    <h3 className='tf-header'>Flight Request Details</h3>
+                                    <h3 className='tf-header mt-5'>Flight Request Details</h3>
                                 </div>
 
                                 <Row className='mb-2'>
@@ -146,10 +151,104 @@ export default function FlightRequestForm() {
                                     </Col>
                                 </Row>
 
-                                {/* Add Additional Flier Button */}
-                                <Row>
+                                {/* Insert "Add Additional Flier Button" here */}
+                                {/* <Row>
                                     Add Additional Person
-                                </Row>                            
+                                </Row>   */}
+
+                            </div>
+                            <div>
+                                {/* Purpose of Flight */}
+                                <div>
+                                    <h3 className='tf-header mt-5'>Purpose of Travel</h3>
+                                </div>  
+
+                                <Row>
+                                    <Col>
+                                    <Form.Group className="mb-3 text-start fr-form-label">
+                                        <div key={`default-checkbox`} className="mb-3">
+                                            {
+                                                reasons.slice(0, 6).map(item => 
+                                                    <Form.Check
+                                                        label={item.name}
+                                                        value={item.name}
+                                                        name="group1"
+                                                        type="checkbox"
+                                                    />        
+                                                )
+                                            }
+                                        </div>
+                                    </Form.Group>
+                                    </Col>
+                                    
+                                    <Col>
+                                    <Form.Group className="mb-3 text-start fr-form-label">
+                                        <div key={`default-checkbox`} className="mb-3">
+                                            {
+                                                reasons.slice(6, 12).map(item => 
+                                                    <Form.Check
+                                                        label={item.name}
+                                                        value={item.name}
+                                                        name="group1"
+                                                        type="checkbox"
+                                                    />        
+                                                )
+                                            }
+                                        </div>
+                                    </Form.Group>
+                                    </Col>
+                                </Row>
+
+                                {/* Others Checkbox and Input */}
+                                <Row>
+                                    <Col>
+                                        <div className="d-flex align-items-center">
+                                            <Form.Check
+                                                inline
+                                                name="group1"
+                                                type="checkbox"
+                                                checked={othersChecked}
+                                                onChange={e => setOthersChecked(e.target.checked)}
+                                                className="me-2"
+                                            />
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Others (Please Specify)"
+                                                disabled={!othersChecked}
+                                                value={othersValue}
+                                                onChange={e => setOthersValue(e.target.value)}
+                                                style={{ maxWidth: 300 }}
+                                            />
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>
+
+                            <div>
+                                {/* Dates of Business */}
+                                <div>
+                                    <h3 className='tf-header mt-5 mb-0'>Exact Dates of Official Business</h3>
+                                    <p className='sub-text'>Input the Exact START and END dates of Official Business</p>
+                                </div>  
+                                
+                                <div className='w-50'>
+                                    <Row>
+                                        <Col>
+                                            <Form.Group className="mb-3">
+                                                <Row>
+                                                    <Col>
+                                                        <Form.Label className='fr-form-label text-start'>Start Date</Form.Label>
+                                                        <Form.Control type="date" placeholder="Start Range"/>
+                                                    </Col>
+                                                    <Col>
+                                                        <Form.Label className='fr-form-label text-start'>End Date</Form.Label>
+                                                        <Form.Control type="date" placeholder="End Range"/>
+                                                    </Col>
+                                                </Row>
+                                            </Form.Group>
+                                        </Col>    
+                                    </Row>
+                                </div>
                             </div>
 
                         </Form>
