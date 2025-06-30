@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
+import { Form, Row, Col } from "react-bootstrap";
 
 // TODO: Separate Logo and NavBar
 
@@ -15,17 +16,21 @@ function Login(){
             <div className="p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
                 <div>
                     <h1>Welcome Back to TechForms*</h1>
-                    <h2>Manage all your Techfactor forms right here!</h2>
-                
-                    <p>Username/Email</p><p>*</p>
-                    <input value="Enter Username or Techfactors email"></input>
-                    <p>Password</p><p>*</p>
-                    <input value="Enter password"></input>
+                    <p>Manage all your Techfactor forms right here!</p>
+
+                    <Form.Group className="">
+                        <Form.Label className="">Username/Email</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Username or Techfactors email"/>
+                    </Form.Group>
+                    <Form.Group className="">
+                        <Form.Label className="">Password</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Password"/>
+                    </Form.Group>
                     <button>HIDE PASSWORD</button>
 
                     <a href="">Forgot your password?</a>
 
-                    <button>Log In</button>
+                    <button class='button-affirm ms-2' >Log In</button>
 
 
                 </div>
