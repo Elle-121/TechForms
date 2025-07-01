@@ -75,18 +75,39 @@ function Header() {
             <div className="dropdown-toggle" onClick={() => setShowNotifMenu(!showNotifMenu)}>
               <img src={notificationsicon} width={icon_size} height={icon_size} alt="Notifications" />
             </div>
-            <div className="dropdown-menu">
-              <a href="#">Notification</a>
-              <a href="#">Notification</a>
-              <a href="#">Notification</a> 
-              <a href="#">Notification</a>
-              <a href="#">Notification</a>
-              <a href="#">Notification</a> 
-              <a href="#">Notification</a>
-              <a href="#">Notification</a>
-              <a href="#">Notification</a> 
+
+            <div className="dropdown-menu" style={{ maxHeight: '500px', overflowY: 'auto', minWidth: '300px' }}>
+              {dummyNotifs.slice(0, 10).map((notif, idx) => (
+                <div
+                  key={idx}
+                  className="dropdown-item text-muted"
+                  style={{
+                    cursor: 'pointer',
+                    padding: '0.5rem 1rem'
+                  }}
+                >
+                  {notif.message}
+                </div>
+              ))}
+
+              <div className="dropdown-divider" style={{ borderTop: '1px solid #eee', margin: '0.5rem 0' }}></div>
+
+              <div
+                className="dropdown-item"
+                onClick={notifications}
+                style={{
+                  fontWeight: 400,
+                  color: 'var(--tforange-color)',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  padding: '0.5rem 1rem'
+                }}
+              >
+                View All Notifications →
+              </div>
             </div>
           </div>
+
 
           {/* User Dropdown */}
           <div ref={userMenuRef} className={`custom-dropdown-profile ${showUserMenu ? 'open' : ''}`}>
