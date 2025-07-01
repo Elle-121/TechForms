@@ -6,6 +6,8 @@
   --tfaffirm-hover: #CF6E0C;
   --tfneg-hover: #EEDBC7;
   --tfdraft-hover: #032B59;
+  --tfreject-hover: #920909;
+  --tfapprove-hover: #116c1e;
 
   --tf-gray-1: #CCCCCC;
   --tf-gray-2: #A5A5A5;
@@ -17,6 +19,8 @@
 
   --tf-yellow-text: #B8720F;
   --tf-yellow-bg: #fcde65;
+
+  --tf-orange-bg: #F8CCA1;
 
   --tf-red-text: #A70B0B;
   --tf-red-bg: #FFA892;
@@ -208,13 +212,49 @@
 
   .btn-reject {
     background-color: var(--tf-red-text);
+
+    &:hover {
+      background-color: var(--tfreject-hover);
+    }
   }
 
   .btn-add {
     background-color: var(--tfblue-color);
+
+    &:hover {
+      background-color: var(--tfdraft-hover);
+    }
   }
 }
 
+.btn-approve {
+  background-color: var(--tf-green-text);
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+
+ &:active {
+    background-color: var(--tfapprove-hover);
+    color: var(--tf-green-text);
+  }
+
+  &:hover {
+    background-color: var(--tfapprove-hover);
+  }
+}
+
+/* Forms */
 .form-modal {
   .modal-header {
     border-bottom: none;
@@ -390,6 +430,21 @@
   font-weight: 700;
   font-size: 30px;
   color: var(--tf-gray-3);
+}
+
+.forms-modal-option{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  color: var(--tf-gray-3);
+  background-color: white;
+  border-radius: 16px;
+  border-color: transparent;
+}
+
+.forms-modal-option:hover{
+  background-color: var(--tf-orange-bg);
+  color: black;
 }
 
 .remarks-box {
