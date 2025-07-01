@@ -16,6 +16,10 @@ export default function Review() {
         setFormView(true);
     }
 
+    const home = async () => {
+        window.location.href = "/";
+    }
+
     return (
         <MainContainer>
         <div className="row h-100 m-0">
@@ -24,7 +28,7 @@ export default function Review() {
 
                 {/* Header - Requests + Searchbar + Filter */}
                 <div className="d-flex justify-content-between align-items-center pb-2">
-                    <button type='button' className="hover-underline d-flex align-items-center" onClick={() => window.history.back()}>
+                    <button type='button' className="hover-underline d-flex align-items-center" onClick={home}>
                         <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>
                         <span style={{ color: '#EE9337', fontSize: '14px' }}>Back</span>
                     </button>
@@ -33,7 +37,7 @@ export default function Review() {
                 <Form>
                     <Form.Group className="mt-2 mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label className='review-notes'>Notes:</Form.Label>
-                        <Form.Control as="textarea" rows={3} style={{height: '60vh'}}/>
+                        <Form.Control as="textarea" placeholder='Enter notes.' rows={3} style={{height: '60vh'}}/>
                     </Form.Group>
                 </Form>
                 
