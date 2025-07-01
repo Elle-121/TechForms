@@ -6,14 +6,14 @@ function Layout({ sidebar, main }) {
   };
 
   const sidebarStyle = {
-    flex: '0 0 41.6667%',
-    borderRight: '7px solid #EE9337',
-    height: '95%',
+    flex: '0 0 30%',
+    borderRight: '5px solid #EE9337',
+    height: '99.5%',
   };
 
   const mainStyle = {
-    flex: '0 0 58.3333%',
-    padding: '1rem',
+    flex: '0 0 70%',
+    padding: '2rem',
   };
 
   return (

@@ -31,6 +31,7 @@
   color: var(--tforange-color);
 }
 
+/* Hover Underline */
 .hover-underline {
   border: none;
   background: none;
@@ -183,7 +184,7 @@
 }
 
 .button-affirm {
-  background: #EE9337;
+  background: var(--tforange-color);
   border: 2px solid;
   border-color: transparent;
   border-radius: 15px;
@@ -207,8 +208,8 @@
 
 .button-affirm:hover {
   background: white;
-  border-color: #EE9337;
-  color: #EE9337;
+  border-color: var(--tforange-color);
+  color: var(--tforange-color);
 }
 
 .button-neg {
@@ -216,7 +217,7 @@
   border: 2px solid;
   border-color: transparent;
   border-radius: 15px;
-  color: #EE9337;
+  color: var(--tforange-color);
   cursor: pointer;
   display: inline-block;
   font-family: 'Poppins', sans-serif;
@@ -236,14 +237,27 @@
 
 .button-neg:hover {
   background: white;
-  border-color: #EE9337;
-  color: #EE9337;
+  border-color: var(--tforange-color);
+  color: var(--tforange-color);
 }
 
 .filter-form-label {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  color: #EE9337;
+  color: var(--tforange-color);
+}
+
+.text-icon-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--tforange-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 @keyframes App-logo-spin {
