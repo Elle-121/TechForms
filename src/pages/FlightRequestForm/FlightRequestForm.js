@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 //components
 import MainContainer from '../../components/MainContainer';
+import ProgressLadder from './components/ProgressLadder';
 
 //data
 import { departments, formTypes, status, reasons } from "../Home/components/filterData";
@@ -22,7 +23,7 @@ export default function FlightRequestForm() {
             <Row>
                 {/*Left Content*/}
                 <Col className='tf-header h1 d-flex justify-content-center'>
-                    Marcus Pogi Marcus Pogi Marcus Pogi Marcus Pogi   
+                    <ProgressLadder/>
                 </Col>
 
                 {/*Center Content*/}
