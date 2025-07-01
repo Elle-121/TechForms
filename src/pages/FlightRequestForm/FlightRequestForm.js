@@ -21,8 +21,8 @@ export default function FlightRequestForm() {
         <MainContainer>
             <Row>
                 {/*Left Content*/}
-                <Col>
-                    Left Side   
+                <Col className='tf-header h1 d-flex justify-content-center'>
+                    Marcus Pogi Marcus Pogi Marcus Pogi Marcus Pogi   
                 </Col>
 
                 {/*Center Content*/}
