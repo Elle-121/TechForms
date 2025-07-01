@@ -3,6 +3,10 @@
   --tforange-color: #EE9337;
   --tfblue-color: #033C7C;
 
+  --tfaffirm-hover: #CF6E0C;
+  --tfneg-hover: #EEDBC7;
+  --tfdraft-hover: #032B59;
+
   --tf-gray-1: #CCCCCC;
   --tf-gray-2: #A5A5A5;
   --tf-gray-3: #575757;
@@ -12,7 +16,7 @@
   --tf-green-bg: #79E088;
 
   --tf-yellow-text: #B8720F;
-  --tf-yellow-bg: #FFE992;
+  --tf-yellow-bg: #fcde65;
 
   --tf-red-text: #A70B0B;
   --tf-red-bg: #FFA892;
@@ -115,6 +119,28 @@
   }
 }
 
+/* Register Form */
+.tf-form-title {
+  width: 100%;
+  border-bottom: 6px solid var(--tf-gray-3);
+}
+
+.tf-form-section {
+  font-family: 'Poppins', sans-serif;
+
+  h2 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--tforange-color);
+    margin: 0;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--tf-gray-2);
+  }
+}
+
 /* Review Page */
 .review-notes {
   font-size: 1.5rem;
@@ -141,6 +167,21 @@
   .btn-add {
     background-color: var(--tfblue-color);
   }
+}
+
+.modal-header {
+  border-bottom: none;
+  padding: 16px 25px;
+  margin-top: 30px;
+}
+
+.modal-body {
+  padding: 0px 25px;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 12px 25px;
 }
 
 /* Default */
@@ -193,14 +234,41 @@
 }
 
 .button-affirm:active {
-  background-color: #B55B00;
-  border-color: #B55B00;
+  background-color: white;
+  color: var(--tforange-color);
+  border-color: var(--tforange-color)
 }
 
 .button-affirm:hover {
-  background: white;
-  border-color: var(--tforange-color);
-  color: var(--tforange-color);
+  background: var(--tfaffirm-hover);
+}
+
+.button-draft {
+  background: var(--tfblue-color);
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button-draft:active {
+  background-color: white;
+  border-color: var(--tfblue-color);
+  color: var(--tfblue-color);
+}
+
+.button-draft:hover {
+  background-color: var(--tfdraft-hover);
 }
 
 .button-neg {
@@ -222,20 +290,26 @@
 }
 
 .button-neg:active {
-  background-color: #B55B00;
-  border-color: #B55B00;
+  background-color: white;
+  border-color: var(--tforange-color);
 }
 
 .button-neg:hover {
-  background: white;
-  border-color: var(--tforange-color);
-  color: var(--tforange-color);
+  background: var(--tfneg-hover);
 }
 
 .filter-form-label {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   color: var(--tforange-color);
+}
+
+.fr-form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 1px;
+  color: var(--tf-gray-4);
 }
 
 .text-icon-button {
@@ -249,6 +323,47 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.form-h1{
+  border-bottom: #575757 solid 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-h2{
+  border-bottom: var(--tforange-color) solid 5px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.remarks-box {
+  background-color: var(--tf-yellow-bg);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 160px;
+  overflow-x: hidden;
+}
+
+.error-box {
+  background-color: var(--tf-red-dark-bg);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 160px;
+  overflow-x: hidden;
+}
+
+.sub-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--tf-gray-2);
+  font-size: 16px;
 }
 
 @keyframes App-logo-spin {
