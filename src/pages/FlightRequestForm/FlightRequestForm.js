@@ -13,6 +13,10 @@ export default function FlightRequestForm() {
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
 
+    const home = async () => {
+        window.location.href = "/";
+    }
+
     return(
         <MainContainer>
             <Row>
@@ -26,7 +30,7 @@ export default function FlightRequestForm() {
                     
                     {/* Back and Proceed Button */}
                     <div className="d-flex justify-content-between align-items-center">
-                        <button type='button' className="hover-underline d-flex align-items-center" onClick={() => window.history.back()}>
+                        <button type='button' className="hover-underline d-flex align-items-center" onClick={home}>
                             <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>
                             <span style={{ color: '#EE9337', fontSize: '14px' }}>Back</span>
                         </button>
