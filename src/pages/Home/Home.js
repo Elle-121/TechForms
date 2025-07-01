@@ -22,7 +22,7 @@ import dummyData from './dummyData';
 function Home() {
 
     // Function to open the forms modal
-    const [formsView, setFormsView] = useState(true)
+    const [formsView, setFormsView] = useState(false)
     const openFormsView = () => {
         setFormsView(true);
     }
@@ -89,7 +89,8 @@ function Home() {
                             <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
                             <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
                             </button>
-
+                        
+                        <FormsModal view={formsView} setFormsView={setFormsView}/>
                         <DashboardFilter view={filterView} setFilterView={setFilterView}/>
                     </div>
                 </div>
