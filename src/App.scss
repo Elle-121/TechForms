@@ -55,7 +55,6 @@
 }
 
 /* Status Badges */
-
 .status-badge {
   font-size: 0.85rem;
   border-radius: 10px;
@@ -117,6 +116,53 @@
     border-bottom: 2px solid var(--tfblue-color);
     outline: none;
   }
+}
+
+/* Notifications Button */
+.notif-filter-btn {
+  background: #fff;
+  color: var(--tf-gray-2);
+  /* default color */
+  border: 1px solid rgb(167, 73, 30);
+  border-radius: 20px;
+  margin-right: 8px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.notif-filter-btn.selected,
+.notif-filter-btn:hover {
+  background: white;
+  /* highlight color */
+  color: var(--tfblue-color);
+  font-weight: 700;
+  /* text color when selected/hovered */
+  border-color: var(--tfblue-color);
+}
+
+.unread {
+  font-weight: bold;
+  background: #ffe5c2;
+}
+
+.read {
+  opacity: 0.6;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 15px;
+  border-color: var(--tforange-color);
+  
+}
+
+.notification-item:hover,
+.notification-item:focus {
+  background: #ededed; // or any highlight color you want
+  outline: none;
 }
 
 /* Register Form */
@@ -376,3 +422,20 @@
 }
 
 
+.custom-toggle,
+.custom-toggle:focus,
+.custom-toggle:active,
+.custom-toggle:focus-visible,
+.custom-toggle.show,
+.custom-toggle:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  transition: none !important;
+}
+
+// .custom-toggle:focus-within {
+//   outline: none !important;
+//   box-shadow: none !important;
+//   border-color: transparent !important;
+// }

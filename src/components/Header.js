@@ -7,6 +7,9 @@ import notificationsicon from '../assets/NotificationsIcon.svg'
 import accountsicon from '../assets/AccountsIcon.svg'
 import image from '../assets/PNGIcon.svg'
 
+// notifs
+import dummyNotifs from './dummyNotifs'
+
 function Header() {
 
   const logout = async () => {
@@ -19,9 +22,15 @@ function Header() {
   const accounts = async () => {
     window.location.href = "/accounts";
   }
+  
+  const notifications = async () => {
+    window.location.href = "/notifications";
+  }  
+  
   const profile = async () => {
     window.location.href = "/profile";
   }
+  
 
 
   // constants
@@ -66,7 +75,9 @@ function Header() {
               </Navbar.Brand>
             </Container>
           </Navbar>
-          <Dropdown className='header-top'>
+
+          {/* Notifications */}
+          <Dropdown className='header-top '>
             <Dropdown.Toggle className='notification-dropdown d-flex align-items-center justify-content-center w-100' variant="clear" bsPrefix="custom-toggle">
               <img
                 src={notificationsicon}
@@ -76,12 +87,25 @@ function Header() {
                 alt="Notifications"
               />
             </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-center-menu text-center">
-              <Dropdown.Item>Placeholder</Dropdown.Item>
-            </Dropdown.Menu>
+          <Dropdown.Menu className="dropdown-center-menu text-center" style={{ maxHeight: 400, overflowY: 'auto', minWidth: 300 }}>
+            {/* Render first 10 notifications as non-interactive */}
+            {dummyNotifs.slice(0, 10).map((notif, idx) => (
+              <div
+                key={idx}
+                className="dropdown-item text-muted"
+                style={{ cursor: 'default', pointerEvents: 'none', userSelect: 'none', background: 'none' }}
+              >
+                {notif.message}
+              </div>
+            ))}
+            <Dropdown.Divider />
+            <Dropdown.Item style={{ fontWeight: 400, color: 'var(--tforange-color)' }} onClick={notifications}>
+              View All Notifications →
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-          </Dropdown>
-
+          {/* User Profile Dropdown */}
           <Dropdown className='header-top me-5'>
             <Dropdown.Toggle className='user-dropdown w-100' variant="clear" bsPrefix="custom-toggle">
               <div className="d-flex align-items-center justify-content-end w-100">
