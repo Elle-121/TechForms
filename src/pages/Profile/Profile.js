@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Modal } from 'react-bootstrap';
-import MainContainer from "../../components/MainContainer";
-import Layout from '../../pages/Profile/Profile_layout';
+import { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import homeicon from '../../assets/PNGIcon.svg';
 import editicon from '../../assets/EditIcon.svg';
 import confirmicon from '../../assets/ConfirmIcon.svg';
 import closeicon from '../../assets/CloseIcon.svg';
 import viewicon from '../../assets/ViewIcon.svg';
+import MainContainer from '../../components/MainContainer';
+import Profile_layout from './Profile_layout';
 
-const profileIconSize = '300rem';
-const smallIconSize = '20rem';
+const profileIconSize = 300;
+const smallIconSize = 20;
 
 const initialUserProfile = {
   username: "Rayu Ma Masakit",
@@ -20,21 +20,23 @@ const initialUserProfile = {
   password: "bananabread1"
 };
 
-const ProfileSidebar = ({ username, role, imgSrc, onImgChange, isEditing }) => (
+const ProfileSidebar = ({ username, role }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-    {isEditing && (
-      <input type="file" accept="image/*" onChange={onImgChange} style={{ display: 'none' }} id="profile-img-input" />
-    )}
-    <label htmlFor="profile-img-input" style={{ pointerEvents: isEditing ? undefined : 'none' }}>
-      <img src={imgSrc || homeicon} alt="home icon" width={profileIconSize} height={profileIconSize} className="mb-2" style={{ cursor: isEditing ? 'pointer' : 'default' }} />
-    </label>
+    <img src={homeicon} alt="home icon" width={profileIconSize} height={profileIconSize} className="mb-2" />
     <p style={{ marginTop: '50px', marginBottom: '0', fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>{username}</p>
     <p className="text-muted" style={{ textAlign: 'center' }}>{role}</p>
   </div>
 );
 
-const ViewForm = ({ value, isPassword, isLocked}) => {
+const ViewForm = ({ value, isPassword, isLocked, showModal, setShowModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (isLocked) {
+      const timer = setTimeout(() => setShowModal(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLocked]);
 
   return (
     <div style={{ position: 'relative', width: '50%' }}>
@@ -67,10 +69,13 @@ const ViewForm = ({ value, isPassword, isLocked}) => {
         </div>
       )}
       {isLocked && (
-        <Modal show={isLocked}>
-          <Modal.Header closeButton>
-            <Modal.Title>Password changed successfully!</Modal.Title>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header>
+            <Modal.Title>Kindly wait for the admin to confirm your password change.</Modal.Title>
           </Modal.Header>
+          <Modal.Footer>
+            <button type="button" class="btn btn-secondary" onclick="setShowModal(false)">Confirm</button>
+          </Modal.Footer>
         </Modal>
       )}
     </div>
@@ -113,7 +118,6 @@ const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange})
           />
         )}
       </div>
-
       {isPassword && (
         <div style={{ position: 'relative', width: '50%' }}>
           <input
@@ -149,22 +153,24 @@ const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange})
   );
 };
 
-const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confirmValue, onConfirmChange }) => (
-  <div className="info-group" style={{ marginBottom: '2rem' }}>
+const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confirmValue, onConfirmChange, isLocked, showModal, setShowModal }) => (
+  <div className="info-group" style={{ marginBottom: '3rem' }}>
     <label style={{ fontSize: '1.2rem', color: '#EE9337', fontWeight: 'bold' }}>{label}</label>
     {isEditing
       ? <EditForm value={value} onChange={onChange} isPassword={isPassword} confirmValue={confirmValue} onConfirmChange={onConfirmChange} />
-      : <ViewForm value={value} isPassword={isPassword} />
+      : <ViewForm value={value} isPassword={isPassword} isLocked={isLocked} showModal={showModal} setShowModal={setShowModal}/>
     }
   </div>
 );
 
-const ProfileInfo = ({ userProfile, setUserProfile }) => {
+
+const ProfileInfo = ({ userProfile, setUserProfile}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [tempProfile, setTempProfile] = useState(userProfile);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (key) => (e) => {
     setTempProfile(prev => ({ ...prev, [key]: e.target.value }));
@@ -178,7 +184,6 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12,}$/;
     return passwordPattern.test(password);
   };
-
   const handleConfirm = () => {
     if (!isValidContactNumber(tempProfile.contactNumber)) {
       setError("Invalid contact number format!");
@@ -201,6 +206,7 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
         return;
       }
       // setUserProfile(tempProfile); (Uncomment if no need for confirmation)
+      setShowModal(true);
       setIsLocked(true);
       setIsEditing(false);
       setConfirmPassword('');
@@ -208,7 +214,8 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
     }
   };
 
-    const handleCancel = () => {
+
+  const handleCancel = () => {
     setTempProfile(userProfile);
     setIsEditing(false);
     setConfirmPassword('');
@@ -239,26 +246,25 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
           )}
         </span>
       </div>
+      
       <div style={{ marginTop: '1rem' }}>
         <ProfileInfoGroup label="DEPARTMENT" value={tempProfile.department} isEditing={false} />
         <ProfileInfoGroup label="EMAIL" value={tempProfile.email} isEditing={false} />
         <ProfileInfoGroup label="CONTACT NUMBER" value={tempProfile.contactNumber} onChange={handleChange('contactNumber')} isEditing={isEditing} />
-        <ProfileInfoGroup label="PASSWORD" value={tempProfile.password} onChange={handleChange('password')} isLocked={isLocked} isEditing={!isLocked && isEditing} isPassword confirmValue={confirmPassword} onConfirmChange={(e) => setConfirmPassword(e.target.value)} />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <ProfileInfoGroup label="PASSWORD" value={tempProfile.password} onChange={handleChange('password')} isEditing={isEditing && !isLocked} showModal={showModal} setShowModal={setShowModal} isPassword confirmValue={confirmPassword} onConfirmChange={(e) => setConfirmPassword(e.target.value)} isLocked={isLocked} setError={setError} />
       </div>
+      {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
     </div>
   );
 };
-
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(initialUserProfile);
 
   return (
     <MainContainer>
-      <Layout
-        sidebar={<ProfileSidebar username={userProfile.username} role={userProfile.role} />}
-        main={<ProfileInfo userProfile={userProfile} setUserProfile={setUserProfile} />}
+      <Profile_layout sidebar={<ProfileSidebar username={userProfile.username} role={userProfile.role} />}
+      main={<ProfileInfo userProfile={userProfile} setUserProfile={setUserProfile} />}
       />
     </MainContainer>
   );
