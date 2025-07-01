@@ -5,8 +5,16 @@ import { Form } from 'react-bootstrap';
 
 // components
 import MainContainer from '../../components/MainContainer';
+import BookingForm from '../../components/BookingForm';
 
 export default function Review() {
+
+    // Function to open the booking form
+    const [formView, setFormView] = useState(false)
+    
+    const openFormView = () => {
+        setFormView(true);
+    }
 
     return (
         <MainContainer>
@@ -31,7 +39,8 @@ export default function Review() {
                 
                 <div className='d-flex justify-content-center gap-2 btn-group-review'>
                     <button className='btn-reject py-1'>Reject</button>
-                    <button className='btn-add py-1'>Add Booking Details</button>
+                    <button onClick={openFormView} className='btn-add py-1'>Add Booking Details</button>
+                    <BookingForm view={formView} setFormView={setFormView} />
                 </div>
             </div>
 
