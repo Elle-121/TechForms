@@ -90,7 +90,7 @@
   background: var(--tf-gray-1);
 }
 
-/* Accounts Page Buttons */
+/* Accounts Page */
 .nav-tabs,
 .btn-group-role {
 
@@ -112,6 +112,34 @@
   :active {
     border-bottom: 2px solid var(--tfblue-color);
     outline: none;
+  }
+}
+
+/* Review Page */
+.review-notes {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.btn-group-review {
+  button {
+    color: white;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .btn-reject {
+    background-color: var(--tf-red-text);
+  }
+
+  .btn-add {
+    background-color: var(--tfblue-color);
   }
 }
 
