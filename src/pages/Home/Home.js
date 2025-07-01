@@ -13,12 +13,19 @@ import Calendar from './Calendar';
 
 // Popup Modal
 import DashboardFilter from './components/homeFilter';
+import FormsModal from './components/FormsModal';
 
 
 // Dummy Data
 import dummyData from './dummyData';
 
 function Home() {
+
+    // Function to open the forms modal
+    const [formsView, setFormsView] = useState(true)
+    const openFormsView = () => {
+        setFormsView(true);
+    }
 
     // Function to open the filter view
     const [filterView, setFilterView] = useState(false)
@@ -92,12 +99,12 @@ function Home() {
                 <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         {/* Floating Action Button */}
-        <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+        <button className="btn rounded-circle position-fixed" onClick={openFormsView} style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
     </MainContainer>
     );
 }
