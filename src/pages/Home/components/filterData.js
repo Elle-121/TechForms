@@ -90,3 +90,22 @@ export const reasons = [
     { "name": "To Attend Convention" },
     { "name": "Year End Party" }
 ]
+
+export const forms = [
+    { 
+        "name": "Flight Request", 
+        "route": "/flight-request-form"
+    },
+    { 
+        "name": "Equipment Request", 
+        "route": "/equipment-request-form"
+    },
+    { 
+        "name": "Leave Request", 
+        "route": "/leave-request-form"
+    },
+    { 
+        "name": "Grievance Form", 
+        "route": "/grievance-form"
+    },
+]
