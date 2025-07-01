@@ -3,6 +3,10 @@
   --tforange-color: #EE9337;
   --tfblue-color: #033C7C;
 
+  --tfaffirm-hover: #CF6E0C;
+  --tfneg-hover: #EEDBC7;
+  --tfdraft-hover: #032B59;
+
   --tf-gray-1: #CCCCCC;
   --tf-gray-2: #A5A5A5;
   --tf-gray-3: #575757;
@@ -12,7 +16,7 @@
   --tf-green-bg: #79E088;
 
   --tf-yellow-text: #B8720F;
-  --tf-yellow-bg: #FFE992;
+  --tf-yellow-bg: #fcde65;
 
   --tf-red-text: #A70B0B;
   --tf-red-bg: #FFA892;
@@ -202,14 +206,41 @@
 }
 
 .button-affirm:active {
-  background-color: #B55B00;
-  border-color: #B55B00;
+  background-color: white;
+  color: var(--tforange-color);
+  border-color: var(--tforange-color)
 }
 
 .button-affirm:hover {
-  background: white;
-  border-color: var(--tforange-color);
-  color: var(--tforange-color);
+  background: var(--tfaffirm-hover);
+}
+
+.button-draft {
+  background: var(--tfblue-color);
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button-draft:active {
+  background-color: white;
+  border-color: var(--tfblue-color);
+  color: var(--tfblue-color);
+}
+
+.button-draft:hover {
+  background-color: var(--tfdraft-hover);
 }
 
 .button-neg {
@@ -231,14 +262,12 @@
 }
 
 .button-neg:active {
-  background-color: #B55B00;
-  border-color: #B55B00;
+  background-color: white;
+  border-color: var(--tforange-color);
 }
 
 .button-neg:hover {
-  background: white;
-  border-color: var(--tforange-color);
-  color: var(--tforange-color);
+  background: var(--tfneg-hover);
 }
 
 .filter-form-label {
@@ -282,6 +311,17 @@
 
 .remarks-box {
   background-color: var(--tf-yellow-bg);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 160px;
+  overflow-x: hidden;
+}
+
+.error-box {
+  background-color: var(--tf-red-dark-bg);
   color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 550;
