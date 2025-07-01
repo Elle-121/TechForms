@@ -55,7 +55,6 @@
 }
 
 /* Status Badges */
-
 .status-badge {
   font-size: 0.85rem;
   border-radius: 10px;
@@ -94,7 +93,7 @@
   background: var(--tf-gray-1);
 }
 
-/* Accounts Page Buttons */
+/* Accounts Page */
 .nav-tabs,
 .btn-group-role {
 
@@ -119,6 +118,53 @@
   }
 }
 
+/* Notifications Button */
+.notif-filter-btn {
+  background: #fff;
+  color: var(--tf-gray-2);
+  /* default color */
+  border: 1px solid rgb(167, 73, 30);
+  border-radius: 20px;
+  margin-right: 8px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.notif-filter-btn.selected,
+.notif-filter-btn:hover {
+  background: white;
+  /* highlight color */
+  color: var(--tfblue-color);
+  font-weight: 700;
+  /* text color when selected/hovered */
+  border-color: var(--tfblue-color);
+}
+
+.unread {
+  font-weight: bold;
+  background: #ffe5c2;
+}
+
+.read {
+  opacity: 0.6;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 15px;
+  border-color: var(--tforange-color);
+  
+}
+
+.notification-item:hover,
+.notification-item:focus {
+  background: #ededed; // or any highlight color you want
+  outline: none;
+}
+
 /* Register Form */
 .tf-form-title {
   width: 100%;
@@ -141,19 +187,49 @@
   }
 }
 
-.modal-header {
-  border-bottom: none;
-  padding: 16px 25px;
-  margin-top: 30px;
+/* Review Page */
+.review-notes {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.modal-body {
-  padding: 0px 25px;
+.btn-group-review {
+  button {
+    color: white;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .btn-reject {
+    background-color: var(--tf-red-text);
+  }
+
+  .btn-add {
+    background-color: var(--tfblue-color);
+  }
 }
 
-.modal-footer {
-  border-top: none;
-  padding: 12px 25px;
+.form-modal {
+  .modal-header {
+    border-bottom: none;
+    padding: 16px 25px;
+    margin-top: 30px;
+  }
+
+  .modal-body {
+    padding: 0px 25px;
+  }
+
+  .modal-footer {
+    border-top: none;
+    padding: 12px 25px;
+  }
 }
 
 /* Default */
@@ -344,3 +420,20 @@
 }
 
 
+.custom-toggle,
+.custom-toggle:focus,
+.custom-toggle:active,
+.custom-toggle:focus-visible,
+.custom-toggle.show,
+.custom-toggle:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  transition: none !important;
+}
+
+// .custom-toggle:focus-within {
+//   outline: none !important;
+//   box-shadow: none !important;
+//   border-color: transparent !important;
+// }

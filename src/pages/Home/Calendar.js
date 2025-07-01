@@ -29,6 +29,19 @@ const styles = {
       flexDirection: 'column',
       alignItems: 'center',
       gap: '1rem',
+    },
+
+    resetbutton:{
+      // width: '100%',
+      margin: '1rem 0 0 auto',
+      border: '1px solid var(--tforange-color)',
+      borderRadius: '10px',
+      minWidth: '200px',
+      maxWidth: '200px',
+      display: 'block',
+      marginTop: '1rem',
+      backgroundColor: 'var(--tforange-color)',
+      
     }
   };
 
@@ -74,44 +87,17 @@ function Calendar() {
                 inline
             />
         </div>
+        {startDate && endDate && (
+          <button
+            type="button"
+            onClick={() => setDateRange([null, null])}
+            className="btn btn-secondary mt-2 reset-btn"
+          >
+            Clear Date Range
+          </button>
+        )}            
     </div>
   );
 }
-
-
-//   return (
-//     <div className='row'  >
-//         {/* Date and Time */}
-//         <div className="col-auto" style={{marginBottom: '' }}>
-//             {/* Date */}
-//             <div style={styles.card}>
-//                 {/* Day */}
-//                 <span className="fs-4 fw-semibold text-dark">{now.toLocaleDateString('en-US', { weekday: 'long' })}</span>
-//                 {/* Date */}
-//                 <span className="fs-4 fw-bold text-dark">{now.getDate()}</span>
-//                 {/* Month & Year */}
-//                 <span className="">{now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
-//             </div>    
-                
-//             {/* Time */}
-//             <div style={styles.card}>
-//                 {now.toLocaleTimeString()}
-//             </div>
-//         </div>
-
-
-//         <DatePicker
-//             selectsRange
-//             startDate={startDate}
-//             endDate={endDate}
-//             onChange={(update) => setDateRange(update)}
-//             isClearable={true}
-//             inline
-//         />
-//     </div>
-//   );
-// }
-
-
 
 export default Calendar;
