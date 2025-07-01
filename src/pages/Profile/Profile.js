@@ -32,7 +32,7 @@ const ProfileSidebar = ({ username, role, imgSrc, onImgChange, isEditing }) => (
   </div>
 );
 
-const ViewForm = ({ value, isPassword, isLocked}) => {
+const ViewForm = ({ value, isPassword}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -200,7 +200,7 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
     }
   };
 
-  const handleCancel = () => {
+    const handleCancel = () => {
     setTempProfile(userProfile);
     setIsEditing(false);
     setConfirmPassword('');
@@ -208,7 +208,7 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
   };
 
   return (
-    <div className="profile-container" style={{ maxWidth: '770px' }}>
+    <div className="profile-container" style={{ maxWidth: '1000px' }}>
       <div className="profile-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #ccc', paddingBottom: '0.1rem' }}>
         <h2 className="profile-title">Profile</h2>
         <span style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
@@ -257,4 +257,5 @@ function Profile() {
 }
 
 export default Profile;
+
 
