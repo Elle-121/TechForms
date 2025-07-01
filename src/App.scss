@@ -51,7 +51,6 @@
 }
 
 /* Status Badges */
-
 .status-badge {
   font-size: 0.85rem;
   border-radius: 10px;
@@ -115,8 +114,38 @@
   }
 }
 
+/* Notifications Button */
+.notif-filter-btn {
+  background: #fff;
+  color: var(--tf-gray-2);
+  /* default color */
+  border: 1px solid rgb(167, 73, 30);
+  border-radius: 20px;
+  margin-right: 8px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
 
+.notif-filter-btn.selected,
+.notif-filter-btn:hover {
+  background: white;
+  /* highlight color */
+  color: var(--tfblue-color);
+  font-weight: 700;
+  /* text color when selected/hovered */
+  border-color: var(--tfblue-color);
+}
 
+.unread {
+  font-weight: bold;
+  background: #FFD6C0;
+}
+
+.read {
+  opacity: 0.6;
+}
 
 /* Default */
 .App {
