@@ -7,6 +7,7 @@ import Notifications from "../pages/Notifications/Notifications";
 import Login from "../pages/Login/Login";
 import ResetPassword from "../pages/Login/ResetPassword"
 import FlightRequestForm from "../pages/FlightRequestForm/FlightRequestForm";
+import Review from "../pages/Review/Review";
 
 function AppRoutes() { // TODO: Change Home Route
   return (
@@ -18,6 +19,7 @@ function AppRoutes() { // TODO: Change Home Route
       <Route path="/accounts" element={<Accounts />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/flight-request-form" element={<FlightRequestForm />} />
+      <Route path="/review" element={<Review />} />
     </Routes>
   );
 }

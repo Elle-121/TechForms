@@ -1,21 +1,42 @@
-import MainContainer from "../../components/MainContainer";
-import { dummyAccounts } from "./dummyData";
+import React from 'react';
 import { useState } from "react";
+import MainContainer from "../../components/MainContainer";
+
+// components
 import SearchBar from "../../components/SearchBar";
+import Pagination from '../../components/Pagination';
+import AccountList from "./AccountList";
+
+// data
+import { dummyData } from "./dummyData";
+import RegisterForm from './components/RegisterForm';
 
 export default function Accounts(){
 
-    const [role, setRole] = useState()
+    const [formView, setFormView] = useState(false)
+    
+    const openFormView = () => {
+        setFormView(true);
+    }
 
+    // State for roles
+    const [role, setRole] = useState();
 
-    // const filterData = (value) =>{
-    //     return dummyAccounts.filter(item => {item.role===value})
-    // }
+    // State for pagination
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const requestsPerPage = 10;
+    const totalPages = Math.ceil(dummyData.length / requestsPerPage);
+
+    const paginatedRequests = dummyData.slice(
+    (currentPage - 1) * requestsPerPage,
+    currentPage * requestsPerPage
+    );
 
     return (
         <MainContainer>
             <div className="mx-5 my-3">
                 <h1 className="tf-header">Account Management</h1>
+                
                 <div className="d-flex justify-content-between mb-3">
                     <div className="btn-group-role">
                         <button onClick={()=>setRole()} autoFocus>All</button>
@@ -24,35 +45,17 @@ export default function Accounts(){
                     </div>
                     <SearchBar/>
                 </div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone No.</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Department</th>
-                            <th scope="col">Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                         {
-                            dummyAccounts.filter(item=> role ? item.role===role : item.role).map(item =>
-                                <tr>
-                                    <td>{item.id}</td>
-                                    <td>{item.firstName + " " + item.lastName}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.phoneNo}</td>
-                                    <td>{item.username}</td>
-                                    <td>{item.department}</td>
-                                    <td>{item.role}</td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+
+                <AccountList data={paginatedRequests} role={role}/>
+
+                <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
+                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
+                </div>
             </div>
+
+            <button onClick={openFormView} className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+            <RegisterForm view={formView} setFormView={setFormView} />
+        
         </MainContainer>
     );
 }

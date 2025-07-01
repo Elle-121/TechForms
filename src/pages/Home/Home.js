@@ -1,21 +1,34 @@
-// export default Home;
+
+
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// components
 import MainContainer from '../../components/MainContainer';
+
+// Components
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../../components/Pagination'; // Assuming you have a Pagination component
 import RequestList from './RequestList'; // Assuming you have a RequestList component
 import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel component
-import DashboardFilter from './components/homeFilter';
+import Calendar from './Calendar';
 
-// data
+// Popup Modal
+import DashboardFilter from './components/homeFilter';
+import FormsModal from './components/FormsModal';
+
+
+// Dummy Data
 import dummyData from './dummyData';
 
 function Home() {
-  const [filterView, setFilterView] = useState(false)
 
+    // Function to open the forms modal
+    const [formsView, setFormsView] = useState(false)
+    const openFormsView = () => {
+        setFormsView(true);
+    }
+
+    // Function to open the filter view
+    const [filterView, setFilterView] = useState(false)
     const openFilterView = () => {
         setFilterView(true);
     }
@@ -25,26 +38,23 @@ function Home() {
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
+    // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
     const paginatedRequests = dummyData.slice(
-    (currentPage - 1) * requestsPerPage,
-    currentPage * requestsPerPage
+        (currentPage - 1) * requestsPerPage,
+        currentPage * requestsPerPage
     );
 
 
     return (
-        <MainContainer>
+    <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
-            <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '30%', borderRight: '5px solid var(--tforange-color)' }}>
-
-            {/* Header - Requests + Searchbar + Filter */}
-            <div className="d-flex justify-content-between align-items-center pb-2" style={{ borderBottom: '2px solid #ccc' }}>
-                <h4 className="tf-header">LEFT SIDE</h4>
+            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto  " style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
+                <Calendar />
             </div>
-        </div>
 
             {/* Right Content */}
-            <div className="p-4 h-100 overflow-auto border" style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
+            <div className="p-4 h-100 overflow-auto " style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
                 {/* Filters */}
                 <FilterPanel />
@@ -78,7 +88,8 @@ function Home() {
                             <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
                             <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
                             </button>
-
+                        
+                        <FormsModal view={formsView} setFormsView={setFormsView}/>
                         <DashboardFilter view={filterView} setFilterView={setFilterView}/>
                     </div>
                 </div>
@@ -88,13 +99,13 @@ function Home() {
                 <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         {/* Floating Action Button */}
-        <button className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
-        </MainContainer>
+        <button className="btn rounded-circle position-fixed" onClick={openFormsView} style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+    </MainContainer>
     );
 }
 

@@ -77,13 +77,35 @@ export const status = [
 ]
 
 export const reasons = [
-    {
-        "name": "Reason 1",
+    { "name": "Business Review Meeting" },
+    { "name": "CEAP" },
+    { "name": "Client Call" },
+    { "name": "Courtesy Visit" },
+    { "name": "EduTek" },
+    { "name": "ManCom" },
+    { "name": "NatCom" },
+    { "name": "Sales Presentation" },
+    { "name": "Sales Training" },
+    { "name": "Training Request" },
+    { "name": "To Attend Convention" },
+    { "name": "Year End Party" }
+]
+
+export const forms = [
+    { 
+        "name": "Flight Request", 
+        "route": "/flight-request-form"
     },
-    {
-        "name": "Reason 2",
+    { 
+        "name": "Equipment Request", 
+        "route": "/equipment-request-form"
     },
-    {
-        "name": "Reason 3",
-    }
+    { 
+        "name": "Leave Request", 
+        "route": "/leave-request-form"
+    },
+    { 
+        "name": "Grievance Form", 
+        "route": "/grievance-form"
+    },
 ]
