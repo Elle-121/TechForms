@@ -35,13 +35,13 @@ export default function BookingForm({view, setFormView}) {
                             <Row>
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Employee Name</Form.Label>
+                                        <Form.Label className='fr-form-label'>Employee Name</Form.Label>
                                         <Form.Control disabled type="text" placeholder="Full Name"/>
                                     </Form.Group>
                                 </Col>
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Request ID</Form.Label>
+                                        <Form.Label className='fr-form-label'>Request ID</Form.Label>
                                         <Form.Control disabled type="text" placeholder="TFI250630"/>
                                     </Form.Group>
                                 </Col>
@@ -56,14 +56,14 @@ export default function BookingForm({view, setFormView}) {
                                 {/* Booking Reference No. */}
                                 <Col>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Booking Reference No.</Form.Label>
+                                        <Form.Label className='fr-form-label'>Booking Reference No.</Form.Label>
                                         <Form.Control type="text" placeholder="Reference No." />
                                     </Form.Group>
                                 </Col>
                                 {/* Cost */}
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Cost</Form.Label>
+                                        <Form.Label className='fr-form-label'>Cost</Form.Label>
                                         <Form.Control type="number" placeholder="Php"/>
                                     </Form.Group>
                                 </Col>
@@ -71,7 +71,7 @@ export default function BookingForm({view, setFormView}) {
     
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
-                                    <Form.Label>Ticket</Form.Label>
+                                    <Form.Label className='fr-form-label'>Ticket</Form.Label>
                                     <Form.Control type="file" />
                                 </Form.Group>
                             </Row>
@@ -85,14 +85,14 @@ export default function BookingForm({view, setFormView}) {
                                 {/* Booking Reference No. */}
                                 <Col>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Booking Reference No.</Form.Label>
+                                        <Form.Label className='fr-form-label'>Booking Reference No.</Form.Label>
                                         <Form.Control type="text" placeholder="Reference No." />
                                     </Form.Group>
                                 </Col>
                                 {/* Cost */}
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Cost</Form.Label>
+                                        <Form.Label className='fr-form-label'>Cost</Form.Label>
                                         <Form.Control type="number" placeholder="Php"/>
                                     </Form.Group>
                                 </Col>
@@ -100,7 +100,7 @@ export default function BookingForm({view, setFormView}) {
     
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
-                                    <Form.Label>Ticket</Form.Label>
+                                    <Form.Label className='fr-form-label'>Ticket</Form.Label>
                                     <Form.Control type="file" />
                                 </Form.Group>
                             </Row>
