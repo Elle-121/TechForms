@@ -23,8 +23,7 @@
 //   )
 // }
 
-// export default MainContainer
-import React from 'react'
+// export default MainContainer'
 import { Row, Col } from 'react-bootstrap'
 import Header from './Header'
 

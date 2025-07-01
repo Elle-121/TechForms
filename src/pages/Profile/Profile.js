@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import MainContainer from "../../components/MainContainer";
 import Layout from '../../pages/Profile/Profile_layout';
 import homeicon from '../../assets/PNGIcon.svg';
@@ -32,7 +33,7 @@ const ProfileSidebar = ({ username, role, imgSrc, onImgChange, isEditing }) => (
   </div>
 );
 
-const ViewForm = ({ value, isPassword}) => {
+const ViewForm = ({ value, isPassword, isLocked}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -64,6 +65,13 @@ const ViewForm = ({ value, isPassword}) => {
             }}
           />
         </div>
+      )}
+      {isLocked && (
+        <Modal show={isLocked}>
+          <Modal.Header closeButton>
+            <Modal.Title>Password changed successfully!</Modal.Title>
+          </Modal.Header>
+        </Modal>
       )}
     </div>
   );
