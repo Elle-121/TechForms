@@ -7,8 +7,8 @@ import confirmicon from '../../assets/ConfirmIcon.svg';
 import closeicon from '../../assets/CloseIcon.svg';
 import viewicon from '../../assets/ViewIcon.svg';
 
-const profileIconSize = 300;
-const smallIconSize = 20;
+const profileIconSize = '300rem';
+const smallIconSize = '20rem';
 
 const initialUserProfile = {
   username: "Rayu Ma Masakit",
@@ -16,7 +16,7 @@ const initialUserProfile = {
   department: "Educational and Technological Services",
   email: "rmmasakit@techfactors.com",
   contactNumber: "+639775640805",
-  password: "bananabread"
+  password: "bananabread1"
 };
 
 const ProfileSidebar = ({ username, role, imgSrc, onImgChange, isEditing }) => (
@@ -32,7 +32,7 @@ const ProfileSidebar = ({ username, role, imgSrc, onImgChange, isEditing }) => (
   </div>
 );
 
-const ViewForm = ({ value, isPassword }) => {
+const ViewForm = ({ value, isPassword, isLocked}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -52,26 +52,25 @@ const ViewForm = ({ value, isPassword }) => {
         }}
       />
       {isPassword && (
-        <img
-          src={viewicon}
-          alt="view password"
-          onClick={() => setShowPassword(prev => !prev)}
-          style={{
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '20px',
-            height: '20px',
-            cursor: 'pointer'
-          }}
-        />
+        <div style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)' }}>
+          <img
+            src={viewicon}
+            alt="view password"
+            onClick={() => setShowPassword(prev => !prev)}
+            style={{
+              width: '20px',
+              height: '20px',
+              cursor: 'pointer'
+            }}
+          />
+          {isLocked && <span className="text" style={{ fontSize: '20rem', marginLeft: '0.5rem' }}>Updating...</span>}
+        </div>
       )}
     </div>
   );
 };
 
-const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange }) => {
+const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -144,7 +143,7 @@ const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange }
 };
 
 const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confirmValue, onConfirmChange }) => (
-  <div className="info-group" style={{ marginBottom: '3rem' }}>
+  <div className="info-group" style={{ marginBottom: '2rem' }}>
     <label style={{ fontSize: '1.2rem', color: '#EE9337', fontWeight: 'bold' }}>{label}</label>
     {isEditing
       ? <EditForm value={value} onChange={onChange} isPassword={isPassword} confirmValue={confirmValue} onConfirmChange={onConfirmChange} />
@@ -155,6 +154,7 @@ const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confi
 
 const ProfileInfo = ({ userProfile, setUserProfile }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
   const [tempProfile, setTempProfile] = useState(userProfile);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -167,10 +167,19 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
     const contactNumberPattern = /^(\+63|0)9\d{9}$/;
     return contactNumberPattern.test(contactNumber);
   };
+  const isValidPassword = (password) => {
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12,}$/;
+    return passwordPattern.test(password);
+  };
 
   const handleConfirm = () => {
     if (!isValidContactNumber(tempProfile.contactNumber)) {
-      setError("Invalid contact number format");
+      setError("Invalid contact number format!");
+      return;
+    }
+
+    if (!isValidPassword(tempProfile.password)) {
+      setError("Password must be at least 12 characters long and contain at least one letter and one number!");
       return;
     }
 
@@ -184,7 +193,8 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
         setError("Passwords do not match");
         return;
       }
-      setUserProfile(tempProfile);
+      // setUserProfile(tempProfile); (Uncomment if no need for confirmation)
+      setIsLocked(true);
       setIsEditing(false);
       setConfirmPassword('');
       setError('');
@@ -226,7 +236,7 @@ const ProfileInfo = ({ userProfile, setUserProfile }) => {
         <ProfileInfoGroup label="DEPARTMENT" value={tempProfile.department} isEditing={false} />
         <ProfileInfoGroup label="EMAIL" value={tempProfile.email} isEditing={false} />
         <ProfileInfoGroup label="CONTACT NUMBER" value={tempProfile.contactNumber} onChange={handleChange('contactNumber')} isEditing={isEditing} />
-        <ProfileInfoGroup label="PASSWORD" value={tempProfile.password} onChange={handleChange('password')} isEditing={isEditing} isPassword confirmValue={confirmPassword} onConfirmChange={(e) => setConfirmPassword(e.target.value)} />
+        <ProfileInfoGroup label="PASSWORD" value={tempProfile.password} onChange={handleChange('password')} isLocked={isLocked} isEditing={!isLocked && isEditing} isPassword confirmValue={confirmPassword} onConfirmChange={(e) => setConfirmPassword(e.target.value)} />
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
