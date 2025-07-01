@@ -346,8 +346,7 @@
   font-weight: 550;
   font-size: 20px;
   border-radius: 5px;
-  height: 160px;
-  overflow-x: hidden;
+  min-height: 160px;
 }
 
 .error-box {
@@ -357,8 +356,7 @@
   font-weight: 550;
   font-size: 20px;
   border-radius: 5px;
-  height: 160px;
-  overflow-x: hidden;
+  min-height: 160px;
 }
 
 .sub-text {
