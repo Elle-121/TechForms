@@ -8,7 +8,7 @@ export default function DashboardFilter({view, setFilterView}) {
     return ( 
 
         <Modal show={view} size="lg">
-            <Modal.Header>
+            <Modal.Header style={{borderBottom:'none'}}>
             </Modal.Header>
             <Modal.Body>
                 <div>
@@ -199,7 +199,7 @@ export default function DashboardFilter({view, setFilterView}) {
                     </Form>
                 </div>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer style={{borderTop:'none'}}>
             </Modal.Footer>
 
         </Modal>
