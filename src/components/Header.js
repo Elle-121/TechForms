@@ -3,29 +3,36 @@ import { useState, useRef, useEffect } from 'react';
 import './Header.scss';
 
 // Assets
-import companylogofull from '../assets/TechFactorsIncFull.png';
-import homeicon from '../assets/HomeIcon.svg';
-import notificationsicon from '../assets/NotificationsIcon.svg';
-import accountsicon from '../assets/AccountsIcon.svg';
-import image from '../assets/PNGIcon.svg';
+import companylogofull from '../assets/TechFactorsIncFull.png' 
+import homeicon from '../assets/HomeIcon.svg'
+import notificationsicon from '../assets/NotificationsIcon.svg'
+import accountsicon from '../assets/AccountsIcon.svg'
+import image from '../assets/PNGIcon.svg'
+
+// notifs
+import dummyNotifs from './dummyNotifs'
 
 function Header() {
   const logout = async () => {
-    await window.localStorage.clear();
-    window.location.href = '/';
-  };
+    await window.localStorage.clear()
+    window.location.href = "/";
+  }
+  const home = async () => {
+    window.location.href = "/";
+  }
+  const accounts = async () => {
+    window.location.href = "/accounts";
+  }
   
-  const home = () => {
-    window.location.href = '/';
-  };
+  const notifications = async () => {
+    window.location.href = "/notifications";
+  }  
   
-  const accounts = () => {
-    window.location.href = '/accounts';
-  };
+  const profile = async () => {
+    window.location.href = "/profile";
+  }
   
-  const profile = () => {
-    window.location.href = '/profile';
-  };
+
 
   // constants
   const icon_size = 30;

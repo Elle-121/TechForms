@@ -90,3 +90,7 @@ export const reasons = [
     { "name": "To Attend Convention" },
     { "name": "Year End Party" }
 ]
+
+export const forms = [
+    { "name": "Flight Request"}
+]
