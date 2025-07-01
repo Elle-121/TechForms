@@ -18,6 +18,8 @@
   --tf-yellow-text: #B8720F;
   --tf-yellow-bg: #fcde65;
 
+  --tf-orange-bg: #F8CCA1;
+
   --tf-red-text: #A70B0B;
   --tf-red-bg: #FFA892;
   --tf-red-dark-bg: #FF5C5C;
@@ -390,6 +392,21 @@
   font-weight: 700;
   font-size: 30px;
   color: var(--tf-gray-3);
+}
+
+.forms-modal-option{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  color: var(--tf-gray-3);
+  background-color: white;
+  border-radius: 16px;
+  border-color: transparent;
+}
+
+.forms-modal-option:hover{
+  background-color: var(--tf-orange-bg);
+  color: black;
 }
 
 .remarks-box {
