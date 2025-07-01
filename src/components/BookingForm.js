@@ -117,7 +117,7 @@ export default function BookingForm({view, setFormView}) {
                 }
                 {
                     preview ? 
-                        <button className='button-affirm ms-2' onClick={home}>Submit and Approve</button> :
+                        <button className='btn-approve ms-2' onClick={home}>Submit and Approve</button> :
                         <button className='button-affirm ms-2' onClick={()=>setPreview(true)}>Next</button>
                 }
             </Modal.Footer>
