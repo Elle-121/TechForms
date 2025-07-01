@@ -52,7 +52,7 @@ const ViewForm = ({ value, isPassword, isLocked}) => {
         }}
       />
       {isPassword && (
-        <div style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)' }}>
+        <div style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }}>
           <img
             src={viewicon}
             alt="view password"
@@ -63,7 +63,6 @@ const ViewForm = ({ value, isPassword, isLocked}) => {
               cursor: 'pointer'
             }}
           />
-          {isLocked && <span className="text" style={{ fontSize: '20rem', marginLeft: '0.5rem' }}>Updating...</span>}
         </div>
       )}
     </div>
