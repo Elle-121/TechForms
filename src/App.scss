@@ -140,11 +140,25 @@
 
 .unread {
   font-weight: bold;
-  background: #FFD6C0;
+  background: #ffe5c2;
 }
 
 .read {
   opacity: 0.6;
+}
+
+.notification-item {
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 15px;
+  border-color: var(--tforange-color);
+  
+}
+
+.notification-item:hover,
+.notification-item:focus {
+  background: #ededed; // or any highlight color you want
+  outline: none;
 }
 
 /* Register Form */
