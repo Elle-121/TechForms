@@ -9,6 +9,7 @@ function Login(){
     return (
         <MainContainer>
         {/* TODO Modify Header to remove navbar portion  */}
+        <Link to="/nothing">Test Error Page</Link>
         <div className="row h-100 m-0">
             <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '50%', borderRight: '5px solid var(--tforange-color)' }}>
 
@@ -45,7 +46,6 @@ function Login(){
                     </form>
                 </div>
             </div>
-
         </div>
 
          </MainContainer>
