@@ -1,6 +1,30 @@
+import { useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function RegisterForm({view, setFormView}) {
+
+    const [formValues, setFormValues] = useState();
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            firstName: "",
+            middleName: "",
+            lastName: "",
+            department: "",
+            role: "",
+            email: "",
+            phone: "",
+            username: "",
+            password: "",
+        }
+    })
+
+    const displayValues = (values) => {
+        setFormValues(values);
+        console.log(formValues);
+        setFormView(false);
+    }
 
     return ( 
 
@@ -13,7 +37,7 @@ export default function RegisterForm({view, setFormView}) {
 
             <Modal.Body>
                 <div>
-                    <Form>
+                    <Form onSubmit={handleSubmit(displayValues)}>
                         <div className="tf-form-section">
                             <h2>User</h2>
                             <p>User Information</p>
@@ -24,19 +48,19 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>First Name</Form.Label>
-                                    <Form.Control type="text" placeholder="First Name"/>
+                                    <Form.Control {...register("firstName")} type="text" placeholder="First Name"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Middle Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Middle Name"/>
+                                    <Form.Control {...register("middleName")} type="text" placeholder="Middle Name"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Last Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Last Name"/>
+                                    <Form.Control {...register("lastName")} type="text" placeholder="Last Name"/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -46,7 +70,7 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Department</Form.Label>
-                                    <Form.Select>
+                                    <Form.Select {...register("department")}>
                                         <option>Select Department</option>
                                         <option value='1'>2tech</option>
                                         <option value='2'>Accounting</option>
@@ -70,7 +94,7 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Role</Form.Label>
-                                    <Form.Select>
+                                    <Form.Select {...register("role")}>
                                         <option>Select Role</option>
                                         <option value="1">HR</option>
                                         <option value="2">Employee</option>
@@ -84,14 +108,14 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label className='fr-form-label'>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" />
+                                    <Form.Control {...register("email")} type="email" placeholder="Enter email" />
                                 </Form.Group>
                             </Col>
                             {/* Phone Number */}
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Phone Number</Form.Label>
-                                    <Form.Control type="number" placeholder="+63"/>
+                                    <Form.Control {...register("phone")} type="number" placeholder="+63"/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -106,7 +130,7 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label'>Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter username"/>
+                                    <Form.Control {...register("username")} type="text" placeholder="Enter username"/>
                                 </Form.Group>
                             </Col>
 
@@ -114,26 +138,38 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label className='fr-form-label'>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
+                                    <Form.Control {...register("password")} type="password" placeholder="Password" />
                                 </Form.Group>
                             </Col>
                         </Row>
+
+                        <div className="d-flex flex-column">
+                            <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                                <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                                {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                                <p className='text-start m-0'>Error message here.</p>
+                            </div>
+                            <div className="d-flex justify-content-between w-100">
+                                <button type="button" className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
+                                <button type="submit" className='button-affirm'>Submit</button>
+                            </div>
+                        </div>
                     </Form>
                 </div>
             </Modal.Body>
 
             <Modal.Footer className="d-flex flex-column">
                 {/* Error box */}
-                <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                {/* <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
                     <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                    {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                    <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
                     <p className='text-start m-0'>Error message here.</p>
-                </div>
+                </div> */}
 
-                <div className="d-flex justify-content-between w-100">
+                {/* <div className="d-flex justify-content-between w-100">
                     <button className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
                     <button className='button-affirm' onClick={()=>setFormView(false)}>Submit</button>
-                </div>
+                </div> */}
             </Modal.Footer>
 
         </Modal>
