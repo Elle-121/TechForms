@@ -10,7 +10,7 @@ import accountsicon from '../assets/AccountsIcon.svg'
 import image from '../assets/PNGIcon.svg'
 
 // notifs
-import dummyNotifs from './dummyNotifs'
+import dummyNotifs from './dummyNotifs.js'
 
 function Header() {
   const logout = async () => {

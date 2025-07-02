@@ -35,18 +35,19 @@ export default function BookingForm({view, setFormView}) {
                             <Row>
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Employee Name</Form.Label>
+                                        <Form.Label className='fr-form-label'>Employee Name</Form.Label>
                                         <Form.Control disabled type="text" placeholder="Full Name"/>
                                     </Form.Group>
                                 </Col>
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Request ID</Form.Label>
+                                        <Form.Label className='fr-form-label'>Request ID</Form.Label>
                                         <Form.Control disabled type="text" placeholder="TFI250630"/>
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Depature Details */}
                             <div className="tf-form-section">
                                 <h2>Departure</h2>
                                 <p>Departure Booking Details</p>
@@ -56,26 +57,28 @@ export default function BookingForm({view, setFormView}) {
                                 {/* Booking Reference No. */}
                                 <Col>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Booking Reference No.</Form.Label>
+                                        <Form.Label className='fr-form-label'>Booking Reference No.</Form.Label>
                                         <Form.Control type="text" placeholder="Reference No." />
                                     </Form.Group>
                                 </Col>
                                 {/* Cost */}
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Cost</Form.Label>
+                                        <Form.Label className='fr-form-label'>Cost</Form.Label>
                                         <Form.Control type="number" placeholder="Php"/>
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Ticket */}
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
-                                    <Form.Label>Ticket</Form.Label>
+                                    <Form.Label className='fr-form-label'>Ticket</Form.Label>
                                     <Form.Control type="file" />
                                 </Form.Group>
                             </Row>
     
+                            {/* Return Details */}
                             <div className="tf-form-section">
                                 <h2>Return</h2>
                                 <p>Return Booking Details</p>
@@ -85,22 +88,23 @@ export default function BookingForm({view, setFormView}) {
                                 {/* Booking Reference No. */}
                                 <Col>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Booking Reference No.</Form.Label>
+                                        <Form.Label className='fr-form-label'>Booking Reference No.</Form.Label>
                                         <Form.Control type="text" placeholder="Reference No." />
                                     </Form.Group>
                                 </Col>
                                 {/* Cost */}
                                 <Col>
                                     <Form.Group className="mb-3">
-                                        <Form.Label>Cost</Form.Label>
+                                        <Form.Label className='fr-form-label'>Cost</Form.Label>
                                         <Form.Control type="number" placeholder="Php"/>
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Ticket */}
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
-                                    <Form.Label>Ticket</Form.Label>
+                                    <Form.Label className='fr-form-label'>Ticket</Form.Label>
                                     <Form.Control type="file" />
                                 </Form.Group>
                             </Row>
@@ -110,6 +114,13 @@ export default function BookingForm({view, setFormView}) {
             </Modal.Body>
 
             <Modal.Footer className="d-flex justify-content-between">
+                {/* Error box */}
+                <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                    <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                    {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                    <p className='text-start m-0'>Error message here.</p>
+                </div>
+
                 {
                     preview ? 
                         <button className="button-neg ms-2" onClick={() => setPreview(false)}>Back</button> :
