@@ -12,8 +12,9 @@ import Review from "../pages/Review/Review";
 function AppRoutes() { // TODO: Change Home Route
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="login" element={<Login />}>
+        <Route path="reset" element={<ResetPassword />} />
+      </Route>
       <Route path="/" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/accounts" element={<Accounts />} />

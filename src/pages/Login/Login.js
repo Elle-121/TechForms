@@ -1,14 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
+import { Link } from 'react-router-dom';
 
 // TODO: Separate Logo and NavBar
 // TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
 
 function Login(){
-
-    const resetPassword = async () => {
-        window.location.href = "/reset-password";
-    }
 
     return (
         <MainContainer>
@@ -39,7 +36,7 @@ function Login(){
                             <input id='password' name='password' type='password'
                                 placeholder="Enter password"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <a onClick={resetPassword} href="">Forgot your password?</a>
+                            <Link to={`reset`}>Forgot your password?</Link>
                             {/* TODO Route to Reset Password*/}
                         </div>
 
