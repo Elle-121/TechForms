@@ -121,7 +121,7 @@ const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange})
       {isPassword && (
         <div style={{ position: 'relative', width: '50%' }}>
           <input
-            type={!showConfirm ? "password" : "text"}
+            type={showConfirm ? "text" : "password"}
             placeholder="Confirm Password"
             value={confirmValue}
             onChange={onConfirmChange}

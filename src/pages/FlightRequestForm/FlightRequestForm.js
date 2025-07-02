@@ -135,7 +135,7 @@ export default function FlightRequestForm() {
                                     </Col>
                                 </Row>
 
-                                <Row>
+                                <Row className='mb-4'>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Birthday</Form.Label>
@@ -156,10 +156,13 @@ export default function FlightRequestForm() {
                                     </Col>
                                 </Row>
 
-                                {/* Insert "Add Additional Flier Button" here */}
-                                {/* <Row>
-                                    Add Additional Person
-                                </Row>   */}
+                                {/* Add Additional Flier Button */}
+                                <Row>
+                                    <Col className='d-flex justify-content-end align-items-center'>
+                                        <span style={{color:'var(--tforange-color)', marginRight: '24px', fontSize: '24px'}}>Add additional person</span>
+                                        <button className="add-btn" type='button'>+</button>
+                                    </Col>
+                                </Row>
 
                             </div>
                             <div>

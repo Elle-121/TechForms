@@ -227,6 +227,16 @@
   }
 }
 
+.add-btn {
+  color:white;
+  width: 50px; 
+  height: 50px; 
+  font-size: 24px; 
+  background-color: var(--tforange-color);
+  border-color: transparent;
+  border-radius: 50%;
+}
+
 .btn-approve {
   background-color: var(--tf-green-text);
   border: 2px solid;
