@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +23,7 @@ function Login(){
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
                         <div className='form-row'>
-                            <label for='username'>Username/TechFactors Email</label>
+                            <label for='username'>Username / TechFactors Email</label>
                             <input id='username' name='username' type='text'
                                 placeholder="Enter Username or TechFactors email"/>
                             {/* TODO Figure out input type of Username/Email*/}

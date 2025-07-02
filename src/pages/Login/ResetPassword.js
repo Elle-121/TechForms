@@ -1,7 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 import { Link } from 'react-router-dom';
 
+
+// TODO fix CSS organization (i.e., class names)
 
 function ResetPassword(){
 
@@ -9,30 +10,36 @@ function ResetPassword(){
         <MainContainer>
         <div className="row h-100 m-0">
 
-            <div className="border p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
+            <div className="border p-4 h-100 overflow-auto" style={{display: 'flex',justifyContent: 'center',}}>
                 <div className="login-form-container">
                     <header className="login-form-header">
-                        <h1>Welcome Back to <strong>TechForms*</strong></h1>
-                        <p><em>Manage all your TechFactors forms right here!</em></p>
+                        <h1>Reset your password</h1>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
                         <div className='form-row'>
-                            <label for='username'>Username/TechFactors Email</label>
+                            <label for='username'>Username / TechFactors Email</label>
                             <input id='username' name='username' type='text'
                                 placeholder="Enter Username or TechFactors email"/>
                             {/* TODO Figure out input type of Username/Email*/}
                         </div>
 
                         <div className='form-row'>
-                            <label for='password'>Password</label>
-                            <input id='password' name='password' type='password'
-                                placeholder="Enter password"/>
+                            <label for='new-password'>New Password</label>
+                            <input id='new-password' name='new-password' type='password'
+                                placeholder="Enter new password"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <Link to="/reset-password">Forgot your password?</Link>
                         </div>
 
                         <div className='form-row'>
+                            <label for='confirm-password'>Confirm Password</label>
+                            <input id='confirm-password' name='confirm-password' type='password'
+                                placeholder="Confirm new password"/>
+                            {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
+                        </div>
+
+                        <div className='form-row'>
+                            <Link to="/two-factor-auth"></Link>
                             <button type="submit" className="button-affirm">Log In</button>
                         </div>
 

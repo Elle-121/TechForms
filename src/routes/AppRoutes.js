@@ -8,12 +8,15 @@ import Login from "../pages/Login/Login";
 import ResetPassword from "../pages/Login/ResetPassword"
 import FlightRequestForm from "../pages/FlightRequestForm/FlightRequestForm";
 import Review from "../pages/Review/Review";
+import TwoFactorAuth from "../pages/Login/TwoFactorAuth";
 
 function AppRoutes() { // TODO: Change Home Route
   return (
     <Routes>
       <Route path="login" element={<Login />} />
       <Route path="reset-password" element={<ResetPassword />} />
+      <Route path="two-factor-auth" element={<TwoFactorAuth />} />
+
       <Route path="/" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/accounts" element={<Accounts />} />
