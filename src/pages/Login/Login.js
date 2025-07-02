@@ -19,7 +19,7 @@ function Login(){
             </div>
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
-                <div className="">
+                <div className="login-form-container">
                     <header className="login-form-header">
                         <h1>Welcome Back to <strong>TechForms*</strong></h1>
                         <p><em>Manage all your TechFactors forms right here!</em></p>
@@ -38,14 +38,12 @@ function Login(){
                             <input id='password' name='password' type='password'
                                 placeholder="Enter password"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <div className="login-form-container">
-                            <a onClick={resetPassword}>Forgot your password?</a>
-                            </div>
+                            <a onClick={resetPassword} href="">Forgot your password?</a>
                             {/* TODO Route to Reset Password*/}
                         </div>
 
                         <div className='form-row'>
-                            <button>Log In</button>
+                            <button type="submit" className="button-affirm">Log In</button>
                         </div>
 
                         
