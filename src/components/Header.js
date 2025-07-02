@@ -15,7 +15,7 @@ import dummyNotifs from './dummyNotifs.js'
 function Header() {
   const logout = async () => {
     await window.localStorage.clear()
-    window.location.href = "/";
+    window.location.href = "/login";
   }
   const home = async () => {
     window.location.href = "/";
