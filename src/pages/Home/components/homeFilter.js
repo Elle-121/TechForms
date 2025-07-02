@@ -1,9 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
 export default function DashboardFilter({view, setFilterView}) {
+
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            requestor: '',
+            requested_for: '',
+            department: '',
+            form_type: '',
+            status: '',
+            purpose: '',
+            submitted_start: '',
+            submitted_end: '',
+            departure_city: '',
+            departure_start: '',
+            departure_end: '',
+            return_city: '',
+            return_start: '',
+            return_end: '',
+            start_business_start: '',
+            start_business_end: '',
+            end_business_start: '',
+            end_business_end: '',
+            approved_by: ''
+        }
+    })
 
     return ( 
 
@@ -59,7 +84,7 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
-                                    <Form.Select>
+                                    <Form.Select {...register("status")}>
                                         <option>Select Answer</option>
                                         {
                                             status.map(item => 
@@ -192,16 +217,13 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Row>
                                 <Col className="text-end">
                                     <input class='button-neg ms-2' type='reset' value='Clear'/>                            
-                                    <button class='button-affirm ms-2' onClick={()=>setFilterView(false)}>Apply</button>
+                                    <button class='button-affirm ms-2' type='submit' onClick={()=>setFilterView(false)}>Apply</button>
                                 </Col>
                             </Row>
                         </div>
                     </Form>
                 </div>
             </Modal.Body>
-            <Modal.Footer style={{borderTop:'none'}}>
-            </Modal.Footer>
-
         </Modal>
 
     );
