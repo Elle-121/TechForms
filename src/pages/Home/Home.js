@@ -104,7 +104,7 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="btn rounded-circle position-fixed" onClick={openFormsView} style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+        <button className="add-btn position-fixed" onClick={openFormsView} style={{bottom: '20px', right: '20px'}}>+</button>
     </MainContainer>
     );
 }
