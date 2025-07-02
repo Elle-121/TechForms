@@ -23,19 +23,19 @@ export default function RegisterForm({view, setFormView}) {
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Label className='fr-form-label'>First Name</Form.Label>
                                     <Form.Control type="text" placeholder="First Name"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Middle Name</Form.Label>
+                                    <Form.Label className='fr-form-label'>Middle Name</Form.Label>
                                     <Form.Control type="text" placeholder="Middle Name"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Label className='fr-form-label'>Last Name</Form.Label>
                                     <Form.Control type="text" placeholder="Last Name"/>
                                 </Form.Group>
                             </Col>
@@ -45,7 +45,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Department */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Department</Form.Label>
+                                    <Form.Label className='fr-form-label'>Department</Form.Label>
                                     <Form.Select>
                                         <option>Select Department</option>
                                         <option value='1'>2tech</option>
@@ -69,7 +69,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Role */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Role</Form.Label>
+                                    <Form.Label className='fr-form-label'>Role</Form.Label>
                                     <Form.Select>
                                         <option>Select Role</option>
                                         <option value="1">HR</option>
@@ -83,14 +83,14 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Email */}
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Label className='fr-form-label'>Email address</Form.Label>
                                     <Form.Control type="email" placeholder="Enter email" />
                                 </Form.Group>
                             </Col>
                             {/* Phone Number */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Phone Number</Form.Label>
+                                    <Form.Label className='fr-form-label'>Phone Number</Form.Label>
                                     <Form.Control type="number" placeholder="+63"/>
                                 </Form.Group>
                             </Col>
@@ -105,7 +105,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Username */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Username</Form.Label>
+                                    <Form.Label className='fr-form-label'>Username</Form.Label>
                                     <Form.Control type="text" placeholder="Enter username"/>
                                 </Form.Group>
                             </Col>
@@ -113,7 +113,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Password */}
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
+                                    <Form.Label className='fr-form-label'>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password" />
                                 </Form.Group>
                             </Col>
@@ -122,9 +122,18 @@ export default function RegisterForm({view, setFormView}) {
                 </div>
             </Modal.Body>
 
-            <Modal.Footer>
-                <button className="button-neg ms-2" onClick={()=>setFormView(false)}>Cancel</button>
-                <button className='button-affirm ms-2' onClick={()=>setFormView(false)}>Submit</button>
+            <Modal.Footer className="d-flex flex-column">
+                {/* Error box */}
+                <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                    <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                    {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                    <p className='text-start m-0'>Error message here.</p>
+                </div>
+
+                <div className="d-flex justify-content-between w-100">
+                    <button className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
+                    <button className='button-affirm' onClick={()=>setFormView(false)}>Submit</button>
+                </div>
             </Modal.Footer>
 
         </Modal>

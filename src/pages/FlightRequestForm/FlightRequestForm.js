@@ -43,7 +43,7 @@ export default function FlightRequestForm() {
                     </div>
 
                     {/* Warning/Remarks Box */}
-                    <div className='remarks-box'>
+                    {/* <div className='form-box form-box-remarks'>
                         <Row>
                             <Col className='mt-2 d-flex align-items-center justify-content-center'>
                                 <i className="bi bi-exclamation-triangle-fill fs-1"></i>
@@ -54,6 +54,12 @@ export default function FlightRequestForm() {
                                 <p>Insert comments here if rejected</p>
                             </Col>
                         </Row>
+                    </div> */}
+
+                    <div className="form-box form-box-remarks mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                        <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                        <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
+                        {/* <p className='text-start m-0'>Remarks here.</p> */}
                     </div>
 
                     {/* Form Header */}
@@ -379,17 +385,10 @@ export default function FlightRequestForm() {
                     </div>
                     
                     {/* Error box */}
-                    <div className='error-box mb-3'>
-                        <Row>
-                            <Col className='mt-2 d-flex align-items-center justify-content-center'>
-                                <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                            </Col>
-                            
-                            <Col xs={10} className='text-start overflow-y-auto mt-4'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
-                                <p>Insert comments here if rejected</p>
-                            </Col>
-                        </Row>
+                    <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
+                        <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                        {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                        <p className='text-start m-0'>Error message here.</p>
                     </div>
 
                     {/* Buttons */}
