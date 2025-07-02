@@ -117,7 +117,7 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group className='fr-form-label' controlId="formBasicEmail">
                                             <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                            <Form.Control {...register("email")} type="text" placeholder="email@techfactors.com" />
+                                            <Form.Control {...register("email")} type="email" placeholder="email@techfactors.com" />
                                         </Form.Group>
                                     </Col>
                                 </Row>
