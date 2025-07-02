@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
@@ -82,7 +82,7 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
-                                    <Form.Select>
+                                    <Form.Select {...register("status")}>
                                         <option>Select Answer</option>
                                         {
                                             status.map(item => 
