@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
 // TODO: Separate Logo and NavBar
+// TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
 
 function Login(){
 
