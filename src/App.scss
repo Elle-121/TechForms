@@ -276,6 +276,13 @@
   }
 }
 
+.input-required {
+  &::after {
+    content: "*";
+    color: var(--tf-red-dark-bg);
+  }
+}
+
 /* Default */
 .App {
   text-align: center;

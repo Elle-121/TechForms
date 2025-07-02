@@ -21,9 +21,8 @@ export default function RegisterForm({view, setFormView}) {
     })
 
     const displayValues = (values) => {
+        console.log(values);
         setFormValues(values);
-        console.log(formValues);
-        setFormView(false);
     }
 
     return ( 
@@ -47,19 +46,21 @@ export default function RegisterForm({view, setFormView}) {
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>First Name</Form.Label>
-                                    <Form.Control {...register("firstName")} type="text" placeholder="First Name"/>
+                                    <Form.Label className='fr-form-label input-required'>First Name</Form.Label>
+                                    <Form.Control {...register("firstName", {required : true})} type="text" placeholder="First Name"/>
+                                    {console.log(errors)}
+                                    {errors.firstName && <span className="error">{errors.firstName.message}</span>}
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Middle Name</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Middle Name</Form.Label>
                                     <Form.Control {...register("middleName")} type="text" placeholder="Middle Name"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Last Name</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Last Name</Form.Label>
                                     <Form.Control {...register("lastName")} type="text" placeholder="Last Name"/>
                                 </Form.Group>
                             </Col>
@@ -69,7 +70,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Department */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Department</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Department</Form.Label>
                                     <Form.Select {...register("department")}>
                                         <option>Select Department</option>
                                         <option value='1'>2tech</option>
@@ -93,7 +94,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Role */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Role</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Role</Form.Label>
                                     <Form.Select {...register("role")}>
                                         <option>Select Role</option>
                                         <option value="1">HR</option>
@@ -107,14 +108,15 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Email */}
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label className='fr-form-label'>Email address</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Email address</Form.Label>
                                     <Form.Control {...register("email")} type="email" placeholder="Enter email" />
+                                    {errors.email && <p>{errors.email.message}</p>}
                                 </Form.Group>
                             </Col>
                             {/* Phone Number */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Phone Number</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Phone Number</Form.Label>
                                     <Form.Control {...register("phone")} type="number" placeholder="+63"/>
                                 </Form.Group>
                             </Col>
@@ -129,7 +131,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Username */}
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label'>Username</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Username</Form.Label>
                                     <Form.Control {...register("username")} type="text" placeholder="Enter username"/>
                                 </Form.Group>
                             </Col>
@@ -137,7 +139,7 @@ export default function RegisterForm({view, setFormView}) {
                             {/* Password */}
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label className='fr-form-label'>Password</Form.Label>
+                                    <Form.Label className='fr-form-label input-required'>Password</Form.Label>
                                     <Form.Control {...register("password")} type="password" placeholder="Password" />
                                 </Form.Group>
                             </Col>
