@@ -21,6 +21,7 @@ function AppRoutes() { // TODO: Change Home Route
       <Route path="/profile" element={<Profile />} />
       <Route path="/accounts" element={<Accounts />} />
       <Route path="/notifications" element={<Notifications />} />
+      
       <Route path="/flight-request-form" element={<FlightRequestForm />} />
       <Route path="/review" element={<Review />} />
     </Routes>

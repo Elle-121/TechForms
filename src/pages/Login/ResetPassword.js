@@ -46,7 +46,7 @@ function ResetPassword(){
 
                         <div className='form-row'>
                             <Link to="/login" className="button-affirm">Back</Link>
-                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Log In</button>
+                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Next</button>
                         </div>
 
                         

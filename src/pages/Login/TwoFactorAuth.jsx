@@ -6,6 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function TwoFactorAuth(){
     let navigate = useNavigate();
+    const dummyData = {
+        phoneNumber: "+63 967 702 9444",
+        timeTillOTP: 6
+    };
 
     const handleSubmit = () => {
         navigate("/");
@@ -20,33 +24,31 @@ function TwoFactorAuth(){
                 <div className="login-form-container">
                     <header className="login-form-header">
                         <h1>Enter Your OTP Code</h1>
+                        <p><em>Enter the OTP we sent to <strong>{dummyData.phoneNumber}</strong></em></p>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
                         <div className='form-row'>
-                            <label for='username'>Username / TechFactors Email</label>
-                            <input id='username' name='username' type='text'
-                                placeholder="Enter Username or TechFactors email"/>
-                            {/* TODO Figure out input type of Username/Email*/}
+                            <input id='otp1' name='otp1' type='number'
+                                placeholder="0"/>
+                            <input id='otp2' name='otp2' type='number'
+                                placeholder="0"/>
+                            <input id='otp3' name='otp3' type='number'
+                                placeholder="0"/>
+                            <input id='otp4' name='otp4' type='number'
+                                placeholder="0"/>
+                            <input id='otp5' name='otp5' type='number'
+                                placeholder="0"/>
+                            <input id='otp6' name='otp6' type='number'
+                                placeholder="0"/>
                         </div>
 
-                        <div className='form-row'>
-                            <label for='new-password'>New Password</label>
-                            <input id='new-password' name='new-password' type='password'
-                                placeholder="Enter new password"/>
-                            {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                        </div>
-
-                        <div className='form-row'>
-                            <label for='confirm-password'>Confirm Password</label>
-                            <input id='confirm-password' name='confirm-password' type='password'
-                                placeholder="Confirm new password"/>
-                            {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                        </div>
+                        <p>Resend available in {dummyData.timeTillOTP} seconds</p>
+                        <button type="button">Resend OTP</button>
 
                         <div className='form-row'>
                             <Link to="/two-factor-auth" className="button-affirm">Back</Link>
-                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Log In</button>
+                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Reset</button>
                         </div>
 
                         
