@@ -92,13 +92,13 @@ const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confi
     }
   </div>
 );
+
 const ButtonGroup = ({ onClick, buttonicon, text = "Edit", style }) => (
   <span onClick={onClick} style={{ ...style, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
     <img src={buttonicon} alt={text.toLowerCase()} width={smallIconSize} height={smallIconSize} />
     <span style={{ color: '#ee9337', marginLeft: '0.5rem' }}>{text}</span>
   </span>
 );
-
 
 const ProfileInfo = ({ userProfile, setUserProfile}) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -150,7 +150,6 @@ const ProfileInfo = ({ userProfile, setUserProfile}) => {
     }
   };
 
-
   const handleCancel = () => {
     setTempProfile(userProfile);
     setIsEditing(false);
@@ -184,6 +183,7 @@ const ProfileInfo = ({ userProfile, setUserProfile}) => {
     </div>
   );
 };
+
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(initialUserProfile);

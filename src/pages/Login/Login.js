@@ -6,6 +6,10 @@ import { Form, Row, Col } from "react-bootstrap";
 
 function Login(){
 
+    const resetPassword = async () => {
+        window.location.href = "/";
+    }
+
     return (
         <MainContainer>
         <div className="row h-100 m-0">
@@ -15,10 +19,37 @@ function Login(){
             </div>
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
-                <div>
-                    <h1>Welcome Back to TechForms*</h1>
-                    <p>Manage all your TechFactors forms right here!</p>
+                <div className="login-form-container">
+                    <header className="login-form-header">
+                        <h1>Welcome Back to <strong>TechForms*</strong></h1>
+                        <p><em>Manage all your TechFactors forms right here!</em></p>
+                    </header>
 
+                    <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
+                        <div class='form-row'>
+                            <label for='username'>Username/TechFactors Email</label>
+                            <input id='username' name='username' type='text'
+                                placeholder="Enter Username or TechFactors email"/>
+                            {/* TODO Figure out input type of Username/Email*/}
+                        </div>
+
+                        <div class='form-row'>
+                            <label for='password'>Password</label>
+                            <input id='password' name='password' type='password'
+                                placeholder="Enter password"/>
+                            {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
+                            <a href="">Forgot your password?</a>
+                            {/* TODO Route to Reset Password*/}
+                        </div>
+
+                        <div class='form-row'>
+                            <button>Log In</button>
+                        </div>
+
+                        
+                    </form>
+
+                    {/*
                     <Form.Group className="">
                         <Form.Label className="">Username/Email</Form.Label>
                         <Form.Control type="text" placeholder="Enter Username or TechFactors email"/>
@@ -32,7 +63,7 @@ function Login(){
                     <a href="/reset-password">Forgot your password?</a>
 
                     <button class='button-affirm ms-2' >Log In</button>
-
+                    */}
 
                 </div>
             </div>
