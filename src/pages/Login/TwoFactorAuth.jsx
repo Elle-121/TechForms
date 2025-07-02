@@ -47,7 +47,7 @@ function TwoFactorAuth(){
                         <button type="button">Resend OTP</button>
 
                         <div className='form-row'>
-                            <Link to="/two-factor-auth" className="button-affirm">Back</Link>
+                            <Link to="/reset-password" className="button-neg">Back</Link>
                             <button type="submit" className="button-affirm" onClick={handleSubmit}>Reset</button>
                         </div>
 
