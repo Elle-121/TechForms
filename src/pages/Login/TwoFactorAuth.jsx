@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // TODO fix CSS organization (i.e., class names)
 
-function ResetPassword(){
+function TwoFactorAuth(){
     let navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate("/two-factor-auth");
+        navigate("/");
 
     }
 
@@ -19,7 +19,7 @@ function ResetPassword(){
             <div className="border p-4 h-100 overflow-auto" style={{display: 'flex',justifyContent: 'center',}}>
                 <div className="login-form-container">
                     <header className="login-form-header">
-                        <h1>Reset your password</h1>
+                        <h1>Enter Your OTP Code</h1>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
@@ -45,7 +45,7 @@ function ResetPassword(){
                         </div>
 
                         <div className='form-row'>
-                            <Link to="/login" className="button-affirm">Back</Link>
+                            <Link to="/two-factor-auth" className="button-affirm">Back</Link>
                             <button type="submit" className="button-affirm" onClick={handleSubmit}>Log In</button>
                         </div>
 
@@ -61,4 +61,4 @@ function ResetPassword(){
 }
 
 
-export default ResetPassword
+export default TwoFactorAuth;
