@@ -44,23 +44,6 @@ function Login(){
 
                         
                     </form>
-
-                    {/*
-                    <Form.Group className="">
-                        <Form.Label className="">Username/Email</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Username or TechFactors email"/>
-                    </Form.Group>
-                    <Form.Group className="">
-                        <Form.Label className="">Password</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Password"/>
-                    </Form.Group>
-                    <button>HIDE PASSWORD</button>
-
-                    <a href="/reset-password">Forgot your password?</a>
-
-                    <button class='button-affirm ms-2' >Log In</button>
-                    */}
-
                 </div>
             </div>
 
