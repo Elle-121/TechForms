@@ -46,7 +46,8 @@ export default function BookingForm({view, setFormView}) {
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Depature Details */}
                             <div className="tf-form-section">
                                 <h2>Departure</h2>
                                 <p>Departure Booking Details</p>
@@ -68,7 +69,8 @@ export default function BookingForm({view, setFormView}) {
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Ticket */}
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
                                     <Form.Label className='fr-form-label'>Ticket</Form.Label>
@@ -76,6 +78,7 @@ export default function BookingForm({view, setFormView}) {
                                 </Form.Group>
                             </Row>
     
+                            {/* Return Details */}
                             <div className="tf-form-section">
                                 <h2>Return</h2>
                                 <p>Return Booking Details</p>
@@ -97,7 +100,8 @@ export default function BookingForm({view, setFormView}) {
                                     </Form.Group>
                                 </Col>
                             </Row>
-    
+
+                            {/* Ticket */}
                             <Row>
                                 <Form.Group controlId="formFile" className="mb-3">
                                     <Form.Label className='fr-form-label'>Ticket</Form.Label>
@@ -110,6 +114,13 @@ export default function BookingForm({view, setFormView}) {
             </Modal.Body>
 
             <Modal.Footer className="d-flex justify-content-between">
+                {/* Error box */}
+                <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                    <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                    {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                    <p className='text-start m-0'>Error message here.</p>
+                </div>
+
                 {
                     preview ? 
                         <button className="button-neg ms-2" onClick={() => setPreview(false)}>Back</button> :

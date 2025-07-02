@@ -122,9 +122,18 @@ export default function RegisterForm({view, setFormView}) {
                 </div>
             </Modal.Body>
 
-            <Modal.Footer>
-                <button className="button-neg ms-2" onClick={()=>setFormView(false)}>Cancel</button>
-                <button className='button-affirm ms-2' onClick={()=>setFormView(false)}>Submit</button>
+            <Modal.Footer className="d-flex flex-column">
+                {/* Error box */}
+                <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                    <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                    {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                    <p className='text-start m-0'>Error message here.</p>
+                </div>
+
+                <div className="d-flex justify-content-between w-100">
+                    <button className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
+                    <button className='button-affirm' onClick={()=>setFormView(false)}>Submit</button>
+                </div>
             </Modal.Footer>
 
         </Modal>

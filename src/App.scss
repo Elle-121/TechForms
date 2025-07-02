@@ -447,24 +447,20 @@
   color: black;
 }
 
-.remarks-box {
-  background-color: var(--tf-yellow-bg);
+.form-box {
   color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 550;
   font-size: 20px;
   border-radius: 5px;
-  min-height: 160px;
-}
 
-.error-box {
-  background-color: var(--tf-red-dark-bg);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 550;
-  font-size: 20px;
-  border-radius: 5px;
-  min-height: 160px;
+  &-error {
+    background-color: var(--tf-red-dark-bg);
+  }
+
+  &-remarks {
+    background-color: var(--tf-yellow-bg);
+  }
 }
 
 .sub-text {
