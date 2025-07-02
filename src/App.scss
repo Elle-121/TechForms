@@ -99,26 +99,20 @@
 
 /* Accounts Page */
 .nav-tabs,
-.btn-group-role {
+.btn-role {
+  padding: 8px 16px;
+  color: var(--tf-gray-2);
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
 
-  button {
-    padding: 8px 16px;
-    color: var(--tf-gray-2);
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-  }
-
-  :hover, 
-  :focus, 
-  :active {
+  &--selected {
     color: var(--tfblue-color);
+    border-bottom: 3px solid var(--tfblue-color);
   }
 
-  :focus, 
-  :active {
-    border-bottom: 2px solid var(--tfblue-color);
-    outline: none;
+  &:hover {
+    color: var(--tfblue-color);
   }
 }
 
