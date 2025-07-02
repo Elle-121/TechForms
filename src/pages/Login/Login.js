@@ -17,11 +17,11 @@ function Login(){
             <div className="p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
                 <div>
                     <h1>Welcome Back to TechForms*</h1>
-                    <p>Manage all your Techfactor forms right here!</p>
+                    <p>Manage all your TechFactors forms right here!</p>
 
                     <Form.Group className="">
                         <Form.Label className="">Username/Email</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Username or Techfactors email"/>
+                        <Form.Control type="text" placeholder="Enter Username or TechFactors email"/>
                     </Form.Group>
                     <Form.Group className="">
                         <Form.Label className="">Password</Form.Label>
