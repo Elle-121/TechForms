@@ -534,3 +534,110 @@
 //   box-shadow: none !important;
 //   border-color: transparent !important;
 // }
+
+
+/* ### LOGIN PAGE STYLES */
+
+.login-form-container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background-color: #EAEDF0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-color: red;
+}
+
+.login-form-container a {
+  text-decoration: none;
+  text-align: right;
+  font-weight: bold;
+  color: var(--tfblue-color);
+}
+
+
+.login-form-header {
+  text-align: center;
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  
+  width: 80%;
+  margin: 40px 0;
+  padding: 50px;
+}
+
+.login-form-header h1 {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.login-form-header strong{
+  color: var(--tforange-color);
+}
+
+.login-form {
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  
+  width: 80%;
+  padding: 50px;
+  margin: 0 0 40px 0;
+}
+
+.form-row {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-row input[type='text'],
+.form-row input[type='password'] {
+  background-color: #FFFFFF;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+.form-row input[type='text']:invalid,
+.form-row input[type='password']:invalid{
+  border: 1px solid #D55C5F;
+  color: #D55C5F;
+  box-shadow: none; /* Remove default red glow in Firefox */
+}
+
+.form-row label {
+  margin-bottom: 15px;
+}
+
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #FFFFFF;
+  background-color: var(--tforange-color);
+
+  border: none;
+  border-radius: 15px;
+
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background-color: #76AEED;
+}
+
+.form-row button:active {
+  background-color: #407FC7;
+}
