@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Form, FormGroup } from 'react-bootstrap';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 //components
 import MainContainer from '../../components/MainContainer';
@@ -13,6 +14,43 @@ export default function FlightRequestForm() {
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
+    const [remarksView, setRemarksView] = useState(true);
+    const [errorView, setErrorView] = useState(true);
+
+    const { register, handleSubmit, reset } = useForm({
+            defaultValues: {
+                requestor: '',
+                email: '',
+                department: '',
+                first_name1: '',
+                middle_name1: '',
+                last_name1: '',
+                birthday1: '',
+                extensions1: '',
+                title1: '',
+                form_type: '',
+                purpose: '',
+                purpose_others: '',
+                departure_city: '',
+                departure_date: '',
+                departure_time: '',
+                return_city: '',
+                return_date: '',
+                return_time: '',
+                start_business: '',
+                end_business: '',
+                extra_baggage: '',
+                approved_by: ''
+            }
+    })
+    
+    const resetValues = () => {
+        reset()
+    }
+
+    const submitValues = (values) => {
+        console.log(values)
+    }
 
     const home = async () => {
         window.location.href = "/";
@@ -43,24 +81,13 @@ export default function FlightRequestForm() {
                     </div>
 
                     {/* Warning/Remarks Box */}
-                    {/* <div className='form-box form-box-remarks'>
-                        <Row>
-                            <Col className='mt-2 d-flex align-items-center justify-content-center'>
-                                <i className="bi bi-exclamation-triangle-fill fs-1"></i>
-                            </Col>
-                            
-                            <Col xs={10} className='text-start overflow-y-auto mt-4 '>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
-                                <p>Insert comments here if rejected</p>
-                            </Col>
-                        </Row>
-                    </div> */}
-
+                    {remarksView && (
                     <div className="form-box form-box-remarks mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
                         <i className="bi bi-exclamation-triangle-fill fs-1"/>
                         <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
                         {/* <p className='text-start m-0'>Remarks here.</p> */}
                     </div>
+                    )}
 
                     {/* Form Header */}
                     <div>
@@ -76,7 +103,7 @@ export default function FlightRequestForm() {
 
                     {/* Form Content */}
                     <div className='text-start'>
-                        <Form>
+                        <Form onSubmit={handleSubmit(submitValues)}>
 
                             {/* Requestor Details */}
                             <div>
@@ -88,13 +115,13 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Requestor Employee Name</Form.Label>
-                                            <Form.Control type="text" placeholder="Name of Requestor" />
+                                            <Form.Control {...register("requestor")} type="text" placeholder="Name of Requestor" />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group className='fr-form-label' controlId="formBasicEmail">
                                             <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                            <Form.Control type="text" placeholder="email@techfactors.com" />
+                                            <Form.Control {...register("email")} type="email" placeholder="email@techfactors.com" />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -102,7 +129,7 @@ export default function FlightRequestForm() {
                                 <Row className='mb-2'>
                                     <Form.Group>
                                         <Form.Label className='fr-form-label'>Department</Form.Label>
-                                        <Form.Select>
+                                        <Form.Select {...register("department")}>
                                             <option>Select Department</option>
                                             {
                                                 departments.map(item => 
@@ -124,19 +151,19 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>First Name</Form.Label>
-                                            <Form.Control type="text" placeholder="First Name" />
+                                            <Form.Control {...register("first_name1")} type="text" placeholder="First Name" />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Middle Name</Form.Label>
-                                            <Form.Control type="text" placeholder="Middle Name" />
+                                            <Form.Control {...register("middle_name1")} type="text" placeholder="Middle Name" />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Last Name</Form.Label>
-                                            <Form.Control type="text" placeholder="Last Name" />
+                                            <Form.Control {...register("last_name1")} type="text" placeholder="Last Name" />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -145,19 +172,19 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Birthday</Form.Label>
-                                            <Form.Control type="date"/>
+                                            <Form.Control {...register("birthday1")} type="date"/>
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Extensions</Form.Label>
-                                            <Form.Control type="text" placeholder="Suffix" />
+                                            <Form.Control {...register("extensions1")} type="text" placeholder="Suffix" />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Title</Form.Label>
-                                            <Form.Control type="text" placeholder="Mr./Ms." />
+                                            <Form.Control {...register("title1")} type="text" placeholder="Mr./Ms." />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -183,10 +210,9 @@ export default function FlightRequestForm() {
                                         <div key={`default-checkbox`} className="mb-3">
                                             {
                                                 reasons.slice(0, 6).map(item => 
-                                                    <Form.Check
+                                                    <Form.Check {...register("purpose")}
                                                         label={item.name}
                                                         value={item.name}
-                                                        name="group1"
                                                         type="checkbox"
                                                     />        
                                                 )
@@ -200,10 +226,9 @@ export default function FlightRequestForm() {
                                         <div key={`default-checkbox`} className="mb-3">
                                             {
                                                 reasons.slice(6, 12).map(item => 
-                                                    <Form.Check
+                                                    <Form.Check {...register("purpose")}
                                                         label={item.name}
                                                         value={item.name}
-                                                        name="group1"
                                                         type="checkbox"
                                                     />        
                                                 )
@@ -220,13 +245,12 @@ export default function FlightRequestForm() {
                                             <div className="d-flex align-items-center">
                                                 <Form.Check
                                                     inline
-                                                    name="group1"
                                                     type="checkbox"
                                                     checked={othersChecked}
                                                     onChange={e => setOthersChecked(e.target.checked)}
                                                     className="me-2"
                                                 />
-                                                <Form.Control
+                                                <Form.Control {...register("purpose_others")}
                                                     type="text"
                                                     placeholder="Others (Please Specify)"
                                                     disabled={!othersChecked}
@@ -254,14 +278,14 @@ export default function FlightRequestForm() {
                                                 <Row>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>Start Date</Form.Label>
-                                                        <Form.Control type="date"/>
+                                                        <Form.Control {...register("start_business")} type="date"/>
                                                     </Col>
                                                     <Col xs='auto' className='d-flex align-items-center' >
                                                         To
                                                     </Col>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>End Date</Form.Label>
-                                                        <Form.Control type="date"/>
+                                                        <Form.Control {...register("end_business")} type="date"/>
                                                     </Col>
                                                 </Row>
                                             </Form.Group>
@@ -282,15 +306,15 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control type="date"/>
+                                                <Form.Control {...register("departure_date")} type="date"/>
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control type="time"/>
+                                                <Form.Control {...register("departure_time")} type="time"/>
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control {...register("departure_city")} type="text" placeholder="Destination City/Airport"/>
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -309,15 +333,15 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control type="date"/>
+                                                <Form.Control {...register("return_date")} type="date"/>
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control type="time"/>
+                                                <Form.Control {...register("return_time")} type="time"/>
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control {...register("return_city")} type="text" placeholder="Destination City/Airport"/>
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -334,7 +358,7 @@ export default function FlightRequestForm() {
                                     <Col md={5}>
                                         <FormGroup>
                                             <Form.Label className='fr-form-label text-start'>Request for Extra Baggage</Form.Label>
-                                            <Form.Control type="text" placeholder="N/A"/>
+                                            <Form.Control {...register("extra_baggage")} type="text" placeholder="N/A"/>
                                         </FormGroup>
                                     </Col>
                                 </Row>
@@ -350,31 +374,27 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <FormGroup className='fr-form-label'>
                                             <div key={`inline-radio`} className="mb-5">
-                                                <Form.Check
+                                                <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="ARC"
-                                                    name="group1"
                                                     type="radio"
                                                     id={`inline-radio-1`}
                                                 />
-                                                <Form.Check
+                                                <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="JDLC"
-                                                    name="group1"
                                                     type="radio"
                                                     id={`inline-radio-2`}
                                                 />
-                                                <Form.Check
+                                                <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="ATP"
-                                                    name="group1"
                                                     type="radio"
                                                     id={`inline-radio-3`}
                                                 />
-                                                <Form.Check
+                                                <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="DFS"
-                                                    name="group1"
                                                     type="radio"
                                                     id={`inline-radio-3`}
                                                 />
@@ -383,24 +403,26 @@ export default function FlightRequestForm() {
                                     </Col>
                                 </Row>
                             </div>
+
+                            {/* Error box */}
+                            
+                            {errorView && (<div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
+                                <i className="bi bi-exclamation-triangle-fill fs-1"/>
+                                {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
+                                <p className='text-start m-0'>Error message here.</p>
+                            </div>)}
+
+                            {/* Buttons */}
+                            <div>
+                                <button className='button-draft w-100 mb-3' type='submit'>Save As Draft</button>
+                                <button className='button-affirm w-100 mb-5' type='submit'>Submit</button>
+                            </div>
+
+                            {/* Save Submit */}
                         </Form>
 
                     </div>
                     
-                    {/* Error box */}
-                    <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
-                        <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                        {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
-                        <p className='text-start m-0'>Error message here.</p>
-                    </div>
-
-                    {/* Buttons */}
-                    <div>
-                        <button class='button-draft w-100 mb-3'>Save As Draft</button>
-                        <button class='button-affirm w-100 mb-5'>Submit</button>
-                    </div>
-
-                    {/* Save Submit */}
                 </Col>
 
                 {/*Right Content Additional Form Content Goes Here*/}
