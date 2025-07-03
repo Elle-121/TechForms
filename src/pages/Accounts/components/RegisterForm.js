@@ -118,7 +118,7 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Phone Number</Form.Label>
-                                    <Form.Control className={`${errors.phone ? "input-invalid" : ""}`} type="text" placeholder="+63" 
+                                    <Form.Control className={`${errors.phone ? "input-invalid" : ""}`} type="text" placeholder="09XXXXXXXX" 
                                         {...register("phone", {
                                             required : true,
                                             pattern: /^09\d{9}$/
