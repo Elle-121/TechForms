@@ -38,10 +38,10 @@ export default function Accounts(){
                 <h1 className="tf-header">Account Management</h1>
                 
                 <div className="d-flex justify-content-between mb-3">
-                    <div className="btn-group-role">
-                        <button onClick={()=>setRole()} autoFocus>All</button>
-                        <button onClick={()=>setRole("HR")}>HR</button>
-                        <button onClick={()=>setRole("Employee")}>Employee</button>
+                    <div>
+                        <button onClick={()=>setRole()} className={`btn-role ${!role ? "btn-role--selected" : ""}`}>All</button>
+                        <button onClick={()=>setRole("HR")} className={`btn-role ${role==="HR" ? "btn-role--selected" : ""}`}>HR</button>
+                        <button onClick={()=>setRole("Employee")} className={`btn-role ${role==="Employee" ? "btn-role--selected" : ""}`}>Employee</button>
                     </div>
                     <SearchBar/>
                 </div>
