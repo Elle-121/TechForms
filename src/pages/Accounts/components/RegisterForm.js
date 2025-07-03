@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { departments } from "../../Home/components/filterData";
 
 export default function RegisterForm({view, setFormView}) {
 
@@ -40,12 +41,6 @@ export default function RegisterForm({view, setFormView}) {
     return ( 
 
         <Modal show={view} size="lg" className="form-modal">
-            {/* <Modal.Header>
-                <div className="tf-form-title">
-                    <h1 className="tf-header text-black">Register User</h1>
-                </div>
-            </Modal.Header> */}
-
             <Modal.Body className="my-4">
                 <div className="tf-form-title mt-2 mb-4">
                     <h1 className="tf-header text-black">Register User</h1>
@@ -141,21 +136,11 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Department</Form.Label>
                                     <Form.Select {...register("department", {required : true})}
                                         className={`${errors.department ? "input-invalid" : ""}`}>
-                                        <option value='0'>Select Department</option>
-                                        <option value='1'>2tech</option>
-                                        <option value='2'>Accounting</option>
-                                        <option value='3'>Customer Service</option>
-                                        <option value='4'>ETS</option>
-                                        <option value='5'>Finance</option>
-                                        <option value='6'>HR/Admin</option>
-                                        <option value='7'>Marketing</option>
-                                        <option value='8'>Production, Logistics, Purchasing</option>
-                                        <option value='9'>R&D</option>
-                                        <option value='10'>Sales</option>
-                                        <option value='11'>SHS</option>
-                                        <option value='12'>TFI Academy</option>
-                                        <option value='13'>Product Training & Support</option>
-                                        <option value='14'>CoreDev</option>
+                                        <option disabled value=''>Select Department</option>
+                                        {
+                                            departments.map(item => 
+                                                <option value={item.name}>{item.name}</option>)
+                                        }
                                     </Form.Select>
                                     {errors.department && errors.department.type === "required" && <span className="error-msg">This field is required.</span>}
                                 </Form.Group>
@@ -167,9 +152,9 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Role</Form.Label>
                                     <Form.Select {...register("role", {required : true})}
                                         className={`${errors.role ? "input-invalid" : ""}`} >
-                                        <option>Select Role</option>
-                                        <option value="1">HR</option>
-                                        <option value="2">Employee</option>
+                                        <option disabled value="">Select Role</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Employee">Employee</option>
                                     </Form.Select>
                                     {errors.role && errors.role.type === "required" && <span className="error-msg">This field is required.</span>}
                                 </Form.Group>
