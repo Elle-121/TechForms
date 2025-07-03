@@ -6,7 +6,7 @@ export default function RegisterForm({view, setFormView}) {
 
     const [formValues, setFormValues] = useState();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors, isValid, isSubmitted } } = useForm({
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -29,13 +29,16 @@ export default function RegisterForm({view, setFormView}) {
     return ( 
 
         <Modal show={view} size="lg" className="form-modal">
-            <Modal.Header>
+            {/* <Modal.Header>
                 <div className="tf-form-title">
                     <h1 className="tf-header text-black">Register User</h1>
                 </div>
-            </Modal.Header>
+            </Modal.Header> */}
 
-            <Modal.Body>
+            <Modal.Body className="my-4">
+                <div className="tf-form-title mb-4">
+                    <h1 className="tf-header text-black">Register User</h1>
+                </div>
                 <div>
                     <Form onSubmit={handleSubmit(displayValues)}>
                         <div className="tf-form-section">
@@ -63,6 +66,25 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Last Name</Form.Label>
                                     <Form.Control {...register("lastName", {required : {value: true, message: "Input required."}})} type="text" placeholder="Last Name"/>
                                     {errors?.lastName?.message && <span className="error-msg">{errors.lastName.message}</span>}
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            {/* Email */}
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label className='fr-form-label input-required'>Email address</Form.Label>
+                                    <Form.Control {...register("email", {required : {value: true, message: "Input required."}})} type="text" placeholder="Enter email" />
+                                    {errors?.email?.message && <span className="error-msg">{errors.email.message}</span>}
+                                </Form.Group>
+                            </Col>
+                            {/* Phone Number */}
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className='fr-form-label input-required'>Phone Number</Form.Label>
+                                    <Form.Control {...register("phone", {required : {value: true, message: "Input required."}})} type="number" placeholder="+63"/>
+                                    {errors?.phone?.message && <span className="error-msg">{errors.phone.message}</span>}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -107,25 +129,6 @@ export default function RegisterForm({view, setFormView}) {
                             </Col>
                         </Row>
 
-                        <Row>
-                            {/* Email */}
-                            <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label className='fr-form-label input-required'>Email address</Form.Label>
-                                    <Form.Control {...register("email", {required : {value: true, message: "Input required."}})} type="email" placeholder="Enter email" />
-                                    {errors?.email?.message && <span className="error-msg">{errors.email.message}</span>}
-                                </Form.Group>
-                            </Col>
-                            {/* Phone Number */}
-                            <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Label className='fr-form-label input-required'>Phone Number</Form.Label>
-                                    <Form.Control {...register("phone", {required : {value: true, message: "Input required."}})} type="number" placeholder="+63"/>
-                                    {errors?.phone?.message && <span className="error-msg">{errors.phone.message}</span>}
-                                </Form.Group>
-                            </Col>
-                        </Row>
-
                         <div className="tf-form-section">
                             <h2>Account Credentials</h2>
                             <p>Username and Password</p>
@@ -152,11 +155,11 @@ export default function RegisterForm({view, setFormView}) {
                         </Row>
 
                         <div className="d-flex flex-column">
-                            <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
+                            { !isValid && isSubmitted && <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
                                 <i className="bi bi-exclamation-triangle-fill fs-1"/>
                                 {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
                                 <p className='text-start m-0'>Error message here.</p>
-                            </div>
+                            </div> }
                             <div className="d-flex justify-content-between w-100">
                                 <button type="button" className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
                                 <button type="submit" className='button-affirm'>Submit</button>
@@ -165,21 +168,6 @@ export default function RegisterForm({view, setFormView}) {
                     </Form>
                 </div>
             </Modal.Body>
-
-            <Modal.Footer className="d-flex flex-column">
-                {/* Error box */}
-                {/* <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
-                    <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                    <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
-                    <p className='text-start m-0'>Error message here.</p>
-                </div> */}
-
-                {/* <div className="d-flex justify-content-between w-100">
-                    <button className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
-                    <button className='button-affirm' onClick={()=>setFormView(false)}>Submit</button>
-                </div> */}
-            </Modal.Footer>
-
         </Modal>
 
     );
