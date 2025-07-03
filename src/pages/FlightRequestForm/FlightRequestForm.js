@@ -14,6 +14,8 @@ export default function FlightRequestForm() {
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
+    const [remarksView, setRemarksView] = useState(true);
+    const [errorView, setErrorView] = useState(true);
 
     const { register, handleSubmit, reset } = useForm({
             defaultValues: {
@@ -79,11 +81,13 @@ export default function FlightRequestForm() {
                     </div>
 
                     {/* Warning/Remarks Box */}
+                    {remarksView && (
                     <div className="form-box form-box-remarks mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
                         <i className="bi bi-exclamation-triangle-fill fs-1"/>
                         <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
                         {/* <p className='text-start m-0'>Remarks here.</p> */}
                     </div>
+                    )}
 
                     {/* Form Header */}
                     <div>
@@ -401,11 +405,12 @@ export default function FlightRequestForm() {
                             </div>
 
                             {/* Error box */}
-                            <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
+                            
+                            {errorView && (<div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
                                 <i className="bi bi-exclamation-triangle-fill fs-1"/>
                                 {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
                                 <p className='text-start m-0'>Error message here.</p>
-                            </div>
+                            </div>)}
 
                             {/* Buttons */}
                             <div>
