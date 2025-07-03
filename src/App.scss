@@ -294,6 +294,10 @@
   }
 }
 
+.input-invalid {
+  border-color: var(--tf-red-dark-bg);
+}
+
 .error-msg {
   color: var(--tf-red-dark-bg);
 }
