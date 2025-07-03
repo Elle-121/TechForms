@@ -12,8 +12,8 @@ import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel comp
 import Calendar from './Calendar';
 
 // Popup Modal
-import DashboardFilter from './components/homeFilter';
-import FormsModal from './components/FormsModal';
+import DashboardFilter from './components/homeFilter.js';
+import FormsModal from './components/FormsModal.js';
 
 
 // Dummy Data
