@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 export default function RegisterForm({view, setFormView}) {
 
     const [formValues, setFormValues] = useState();
 
-    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted } } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -24,13 +25,17 @@ export default function RegisterForm({view, setFormView}) {
         console.log(values);
         setFormValues(values);
         setFormView(false);
-        reset()
+        reset();
     }
 
     const handleCancel = () => {
         setFormView(false);
         reset();
     }
+
+    useEffect(() => {
+        reset();
+    }, [isSubmitSuccessful])
 
     return ( 
 
@@ -161,7 +166,7 @@ export default function RegisterForm({view, setFormView}) {
                         </Row>
 
                         <div className="d-flex flex-column">
-                            { !isValid && isSubmitted && <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center px-4 gap-4">
+                            { (!isValid && isSubmitted) && <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center px-4 gap-4">
                                 <i className="bi bi-exclamation-triangle-fill fs-1"/>
                                 <p className='text-start m-0'>Please check if all required fields are filled and if all inputs are valid.</p>
                             </div> }
