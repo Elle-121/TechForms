@@ -6,7 +6,7 @@ export default function RegisterForm({view, setFormView}) {
 
     const [formValues, setFormValues] = useState();
 
-    const { register, handleSubmit, formState: { errors, isValid, isSubmitted } } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted } } = useForm({
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -24,6 +24,12 @@ export default function RegisterForm({view, setFormView}) {
         console.log(values);
         setFormValues(values);
         setFormView(false);
+        reset()
+    }
+
+    const handleCancel = () => {
+        setFormView(false);
+        reset();
     }
 
     return ( 
@@ -161,7 +167,7 @@ export default function RegisterForm({view, setFormView}) {
                                 <p className='text-start m-0'>Error message here.</p>
                             </div> }
                             <div className="d-flex justify-content-between w-100">
-                                <button type="button" className="button-neg" onClick={()=>setFormView(false)}>Cancel</button>
+                                <button type="button" className="button-neg" onClick={handleCancel}>Cancel</button>
                                 <button type="submit" className='button-affirm'>Submit</button>
                             </div>
                         </div>
