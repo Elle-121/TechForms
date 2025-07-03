@@ -283,6 +283,19 @@
   }
 }
 
+.input-optional {
+  &::after {
+    content: " (Optional)";
+    color: var(--tf-gray-3);
+    font-weight: normal;
+    font-size: small;
+  }
+}
+
+.error-msg {
+  color: var(--tf-red-dark-bg);
+}
+
 /* Default */
 .App {
   text-align: center;
