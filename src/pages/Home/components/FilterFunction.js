@@ -10,12 +10,16 @@ export default function filterData(item, filterValues) {
         (!filterValues.submitted_start || new Date(item.date) >= new Date(filterValues.submitted_start)) &&
         (!filterValues.submitted_end || new Date(item.date) <= new Date(filterValues.submitted_end));
 
+    const statusMatch = 
+        !filterValues.status || item.status === filterValues.status;
+
     // Add more filters as needed, following the same pattern:
     // (!filterValues.FIELD || item.FIELD === filterValues.FIELD)
 
-    return formTypeMatch && dateMatch;
+    return formTypeMatch && dateMatch && statusMatch;
 }
 
+//----FilterValues FIELD----
 // requestor: '',
 // requested_for: '',
 // department: '',
@@ -35,7 +39,9 @@ export default function filterData(item, filterValues) {
 // end_business_start: '',
 // end_business_end: '',
 // approved_by: ''
+//--------------------------
 
+//--------Data FIELD--------
 // {
 //     id: 1,
 //     subject: 'Request #1',
@@ -43,3 +49,4 @@ export default function filterData(item, filterValues) {
 //     formType: 'Flight Request',
 //     status: 'Approved'
 // }
+//--------------------------
