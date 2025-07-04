@@ -163,7 +163,6 @@ const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confi
   </div>
 );
 
-
 const ProfileInfo = ({ userProfile, setUserProfile}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
