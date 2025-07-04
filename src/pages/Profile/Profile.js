@@ -4,9 +4,9 @@ import homeicon from '../../assets/PNGIcon.svg';
 import editicon from '../../assets/EditIcon.svg';
 import confirmicon from '../../assets/ConfirmIcon.svg';
 import closeicon from '../../assets/CloseIcon.svg';
-import viewicon from '../../assets/ViewIcon.svg';
 import MainContainer from '../../components/MainContainer';
-import Profile_layout from './Profile_layout';
+import ProfileLayout from './ProfileLayout';
+import InputWithToggle from './InputWithToggle';
 
 const profileIconSize = 300;
 const smallIconSize = 20;
@@ -29,52 +29,29 @@ const ProfileSidebar = ({ username, role }) => (
 );
 
 const ViewForm = ({ value, isPassword, isLocked, showModal, setShowModal }) => {
-  const [showPassword, setShowPassword] = useState(false);
-
   useEffect(() => {
     if (isLocked) {
       const timer = setTimeout(() => setShowModal(false), 3000);
       return () => clearTimeout(timer);
     }
-  }, [isLocked]);
+  }, [isLocked, setShowModal]);
 
   return (
-    <div style={{ position: 'relative', width: '50%' }}>
-      <input
-        type={isPassword && !showPassword ? "password" : "text"}
+    <div style={{ width: '40%' }}>
+      <InputWithToggle
         value={value}
+        isPassword={isPassword}
         readOnly
-        style={{
-          fontSize: '1rem',
-          color: 'black',
-          fontWeight: 'bold',
-          width: '100%',
-          border: '1px solid transparent',
-          padding: '0.3rem',
-          backgroundColor: 'transparent'
-        }}
       />
-      {isPassword && (
-        <div style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }}>
-          <img
-            src={viewicon}
-            alt="view password"
-            onClick={() => setShowPassword(prev => !prev)}
-            style={{
-              width: '20px',
-              height: '20px',
-              cursor: 'pointer'
-            }}
-          />
-        </div>
-      )}
       {isLocked && (
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header>
             <Modal.Title>Kindly wait for the admin to confirm your password change.</Modal.Title>
           </Modal.Header>
           <Modal.Footer>
-            <button type="button" class="btn btn-secondary" onclick="setShowModal(false)">Confirm</button>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Confirm
+            </Button>
           </Modal.Footer>
         </Modal>
       )}
@@ -82,70 +59,23 @@ const ViewForm = ({ value, isPassword, isLocked, showModal, setShowModal }) => {
   );
 };
 
-const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange}) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-
+const EditForm = ({ value, onChange, isPassword, confirmValue, onConfirmChange }) => {
   return (
     <>
-      <div style={{ position: 'relative', width: '50%', marginBottom: isPassword ? '1rem' : '0' }}>
-        <input
-          type={isPassword && !showPassword ? "password" : "text"}
+      <div style={{ width: '40%', marginBottom: isPassword ? '1rem' : '0' }}>
+        <InputWithToggle
           value={value}
           onChange={onChange}
-          style={{
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            width: '100%',
-            border: '1px solid #ccc',
-            padding: '0.3rem'
-          }}
+          isPassword={isPassword}
         />
-        {isPassword && (
-          <img
-            src={viewicon}
-            alt="toggle password"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '20px',
-              height: '20px',
-              cursor: 'pointer'
-            }}
-          />
-        )}
       </div>
       {isPassword && (
-        <div style={{ position: 'relative', width: '50%' }}>
-          <input
-            type={!showConfirm ? "password" : "text"}
-            placeholder="Confirm Password"
+        <div style={{ width: '40%' }}>
+          <InputWithToggle
             value={confirmValue}
             onChange={onConfirmChange}
-            style={{
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              width: '100%',
-              border: '1px solid #ccc',
-              padding: '0.3rem'
-            }}
-          />
-          <img
-            src={viewicon}
-            alt="toggle confirm password"
-            onClick={() => setShowConfirm(!showConfirm)}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '20px',
-              height: '20px',
-              cursor: 'pointer'
-            }}
+            placeholder="Confirm Password"
+            isPassword
           />
         </div>
       )}
@@ -161,6 +91,13 @@ const ProfileInfoGroup = ({ label, value, isPassword, onChange, isEditing, confi
       : <ViewForm value={value} isPassword={isPassword} isLocked={isLocked} showModal={showModal} setShowModal={setShowModal}/>
     }
   </div>
+);
+
+const ButtonGroup = ({ onClick, buttonicon, text = "Edit", style }) => (
+  <span onClick={onClick} style={{ ...style, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+    <img src={buttonicon} alt={text.toLowerCase()} width={smallIconSize} height={smallIconSize} />
+    <span style={{ color: '#ee9337', marginLeft: '0.5rem' }}>{text}</span>
+  </span>
 );
 
 const ProfileInfo = ({ userProfile, setUserProfile}) => {
@@ -213,7 +150,6 @@ const ProfileInfo = ({ userProfile, setUserProfile}) => {
     }
   };
 
-
   const handleCancel = () => {
     setTempProfile(userProfile);
     setIsEditing(false);
@@ -228,20 +164,11 @@ const ProfileInfo = ({ userProfile, setUserProfile}) => {
         <span style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
           {isEditing ? (
             <>
-              <span onClick={handleConfirm} style={{ cursor: 'pointer' }}>
-                <img src={confirmicon} alt="confirm" width={smallIconSize} height={smallIconSize} />
-                <span style={{ color: '#ee9337', marginLeft: '0.5rem' }}>Confirm</span>
-              </span>
-              <span onClick={handleCancel} style={{ cursor: 'pointer' }}>
-                <img src={closeicon} alt="cancel" width={smallIconSize} height={smallIconSize} />
-                <span style={{ color: '#ee9337', marginLeft: '0.5rem' }}>Cancel</span>
-              </span>
+              <ButtonGroup onClick={handleConfirm} buttonicon={confirmicon} text="Confirm" />
+              <ButtonGroup onClick={handleCancel} buttonicon={closeicon} text="Cancel" />
             </>
           ) : (
-            <span onClick={() => setIsEditing(true)} style={{ cursor: 'pointer' }}>
-              <img src={editicon} alt="edit" width={smallIconSize} height={smallIconSize} />
-              <span style={{ color: '#ee9337', marginLeft: '0.5rem' }}>Edit</span>
-            </span>
+            <ButtonGroup onClick={() => setIsEditing(true)} buttonicon={editicon} text="Edit" />
           )}
         </span>
       </div>
@@ -257,18 +184,25 @@ const ProfileInfo = ({ userProfile, setUserProfile}) => {
   );
 };
 
+
 function Profile() {
   const [userProfile, setUserProfile] = useState(initialUserProfile);
 
   return (
     <MainContainer>
-      <Profile_layout sidebar={<ProfileSidebar username={userProfile.username} role={userProfile.role} />}
-      main={<ProfileInfo userProfile={userProfile} setUserProfile={setUserProfile} />}
+      <ProfileLayout
+        sidebar={
+          <ProfileSidebar username={userProfile.username} role={userProfile.role} />
+        }
+        main={
+          <ProfileInfo userProfile={userProfile} setUserProfile={setUserProfile} />
+        }
       />
     </MainContainer>
   );
 }
 
 export default Profile;
+
 
 

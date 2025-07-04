@@ -12,8 +12,8 @@ import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel comp
 import Calendar from './Calendar';
 
 // Popup Modal
-import DashboardFilter from './components/homeFilter';
-import FormsModal from './components/FormsModal';
+import DashboardFilter from './components/homeFilter.js';
+import FormsModal from './components/FormsModal.js';
 
 
 // Dummy Data
@@ -103,7 +103,7 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="btn rounded-circle position-fixed" onClick={openFormsView} style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
+        <button className="add-btn position-fixed" onClick={openFormsView} style={{bottom: '20px', right: '20px'}}>+</button>
     </MainContainer>
     );
 }

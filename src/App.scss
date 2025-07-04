@@ -99,26 +99,20 @@
 
 /* Accounts Page */
 .nav-tabs,
-.btn-group-role {
+.btn-role {
+  padding: 8px 16px;
+  color: var(--tf-gray-2);
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
 
-  button {
-    padding: 8px 16px;
-    color: var(--tf-gray-2);
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-  }
-
-  :hover, 
-  :focus, 
-  :active {
+  &--selected {
     color: var(--tfblue-color);
+    border-bottom: 3px solid var(--tfblue-color);
   }
 
-  :focus, 
-  :active {
-    border-bottom: 2px solid var(--tfblue-color);
-    outline: none;
+  &:hover {
+    color: var(--tfblue-color);
   }
 }
 
@@ -180,13 +174,13 @@
 
   h2 {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--tforange-color);
     margin: 0;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 20px;
     color: var(--tf-gray-2);
   }
 }
@@ -227,6 +221,26 @@
   }
 }
 
+.add-btn {
+  color:white;
+  width: 50px; 
+  height: 50px; 
+  font-size: 24px; 
+  background-color: var(--tforange-color);
+  border-color: transparent;
+  border-radius: 50%;
+  transition: font-size 0.2s ease;
+
+  &:hover {
+    background-color: var(--tfaffirm-hover);
+    font-size: 30px;
+  }
+
+  &:active{
+    font-size: 24px;
+  }
+}
+
 .btn-approve {
   background-color: var(--tf-green-text);
   border: 2px solid;
@@ -258,8 +272,6 @@
 .form-modal {
   .modal-header {
     border-bottom: none;
-    padding: 16px 25px;
-    margin-top: 30px;
   }
 
   .modal-body {
@@ -268,8 +280,38 @@
 
   .modal-footer {
     border-top: none;
-    padding: 12px 25px;
   }
+
+  .form-header {
+    padding: 16px 25px;
+    margin-top: 30px;
+  }
+}
+
+.input-required {
+  &::after {
+    content: "*";
+    color: var(--tf-red-dark-bg);
+  }
+}
+
+.input-optional {
+  &::after {
+    content: " (Optional)";
+    color: var(--tf-gray-3);
+    font-weight: normal;
+    font-size: small;
+  }
+}
+
+.input-invalid {
+  border-color: var(--tf-red-dark-bg);
+}
+
+.error-msg {
+  color: var(--tf-red-dark-bg);
+  font-size: 16px;
+  font-weight: normal;
 }
 
 /* Default */
@@ -447,24 +489,20 @@
   color: black;
 }
 
-.remarks-box {
-  background-color: var(--tf-yellow-bg);
+.form-box {
   color: white;
   font-family: 'Poppins', sans-serif;
-  font-weight: 550;
-  font-size: 20px;
+  font-weight: normal;
+  font-size: 1.1rem;
   border-radius: 5px;
-  min-height: 160px;
-}
 
-.error-box {
-  background-color: var(--tf-red-dark-bg);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 550;
-  font-size: 20px;
-  border-radius: 5px;
-  min-height: 160px;
+  &-error {
+    background-color: var(--tf-red-dark-bg);
+  }
+
+  &-remarks {
+    background-color: var(--tf-yellow-bg);
+  }
 }
 
 .sub-text {
@@ -528,3 +566,110 @@
 //   box-shadow: none !important;
 //   border-color: transparent !important;
 // }
+
+
+/* ### LOGIN PAGE STYLES */
+
+.login-form-container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background-color: #EAEDF0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-color: red;
+}
+
+.login-form-container a {
+  text-decoration: none;
+  text-align: right;
+  font-weight: bold;
+  color: var(--tfblue-color);
+}
+
+
+.login-form-header {
+  text-align: center;
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  
+  width: 80%;
+  margin: 40px 0;
+  padding: 50px;
+}
+
+.login-form-header h1 {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.login-form-header strong{
+  color: var(--tforange-color);
+}
+
+.login-form {
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  
+  width: 80%;
+  padding: 50px;
+  margin: 0 0 40px 0;
+}
+
+.form-row {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-row input[type='text'],
+.form-row input[type='password'] {
+  background-color: #FFFFFF;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+.form-row input[type='text']:invalid,
+.form-row input[type='password']:invalid{
+  border: 1px solid #D55C5F;
+  color: #D55C5F;
+  box-shadow: none; /* Remove default red glow in Firefox */
+}
+
+.form-row label {
+  margin-bottom: 15px;
+}
+
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #FFFFFF;
+  background-color: var(--tforange-color);
+
+  border: none;
+  border-radius: 15px;
+
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background-color: #76AEED;
+}
+
+.form-row button:active {
+  background-color: #407FC7;
+}

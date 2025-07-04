@@ -1,35 +1,66 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
 export default function DashboardFilter({view, setFilterView}) {
 
+    const { register, handleSubmit, reset } = useForm({
+        defaultValues: {
+            requestor: '',
+            requested_for: '',
+            department: '',
+            form_type: '',
+            status: '',
+            purpose: '',
+            submitted_start: '',
+            submitted_end: '',
+            departure_city: '',
+            departure_start: '',
+            departure_end: '',
+            return_city: '',
+            return_start: '',
+            return_end: '',
+            start_business_start: '',
+            start_business_end: '',
+            end_business_start: '',
+            end_business_end: '',
+            approved_by: ''
+        }
+    })
+
+    const resetValues = () => {
+        reset()
+    }
+
+    const submitValues = (values) => {
+        console.log(values)
+    }
+
     return ( 
 
         <Modal show={view} size="lg">
-            <Modal.Header style={{borderBottom:'none'}}>
-            </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="mt-2 mb-2">
                 <div>
-                    <Form>
+                    <Form onSubmit={handleSubmit(submitValues)}>
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Requestor Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Name of Requestor"/>
+                                    <Form.Control {...register("requestor")} type="text" placeholder="Name of Requestor"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Requested For</Form.Label>
-                                    <Form.Control type="text" placeholder="Name of Flier"/>
+                                    <Form.Control {...register("requested_for")} type="text" placeholder="Name of Flier"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Department</Form.Label>
-                                    <Form.Select>
+                                    <Form.Select {...register("department")}>
                                         <option>Select Department</option>
                                         {
                                             departments.map(item => 
@@ -45,8 +76,8 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
-                                    <Form.Select>
-                                        <option>Select Answer</option>
+                                    <Form.Select {...register("form_type")}>
+                                        <option>Select Form Type</option>
                                         {
                                             formTypes.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -59,8 +90,8 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
-                                    <Form.Select>
-                                        <option>Select Answer</option>
+                                    <Form.Select {...register("status")}>
+                                        <option>Select Status</option>
                                         {
                                             status.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -73,8 +104,8 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
-                                    <Form.Select>
-                                        <option>Select Answer</option>
+                                    <Form.Select {...register("purpose")}>
+                                        <option>Select Purpose</option>
                                         {
                                             reasons.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -91,10 +122,10 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label className='filter-form-label'>Date Submitted</Form.Label>
                                     <Row>
                                         <Col>
-                                            <Form.Control type="date"/>
+                                            <Form.Control {...register("submitted_start")} type="date"/>
                                         </Col>
                                         <Col>
-                                            <Form.Control type="date"/>
+                                            <Form.Control {...register("submitted_end")} type="date"/>
                                         </Col>
                                     </Row>
                                 </Form.Group>
@@ -105,17 +136,17 @@ export default function DashboardFilter({view, setFilterView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Departure</Form.Label>
-                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
-                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
-                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
+                                        <Form.Control {...register("departure_city")} className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control {...register("departure_start")} className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control {...register("departure_end")} className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Return</Form.Label>
-                                        <Form.Control className="mb-1" type="text" placeholder="Enter City"/>
-                                        <Form.Control className="mb-1" type="date" placeholder="Start Range"/>
-                                        <Form.Control className="mb-1" type="date" placeholder="End Range"/>
+                                        <Form.Control {...register("return_city")} className="mb-1" type="text" placeholder="Enter City"/>
+                                        <Form.Control {...register("return_start")} className="mb-1" type="date" placeholder="Start Range"/>
+                                        <Form.Control {...register("return_end")} className="mb-1" type="date" placeholder="End Range"/>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -126,10 +157,10 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label className='filter-form-label'>Start Date of Business</Form.Label>
                                     <Row>
                                         <Col>
-                                            <Form.Control type="date" placeholder="Start Range"/>
+                                            <Form.Control {...register("start_business_start")} type="date" placeholder="Start Range"/>
                                         </Col>
                                         <Col>
-                                            <Form.Control type="date" placeholder="End Range"/>
+                                            <Form.Control {...register("start_business_end")} type="date" placeholder="End Range"/>
                                         </Col>
                                     </Row>
                                 </Form.Group>
@@ -142,10 +173,10 @@ export default function DashboardFilter({view, setFilterView}) {
                                     <Form.Label className='filter-form-label'>End Date of Business</Form.Label>
                                     <Row>
                                         <Col>
-                                            <Form.Control type="date" placeholder="Start Range"/>
+                                            <Form.Control {...register("end_business_start")} type="date" placeholder="Start Range"/>
                                         </Col>
                                         <Col>
-                                            <Form.Control type="date" placeholder="End Range"/>
+                                            <Form.Control {...register("end_business_end")} type="date" placeholder="End Range"/>
                                         </Col>
                                     </Row>
                                 </Form.Group>
@@ -156,32 +187,28 @@ export default function DashboardFilter({view, setFilterView}) {
                                 <Form.Group className="mb-3 text-center">
                                     <Form.Label className='filter-form-label'>To be approved by</Form.Label>
                                     <div key={`inline-radio`} className="mb-3">
-                                    <Form.Check
+                                    <Form.Check {...register("approved_by")}
                                         inline
                                         label="ARC"
                                         value="ARC"
-                                        name="group1"
                                         type="radio"
                                     />
-                                    <Form.Check
+                                    <Form.Check {...register("approved_by")}
                                         inline
                                         label="JDLC"
                                         value="JDLC"
-                                        name="group1"
                                         type="radio"
                                     />
-                                    <Form.Check
+                                    <Form.Check {...register("approved_by")}
                                         inline
                                         label="ATP"
                                         value="ATP"
-                                        name="group1"
                                         type="radio"
                                     />
-                                    <Form.Check
+                                    <Form.Check {...register("approved_by")}
                                         inline
                                         label="DFS"
                                         value="DFS"
-                                        name="group1"
                                         type="radio"
                                     />
                                     </div>
@@ -191,17 +218,14 @@ export default function DashboardFilter({view, setFilterView}) {
                         <div>
                             <Row>
                                 <Col className="text-end">
-                                    <input class='button-neg ms-2' type='reset' value='Clear'/>                            
-                                    <button class='button-affirm ms-2' onClick={()=>setFilterView(false)}>Apply</button>
+                                    <input className='button-neg ms-2' type='reset' onClick={resetValues} value='Clear'/>                            
+                                    <button className='button-affirm ms-2' type='submit' onClick={()=>setFilterView(false)}>Apply</button>
                                 </Col>
                             </Row>
                         </div>
                     </Form>
                 </div>
             </Modal.Body>
-            <Modal.Footer style={{borderTop:'none'}}>
-            </Modal.Footer>
-
         </Modal>
 
     );

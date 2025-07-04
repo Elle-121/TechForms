@@ -1,6 +1,7 @@
 import { Container, Navbar } from 'react-bootstrap';
 import { useState, useRef, useEffect } from 'react';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 // Assets
 import companylogofull from '../assets/TechFactorsIncFull.png' 
@@ -10,13 +11,10 @@ import accountsicon from '../assets/AccountsIcon.svg'
 import image from '../assets/PNGIcon.svg'
 
 // notifs
-import dummyNotifs from './dummyNotifs'
+import dummyNotifs from './dummyNotifs.js'
 
 function Header() {
-  const logout = async () => {
-    await window.localStorage.clear()
-    window.location.href = "/";
-  }
+
   const home = async () => {
     window.location.href = "/";
   }
@@ -122,7 +120,7 @@ function Header() {
             </div>
             <div className="dropdown-menu">
               <a onClick={profile}>Profile</a>
-              <a onClick={logout}>Log Out</a>
+              <Link to="/login">Log Out</Link>
             </div>
           </div>
         </div>
