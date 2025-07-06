@@ -8,16 +8,11 @@ import MainContainer from '../../components/MainContainer';
 import ProgressLadder from './components/ProgressLadder';
 
 //data
-import { departments, formTypes, status, reasons } from "../Home/components/filterData";
+import { departments, reasons } from "../Home/components/filterData";
 
 export default function FlightRequestForm() {
 
-    const [othersChecked, setOthersChecked] = useState(false);
-    const [othersValue, setOthersValue] = useState("");
-    const [remarksView, setRemarksView] = useState(true);
-    const [errorView, setErrorView] = useState(true);
-
-    const { register, handleSubmit, reset } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
             defaultValues: {
                 requestor: '',
                 email: '',
@@ -28,7 +23,6 @@ export default function FlightRequestForm() {
                 birthday1: '',
                 extensions1: '',
                 title1: '',
-                form_type: '',
                 purpose: '',
                 purpose_others: '',
                 departure_city: '',
@@ -43,11 +37,19 @@ export default function FlightRequestForm() {
                 approved_by: ''
             }
     })
+
+    const [othersChecked, setOthersChecked] = useState(false);
+    const [othersValue, setOthersValue] = useState("");
+    const [remarksView, setRemarksView] = useState(true);
+    const hasErrors = Object.keys(errors).length > 0;
     
-    const resetValues = () => {
-        reset()
+    const validatePurpose = (value, formValues) => {
+        const purposes = formValues.purpose
+        const othersValid = othersChecked && othersValue.trim() !== "";
+        return (purposes.length > 0 || othersValid) || "Please select at least one purpose of travel or specify 'Others'.";
     }
 
+    
     const submitValues = (values) => {
         console.log(values)
     }
@@ -115,13 +117,23 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Requestor Employee Name</Form.Label>
-                                            <Form.Control {...register("requestor")} type="text" placeholder="Name of Requestor" />
+                                            <Form.Control {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" />
+                                            {errors.requestor && (
+                                                <div className="error-msg">
+                                                    {errors.requestor.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                     <Col>
-                                        <Form.Group className='fr-form-label' controlId="formBasicEmail">
+                                        <Form.Group controlId="formBasicEmail">
                                             <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                            <Form.Control {...register("email")} type="email" placeholder="email@techfactors.com" />
+                                            <Form.Control {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" />
+                                            {errors.email && (
+                                                <div className="error-msg">
+                                                    {errors.email.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -129,14 +141,18 @@ export default function FlightRequestForm() {
                                 <Row className='mb-2'>
                                     <Form.Group>
                                         <Form.Label className='fr-form-label'>Department</Form.Label>
-                                        <Form.Select {...register("department")}>
-                                            <option>Select Department</option>
+                                        <Form.Select {...register("department", {required: 'Department is required'})}>
                                             {
                                                 departments.map(item => 
                                                     <option value={item.name}>{item.name}</option>        
                                                 )
                                             }
                                         </Form.Select>
+                                        {errors.department && (
+                                                <div className="error-msg">
+                                                    {errors.department.message}
+                                                </div>
+                                        )}
                                     </Form.Group>
                                 </Row>
                             </div>
@@ -151,19 +167,34 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>First Name</Form.Label>
-                                            <Form.Control {...register("first_name1")} type="text" placeholder="First Name" />
+                                            <Form.Control {...register("first_name1", {required: 'First name is required'})} type="text" placeholder="First Name" />
+                                            {errors.first_name1 && (
+                                                <div className="error-msg">
+                                                    {errors.first_name1.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Middle Name</Form.Label>
-                                            <Form.Control {...register("middle_name1")} type="text" placeholder="Middle Name" />
+                                            <Form.Control {...register("middle_name1", {required: 'Middle name is required'})} type="text" placeholder="Middle Name" />
+                                            {errors.middle_name1 && (
+                                                <div className="error-msg">
+                                                    {errors.middle_name1.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Last Name</Form.Label>
-                                            <Form.Control {...register("last_name1")} type="text" placeholder="Last Name" />
+                                            <Form.Control {...register("last_name1", {required: 'Last name is required'})} type="text" placeholder="Last Name" />
+                                            {errors.last_name1 && (
+                                                <div className="error-msg">
+                                                    {errors.last_name1.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -172,7 +203,12 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Birthday</Form.Label>
-                                            <Form.Control {...register("birthday1")} type="date"/>
+                                            <Form.Control {...register("birthday1", {required: 'Birthday is required'})} type="date"/>
+                                            {errors.birthday1 && (
+                                                <div className="error-msg">
+                                                    {errors.birthday1.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                     <Col>
@@ -184,7 +220,16 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Title</Form.Label>
-                                            <Form.Control {...register("title1")} type="text" placeholder="Mr./Ms." />
+                                            {/* <Form.Control {...register("title1")} type="text" placeholder="Mr./Ms." /> */}
+                                            <Form.Select {...register("title1", {required: 'Title is required'})}>
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Ms.">Ms.</option>
+                                            </Form.Select>
+                                            {errors.title1 && (
+                                                <div className="error-msg">
+                                                    {errors.title1.message}
+                                                </div>
+                                            )}
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -205,62 +250,65 @@ export default function FlightRequestForm() {
                                 </div>  
 
                                 <Row>
-                                    <Col>
                                     <Form.Group className="mb-3 text-start fr-form-label">
-                                        <div key={`default-checkbox`} className="mb-3">
-                                            {
-                                                reasons.slice(0, 6).map(item => 
-                                                    <Form.Check {...register("purpose")}
-                                                        label={item.name}
-                                                        value={item.name}
-                                                        type="checkbox"
-                                                    />        
-                                                )
-                                            }
-                                        </div>
-                                    </Form.Group>
-                                    </Col>
-                                    
-                                    <Col>
-                                    <Form.Group className="mb-3 text-start fr-form-label">
-                                        <div key={`default-checkbox`} className="mb-3">
-                                            {
-                                                reasons.slice(6, 12).map(item => 
-                                                    <Form.Check {...register("purpose")}
-                                                        label={item.name}
-                                                        value={item.name}
-                                                        type="checkbox"
-                                                    />        
-                                                )
-                                            }
-                                        </div>
-                                    </Form.Group>
-                                    </Col>
-                                </Row>
-
-                                {/* Others Checkbox and Input */}
-                                <Row>
-                                    <Col>
-                                        <FormGroup>
-                                            <div className="d-flex align-items-center">
-                                                <Form.Check
-                                                    inline
-                                                    type="checkbox"
-                                                    checked={othersChecked}
-                                                    onChange={e => setOthersChecked(e.target.checked)}
-                                                    className="me-2"
-                                                />
-                                                <Form.Control {...register("purpose_others")}
-                                                    type="text"
-                                                    placeholder="Others (Please Specify)"
-                                                    disabled={!othersChecked}
-                                                    value={othersValue}
-                                                    onChange={e => setOthersValue(e.target.value)}
-                                                    style={{ maxWidth: 300 }}
-                                                />
+                                        <Row>
+                                        <Col>
+                                            <div key={`default-checkbox`} className="mb-3">
+                                                {
+                                                    reasons.slice(0, 6).map(item => 
+                                                        <Form.Check {...register("purpose", {validate: validatePurpose})}
+                                                            label={item.name}
+                                                            value={item.name}
+                                                            type="checkbox"
+                                                        />        
+                                                    )
+                                                }
                                             </div>
-                                        </FormGroup>
-                                    </Col>
+                                        </Col>
+                                        
+                                        <Col>                                        
+                                            <div key={`default-checkbox`} className="mb-3">
+                                                {
+                                                    reasons.slice(6, 12).map(item => 
+                                                        <Form.Check {...register("purpose", {validate: validatePurpose})}
+                                                            label={item.name}
+                                                            value={item.name}
+                                                            type="checkbox"
+                                                        />        
+                                                    )
+                                                }
+                                            </div>
+                                        </Col>
+                                        </Row>
+
+                                        {/* Others Checkbox and Input */}
+                                        <Row>
+                                            <Col>
+                                                <div className="d-flex align-items-center">
+                                                    <Form.Check
+                                                        inline
+                                                        type="checkbox"
+                                                        checked={othersChecked}
+                                                        onChange={e => setOthersChecked(e.target.checked)}
+                                                        className="me-2"
+                                                    />
+                                                    <Form.Control {...register("purpose_others", {validate: validatePurpose})}
+                                                        type="text"
+                                                        placeholder="Others (Please Specify)"
+                                                        disabled={!othersChecked}
+                                                        value={othersChecked? othersValue : ''}
+                                                        onChange={e => setOthersValue(e.target.value)}
+                                                        style={{ maxWidth: 300 }}
+                                                    />
+                                                </div>                                                
+                                            </Col>
+                                        </Row>
+                                    </Form.Group>
+                                        {errors.purpose && (
+                                                <div className="error-msg">
+                                                    {errors.purpose.message}
+                                                </div>
+                                        )}
                                 </Row>
                             </div>
 
@@ -278,14 +326,24 @@ export default function FlightRequestForm() {
                                                 <Row>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>Start Date</Form.Label>
-                                                        <Form.Control {...register("start_business")} type="date"/>
+                                                        <Form.Control {...register("start_business", {required: "Start date of business is required"})} type="date"/>
+                                                        {errors.start_business && (
+                                                            <div className="error-msg">
+                                                                {errors.start_business.message}
+                                                            </div>
+                                                        )}
                                                     </Col>
                                                     <Col xs='auto' className='d-flex align-items-center' >
                                                         To
                                                     </Col>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>End Date</Form.Label>
-                                                        <Form.Control {...register("end_business")} type="date"/>
+                                                        <Form.Control {...register("end_business", {required: "End date of business is required"})} type="date"/>
+                                                        {errors.end_business && (
+                                                            <div className="error-msg">
+                                                                {errors.end_business.message}
+                                                            </div>
+                                                        )}
                                                     </Col>
                                                 </Row>
                                             </Form.Group>
@@ -306,15 +364,30 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control {...register("departure_date")} type="date"/>
+                                                <Form.Control {...register("departure_date", {required: "Departure date is required"})} type="date"/>
+                                                {errors.departure_date && (
+                                                    <div className="error-msg">
+                                                        {errors.departure_date.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control {...register("departure_time")} type="time"/>
+                                                <Form.Control {...register("departure_time", {required: "Departure time is required"})} type="time"/>
+                                                {errors.departure_time && (
+                                                    <div className="error-msg">
+                                                        {errors.departure_time.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control {...register("departure_city")} type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control {...register("departure_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
+                                                {errors.departure_city && (
+                                                    <div className="error-msg">
+                                                        {errors.departure_city.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -333,15 +406,30 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control {...register("return_date")} type="date"/>
+                                                <Form.Control {...register("return_date", {required: "Return date is required"})} type="date"/>
+                                                {errors.return_date && (
+                                                    <div className="error-msg">
+                                                        {errors.return_date.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control {...register("return_time")} type="time"/>
+                                                <Form.Control {...register("return_time", {required: "Return time is required"})} type="time"/>
+                                                {errors.return_time && (
+                                                    <div className="error-msg">
+                                                        {errors.return_time.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control {...register("return_city")} type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control {...register("return_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
+                                                {errors.return_city && (
+                                                    <div className="error-msg">
+                                                        {errors.return_city.message}
+                                                    </div>
+                                                )}
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -374,30 +462,40 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <FormGroup className='fr-form-label'>
                                             <div key={`inline-radio`} className="mb-5">
-                                                <Form.Check {...register("approved_by")}
+                                                <Form.Check {...register("approved_by", {required: "Approver is required"})}
                                                     inline
                                                     label="ARC"
+                                                    value="ARC"
                                                     type="radio"
                                                     id={`inline-radio-1`}
                                                 />
                                                 <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="JDLC"
+                                                    value="JDLC"
                                                     type="radio"
                                                     id={`inline-radio-2`}
                                                 />
                                                 <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="ATP"
+                                                    value="ATP"
                                                     type="radio"
                                                     id={`inline-radio-3`}
                                                 />
                                                 <Form.Check {...register("approved_by")}
                                                     inline
                                                     label="DFS"
+                                                    value="DFS"
                                                     type="radio"
                                                     id={`inline-radio-3`}
                                                 />
+                                                
+                                                {errors.approved_by && (
+                                                    <div className="error-msg">
+                                                        {errors.approved_by.message}
+                                                    </div>
+                                                )}
                                             </div>
                                         </FormGroup>
                                     </Col>
@@ -406,10 +504,9 @@ export default function FlightRequestForm() {
 
                             {/* Error box */}
                             
-                            {errorView && (<div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
-                                <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                                {/* <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p> */}
-                                <p className='text-start m-0'>Error message here.</p>
+                            {hasErrors && (<div className="form-box form-box-error mb-3 w-100 d-flex align-items-center py-2 px-4 gap-4">
+                                <i className="bi bi-exclamation-triangle-fill fs-1"/>        
+                                <p className='text-start m-0'>Some required fields are missing. Please review and complete them to proceed.</p>
                             </div>)}
 
                             {/* Buttons */}

@@ -229,6 +229,16 @@
   background-color: var(--tforange-color);
   border-color: transparent;
   border-radius: 50%;
+  transition: font-size 0.2s ease;
+
+  &:hover {
+    background-color: var(--tfaffirm-hover);
+    font-size: 30px;
+  }
+
+  &:active{
+    font-size: 24px;
+  }
 }
 
 .btn-approve {
@@ -300,6 +310,8 @@
 
 .error-msg {
   color: var(--tf-red-dark-bg);
+  font-size: 16px;
+  font-weight: normal;
 }
 
 /* Default */
