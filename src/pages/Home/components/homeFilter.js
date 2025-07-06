@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
-export default function DashboardFilter({view, setFilterView}) {
+export default function DashboardFilter({view, setFilterView, setFilterValues}) {
 
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
@@ -35,6 +35,7 @@ export default function DashboardFilter({view, setFilterView}) {
     }
 
     const submitValues = (values) => {
+        setFilterValues(values)
         console.log(values)
     }
 

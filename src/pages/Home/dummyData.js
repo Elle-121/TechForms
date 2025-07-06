@@ -55,42 +55,42 @@ const dummyData2 = [
       id: 2,
       subject: 'Request #2',
       date: '12/13/2024',
-      formType: 'Flight Request',
+      formType: 'Leave Request',
       status: 'Rejected'
     },
     {
       id: 3,
       subject: 'Request #3',
       date: '8/6/2025',
-      formType: 'Flight Request',
+      formType: 'Equipment Request',
       status: 'Rejected'
     },
     {
       id: 4,
       subject: 'Request #4',
       date: '3/26/2025',
-      formType: 'Flight Request',
+      formType: 'Grievance Form',
       status: 'Approved'
     },
     {
       id: 5,
       subject: 'Request #5',
       date: '3/29/2025',
-      formType: 'Flight Request',
+      formType: 'Grievance Form',
       status: 'Rejected'
     },
     {
       id: 6,
       subject: 'Request #6',
       date: '8/30/2025',
-      formType: 'Flight Request',
+      formType: 'Equipment Request',
       status: 'Pending'
     },
     {
       id: 7,
       subject: 'Request #7',
       date: '2/17/2024',
-      formType: 'Flight Request',
+      formType: 'Leave Request',
       status: 'Draft'
     },
     {
@@ -104,14 +104,14 @@ const dummyData2 = [
       id: 9,
       subject: 'Request #9',
       date: '3/18/2025',
-      formType: 'Flight Request',
+      formType: 'Leave Request',
       status: 'Approved'
     },
     {
       id: 10,
       subject: 'Request #10',
       date: '6/26/2024',
-      formType: 'Flight Request',
+      formType: 'Leave Request',
       status: 'Pending'
     },
     {

@@ -15,12 +15,13 @@ import Calendar from './Calendar';
 import DashboardFilter from './components/homeFilter.js';
 import FormsModal from './components/FormsModal.js';
 
+// Import filterData function
+import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
 
 function Home() {
-
     // Function to open the forms modal
     const [formsView, setFormsView] = useState(false)
     const openFormsView = () => {
@@ -38,8 +39,14 @@ function Home() {
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
+    // State for filter
+    const [filterValues, setFilterValues] = useState();
+
+    // Filter the request based on filterValues
+    const filteredData = dummyData.filter(item => filterData(item, filterValues));
+
     // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
-    const paginatedRequests = dummyData.slice(
+    const paginatedRequests = filteredData.slice(
         (currentPage - 1) * requestsPerPage,
         currentPage * requestsPerPage
     );
@@ -89,7 +96,7 @@ function Home() {
                         </button>
                         
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
-                        <DashboardFilter view={filterView} setFilterView={setFilterView}/>
+                        <DashboardFilter view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
                     </div>
                 </div>
 
