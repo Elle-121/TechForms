@@ -14,18 +14,6 @@ import image from '../assets/PNGIcon.svg'
 import dummyNotifs from './dummyNotifs.js'
 
 function Header() {
-
-  const home = async () => {
-    window.location.href = "/";
-  }
-  const accounts = async () => {
-    window.location.href = "/accounts";
-  }
-  
-  const notifications = async () => {
-    window.location.href = "/notifications";
-  }  
-  
   const profile = async () => {
     window.location.href = "/profile";
   }
@@ -64,14 +52,20 @@ function Header() {
           <img src={companylogofull} alt="Logo" height="50" className="me-2" />
         </div>
 
-        <div className="d-flex align-items-center gap-5">
-          <img src={homeicon} width={icon_size} height={icon_size} onClick={home} style={{ cursor: 'pointer' }} />
-          <img src={accountsicon} width={icon_size} height={icon_size} onClick={accounts} style={{ cursor: 'pointer' }} />
-
-          {/* Notifications Dropdown */}
+        <nav className="d-flex align-items-center gap-5">
+          
+          <Link to="/">
+            <img src={homeicon} width={icon_size} alt="Display Home Button" style={{ cursor: 'pointer' }} />
+          </Link>
+          
+          <Link to="/accounts">
+            <img src={accountsicon} width={icon_size} alt="Display Accounts Button" style={{ cursor: 'pointer' }} />
+          </Link>
+          
+          
           <div ref={notifMenuRef} className={`custom-dropdown-notif ${showNotifMenu ? 'open' : ''}`}>
             <div className="dropdown-toggle" onClick={() => setShowNotifMenu(!showNotifMenu)}>
-              <img src={notificationsicon} width={icon_size} height={icon_size} alt="Notifications" />
+              <img src={notificationsicon} width={icon_size} alt="Display Notifications Button" />
             </div>
 
             <div className="dropdown-menu" style={{ maxHeight: '500px', overflowY: 'auto', minWidth: '300px' }}>
@@ -90,9 +84,9 @@ function Header() {
 
               <div className="dropdown-divider" style={{ borderTop: '1px solid #eee', margin: '0.5rem 0' }}></div>
 
-              <div
+              <Link
                 className="dropdown-item"
-                onClick={notifications}
+                to="/notifications"
                 style={{
                   fontWeight: 400,
                   color: 'var(--tforange-color)',
@@ -102,7 +96,7 @@ function Header() {
                 }}
               >
                 View All Notifications →
-              </div>
+              </Link>
             </div>
           </div>
 
@@ -119,11 +113,11 @@ function Header() {
               </div>
             </div>
             <div className="dropdown-menu">
-              <a onClick={profile}>Profile</a>
+              <Link to="/profile">Profile</Link>
               <Link to="/login">Log Out</Link>
             </div>
           </div>
-        </div>
+        </nav>
       </Container>
     </Navbar>
   );
