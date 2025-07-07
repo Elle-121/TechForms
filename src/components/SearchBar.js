@@ -2,7 +2,15 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function SearchBar({setSearchValue}) {
+export default function SearchBar({setSearchValue, setCurrentPage}) {
+
+  // Function to handle search input change
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    setCurrentPage(1); // Reset to first page when search changes
+  }
+
   return (
     <div className="d-flex align-items-center gap-3">
       {/* Search Bar */}
@@ -25,7 +33,7 @@ export default function SearchBar({setSearchValue}) {
             fontSize: '14px',
             width: '400px',
           }}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleSearchChange}
         />
         <button
           className="btn d-flex align-items-center justify-content-center"

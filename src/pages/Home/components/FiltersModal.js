@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
-export default function DashboardFilter({view, setFilterView, setFilterValues}) {
+export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage}) {
 
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
@@ -35,6 +35,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues}) 
 
     const submitValues = (values) => {
         setFilterValues(values)
+        setCurrentPage(1); // Reset to first page when filter is applied
         console.log(values)
     }
 
