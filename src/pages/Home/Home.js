@@ -16,7 +16,7 @@ import FiltersModal from './components/FiltersModal.js';
 import FormsModal from './components/FormsModal.js';
 
 // Import filterData function
-import filterData from './components/filterFunction.js';
+import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
