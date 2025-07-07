@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const [inputValue, setInputValue] = useState(currentPage);
+
+  useEffect(() => {
+    setInputValue(currentPage);
+  }, [currentPage]);
 
   // This only allows empty input or numbers to be typed in the input box
   const handleInputChange = (e) => {
