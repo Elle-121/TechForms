@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 // components
 import MainContainer from '../../components/MainContainer';
 import BookingForm from '../../components/BookingForm';
+import RejectModal from './components/RejectModal';
 
 export default function Review() {
 
@@ -19,7 +20,7 @@ export default function Review() {
     })
 
     // Open the booking form
-    const [reject, setReject] = useState(true);
+    const [reject, setReject] = useState();
     const [formView, setFormView] = useState(false);
 
     const displayNotes = (values) => {
@@ -60,6 +61,7 @@ export default function Review() {
                         <button type='submit' onClick={() => setReject(false)} className='btn-add py-1'>Add Booking Details</button>
                     </div>
                 </Form>
+                <RejectModal view={reject} setView={setReject} />
                 <BookingForm view={formView} setFormView={setFormView} notes={notes}/>
             </div>
 

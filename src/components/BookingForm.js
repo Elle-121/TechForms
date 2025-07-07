@@ -218,7 +218,7 @@ export default function BookingForm({view, setFormView, notes}) {
 
                         <div className="d-flex justify-content-between w-100">
                             <button className="button-neg" onClick={() => setFormView(false)}>Cancel</button>
-                            <button type="submit" className='btn-approve'>Submit and Approve</button>
+                            <button type="submit" className='btn-review btn-review--approve'>Submit and Approve</button>
                             {/* {
                                 preview ?
                                     <button className="button-neg" onClick={() => setPreview(false)}>Back</button> :
