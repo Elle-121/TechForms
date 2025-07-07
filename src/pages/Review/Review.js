@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import MainContainer from '../../components/MainContainer';
 import BookingForm from '../../components/BookingForm';
 import RejectModal from './components/RejectModal';
+import PreviewFR from './components/PreviewFR';
 
 export default function Review() {
 
@@ -67,8 +68,7 @@ export default function Review() {
 
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto border" style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
-                <h1>Preview of Flight Request Form</h1>
-                
+                <PreviewFR />  
             </div>
 
         </div>

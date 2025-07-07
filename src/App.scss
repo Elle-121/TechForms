@@ -303,6 +303,13 @@
   }
 }
 
+.form-disable {
+  .form-control,
+  .form-select {
+    color: #545454;
+  }
+}
+
 .input-required {
   &::after {
     content: "*";
