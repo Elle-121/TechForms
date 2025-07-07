@@ -13,7 +13,7 @@ function Login(){
     }
 
     return (
-        <MainContainer>
+        <MainContainer navVisible={false}>
         {/* TODO Modify Header to remove navbar portion  */}
         <Link to="/nothing">Test Error Page</Link>
         <div className="row h-100 m-0">

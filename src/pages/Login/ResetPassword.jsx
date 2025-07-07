@@ -13,7 +13,7 @@ function ResetPassword(){
     }
 
     return (
-        <MainContainer>
+        <MainContainer navVisible={false}>
         <div className="row h-100 m-0">
 
             <div className="h-100" style={{
