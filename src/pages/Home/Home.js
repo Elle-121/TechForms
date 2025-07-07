@@ -38,11 +38,14 @@ function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
     
-    // State for filter
+    // State for filter and search values
     const [filterValues, setFilterValues] = useState();
+    const [searchValue, setSearchValue] = useState('');
     
     // Filter the request based on filterValues
-    const filteredData = dummyData.filter(item => filterData(item, filterValues));
+    const filteredData = dummyData.filter(item => filterData(item, filterValues)).filter(item =>
+        !searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase())
+    );
     const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 
     // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
@@ -72,7 +75,7 @@ function Home() {
                     >
                     <h2 className="tf-header">Requests</h2>
                     <div className="d-flex align-items-center" style={{ gap: '12px' }}>
-                        <SearchBar />
+                        <SearchBar setSearchValue={setSearchValue}/>
 
                         {/* Filter Button */}
                         <button
