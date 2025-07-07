@@ -19,12 +19,7 @@ export default function BookingForm({view, setFormView, notes}) {
         }
     })
     
-    const [inputNotes, setInputNotes] = useState(notes);
-    console.log(inputNotes);
-
-    const handleNotes = (event) => {
-        setInputNotes(event.target.value);
-    }
+    const [inputNotes, setInputNotes] = useState(notes)
 
     const home = async () => {
         window.location.href = "/";
