@@ -39,12 +39,6 @@ export default function SearchBar() {
           <i className="bi bi-search" style={{ color: 'white', fontSize: '16px' }}></i>
         </button>
       </div>
-
-      {/* Filter by
-      <div className="d-flex align-items-center" style={{ gap: '6px', cursor: 'pointer' }}>
-        <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
-        <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
-      </div> */}
     </div>
   );
 }

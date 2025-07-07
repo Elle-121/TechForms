@@ -37,13 +37,13 @@ function Home() {
     // State for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
-    const totalPages = Math.ceil(dummyData.length / requestsPerPage);
-
+    
     // State for filter
     const [filterValues, setFilterValues] = useState();
-
+    
     // Filter the request based on filterValues
     const filteredData = dummyData.filter(item => filterData(item, filterValues));
+    const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 
     // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
     const paginatedRequests = filteredData.slice(
@@ -74,6 +74,7 @@ function Home() {
                     <div className="d-flex align-items-center" style={{ gap: '12px' }}>
                         <SearchBar />
 
+                        {/* Filter Button */}
                         <button
                             type="button"
                             onClick={openFilterView}
@@ -95,6 +96,7 @@ function Home() {
                             <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
                         </button>
                         
+                        {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
                         <DashboardFilter view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
                     </div>
