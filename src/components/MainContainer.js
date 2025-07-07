@@ -20,17 +20,16 @@ const styles = {
   },
 }
 
-function MainContainer({ children, headerVisible = true }) {
+function MainContainer({ children, headerVisible = true, navVisible = true }) {
   return (
     <div style={styles.container}>
       {headerVisible && (
         <div style={styles.header}>
-          <Header />
+          <Header navVisible={navVisible}/>
         </div>
       )}
 
       <div 
-      // className='content'
             style={styles.content}
       >
         <Row className="h-100 m-0">
