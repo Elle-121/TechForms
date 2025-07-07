@@ -35,7 +35,7 @@ function Home() {
     }
 
     // State for pagination
-    const [currentPage, setCurrentPage] = React.useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
     const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
@@ -50,7 +50,6 @@ function Home() {
         (currentPage - 1) * requestsPerPage,
         currentPage * requestsPerPage
     );
-
 
     return (
     <MainContainer>
@@ -94,7 +93,7 @@ function Home() {
                             >
                             <span style={{ color: '#555', fontSize: '14px' }}>Filter by</span>
                             <i className="bi bi-filter" style={{ fontSize: '18px', color: '#555' }}></i>
-                            </button>
+                        </button>
                         
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
                         <DashboardFilter view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
