@@ -13,6 +13,9 @@ export default function filterData(item, filterValues) {
     const statusMatch = 
         !filterValues.status || item.status === filterValues.status;
 
+    // const searchMatch =
+    //     !filterValues.search_value || item.subject.toLowerCase().includes(filterValues.search_value.toLowerCase());
+
     // Add more filters as needed, following the same pattern:
     // (!filterValues.FIELD || item.FIELD === filterValues.FIELD)
 

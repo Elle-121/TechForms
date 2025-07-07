@@ -2,7 +2,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function SearchBar() {
+export default function SearchBar({setSearchValue}) {
   return (
     <div className="d-flex align-items-center gap-3">
       {/* Search Bar */}
@@ -25,6 +25,7 @@ export default function SearchBar() {
             fontSize: '14px',
             width: '400px',
           }}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <button
           className="btn d-flex align-items-center justify-content-center"
