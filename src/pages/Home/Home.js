@@ -1,6 +1,6 @@
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
@@ -39,13 +39,17 @@ function Home() {
     const requestsPerPage = 10;
     
     // State for filter and search values
-    const [filterValues, setFilterValues] = useState();
+    const [filterValues, setFilterValues] = useState(
+
+        
+    );
     const [searchValue, setSearchValue] = useState('');
     
-    // Filter the request based on filterValues
-    const filteredData = dummyData.filter(item => filterData(item, filterValues)).filter(item =>
-        !searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    // Filter the request based on filterValues + searchValue
+    const filteredData = dummyData
+    .filter(item => filterData(item, filterValues))
+    .filter(item =>!searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase()));
+
     const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 
     // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
@@ -56,8 +60,7 @@ function Home() {
 
     // Calendar Date Ranges
     const [dateRange, setDateRange] = useState([null, null]);
-
-
+    const [statusValue, setStatusValue] = useState('Pending'); // or '' for all
 
     return (
     <MainContainer>
@@ -71,7 +74,17 @@ function Home() {
             <div className="p-4 h-100 overflow-auto " style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
                 {/* Filters */}
-                <FilterPanel />
+                {/* <FilterPanel /> */}
+                <div className='mb-3 d-flex gap-2'>
+                    {["Total","Pending", "Approved", "Rejected", "Requests this Month"].map((status) => (
+                        <button key={status}          
+                                className={`btn ${statusValue === status ? 'btn-warning' : 'btn-outline-warning'}`}
+                                onClick={() => setStatusValue(status)}>
+                                {status}
+                        </button>
+                    ))
+                    }
+                </div>
 
                 {/* Header - Requests + Searchbar + Filter */}
                 <div
@@ -106,7 +119,14 @@ function Home() {
                         
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
-                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues} setCurrentPage={setCurrentPage}/>
+                        <FiltersModal 
+                        view={filterView} 
+                        setFilterView={setFilterView} 
+                        setFilterValues={setFilterValues} 
+                        setCurrentPage={setCurrentPage}
+                        status={statusValue}
+                        setStatusValue={setStatusValue}
+                        />
                     </div>
                 </div>
 
