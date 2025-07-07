@@ -248,8 +248,7 @@
   }
 }
 
-.btn-approve {
-  background-color: var(--tf-green-text);
+.btn-review {
   border: 2px solid;
   border-color: transparent;
   border-radius: 15px;
@@ -265,14 +264,30 @@
   text-align: center;
   white-space: nowrap;
 
- &:active {
-    background-color: var(--tfapprove-hover);
-    color: var(--tf-green-text);
+  &--approve {
+    background-color: var(--tf-green-text);
+
+      &:hover, :active {
+        background-color: var(--tfapprove-hover);
+      }
+
+      &:active {
+        color: var(--tf-green-text);
+      }
   }
 
-  &:hover {
-    background-color: var(--tfapprove-hover);
+  &--reject {
+    background-color: var(--tf-red-text);
+
+    &:hover, :active {
+      background-color: var(--tfreject-hover);
+    }
+
+    &:active {
+      color: var(--tf-red-text);
+    }
   }
+  
 }
 
 /* Forms */

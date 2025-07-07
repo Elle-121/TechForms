@@ -1,21 +1,36 @@
 // export default Home;
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 
 // components
 import MainContainer from '../../components/MainContainer';
 import BookingForm from '../../components/BookingForm';
+import RejectModal from './components/RejectModal';
 
 export default function Review() {
 
-    // Function to open the booking form
-    const [formView, setFormView] = useState(false)
-    
-    const openFormView = () => {
-        setFormView(true);
+    // Form for notes
+    const [notes, setNotes] = useState("");
+    const { register, handleSubmit, formState } = useForm({
+        defaultValues: {
+            notes: "",
+        }
+    })
+
+    // Open the booking form
+    const [reject, setReject] = useState();
+    const [formView, setFormView] = useState(false);
+
+    const displayNotes = (values) => {
+        setNotes(values.notes);
+        console.log(values.notes);
+        if (!reject) setFormView(true);
     }
 
+    
+    // Go back to home after reject
     const home = async () => {
         window.location.href = "/";
     }
@@ -34,18 +49,20 @@ export default function Review() {
                     </button>
                 </div>
 
-                <Form>
+                <Form onSubmit={handleSubmit(displayNotes)}>
                     <Form.Group className="mt-2 mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label className='review-notes'>Notes:</Form.Label>
-                        <Form.Control as="textarea" placeholder='Enter notes.' rows={3} style={{height: '60vh'}}/>
+                        <Form.Control {...register("notes")} as="textarea" placeholder='Enter notes.' rows={3} style={{height: '60vh', borderColor: '#575757'}}/>
                     </Form.Group>
+
+                    {/* Add pop-up for reject */}
+                    <div className='d-flex justify-content-center gap-2 btn-group-review'>
+                        <button type='submit' onClick={() => setReject(true)} className='btn-reject py-1'>Reject</button>
+                        <button type='submit' onClick={() => setReject(false)} className='btn-add py-1'>Add Booking Details</button>
+                    </div>
                 </Form>
-                
-                <div className='d-flex justify-content-center gap-2 btn-group-review'>
-                    <button className='btn-reject py-1'>Reject</button>
-                    <button onClick={openFormView} className='btn-add py-1'>Add Booking Details</button>
-                    <BookingForm view={formView} setFormView={setFormView} />
-                </div>
+                <RejectModal view={reject} setView={setReject} />
+                <BookingForm view={formView} setFormView={setFormView} notes={notes}/>
             </div>
 
             {/* Right Content */}
