@@ -23,9 +23,8 @@ function TwoFactorAuth(){
             <div className="h-100" style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
                     position: 'relative',
-                    bottom: '125px'}}>
+                    top: '50px'}}>
                 <div className="login-container">
                     <header className="login-header">
                         <h1 className="login-header__h1">Enter Your OTP Code</h1>

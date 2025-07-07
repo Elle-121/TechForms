@@ -31,9 +31,8 @@ function Login(){
                     width: '50%',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
                     position: 'relative',
-                    bottom: '125px'}}>
+                    top: '50px'}}>
                 <div className="login-container">
                     <header className="login-form-header">
                         <h1 className="login-text--center login-text--bold">
