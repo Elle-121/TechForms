@@ -26,7 +26,8 @@ export default function DashboardFilter({view, setFilterView, setFilterValues}) 
             start_business_end: '',
             end_business_start: '',
             end_business_end: '',
-            approved_by: ''
+            approved_by: '',
+            search_value: ''
         }
     })
 
