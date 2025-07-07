@@ -12,11 +12,11 @@ import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel comp
 import Calendar from './Calendar';
 
 // Popup Modal
-import DashboardFilter from './components/homeFilter.js';
+import FiltersModal from './components/FiltersModal.js';
 import FormsModal from './components/FormsModal.js';
 
 // Import filterData function
-import filterData from './components/FilterFunction.js';
+import filterData from './components/filterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
@@ -51,12 +51,17 @@ function Home() {
         currentPage * requestsPerPage
     );
 
+    // Calendar Date Ranges
+    const [dateRange, setDateRange] = useState([null, null]);
+
+
+
     return (
     <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
             <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto  " style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
-                <Calendar />
+                <Calendar dateRange={dateRange} setDateRange={setDateRange} />
             </div>
 
             {/* Right Content */}
@@ -98,7 +103,7 @@ function Home() {
                         
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
-                        <DashboardFilter view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
+                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
                     </div>
                 </div>
 
