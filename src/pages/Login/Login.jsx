@@ -32,26 +32,30 @@ function Login(){
                     bottom: '125px'}}>
                 <div className="login-container">
                     <header className="login-form-header">
-                        <h1 className="login-text--center">Welcome Back to
-                            <strong className="login-text--orange">TechForms*</strong></h1>
-                        <p className="login-text--center"><em>
-                            Manage all your TechFactors forms right here!</em></p>
+                        <h1 className="login-text--center login-text--bold">
+                            Welcome Back to
+                            <strong className="login-text--orange"> TechForms*</strong></h1>
+                        <p className="login-text--center">
+                            Manage all your TechFactors forms right here!</p>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
                         <div className='form-row'>
                             <label for='username'>Username / TechFactors Email</label>
                             <input id='username' name='username' type='text'
-                                placeholder="Enter Username or TechFactors email"/>
+                                placeholder="Enter Username or TechFactors email"
+                                className="form-row__input-text"/>
                             {/* TODO Figure out input type of Username/Email*/}
                         </div>
 
                         <div className='form-row'>
                             <label for='password'>Password</label>
                             <input id='password' name='password' type='password'
-                                placeholder="Enter password"/>
+                                placeholder="Enter password"
+                                className="form-row__input-text"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <Link to="/reset-password" className="login-form__link">Forgot your password?</Link>
+                            <Link to="/reset-password" className="login-form__link
+                            login-text--small">Forgot your password?</Link>
                         </div>
 
                         <div className='button-row'>

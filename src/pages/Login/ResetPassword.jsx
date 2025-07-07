@@ -31,21 +31,24 @@ function ResetPassword(){
                         <div className='form-row'>
                             <label for='username'>Username / TechFactors Email</label>
                             <input id='username' name='username' type='text'
-                                placeholder="Enter Username or TechFactors email"/>
+                                placeholder="Enter Username or TechFactors email"
+                                className="form-row__input-text"/>
                             {/* TODO Figure out input type of Username/Email*/}
                         </div>
 
                         <div className='form-row'>
                             <label for='new-password'>New Password</label>
                             <input id='new-password' name='new-password' type='password'
-                                placeholder="Enter new password"/>
+                                placeholder="Enter new password"
+                                className="form-row__input-text"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
                         </div>
 
                         <div className='form-row'>
                             <label for='confirm-password'>Confirm Password</label>
                             <input id='confirm-password' name='confirm-password' type='password'
-                                placeholder="Confirm new password"/>
+                                placeholder="Confirm new password"
+                                className="form-row__input-text"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
                         </div>
 

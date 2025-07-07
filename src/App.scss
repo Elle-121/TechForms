@@ -635,6 +635,14 @@
 }
 
 .login-text {
+  &--bold {
+    font-weight: bold;
+  }
+
+  &--small{
+    font-size: 0.80em;
+  }
+
   &--center {
     text-align: center;
   }
@@ -648,7 +656,8 @@
   // Display
   display: flex;
   flex-direction: column;
-  gap: 25px 0px;
+  gap: 28px 0px;
+  justify-content: space-evenly;
 
   
 }
@@ -658,29 +667,21 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
+  gap: 3px 0px;
   
 }
 
-// .form-row input[type='text'],
-// .form-row input[type='password'] {
-//   background-color: #FFFFFF;
-//   border: 1px solid #D6D9DC;
-//   border-radius: 3px;
-//   width: 100%;
-//   padding: 7px;
-//   font-size: 14px;
-// }
+.form-row__input-text{
+  // Box Model
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
 
-// .form-row input[type='text']:invalid,
-// .form-row input[type='password']:invalid{
-//   border: 1px solid #D55C5F;
-//   color: #D55C5F;
-//   box-shadow: none; /* Remove default red glow in Firefox */
-// }
-
-// .form-row label {
-//   margin-bottom: 15px;
-// }
+  &:invalid{
+      border: 1px solid #D55C5F;
+      color: #D55C5F;
+  }
+}
 
 
 .login-form__link {
