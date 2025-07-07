@@ -66,13 +66,10 @@ export const status = [
         "name": "Approved"
     },
     {
-        "name": "Declined"
+        "name": "Rejected"
     },
     {
-        "name": "For Review"
-    },
-    {
-        "name": "In Progress"
+        "name": "Draft"
     }
 ]
 

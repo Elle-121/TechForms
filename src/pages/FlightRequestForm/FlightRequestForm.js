@@ -117,7 +117,7 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Requestor Employee Name</Form.Label>
-                                            <Form.Control {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" />
+                                            <Form.Control className={`${errors.requestor ? "input-invalid" : ""}`} {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" />
                                             {errors.requestor && (
                                                 <div className="error-msg">
                                                     {errors.requestor.message}
@@ -128,7 +128,7 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group controlId="formBasicEmail">
                                             <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                            <Form.Control {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" />
+                                            <Form.Control className={`${errors.email ? "input-invalid" : ""}`} {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" />
                                             {errors.email && (
                                                 <div className="error-msg">
                                                     {errors.email.message}
@@ -141,7 +141,7 @@ export default function FlightRequestForm() {
                                 <Row className='mb-2'>
                                     <Form.Group>
                                         <Form.Label className='fr-form-label'>Department</Form.Label>
-                                        <Form.Select {...register("department", {required: 'Department is required'})}>
+                                        <Form.Select className={`${errors.department ? "input-invalid" : ""}`} {...register("department", {required: 'Department is required'})}>
                                             {
                                                 departments.map(item => 
                                                     <option value={item.name}>{item.name}</option>        
@@ -167,7 +167,7 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>First Name</Form.Label>
-                                            <Form.Control {...register("first_name1", {required: 'First name is required'})} type="text" placeholder="First Name" />
+                                            <Form.Control className={`${errors.first_name1 ? "input-invalid" : ""}`} {...register("first_name1", {required: 'First name is required'})} type="text" placeholder="First Name" />
                                             {errors.first_name1 && (
                                                 <div className="error-msg">
                                                     {errors.first_name1.message}
@@ -178,18 +178,13 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Middle Name</Form.Label>
-                                            <Form.Control {...register("middle_name1", {required: 'Middle name is required'})} type="text" placeholder="Middle Name" />
-                                            {errors.middle_name1 && (
-                                                <div className="error-msg">
-                                                    {errors.middle_name1.message}
-                                                </div>
-                                            )}
+                                            <Form.Control {...register("middle_name1")} type="text" placeholder="Middle Name" />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Last Name</Form.Label>
-                                            <Form.Control {...register("last_name1", {required: 'Last name is required'})} type="text" placeholder="Last Name" />
+                                            <Form.Control className={`${errors.last_name1 ? "input-invalid" : ""}`} {...register("last_name1", {required: 'Last name is required'})} type="text" placeholder="Last Name" />
                                             {errors.last_name1 && (
                                                 <div className="error-msg">
                                                     {errors.last_name1.message}
@@ -203,7 +198,7 @@ export default function FlightRequestForm() {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Birthday</Form.Label>
-                                            <Form.Control {...register("birthday1", {required: 'Birthday is required'})} type="date"/>
+                                            <Form.Control className={`${errors.birthday1 ? "input-invalid" : ""}`} {...register("birthday1", {required: 'Birthday is required'})} type="date"/>
                                             {errors.birthday1 && (
                                                 <div className="error-msg">
                                                     {errors.birthday1.message}
@@ -221,7 +216,7 @@ export default function FlightRequestForm() {
                                         <Form.Group>
                                             <Form.Label className='fr-form-label'>Title</Form.Label>
                                             {/* <Form.Control {...register("title1")} type="text" placeholder="Mr./Ms." /> */}
-                                            <Form.Select {...register("title1", {required: 'Title is required'})}>
+                                            <Form.Select className={`${errors.title1 ? "input-invalid" : ""}`} {...register("title1", {required: 'Title is required'})}>
                                                 <option value="Mr.">Mr.</option>
                                                 <option value="Ms.">Ms.</option>
                                             </Form.Select>
@@ -326,7 +321,7 @@ export default function FlightRequestForm() {
                                                 <Row>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>Start Date</Form.Label>
-                                                        <Form.Control {...register("start_business", {required: "Start date of business is required"})} type="date"/>
+                                                        <Form.Control className={`${errors.start_business ? "input-invalid" : ""}`} {...register("start_business", {required: "Start date of business is required"})} type="date"/>
                                                         {errors.start_business && (
                                                             <div className="error-msg">
                                                                 {errors.start_business.message}
@@ -338,7 +333,7 @@ export default function FlightRequestForm() {
                                                     </Col>
                                                     <Col>
                                                         <Form.Label className='fr-form-label text-start'>End Date</Form.Label>
-                                                        <Form.Control {...register("end_business", {required: "End date of business is required"})} type="date"/>
+                                                        <Form.Control className={`${errors.end_business ? "input-invalid" : ""}`} {...register("end_business", {required: "End date of business is required"})} type="date"/>
                                                         {errors.end_business && (
                                                             <div className="error-msg">
                                                                 {errors.end_business.message}
@@ -364,7 +359,7 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control {...register("departure_date", {required: "Departure date is required"})} type="date"/>
+                                                <Form.Control className={`${errors.departure_date ? "input-invalid" : ""}`} {...register("departure_date", {required: "Departure date is required"})} type="date"/>
                                                 {errors.departure_date && (
                                                     <div className="error-msg">
                                                         {errors.departure_date.message}
@@ -373,7 +368,7 @@ export default function FlightRequestForm() {
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control {...register("departure_time", {required: "Departure time is required"})} type="time"/>
+                                                <Form.Control className={`${errors.departure_time ? "input-invalid" : ""}`} {...register("departure_time", {required: "Departure time is required"})} type="time"/>
                                                 {errors.departure_time && (
                                                     <div className="error-msg">
                                                         {errors.departure_time.message}
@@ -382,7 +377,7 @@ export default function FlightRequestForm() {
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control {...register("departure_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control className={`${errors.departure_city ? "input-invalid" : ""}`} {...register("departure_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
                                                 {errors.departure_city && (
                                                     <div className="error-msg">
                                                         {errors.departure_city.message}
@@ -406,7 +401,7 @@ export default function FlightRequestForm() {
                                         <Row>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Date</Form.Label>
-                                                <Form.Control {...register("return_date", {required: "Return date is required"})} type="date"/>
+                                                <Form.Control className={`${errors.return_date ? "input-invalid" : ""}`} {...register("return_date", {required: "Return date is required"})} type="date"/>
                                                 {errors.return_date && (
                                                     <div className="error-msg">
                                                         {errors.return_date.message}
@@ -415,7 +410,7 @@ export default function FlightRequestForm() {
                                             </Col>
                                             <Col sm={3}>
                                                 <Form.Label className='fr-form-label text-start'>Time</Form.Label>
-                                                <Form.Control {...register("return_time", {required: "Return time is required"})} type="time"/>
+                                                <Form.Control className={`${errors.return_time ? "input-invalid" : ""}`} {...register("return_time", {required: "Return time is required"})} type="time"/>
                                                 {errors.return_time && (
                                                     <div className="error-msg">
                                                         {errors.return_time.message}
@@ -424,7 +419,7 @@ export default function FlightRequestForm() {
                                             </Col>
                                             <Col md>
                                                 <Form.Label className='fr-form-label text-start'>Destination City/Airport</Form.Label>
-                                                <Form.Control {...register("return_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
+                                                <Form.Control className={`${errors.return_city ? "input-invalid" : ""}`} {...register("return_city", {required: "Destination City/Airport is required"})} type="text" placeholder="Destination City/Airport"/>
                                                 {errors.return_city && (
                                                     <div className="error-msg">
                                                         {errors.return_city.message}

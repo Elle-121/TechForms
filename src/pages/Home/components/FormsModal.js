@@ -1,4 +1,5 @@
-import { Modal, Form, Row, Col, } from "react-bootstrap";
+import { useState } from 'react';
+import { Modal } from "react-bootstrap";
 import { forms } from "./filterData";
 import "../../../App.scss";
 
@@ -10,6 +11,14 @@ export default function FormsModal({view, setFormsView}) {
     const closeFormsView = () => {
         setFormsView(false);
     }
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchValue, setSearchValue] = useState('');
+
+    // Filter the forms based on searchValue
+    const filteredForms = forms.filter(item => 
+        !searchValue || item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
     return ( 
         <Modal show={view} size='lg'>
@@ -26,10 +35,10 @@ export default function FormsModal({view, setFormsView}) {
 
             <Modal.Body>
                 <div className="d-flex justify-content-center">
-                    <SearchBar/>
+                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
                     {
-                        forms.map(item => 
+                        filteredForms.map(item => 
                             <div className="d-flex justify-content-center">
                                 <button className="forms-modal-option w-50 mt-2 mb-2" onClick={async () => {window.location.href = item.route}}>{item.name}</button>
                             </div>

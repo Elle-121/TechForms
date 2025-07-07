@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import "../../../App.scss";
 
-export default function DashboardFilter({view, setFilterView}) {
+export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage}) {
 
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
@@ -35,6 +34,8 @@ export default function DashboardFilter({view, setFilterView}) {
     }
 
     const submitValues = (values) => {
+        setFilterValues(values)
+        setCurrentPage(1); // Reset to first page when filter is applied
         console.log(values)
     }
 
@@ -61,7 +62,7 @@ export default function DashboardFilter({view, setFilterView}) {
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Department</Form.Label>
                                     <Form.Select {...register("department")}>
-                                        <option>Select Department</option>
+                                        <option></option>
                                         {
                                             departments.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -77,7 +78,7 @@ export default function DashboardFilter({view, setFilterView}) {
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
                                     <Form.Select {...register("form_type")}>
-                                        <option>Select Form Type</option>
+                                        <option></option>
                                         {
                                             formTypes.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -91,7 +92,7 @@ export default function DashboardFilter({view, setFilterView}) {
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
-                                        <option>Select Status</option>
+                                        <option></option>
                                         {
                                             status.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -105,7 +106,7 @@ export default function DashboardFilter({view, setFilterView}) {
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
-                                        <option>Select Purpose</option>
+                                        <option></option>
                                         {
                                             reasons.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
