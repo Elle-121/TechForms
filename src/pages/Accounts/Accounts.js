@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from "react";
 import MainContainer from "../../components/MainContainer";
 
@@ -23,14 +22,22 @@ export default function Accounts(){
     const [role, setRole] = useState();
 
     // State for pagination
-    const [currentPage, setCurrentPage] = React.useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
-    const totalPages = Math.ceil(dummyData.length / requestsPerPage);
 
-    const paginatedRequests = dummyData.slice(
+    // Filter Data
+    const filteredData = dummyData.filter(item => role ? item.role===role : item.role)
+    const totalPages = Math.ceil(filteredData.length / requestsPerPage);
+
+    const paginatedRequests = filteredData.slice(
     (currentPage - 1) * requestsPerPage,
     currentPage * requestsPerPage
     );
+
+    const handleSubmitRole = (selectedRole) => {
+        setCurrentPage(1); // Reset to first page when role changes
+        setRole(selectedRole);
+    }
 
     return (
         <MainContainer>
@@ -39,14 +46,14 @@ export default function Accounts(){
                 
                 <div className="d-flex justify-content-between mb-3">
                     <div>
-                        <button onClick={()=>setRole()} className={`btn-role ${!role ? "btn-role--selected" : ""}`}>All</button>
-                        <button onClick={()=>setRole("HR")} className={`btn-role ${role==="HR" ? "btn-role--selected" : ""}`}>HR</button>
-                        <button onClick={()=>setRole("Employee")} className={`btn-role ${role==="Employee" ? "btn-role--selected" : ""}`}>Employee</button>
+                        <button onClick={()=>handleSubmitRole()} className={`btn-role ${!role ? "btn-role--selected" : ""}`}>All</button>
+                        <button onClick={()=>handleSubmitRole("HR")} className={`btn-role ${role==="HR" ? "btn-role--selected" : ""}`}>HR</button>
+                        <button onClick={()=>handleSubmitRole("Employee")} className={`btn-role ${role==="Employee" ? "btn-role--selected" : ""}`}>Employee</button>
                     </div>
                     <SearchBar/>
                 </div>
 
-                <AccountList data={paginatedRequests} role={role}/>
+                <AccountList data={paginatedRequests}/>
 
                 <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>

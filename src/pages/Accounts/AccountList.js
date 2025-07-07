@@ -1,5 +1,5 @@
 
-export default function listAccounts({data, role}) {
+export default function listAccounts({data}) {
 
     return (
         <table className="table">
@@ -14,8 +14,8 @@ export default function listAccounts({data, role}) {
                 </tr>
             </thead>
             <tbody>
-                    {
-                    data.filter(item => role ? item.role===role : item.role).map(item =>
+                {
+                    data.map(item =>
                         <tr>
                             <td>{item.firstName + " " + item.lastName}</td>
                             <td>{item.email}</td>

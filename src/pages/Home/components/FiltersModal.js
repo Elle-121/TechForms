@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
