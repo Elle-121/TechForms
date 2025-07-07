@@ -59,13 +59,20 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>First Name</Form.Label>
                                     <Form.Control className={`${errors.firstName ? "input-invalid" : ""}`} type="text" placeholder="First Name" 
                                         {...register("firstName", {
-                                            required : true,
-                                            maxLength: 50,
-                                            pattern: /^[a-zA-Z\s\-']+$/
+                                            required : "This field is required.",
+                                            maxLength: {
+                                                value: 50,
+                                                message: "Max characters reached."
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z\s\-']+$/,
+                                                message: "Only letters, space, and hyphen characters are allowed."
+                                            }
                                     })}/>
-                                    {errors.firstName && errors.firstName.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.firstName && errors.firstName.type === "maxLength" && <span className="error-msg">Max characters reached.</span>}
-                                    {errors.firstName && errors.firstName.type === "pattern" && <span className="error-msg">Only letters, space, and hyphen characters are allowed.</span>}
+                                    
+                                    {errors.firstName && 
+                                        <span className="error-msg">{errors.firstName.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
                             
@@ -75,11 +82,20 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-optional'>Middle Name</Form.Label>
                                     <Form.Control className={`${errors.middleName ? "input-invalid" : ""}`} type="text" placeholder="Middle Name" 
                                         {...register("middleName", {
-                                            maxLength: 50,
-                                            pattern: /^[a-zA-Z\s\-']+$/
+                                            maxLength: {
+                                                value: 50,
+                                                message: "Max characters reached."
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z\s\-']+$/,
+                                                message: "Only letters, space, and hyphen characters are allowed."
+                                            }
                                     })}/>
-                                    {errors.middleName && errors.middleName.type === "maxLength" && <span className="error-msg">Max characters reached.</span>}
-                                    {errors.middleName && errors.middleName.type === "pattern" && <span className="error-msg">Only letters, spaces, and hyphens are allowed.</span>}                                </Form.Group>
+                                    
+                                    {errors.middleName && 
+                                        <span className="error-msg">{errors.middleName.message}</span>
+                                    }
+                                </Form.Group>                            
                             </Col>
                             
                             {/* Last Name */}
@@ -88,14 +104,21 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Last Name</Form.Label>
                                     <Form.Control className={`${errors.lastName ? "input-invalid" : ""}`} type="text" placeholder="Last Name" 
                                         {...register("lastName", {
-                                            required : true,
-                                            maxLength: 50,
-                                            pattern: /^[a-zA-Z\s\-']+$/
+                                            required : "This field is required.",
+                                            maxLength: {
+                                                value: 50,
+                                                message: "Max characters reached."
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z\s\-']+$/,
+                                                message: "Only letters, space, and hyphen characters are allowed."
+                                            }
                                     })}/>
-                                    {errors.lastName && errors.lastName.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.lastName && errors.lastName.type === "maxLength" && <span className="error-msg">Max characters reached.</span>}
-                                    {errors.lastName && errors.lastName.type === "pattern" && <span className="error-msg">Only letters, spaces, and hyphens are allowed.</span>}
-                                </Form.Group>
+                                    
+                                    {errors.lastName && 
+                                        <span className="error-msg">{errors.lastName.message}</span>
+                                    }
+                                </Form.Group>                            
                             </Col>
                         </Row>
 
@@ -106,11 +129,16 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Email address</Form.Label>
                                     <Form.Control className={`${errors.email ? "input-invalid" : ""}`} type="text" placeholder="name@email.com" 
                                         {...register("email", {
-                                            required : true,
-                                            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                            required : "This field is required.",
+                                            pattern: {
+                                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                                message: "PLease enter a valid email."
+                                            }
                                     })}/>
-                                    {errors.email && errors.email.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.email && errors.email.type === "pattern" && <span className="error-msg">PLease enter a valid email.</span>}
+                                    
+                                    {errors.email && 
+                                        <span className="error-msg">{errors.email.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
 
@@ -118,13 +146,18 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Phone Number</Form.Label>
-                                    <Form.Control className={`${errors.phone ? "input-invalid" : ""}`} type="text" placeholder="09XXXXXXXX" 
+                                    <Form.Control className={`${errors.phone ? "input-invalid" : ""}`} type="text" placeholder="09XXXXXXXX"                                     
                                         {...register("phone", {
-                                            required : true,
-                                            pattern: /^09\d{9}$/
+                                            required : "This field is required.",
+                                            pattern: {
+                                                value: /^09\d{9}$/,
+                                                message: "PLease enter a valid phone number."
+                                            }
                                     })}/>
-                                    {errors.phone && errors.phone.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.phone && errors.phone.type === "pattern" && <span className="error-msg">PLease enter a valid phone number.</span>}
+                                    
+                                    {errors.phone && 
+                                        <span className="error-msg">{errors.phone.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -134,7 +167,7 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Department</Form.Label>
-                                    <Form.Select {...register("department", {required : true})}
+                                    <Form.Select {...register("department", {required : "This field is required."})}
                                         className={`${errors.department ? "input-invalid" : ""}`}>
                                         <option disabled value=''>Select Department</option>
                                         {
@@ -142,7 +175,10 @@ export default function RegisterForm({view, setFormView}) {
                                                 <option value={item.name}>{item.name}</option>)
                                         }
                                     </Form.Select>
-                                    {errors.department && errors.department.type === "required" && <span className="error-msg">This field is required.</span>}
+                                    
+                                    {errors.department && 
+                                        <span className="error-msg">{errors.department.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
 
@@ -150,13 +186,16 @@ export default function RegisterForm({view, setFormView}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Role</Form.Label>
-                                    <Form.Select {...register("role", {required : true})}
+                                    <Form.Select {...register("role", {required : "This field is required."})}
                                         className={`${errors.role ? "input-invalid" : ""}`} >
                                         <option disabled value="">Select Role</option>
                                         <option value="HR">HR</option>
                                         <option value="Employee">Employee</option>
                                     </Form.Select>
-                                    {errors.role && errors.role.type === "required" && <span className="error-msg">This field is required.</span>}
+
+                                    {errors.role && 
+                                        <span className="error-msg">{errors.role.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -173,13 +212,20 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Username</Form.Label>
                                     <Form.Control className={`${errors.username ? "input-invalid" : ""}`} type="text" placeholder="Enter username" 
                                         {...register("username", {
-                                            required : true,
-                                            maxLength: 20,
-                                            pattern: /^[a-zA-Z0-9_]+$/
+                                            required : "This field is required.",
+                                            maxLength: {
+                                                value: 20,
+                                                message: "Max characters reached."
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9_]+$/,
+                                                message: "Only letters, numbers, and underscores are allowed."
+                                            }
                                     })}/>
-                                    {errors.username && errors.username.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.username && errors.username.type === "maxLength" && <span className="error-msg">Max characters reached.</span>}
-                                    {errors.username && errors.username.type === "pattern" && <span className="error-msg">Only letters, numbers, and underscores are allowed.</span>}
+                                    
+                                    {errors.username && 
+                                        <span className="error-msg">{errors.username.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
 
@@ -189,13 +235,20 @@ export default function RegisterForm({view, setFormView}) {
                                     <Form.Label className='fr-form-label input-required'>Password</Form.Label>
                                     <Form.Control className={`${errors.password ? "input-invalid" : ""}`} type="password" placeholder="Enter password" 
                                         {...register("password", {
-                                            required : true,
-                                            minLength: 8,
-                                            pattern: /^[a-zA-Z0-9_\-]+$/
+                                            required : "This field is required.",
+                                            minLength: {
+                                                value: 8,
+                                                message: "Password must be at least 8 characters long."
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9_\-]+$/,
+                                                message: "Only letters, numbers, underscores, and hyphens are allowed."
+                                            }
                                     })}/>
-                                    {errors.password && errors.password.type === "required" && <span className="error-msg">This field is required.</span>}
-                                    {errors.password && errors.password.type === "minLength" && <span className="error-msg">Password must be at least 8 characters long.</span>}
-                                    {errors.password && errors.password.type === "pattern" && <span className="error-msg">Only letters, numbers, underscores, and hyphens are allowed.</span>}
+                                    
+                                    {errors.password && 
+                                        <span className="error-msg">{errors.password.message}</span>
+                                    }
                                 </Form.Group>
                             </Col>
                         </Row>
