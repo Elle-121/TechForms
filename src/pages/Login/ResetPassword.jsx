@@ -16,10 +16,15 @@ function ResetPassword(){
         <MainContainer>
         <div className="row h-100 m-0">
 
-            <div className="h-100" style={{display: 'flex',justifyContent: 'center',}}>
-                <div className="reset-form-container">
-                    <header className="login-form-header">
-                        <h1>Reset your password</h1>
+            <div className="h-100" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'relative',
+                    bottom: '125px'}}>
+                <div className="login-container">
+                    <header className="login-header">
+                        <h1 className="login-header__h1">Reset your password</h1>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
@@ -44,9 +49,11 @@ function ResetPassword(){
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
                         </div>
 
-                        <div className='form-row'>
-                            <Link to="/login" className="button-neg">Back</Link>
-                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Next</button>
+                        <div className='button-row'>
+                            <Link to="/login" className="button-row__button
+                            button-row__button--negate">Back</Link>
+                            <button type="submit" className="button-row__button
+                            button-row__button--affirm" onClick={handleSubmit}>Next</button>
                         </div>
 
                         

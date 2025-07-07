@@ -1,10 +1,16 @@
 import MainContainer from '../../components/MainContainer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // TODO: Separate Logo and NavBar
 // TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
 
 function Login(){
+    let navigate = useNavigate();
+    
+    const handleSubmit = () => {
+        navigate("/");
+
+    }
 
     return (
         <MainContainer>
@@ -17,11 +23,19 @@ function Login(){
                 </figure>
             </div>
 
-            <div className="h-100" style={{width: '50%'}}>
+            <div className="h-100" style={{
+                    width: '50%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'relative',
+                    bottom: '125px'}}>
                 <div className="login-container">
                     <header className="login-form-header">
-                        <h1>Welcome Back to <strong className="login-text--orange">TechForms*</strong></h1>
-                        <p><em>Manage all your TechFactors forms right here!</em></p>
+                        <h1 className="login-text--center">Welcome Back to
+                            <strong className="login-text--orange">TechForms*</strong></h1>
+                        <p className="login-text--center"><em>
+                            Manage all your TechFactors forms right here!</em></p>
                     </header>
 
                     <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
@@ -40,8 +54,10 @@ function Login(){
                             <Link to="/reset-password" className="login-form__link">Forgot your password?</Link>
                         </div>
 
-                        <div className='form-row'>
-                            <button type="submit" className="button-affirm">Log In</button>
+                        <div className='button-row'>
+                            <button type="submit" className="button-row__button
+                                button-row__button--affirm"
+                                onClick={handleSubmit}>Log In</button>
                         </div>
 
                         

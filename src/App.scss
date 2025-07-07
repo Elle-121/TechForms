@@ -1,8 +1,8 @@
 /* Debugging 
+ */
 *:hover { 
    outline:1px solid green;
  } 
- */
 
 /* Custom Colors */
 :root {
@@ -634,6 +634,9 @@
 }
 
 .login-text {
+  &--center {
+    text-align: center;
+  }
   &--orange{
     color: var(--tforange-color);
   }
@@ -678,15 +681,6 @@
 //   margin-bottom: 15px;
 // }
 
-
-
-// .form-row button:hover {
-//   background-color: #76AEED;
-// }
-
-// .form-row button:active {
-//   background-color: #407FC7;
-// }
 
 .login-form__link {
   text-decoration: none;
@@ -759,12 +753,6 @@
 }
 
 
-
-/* ### RESET PASSWORD PAGE */
-
-
-
-
 /* ### TwoFactorAuth PAGE (OTP) */
 
 
@@ -804,4 +792,3 @@
   font-size: inherit;
   text-align: center;
 }
-
