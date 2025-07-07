@@ -11,14 +11,16 @@ function Login(){
         {/* TODO Modify Header to remove navbar portion  */}
         <Link to="/nothing">Test Error Page</Link>
         <div className="row h-100 m-0">
-            <div className="col-md-3 col-lg-2 h-100 overflow-auto"  style={{ width: '50%', borderRight: '5px solid var(--tforange-color)' }}>
-
+            <div className="col-md-3 col-lg-2"  style={{ width: '50%', borderRight: '5px solid var(--tforange-color)' }}>
+                <figure>
+                    TODO Insert Image Here
+                </figure>
             </div>
 
-            <div className="p-4 h-100 overflow-auto" style={{width: '50%',display: 'flex',flexDirection: 'column',}}>
-                <div className="login-form-container">
+            <div className="h-100" style={{width: '50%'}}>
+                <div className="login-container">
                     <header className="login-form-header">
-                        <h1>Welcome Back to <strong>TechForms*</strong></h1>
+                        <h1>Welcome Back to <strong className="login-text--orange">TechForms*</strong></h1>
                         <p><em>Manage all your TechFactors forms right here!</em></p>
                     </header>
 
@@ -35,7 +37,7 @@ function Login(){
                             <input id='password' name='password' type='password'
                                 placeholder="Enter password"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <Link to="/reset-password">Forgot your password?</Link>
+                            <Link to="/reset-password" className="login-form__link">Forgot your password?</Link>
                         </div>
 
                         <div className='form-row'>
