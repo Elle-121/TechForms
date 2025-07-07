@@ -16,8 +16,8 @@ function ResetPassword(){
         <MainContainer>
         <div className="row h-100 m-0">
 
-            <div className="border p-4 h-100 overflow-auto" style={{display: 'flex',justifyContent: 'center',}}>
-                <div className="login-form-container">
+            <div className="h-100" style={{display: 'flex',justifyContent: 'center',}}>
+                <div className="reset-form-container">
                     <header className="login-form-header">
                         <h1>Reset your password</h1>
                     </header>
