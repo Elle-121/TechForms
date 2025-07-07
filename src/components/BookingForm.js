@@ -2,12 +2,12 @@ import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function BookingForm({view, setFormView}) {
+export default function BookingForm({view, setFormView, notes}) {
 
     const [preview, setPreview] = useState(false);
     const [formValues, setFormValues] = useState();
 
-    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
+    const { register, handleSubmit, reset, setValue, formState: { errors, isValid, isSubmitted } } = useForm({
         defaultValues: {
             departureRef: "",
             departureCost: "",
@@ -15,8 +15,16 @@ export default function BookingForm({view, setFormView}) {
             returnRef: "",
             returnCost: "",
             returnTicket: "",
+            notes: "",
         }
     })
+    
+    const [inputNotes, setInputNotes] = useState(notes);
+    console.log(inputNotes);
+
+    const handleNotes = (event) => {
+        setInputNotes(event.target.value);
+    }
 
     const home = async () => {
         window.location.href = "/";
@@ -39,8 +47,8 @@ export default function BookingForm({view, setFormView}) {
                 <div className="tf-form-title mt-2 mb-4">
                     {
                         preview ? 
-                            <h1 show={preview} className="tf-header text-black">Preview</h1> :
-                            <h1 show={!preview} className="tf-header text-black">Booking Details</h1>
+                            <h1 className="tf-header text-black">Preview</h1> :
+                            <h1 className="tf-header text-black">Booking Details</h1>
                     }
                 </div>
                 <Form onSubmit={handleSubmit(displayValues)}>
@@ -77,7 +85,7 @@ export default function BookingForm({view, setFormView}) {
                                         {...register("departureRef", {
                                             required: "This field is required.",
                                             pattern : {
-                                                value: /^[a-zA-Z0-9_\-']+$/,
+                                                value: /^[a-zA-Z0-9\s_\-']+$/,
                                                 message: "Please enter a valid reference number."
                                             }
                                     })}/>
@@ -144,7 +152,7 @@ export default function BookingForm({view, setFormView}) {
                                         {...register("returnRef", {
                                             required : "This field is required.",
                                             pattern : {
-                                                value: /^[a-zA-Z0-9_\-']+$/,
+                                                value: /^[a-zA-Z0-9\s_\-']+$/,
                                                 message: "Please enter a valid reference number."
                                             }
                                     })}/>
@@ -194,6 +202,12 @@ export default function BookingForm({view, setFormView}) {
                                 }
                             </Form.Group>
                         </Row>
+
+                        {/* Notes */}
+                        <Form.Group className="mt-2 mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label className='fr-form-label input-optional'>Notes</Form.Label>
+                            <Form.Control {...register("notes")} value={inputNotes} onChange={(e) => setInputNotes(e.target.value)} as="textarea" placeholder='Enter notes.'/>
+                        </Form.Group>
                     </fieldset>
                     <div className="d-flex flex-column">
                         {/* Error box */}
