@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const [inputValue, setInputValue] = useState(currentPage);
 
+  // This only allows empty input or numbers to be typed in the input box
   const handleInputChange = (e) => {
     const value = e.target.value;
     if (value === '' || /^\d+$/.test(value)) {
@@ -10,8 +11,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
     }
   };
 
+  // If number is valid and within range set page else just current page
   const handleInputBlur = () => {
-    const page = parseInt(inputValue, 10);
+    const page = parseInt(inputValue, 10); //convert to int
     if (!isNaN(page) && page >= 1 && page <= totalPages) {
       onPageChange(page);
     } else {
@@ -42,11 +44,17 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       </button>
 
       {/* Page Input */}
-      {/* <input
+      <input  
         type="text"
         value={inputValue}
         onChange={handleInputChange}
         onBlur={handleInputBlur}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleInputBlur();
+            e.target.blur(); // Optionally remove focus after pressing Enter
+          }
+        }}
         className="text-center fw-bold"
         style={{
           width: '35px',
@@ -56,29 +64,8 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           borderRadius: '8px',
           color: '#e67e22',
         }}
-      /> */}
-
-  <input
-    type="text"
-    value={inputValue}
-    onChange={handleInputChange}
-    onBlur={handleInputBlur}
-    onKeyDown={(e) => {
-      if (e.key === 'Enter') {
-        handleInputBlur();
-        e.target.blur(); // Optionally remove focus after pressing Enter
-      }
-    }}
-    className="text-center fw-bold"
-    style={{
-      width: '35px',
-      height: '35px',
-      backgroundColor: '#ffd9b3',
-      border: 'none',
-      borderRadius: '8px',
-      color: '#e67e22',
-    }}
-  />
+      />
+     
       <span className="fw-medium">of {totalPages}</span>
 
       {/* Next Arrow */}
