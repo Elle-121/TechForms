@@ -17,16 +17,14 @@ function TwoFactorAuth(){
     }
 
     return (
-        <MainContainer>
+        <MainContainer navVisible={false}>
         <div className="row h-100 m-0">
 
-            <div className="h-100"
-                style={{
+            <div className="h-100" style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
                     position: 'relative',
-                    bottom: '125px'}}>
+                    top: '50px'}}>
                 <div className="login-container">
                     <header className="login-header">
                         <h1 className="login-header__h1">Enter Your OTP Code</h1>
@@ -55,7 +53,8 @@ function TwoFactorAuth(){
                                     name='otp6' type='text' placeholder="0"
                                     maxlength="1" size="1"/>
                             </div>
-                            
+                            {/* FIXME the input boxes should go to next*/}
+
                             <legend className="form-legend">
                                 Resend available in <strong>{dummyData.timeTillOTP}
                                 </strong> seconds. {/* TODO Format Time */}
@@ -65,8 +64,8 @@ function TwoFactorAuth(){
                         </fieldset>
 
                         <div className="button-row">
-                            <Link to="/reset-password"
-                                className="button-row__button button-row__button--negate">Back</Link>
+                            <Link to="/reset-password" className="button-row__button
+                            button-row__button--negate">Back</Link>
                             <button type="submit" className="button-row__button button-row__button--affirm"
                             onClick={handleSubmit}>Reset</button>
                         </div>
@@ -75,6 +74,7 @@ function TwoFactorAuth(){
             </div>
 
         </div>
+     
 
          </MainContainer>
     );
