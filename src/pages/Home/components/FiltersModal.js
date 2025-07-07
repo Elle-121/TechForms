@@ -1,11 +1,12 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
+import { useEffect } from "react";
 import "../../../App.scss";
 
-export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage}) {
+export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd}) {
 
-    const { register, handleSubmit, reset } = useForm({
+    const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
             requestor: '',
             requested_for: '',
@@ -28,6 +29,16 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
             approved_by: ''
         }
     })
+
+    // Autofill date fields when props change
+    useEffect(() => {
+        if (dateRangeStart) {
+            setValue('submitted_start', dateRangeStart.toLocaleDateString('en-CA'));
+        }
+        if (dateRangeEnd) {
+            setValue('submitted_end', dateRangeEnd.toLocaleDateString('en-CA'));
+        }
+    }, [dateRangeStart, dateRangeEnd, setValue]);
 
     const resetValues = () => {
         reset()

@@ -157,3 +157,48 @@
     background-color: rgb(255, 255, 255);
     color: var(--tforange-color);
     border-color: var(--tforange-color); }
+
+.card {
+    border: '1px solid var(--tforange-color)';
+    border-radius: '10px';
+    padding: '1rem';
+    text-align: 'left';
+    background-color: '#fff';
+    color: '#000';
+    transition: 'all 0.3s ease';
+    cursor: 'pointer';
+    width: '170px';
+    height: '170px';
+    display: 'flex';
+    flex-direction: 'column';
+    align-items: 'flex-start';
+    gap: '0.25rem';
+    
+    &-time{
+        justify-content:'center';
+        align-items:'center'; 
+        background-color: 'var(--tfblue-color)';
+        color: '#fff';
+        border: '1px solid var(--tfblue-color)';
+    }
+}
+
+.date-time-container {
+    height: '340px'; // Match the calendar height
+    min-height: '340px';
+    max-height: '340px';
+    display: 'flex';
+    flex-direction: 'column';
+    align-items: 'center';
+    gap: '1rem';
+}
+
+.column {
+    height: '340px'; // Match the calendar height
+    min-height: '340px';
+    max-height: '340px';
+    display: 'flex';
+    flex-direction: 'column';
+    align-items: 'center';
+    gap: '1rem';
+}
