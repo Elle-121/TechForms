@@ -26,7 +26,6 @@ export default function Review() {
 
     const displayNotes = (values) => {
         setNotes(values.notes);
-        console.log(values.notes);
         if (!reject) setFormView(true);
     }
 
