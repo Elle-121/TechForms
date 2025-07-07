@@ -16,7 +16,7 @@ import FiltersModal from './components/FiltersModal.js';
 import FormsModal from './components/FormsModal.js';
 
 // Import filterData function
-import filterData from './components/filterFunction.js';
+import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
@@ -80,7 +80,7 @@ function Home() {
                     >
                     <h2 className="tf-header">Requests</h2>
                     <div className="d-flex align-items-center" style={{ gap: '12px' }}>
-                        <SearchBar setSearchValue={setSearchValue}/>
+                        <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
 
                         {/* Filter Button */}
                         <button
@@ -106,7 +106,7 @@ function Home() {
                         
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView}/>
-                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues}/>
+                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues} setCurrentPage={setCurrentPage}/>
                     </div>
                 </div>
 
