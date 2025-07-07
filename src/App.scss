@@ -602,6 +602,18 @@
 
 /* ### LOGIN PAGE */
 
+.login-figure{
+  // Layout
+  display: flex;
+
+  &__image{
+    // Box Model
+    aspect-ratio: 1 / 1;
+    border-radius: 75px;
+    width: 100%;
+  }
+}
+
 .login-container {
   
   // Box Model

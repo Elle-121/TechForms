@@ -1,5 +1,6 @@
 import MainContainer from '../../components/MainContainer';
 import { Link, useNavigate } from 'react-router-dom';
+import loginImage from "../../assets/LoginImage.jpeg"
 
 // TODO: Separate Logo and NavBar
 // TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
@@ -17,9 +18,12 @@ function Login(){
         {/* TODO Modify Header to remove navbar portion  */}
         <Link to="/nothing">Test Error Page</Link>
         <div className="row h-100 m-0">
-            <div className="col-md-3 col-lg-2"  style={{ width: '50%', borderRight: '5px solid var(--tforange-color)' }}>
-                <figure>
-                    TODO Insert Image Here
+            <div className="col-md-3 col-lg-2"
+                style={{ width: '50%',
+                        borderRight: '5px solid var(--tforange-color)' }}>
+                <figure className="login-figure">
+                    <img src={loginImage} className="login-figure__image"
+                    alt="TechFactor Interns"/>
                 </figure>
             </div>
 
