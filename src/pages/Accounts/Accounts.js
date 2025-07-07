@@ -9,6 +9,7 @@ import AccountList from "./AccountList";
 // data
 import { dummyData } from "./dummyData";
 import RegisterForm from './components/RegisterForm';
+import { set } from "react-hook-form";
 
 export default function Accounts(){
 
@@ -18,7 +19,8 @@ export default function Accounts(){
         setFormView(true);
     }
 
-    // State for roles
+    // State for role and search
+    const [searchValue, setSearchValue] = useState('');
     const [role, setRole] = useState();
 
     // State for pagination
@@ -26,7 +28,11 @@ export default function Accounts(){
     const requestsPerPage = 10;
 
     // Filter Data
-    const filteredData = dummyData.filter(item => role ? item.role===role : item.role)
+    const filteredData = dummyData.filter(item => role ? item.role===role : item.role).filter(item => {
+        const fullname = `${item.firstName} ${item.lastName}`;
+        return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
+    });
+
     const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 
     const paginatedRequests = filteredData.slice(
@@ -50,7 +56,7 @@ export default function Accounts(){
                         <button onClick={()=>handleSubmitRole("HR")} className={`btn-role ${role==="HR" ? "btn-role--selected" : ""}`}>HR</button>
                         <button onClick={()=>handleSubmitRole("Employee")} className={`btn-role ${role==="Employee" ? "btn-role--selected" : ""}`}>Employee</button>
                     </div>
-                    <SearchBar/>
+                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
 
                 <AccountList data={paginatedRequests}/>
