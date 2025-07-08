@@ -73,7 +73,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Department</Form.Label>
                                     <Form.Select {...register("department")}>
-                                        <option></option>
+                                        <option value=''>Select Department</option>
                                         {
                                             departments.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -89,7 +89,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
                                     <Form.Select {...register("form_type")}>
-                                        <option></option>
+                                        <option value=''>Select Form Type</option>
                                         {
                                             formTypes.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -103,7 +103,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
-                                        <option></option>
+                                        <option value=''>Select Status</option>
                                         {
                                             status.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
@@ -117,7 +117,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
-                                        <option></option>
+                                        <option value=''>Select Purpose</option>
                                         {
                                             reasons.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
