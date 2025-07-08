@@ -17,7 +17,7 @@
     min-width: 320px;
     max-width: 320px;
     height: 340px;
-    min-height: 280px;
+    min-height: 340px;
     max-height: 340px;
     box-sizing: border-box;
     border: 1px solid var(--tforange-color); // Change border color here
@@ -47,7 +47,6 @@
     font-weight: 400;
     border-radius: 50%;
     transition: background 0.2s;
-    // border: 1px solid black;
 }
 
 // today highlight
