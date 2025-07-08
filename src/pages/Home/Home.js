@@ -62,7 +62,7 @@ function Home() {
     <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
-            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto  " style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
+            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto" style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
                 <Calendar setHomeDateRange={setHomeDateRange} setFilterValues={setFilterValues}/>
             </div>
 
