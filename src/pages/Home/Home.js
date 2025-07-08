@@ -20,7 +20,6 @@ import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
-import { set } from 'react-hook-form';
 
 function Home() {
     // Function to open the forms modal
