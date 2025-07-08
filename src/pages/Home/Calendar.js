@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './Calendar.scss'
-
-const styles = {
-    column: {
-      height: '340px', // Match the calendar height
-      minHeight: '340px',
-      maxHeight: '340px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: '1rem',
-    },
-  };
+import './Calendar.scss';
 
 function Calendar({setHomeDateRange, setFilterValues}) {
   const [now, setNow] = useState(new Date());
@@ -29,25 +17,25 @@ function Calendar({setHomeDateRange, setFilterValues}) {
   const [time, ampm] = timeString.split(' ');
 
   return (
-    <div className="row d-flex alight-items-center">
+    <div className="date-time-container">
         {/* Date and Time Column */}
-        <div className="column col-auto">
+        <div className="card-container">
             {/* Date */}
-            <div className='card'>
+            <div className='card card-date'>
                 <span className="fs-4 fw-semibold text-dark">{now.toLocaleDateString('en-US', { weekday: 'long' })}</span>
                 <span className="fs-1 fw-bold" style={{ color: 'var(--tforange-color)' }}>{now.getDate()}</span>
                 <span>{now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
             </div>
 
             {/* Time */}
-            <div className='card-time'>
+            <div className='card card-time'>
                 <span className="fs-1 fw-bold">{time}</span>            
                 <span className="fs-3 fw-bold">{ampm}</span>
             </div>
         </div>
 
         {/* Calendar Date picker */}
-        <div className="col d-flex flex-column align-items-center justify-content-center">
+        <div className="calendar-container">
             <DatePicker
                 selectsRange
                 startDate={startDate}
