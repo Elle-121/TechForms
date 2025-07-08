@@ -1,51 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './Calendar.scss'
+import './Calendar.scss';
 
-const styles = {
-    card: {
-      border: '1px solid var(--tforange-color)',
-      borderRadius: '10%',
-      padding: '1rem',
-      textAlign: 'left',
-      backgroundColor: '#fff',
-      color: '#000',
-      transition: 'all 0.3s ease',
-      cursor: 'pointer',
-      width: '170px',
-      height: '170px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      gap: '0.25rem',
-    },
-
-    column: {
-      height: '340px', // Match the calendar height
-      minHeight: '340px',
-      maxHeight: '340px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: '1rem',
-    },
-
-    resetbutton:{
-      // width: '100%',
-      margin: '1rem 0 0 auto',
-      border: '1px solid var(--tforange-color)',
-      borderRadius: '10px',
-      minWidth: '200px',
-      maxWidth: '200px',
-      display: 'block',
-      marginTop: '1rem',
-      backgroundColor: 'var(--tforange-color)',
-      
-    }
-  };
-
-function Calendar() {
+function Calendar({setHomeDateRange, setFilterValues}) {
   const [now, setNow] = useState(new Date());
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -59,43 +17,59 @@ function Calendar() {
   const [time, ampm] = timeString.split(' ');
 
   return (
-    <div className="row">
+    <div className="date-time-container">
         {/* Date and Time Column */}
-        <div className="col-auto  border-black" style={styles.column}>
+        <div className="card-container">
             {/* Date */}
-            <div style={styles.card}>
+            <div className='card card-date'>
                 <span className="fs-4 fw-semibold text-dark">{now.toLocaleDateString('en-US', { weekday: 'long' })}</span>
                 <span className="fs-1 fw-bold" style={{ color: 'var(--tforange-color)' }}>{now.getDate()}</span>
                 <span>{now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
             </div>
 
             {/* Time */}
-            <div style={{ ...styles.card, justifyContent:'center', alignItems:'center', backgroundColor: 'var(--tfblue-color)', color: '#fff', border: '1px solid var(--tfblue-color)',}}>
+            <div className='card card-time'>
                 <span className="fs-1 fw-bold">{time}</span>            
                 <span className="fs-3 fw-bold">{ampm}</span>
             </div>
         </div>
 
         {/* Calendar Date picker */}
-        <div className="col" style={{ width: '320px', minWidth: '320px', maxWidth: '320px', height: '340px', minHeight: '340px', maxHeight: '340px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="calendar-container">
             <DatePicker
                 selectsRange
                 startDate={startDate}
                 endDate={endDate}
-                onChange={(update) => setDateRange(update)}
+                onChange={(update) => {
+                  setDateRange(update);
+                  setHomeDateRange(update);
+                  setFilterValues(prev => ({
+                      ...prev,
+                      submitted_start: update[0] ? update[0].toLocaleDateString('en-CA') : "",
+                      submitted_end: update[1] ? update[1].toLocaleDateString('en-CA') : ""
+                  }));
+                }}
                 isClearable={true}
                 inline
             />
+          {startDate && endDate && (
+            <button
+              className="calendar-reset-btn"
+              type="button"
+              onClick={() => {
+                setDateRange([null, null]);
+                setHomeDateRange([null, null]);
+                setFilterValues(prev => ({
+                  ...prev,
+                  submitted_start: "",
+                  submitted_end: ""
+                }));
+              }}
+            >
+              Clear Date Range
+            </button>
+          )}            
         </div>
-        {startDate && endDate && (
-          <button
-            type="button"
-            onClick={() => setDateRange([null, null])}
-            className="btn btn-secondary mt-2 reset-btn"
-          >
-            Clear Date Range
-          </button>
-        )}            
     </div>
   );
 }
