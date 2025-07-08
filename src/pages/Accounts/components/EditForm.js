@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { departments } from "../../Home/components/filterData";
 
-export default function RegisterForm({view, setFormView}) {
+export default function EditForm({view, setEditView, data}) {
 
+    // Log form values
     const [formValues, setFormValues] = useState();
 
-    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
+    // Initialize form
+    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful, isDirty }, setError, clearErrors } = useForm({
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -22,28 +24,48 @@ export default function RegisterForm({view, setFormView}) {
         }
     })
 
+    // Prefill account details to edit
+    useEffect(() => {
+        reset(data);
+    }, [data, reset]);
+
+    // Submit form 
     const displayValues = (values) => {
-        console.log(values);
-        setFormValues(values);
-        setFormView(false);
-        reset();
+        if (isDirty) {
+            console.log(values);
+            setFormValues(values);
+            setEditView(false);
+            reset();
+        } else {
+            setError("formError", {
+                type: "manual",
+                message: "No changes detected. Please update at least one field.",
+            });
+        }
     }
 
+    // Close and reset Edit Form modal
     const handleCancel = () => {
-        setFormView(false);
+        setEditView(false);
         reset();
     }
 
+    // Reset Edit Form after succesful form submission
     useEffect(() => {
         reset();
     }, [isSubmitSuccessful])
+
+    // Clear form error
+    useEffect(() => {
+        clearErrors("formError");
+    }, [isDirty])
 
     return ( 
 
         <Modal show={view} size="lg" className="form-modal">
             <Modal.Body className="my-4">
                 <div className="tf-form-title mt-2 mb-4">
-                    <h1 className="tf-header text-black">Register User</h1>
+                    <h1 className="tf-header text-black">Edit User</h1>
                 </div>
                 <div>
                     <Form onSubmit={handleSubmit(displayValues)}>
@@ -254,9 +276,16 @@ export default function RegisterForm({view, setFormView}) {
                         </Row>
 
                         <div className="d-flex flex-column">
-                            { (!isValid && isSubmitted) && <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center px-4 gap-4">
+                            { ((!isValid || !isDirty) && isSubmitted) && <div className="form-box form-box-error mb-3 w-100 d-flex align-items-center px-4 gap-4">
                                 <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                                <p className='text-start m-0'>Please check if all required fields are filled and if all inputs are valid.</p>
+                                <p className='text-start m-0'>
+                                    {
+                                        errors.formError ?
+                                            errors.formError.message :
+                                            "Please check if all required fields are filled and if all inputs are valid."
+                                    }
+
+                                </p>
                             </div> }
                             <div className="d-flex justify-content-between w-100">
                                 <button type="button" className="button-neg" onClick={handleCancel}>Cancel</button>
