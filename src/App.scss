@@ -124,6 +124,12 @@
   }
 }
 
+.btn-edit {
+  width: 20px;
+  height: 20px;
+  fill: var(--tf-gray-3);
+}
+
 /* Notifications Button */
 .notif-filter-btn {
   background: #fff;
@@ -761,7 +767,7 @@
 
     &--negate:active{
       background-color: white;
-      borde-color: var(--tforange-color);
+      border-color: var(--tforange-color);
     }
   }
 }
