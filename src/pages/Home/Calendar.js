@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
-function Calendar({setHomeDateRange, setFilterValues}) {
+function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
   const [now, setNow] = useState(new Date());
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -60,7 +60,9 @@ function Calendar({setHomeDateRange, setFilterValues}) {
           
           {/* Date Type Drowpdown */}
           <div>
-            <Form>
+            <Form onChange={(e) => {
+                setDateType(e.target.value);
+            }}>
               <Form.Group>
                 <Form.Select className='calendar-dropdown'>
                   <option value=''>Select Date Type</option>

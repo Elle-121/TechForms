@@ -4,7 +4,7 @@ import { departments, formTypes, status, reasons } from "./filterData";
 import { useEffect } from "react";
 import "../../../App.scss";
 
-export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd}) {
+export default function FiltersModal({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd, dateType}) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -38,7 +38,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
         if (dateRangeEnd) {
             setValue('submitted_end', dateRangeEnd.toLocaleDateString('en-CA'));
         }
-    }, [dateRangeStart, dateRangeEnd, setValue]);
+    }, [dateRangeStart, dateRangeEnd, dateType, setValue]);
 
     const resetValues = () => {
         reset()
