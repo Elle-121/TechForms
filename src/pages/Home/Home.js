@@ -20,6 +20,7 @@ import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
+import { set } from 'react-hook-form';
 
 function Home() {
     // Function to open the forms modal
@@ -55,16 +56,14 @@ function Home() {
     );
 
     // Calendar Date Ranges
-    const [dateRange, setDateRange] = useState([null, null]);
-
-
+    const [homeDateRange, setHomeDateRange] = useState([null, null]);
 
     return (
     <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
-            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto  " style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
-                <Calendar dateRange={dateRange} setDateRange={setDateRange} />
+            <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto" style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
+                <Calendar setHomeDateRange={setHomeDateRange} setFilterValues={setFilterValues}/>
             </div>
 
             {/* Right Content */}
@@ -105,8 +104,8 @@ function Home() {
                         </button>
                         
                         {/* Modals */}
-                        <FormsModal view={formsView} setFormsView={setFormsView}/>
-                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues} setCurrentPage={setCurrentPage}/>
+                        <FormsModal view={formsView} setFormsView={setFormsView} />
+                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues} setCurrentPage={setCurrentPage} dateRangeStart={homeDateRange[0]} dateRangeEnd={homeDateRange[1]}/>
                     </div>
                 </div>
 
