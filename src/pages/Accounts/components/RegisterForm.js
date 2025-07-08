@@ -218,8 +218,8 @@ export default function RegisterForm({view, setFormView}) {
                                                 message: "Max characters reached."
                                             },
                                             pattern: {
-                                                value: /^[a-zA-Z0-9_]+$/,
-                                                message: "Only letters, numbers, and underscores are allowed."
+                                                value: /^[a-zA-Z0-9_.]+$/,
+                                                message: "Only letters, numbers, periods, and underscores are allowed."
                                             }
                                     })}/>
                                     
