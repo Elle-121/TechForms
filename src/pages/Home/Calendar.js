@@ -54,6 +54,7 @@ function Calendar({setHomeDateRange, setFilterValues}) {
             />
           {startDate && endDate && (
             <button
+              className="calendar-reset-btn"
               type="button"
               onClick={() => {
                 setDateRange([null, null]);
@@ -64,7 +65,6 @@ function Calendar({setHomeDateRange, setFilterValues}) {
                   submitted_end: ""
                 }));
               }}
-              className="btn btn-secondary mt-2 reset-btn"
             >
               Clear Date Range
             </button>

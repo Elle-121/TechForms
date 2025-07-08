@@ -17,12 +17,13 @@
     min-width: 320px;
     max-width: 320px;
     height: 340px;
-    min-height: 340px;
+    min-height: 280px;
     max-height: 340px;
     box-sizing: border-box;
     border: 1px solid var(--tforange-color); // Change border color here
     border-radius: 5%; // Change border radius here
     background: #fff; // Optional: ensure background is white }
+    margin: 0 1rem 0 0; // Add margin to the right for spacing
 }
 
 .react-datepicker__header {
@@ -207,9 +208,40 @@
 
 .calendar-container {
     display: flex;
+    flex-direction: column;
     align-items: flex-start; // Aligns the calendar to the top left
     width: 100%; // Ensures it fills the parent container
     height: 340px; // Match the calendar height
     min-height: 340px;
     max-height: 340px;
+    background-color: white;
+}
+
+.calendar-reset-btn {
+  background: #f5ece2;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  color: var(--tforange-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0.5rem 1rem 0 0;
+  width: 320px; // Match the calendar width
+}
+
+.calendar-reset-btn:active {
+  background-color: white;
+  border-color: var(--tforange-color);
+}
+
+.calendar-reset-btn:hover {
+  background: var(--tfneg-hover);
 }
