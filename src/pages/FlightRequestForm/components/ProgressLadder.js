@@ -1,7 +1,3 @@
-import React from 'react';
-import "../../../App.scss";
-
-
 // data
 import { progressData } from '../flightRequesData';
 

@@ -2,7 +2,6 @@ import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import { useEffect } from "react";
-import "../../../App.scss";
 
 export default function DashboardFilter({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd}) {
 
