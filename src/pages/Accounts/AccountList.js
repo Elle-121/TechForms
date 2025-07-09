@@ -11,35 +11,35 @@ export default function AccountList({data, setEditView, setAccountId}) {
 
     return (
         <table className="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Full Name</th>
-                    <th scope="col" style={ fixedCol ? { width: "400px" } : {}}>Email</th>
-                    <th scope="col" style={ fixedCol ? { width: "140px" } : {}}>Phone No.</th>
-                    <th scope="col" style={ fixedCol ? { width: "180px" } : {}}>Username</th>
-                    <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Department</th>
-                    <th scope="col" style={ fixedCol ? { width: "110px" } : {}}>Role</th>
-                    <th style={ fixedCol ? { width: "36px" } : {}}></th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item, idx) => {
-                    return (
-                        <tr key={item.id}>
-                            <td>{item.firstName + " " + item.lastName}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phone}</td>
-                            <td>{item.username}</td>
-                            <td>{item.department}</td>
-                            <td>{item.role}</td>
-                            <td>
-                                <EditIcon onClick={() => handleEdit(idx)} width={20} height={20} className="btn-edit" />
-                            </td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Full Name</th>
+                        <th scope="col" style={ fixedCol ? { width: "400px" } : {}}>Email</th>
+                        <th scope="col" style={ fixedCol ? { width: "150px" } : {}}>Phone No.</th>
+                        <th scope="col" style={ fixedCol ? { width: "180px" } : {}}>Username</th>
+                        <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Department</th>
+                        <th scope="col" style={ fixedCol ? { width: "110px" } : {}}>Role</th>
+                        <th style={ fixedCol ? { width: "36px" } : {}}></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, idx) => {
+                        return (
+                            <tr key={item.id}>
+                                <td>{item.firstName + " " + item.lastName}</td>
+                                <td>{item.email}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.username}</td>
+                                <td>{item.department}</td>
+                                <td>{item.role}</td>
+                                <td>
+                                    <EditIcon onClick={() => handleEdit(idx)} width={20} height={20} className="btn-edit" />
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         
     );
 };

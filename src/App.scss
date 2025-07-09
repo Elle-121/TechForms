@@ -124,9 +124,13 @@
   }
 }
 
+.table-hover tr:hover .btn-edit {
+  visibility: visible;
+}
+
 .btn-edit {
+  visibility: hidden;
   padding: 0 !important;
-  // margin: 8px;
   fill: var(--tf-gray-2);
   
   &:hover {
