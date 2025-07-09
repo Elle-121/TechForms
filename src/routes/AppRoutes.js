@@ -9,13 +9,14 @@ import ResetPassword from "../pages/Login/ResetPassword"
 import FlightRequestForm from "../pages/FlightRequestForm/FlightRequestForm";
 import Review from "../pages/Review/Review";
 import TwoFactorAuth from "../pages/Login/TwoFactorAuth";
-import ErrorPage from "../pages/errorPage";
+import ErrorBoundary from "../pages/ErrorHandling/ErrorPage";
 
 
 const router = createBrowserRouter([ // A JSON formatted route list
   {
     path: "/",
     Component: Home,
+    ErrorBoundary: ErrorBoundary,
   },
   {
     path: "login",
@@ -55,19 +56,6 @@ const router = createBrowserRouter([ // A JSON formatted route list
 function AppRoutes() { // TODO: Change Home Route
   return (
     <RouterProvider router={router}/>
-    // <Routes>
-    //   <Route path="login" element={<Login />} errorElement={<ErrorPage/>} />
-    //   <Route path="reset-password" element={<ResetPassword />} />
-    //   <Route path="two-factor-auth" element={<TwoFactorAuth />} />
-
-    //   <Route path="/" element={<Home />} />
-    //   <Route path="/profile" element={<Profile />} />
-    //   <Route path="/accounts" element={<Accounts />} />
-    //   <Route path="/notifications" element={<Notifications />} />
-      
-    //   <Route path="/flight-request-form" element={<FlightRequestForm />} />
-    //   <Route path="/review" element={<Review />} />
-    // </Routes>
   );
 }
 
