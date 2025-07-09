@@ -1,5 +1,4 @@
 
-
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
@@ -20,7 +19,6 @@ import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
-import { set } from 'react-hook-form';
 
 function Home() {
     // Function to open the forms modal
@@ -57,7 +55,7 @@ function Home() {
 
     // Calendar Date Ranges
     const [homeDateRange, setHomeDateRange] = useState([null, null]);
-    const [dateType, setDateType] = useState(''); // 'submitted' or 'created'
+    const [dateType, setDateType] = useState('');
 
     return (
     <MainContainer>
