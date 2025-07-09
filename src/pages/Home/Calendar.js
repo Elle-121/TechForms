@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
-function Calendar({setHomeDateRange, setFilterValues, setDateType, dateRange}) {
+function Calendar({setDateRange, setFilterValues, setDateType, dateRange}) {
   const [now, setNow] = useState(new Date());
   const [dateType, setDateTypeState] = useState('');
 
@@ -100,7 +100,7 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType, dateRange}) {
               startDate={dateRange[0]}
               endDate={dateRange[1]}
               onChange={(update) => {
-                setHomeDateRange(update);
+                setDateRange(update);
                 setFilterValues(prev => handleDateChange(prev, update, dateType));
               }}
               isClearable={true}
@@ -138,7 +138,7 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType, dateRange}) {
               className="calendar-reset-btn"
               type="button"
               onClick={() => {
-                setHomeDateRange([null, null]);
+                setDateRange([null, null]);
                 setFilterValues(prev => handleClearCalendar(prev, dateType));
               }}
             >
