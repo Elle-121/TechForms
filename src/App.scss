@@ -125,9 +125,13 @@
 }
 
 .btn-edit {
-  width: 20px;
-  height: 20px;
-  fill: var(--tf-gray-3);
+  padding: 0 !important;
+  // margin: 8px;
+  fill: var(--tf-gray-2);
+  
+  &:hover {
+    fill: var(--tforange-color)
+  }
 }
 
 /* Notifications Button */
