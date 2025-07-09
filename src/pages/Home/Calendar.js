@@ -4,10 +4,8 @@ import { Form } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
-function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
+function Calendar({setHomeDateRange, setFilterValues, setDateType, dateRange}) {
   const [now, setNow] = useState(new Date());
-  const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
   const [dateType, setDateTypeState] = useState('');
 
   useEffect(() => {
@@ -99,10 +97,9 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
         <div>
           <DatePicker
               selectsRange
-              startDate={startDate}
-              endDate={endDate}
+              startDate={dateRange[0]}
+              endDate={dateRange[1]}
               onChange={(update) => {
-                setDateRange(update);
                 setHomeDateRange(update);
                 setFilterValues(prev => handleDateChange(prev, update, dateType));
               }}
@@ -135,13 +132,12 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
           </div>
 
           {/* Clear Date Range Button */}
-          {startDate && endDate && (
+          {dateRange[0] && dateRange[1] && (
           <div>
             <button
               className="calendar-reset-btn"
               type="button"
               onClick={() => {
-                setDateRange([null, null]);
                 setHomeDateRange([null, null]);
                 setFilterValues(prev => handleClearCalendar(prev, dateType));
               }}

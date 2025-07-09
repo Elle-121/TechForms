@@ -88,13 +88,6 @@ export default function FiltersModal({view, setFilterView, setFilterValues, setC
         setValue("status", '');
     }
 
-    // const submitValues = (values) => {
-    //     setFilterValues(values)
-    //     setStatusValue(values.status)
-    //     setCurrentPage(1); // Reset to first page when filter is applied
-    //     console.log(values)
-    // }
-
     const submitValues = (values) => {
         setFilterValues(values);  // Update the filters from the modal
         setStatusValue(values.status);  // Update the status
