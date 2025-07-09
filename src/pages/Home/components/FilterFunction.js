@@ -1,7 +1,7 @@
 export default function filterData(item, filterValues) {
     // If filterValues is not provided, always return true
     if (!filterValues) return true;
-
+    
     // Example for form_type and date range
     const formTypeMatch =
         !filterValues.form_type || item.formType === filterValues.form_type;

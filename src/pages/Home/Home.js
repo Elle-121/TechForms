@@ -55,7 +55,7 @@ function Home() {
 
     // Calendar Date Ranges
     const [homeDateRange, setHomeDateRange] = useState([null, null]);
-    const [dateType, setDateType] = useState(''); // 'submitted' or 'created'
+    const [dateType, setDateType] = useState('');
 
     return (
     <MainContainer>

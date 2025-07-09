@@ -3,16 +3,76 @@ import DatePicker from 'react-datepicker';
 import { Form } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
+import { set } from 'react-hook-form';
 
 function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
   const [now, setNow] = useState(new Date());
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
+  const [dateType, setDateTypeState] = useState('');
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+
+  const handleDateChange = (prev, update, dateType) => {
+    const newValues = { ...prev };
+    // Clear all date fields first
+    newValues.submitted_start = "";
+    newValues.submitted_end = "";
+    newValues.departure_start = "";
+    newValues.departure_end = "";
+    newValues.return_start = "";
+    newValues.return_end = "";
+    newValues.start_business_start = "";
+    newValues.start_business_end = "";
+    newValues.end_business_start = "";
+    newValues.end_business_end = "";
+
+    // Set only the selected dateType fields
+    if (dateType === "submitted") {
+        newValues.submitted_start = update[0] ? update[0].toLocaleDateString('en-CA') : "";
+        newValues.submitted_end = update[1] ? update[1].toLocaleDateString('en-CA') : "";
+    } else if (dateType === "departure") {
+        newValues.departure_start = update[0] ? update[0].toLocaleDateString('en-CA') : "";
+        newValues.departure_end = update[1] ? update[1].toLocaleDateString('en-CA') : "";
+    } else if (dateType === "return") {
+        newValues.return_start = update[0] ? update[0].toLocaleDateString('en-CA') : "";
+        newValues.return_end = update[1] ? update[1].toLocaleDateString('en-CA') : "";
+    } else if (dateType === "business_start") {
+        newValues.start_business_start = update[0] ? update[0].toLocaleDateString('en-CA') : "";
+        newValues.start_business_end = update[1] ? update[1].toLocaleDateString('en-CA') : "";
+    } else if (dateType === "business_end") {
+        newValues.end_business_start = update[0] ? update[0].toLocaleDateString('en-CA') : "";
+        newValues.end_business_end = update[1] ? update[1].toLocaleDateString('en-CA') : "";
+    }
+    return newValues;
+  }
+
+  const handleClearCalendar = (prev, dateType) => {
+    
+    const newValues = { ...prev };
+    
+    if (dateType === "submitted") {
+        newValues.submitted_start = "";
+        newValues.submitted_end = "";
+    } else if (dateType === "departure") {
+        newValues.departure_start = "";
+        newValues.departure_end = "";
+    } else if (dateType === "return") {
+        newValues.return_start = "";
+        newValues.return_end = "";
+    } else if (dateType === "business_start") {
+        newValues.start_business_start = "";
+        newValues.start_business_end = "";
+    } else if (dateType === "business_end") {
+        newValues.end_business_start = "";
+        newValues.end_business_end = "";
+    }
+    return newValues;
+  }
 
   const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
   const [time, ampm] = timeString.split(' ');
@@ -23,7 +83,7 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
       <div className="card-container">
           {/* Date */}
           <div className='card card-date'>
-              <span className="fs-4 fw-semibold text-dark">{now.toLocaleDateString('en-US', { weekday: 'long' })}</span>
+              <span className="fw-semibold text-dark" style={{ fontSize: '22px' }}>{now.toLocaleDateString('en-US', { weekday: 'long' })}</span>
               <span className="fs-1 fw-bold" style={{ color: 'var(--tforange-color)' }}>{now.getDate()}</span>
               <span>{now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
           </div>
@@ -45,11 +105,7 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
               onChange={(update) => {
                 setDateRange(update);
                 setHomeDateRange(update);
-                setFilterValues(prev => ({
-                    ...prev,
-                    submitted_start: update[0] ? update[0].toLocaleDateString('en-CA') : "",
-                    submitted_end: update[1] ? update[1].toLocaleDateString('en-CA') : ""
-                }));
+                setFilterValues(prev => handleDateChange(prev, update, dateType));
               }}
               isClearable={true}
               inline
@@ -61,7 +117,10 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
           {/* Date Type Drowpdown */}
           <div>
             <Form onChange={(e) => {
-                setDateType(e.target.value);
+              const newDateType = e.target.value;
+              setDateType(newDateType);
+              setDateTypeState(newDateType);
+              setFilterValues(prev => handleDateChange(prev, dateRange, newDateType));
             }}>
               <Form.Group>
                 <Form.Select className='calendar-dropdown'>
@@ -85,11 +144,7 @@ function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
               onClick={() => {
                 setDateRange([null, null]);
                 setHomeDateRange([null, null]);
-                setFilterValues(prev => ({
-                  ...prev,
-                  submitted_start: "",
-                  submitted_end: ""
-                }));
+                setFilterValues(prev => handleClearCalendar(prev, dateType));
               }}
             >
               Clear Date Range
