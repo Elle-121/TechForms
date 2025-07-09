@@ -135,7 +135,6 @@ function Home() {
                             dateType={dateType}
                             status={statusValue}
                             setStatusValue={setStatusValue}
-                            setDateRange={setDateRange}
                         />
                     </div>
                 </div>

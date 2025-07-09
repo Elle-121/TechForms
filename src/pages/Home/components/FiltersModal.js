@@ -13,8 +13,7 @@ export default function FiltersModal({
     dateRangeEnd, 
     dateType, 
     status, 
-    setStatusValue,
-    setDateRange            
+    setStatusValue
 }) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
