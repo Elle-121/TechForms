@@ -1,4 +1,4 @@
-import editicon from '../../assets/EditIcon.svg';
+import { ReactComponent as EditIcon } from '../../assets/EditIcon.svg';
 
 export default function AccountList({data, setEditView, setAccountId}) {
 
@@ -7,41 +7,39 @@ export default function AccountList({data, setEditView, setAccountId}) {
         setEditView(true);
     }
 
-    const smallIconSize = 20;
-    const ButtonGroup = ({ onClick, buttonicon }) => (
-        <span onClick={onClick} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <img src={buttonicon} width={smallIconSize} height={smallIconSize} />
-        </span>
-    );
+    var fixedCol = true;
 
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone No.</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item, idx) => {
-                    return (
-                        <tr key={item.id}>
-                            <td>{item.firstName + " " + item.lastName}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phone}</td>
-                            <td>{item.username}</td>
-                            <td>{item.department}</td>
-                            <td>{item.role}</td>
-                            <ButtonGroup onClick={() => handleEdit(idx)} buttonicon={editicon} />
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+        <table className="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Full Name</th>
+                        <th scope="col" style={ fixedCol ? { width: "400px" } : {}}>Email</th>
+                        <th scope="col" style={ fixedCol ? { width: "150px" } : {}}>Phone No.</th>
+                        <th scope="col" style={ fixedCol ? { width: "180px" } : {}}>Username</th>
+                        <th scope="col" style={ fixedCol ? { width: "200px" } : {}}>Department</th>
+                        <th scope="col" style={ fixedCol ? { width: "110px" } : {}}>Role</th>
+                        <th style={ fixedCol ? { width: "36px" } : {}}></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, idx) => {
+                        return (
+                            <tr key={item.id}>
+                                <td>{item.firstName + " " + item.lastName}</td>
+                                <td>{item.email}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.username}</td>
+                                <td>{item.department}</td>
+                                <td>{item.role}</td>
+                                <td>
+                                    <EditIcon onClick={() => handleEdit(idx)} width={20} height={20} className="btn-edit" />
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         
     );
 };

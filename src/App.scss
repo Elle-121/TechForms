@@ -1,11 +1,5 @@
-/* Debugging 
-
-*:hover { 
-   outline:1px solid green;
- } 
- */
- 
 /* Custom Colors */
+
 :root {
   --tforange-color: #EE9337;
   --tfblue-color: #033C7C;
@@ -45,6 +39,88 @@
   letter-spacing: 0.04em;
   font-weight: bold;
   color: var(--tforange-color);
+}
+
+/* Buttons */
+.btn-pill {
+  color: white;
+  padding: 0 1rem;
+
+  border: transparent 2px solid;
+  border-radius: 15px;
+  
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2.5;
+  text-align: center;
+  white-space: nowrap;
+
+  &--cancel {
+    background-color: #f5ece2;
+    color: var(--tforange-color);
+
+    &:hover {
+      background-color: var(--tfneg-hover);
+    }
+
+    &:active {
+      background-color: white;
+      color: var(--tforange-color);
+      border-color: var(--tforange-color)
+    }
+  }
+  
+  &--orange {
+    background-color: var(--tforange-color);
+
+    &:hover {
+      background-color: var(--tfaffirm-hover); 
+    }
+
+    &:active {
+      background-color: white;
+      color: var(--tforange-color);
+      border-color: var(--tforange-color)
+    }
+  }
+
+  &--blue {
+    background-color: var(--tfblue-color);
+
+    &:hover {
+      background-color: var(--tfdraft-hover);
+    }
+
+    &:active {
+      background-color: white;
+      color: var(--tforange-color);
+      border-color: var(--tforange-color)
+    }
+  }
+
+  // TODO: Add variable for this red
+  &--red {
+    background-color: #DC3545;
+
+    &:hover {
+      background-color: #C82333;
+    }
+
+    &:active {
+      background-color: white;
+      color: #DC3545;
+      border-color: #DC3545;
+    }
+  }
+
+  &--green {
+    background-color: var(--tf-green-text);
+
+    &:hover {
+      background-color: var(--tfapprove-hover);
+    }
+  }
 }
 
 /* Hover Underline */
@@ -124,10 +200,22 @@
   }
 }
 
+.table-hover tr:hover .btn-edit {
+  visibility: visible;
+}
+
 .btn-edit {
-  width: 20px;
-  height: 20px;
-  fill: var(--tf-gray-3);
+  visibility: hidden;
+  padding: 0 !important;
+  fill: var(--tf-gray-2);
+  
+  &:hover {
+    fill: var(--tforange-color)
+  }
+}
+
+.modal {
+  z-index: 1050;
 }
 
 /* Notifications Button */

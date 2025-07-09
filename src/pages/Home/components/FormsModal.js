@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal } from "react-bootstrap";
 import { forms } from "./filterData";
-import "../../../App.scss";
 
 //component
 import SearchBar from '../../../components/SearchBar';
