@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import { Form } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
-import { set } from 'react-hook-form';
 
 function Calendar({setHomeDateRange, setFilterValues, setDateType}) {
   const [now, setNow] = useState(new Date());
