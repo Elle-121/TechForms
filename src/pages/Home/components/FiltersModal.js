@@ -108,8 +108,7 @@ export default function FiltersModal({
     
 
     return ( 
-
-        <Modal show={view} size="lg">
+        <Modal show={view} size="lg" centered>
             <Modal.Header className="border-bottom-0">
                 <button type='button' className="hover-underline d-flex align-items-center p-0" onClick={()=>setFilterView(false)}>
                     <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>

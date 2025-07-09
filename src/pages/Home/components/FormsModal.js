@@ -20,7 +20,7 @@ export default function FormsModal({view, setFormsView}) {
     );
 
     return ( 
-        <Modal show={view} size='lg'>
+        <Modal show={view} size='lg' centered>
             <Modal.Header style={{borderBottom:'none'}}>
                 {/* Back Button */}
                 <div className="position-relative w-100">
