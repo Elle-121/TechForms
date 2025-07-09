@@ -4,7 +4,18 @@ import { departments, formTypes, reasons } from "./filterData";
 import { useEffect } from "react";
 import "../../../App.scss";
 
-export default function FiltersModal({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd, dateType, status, setStatusValue}) {
+export default function FiltersModal({
+    view, 
+    setFilterView, 
+    setFilterValues, 
+    setCurrentPage, 
+    dateRangeStart, 
+    dateRangeEnd, 
+    dateType, 
+    status, 
+    setStatusValue,
+    setDateRange            
+}) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {

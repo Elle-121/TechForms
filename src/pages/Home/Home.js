@@ -126,15 +126,16 @@ function Home() {
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView} />
                         <FiltersModal 
-                        view={filterView} 
-                        setFilterView={setFilterView} 
-                        setFilterValues={setFilterValues} 
-                        setCurrentPage={setCurrentPage} 
-                        dateRangeStart={dateRange[0]} 
-                        dateRangeEnd={dateRange[1]} 
-                        dateType={dateType}
-                        status={statusValue}
-                        setStatusValue={setStatusValue}
+                            view={filterView} 
+                            setFilterView={setFilterView} 
+                            setFilterValues={setFilterValues} 
+                            setCurrentPage={setCurrentPage} 
+                            dateRangeStart={dateRange[0]} 
+                            dateRangeEnd={dateRange[1]} 
+                            dateType={dateType}
+                            status={statusValue}
+                            setStatusValue={setStatusValue}
+                            setDateRange={setDateRange}
                         />
                     </div>
                 </div>
