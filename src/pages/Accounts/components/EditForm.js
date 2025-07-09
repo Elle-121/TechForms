@@ -288,8 +288,11 @@ export default function EditForm({view, setEditView, data}) {
                                 </p>
                             </div> }
                             <div className="d-flex justify-content-between w-100">
-                                <button type="button" className="button-neg" onClick={handleCancel}>Cancel</button>
-                                <button type="submit" className='button-affirm'>Submit</button>
+                                <button type="button" className="btn-pill btn-pill--cancel" onClick={handleCancel}>Cancel</button>
+                                <div className="d-flex gap-2">
+                                    <button type="button" className="btn-pill btn-pill--red">Delete</button>
+                                    <button type="submit" className='btn-pill btn-pill--orange'>Submit</button>
+                                </div>
                             </div>
                         </div>
                     </Form>
