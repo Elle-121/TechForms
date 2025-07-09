@@ -1,6 +1,4 @@
-
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainContainer from '../../components/MainContainer';
 
@@ -20,7 +18,6 @@ import filterData from './components/FilterFunction.js';
 
 // Dummy Data
 import dummyData from './dummyData';
-import { set } from 'react-hook-form';
 
 function Home() {
     // Function to open the forms modal
@@ -43,10 +40,11 @@ function Home() {
     const [filterValues, setFilterValues] = useState();
     const [searchValue, setSearchValue] = useState('');
     
-    // Filter the request based on filterValues
-    const filteredData = dummyData.filter(item => filterData(item, filterValues)).filter(item =>
-        !searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    // Filter the request based on filterValues + searchValue
+    const filteredData = dummyData
+    .filter(item => filterData(item, filterValues))
+    .filter(item =>!searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase()));
+
     const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 
     // Paginate the requests based on the current page [0-10] Requests for page 1, [10-20] Requests for page 2, etc.
@@ -57,20 +55,42 @@ function Home() {
 
     // Calendar Date Ranges
     const [homeDateRange, setHomeDateRange] = useState([null, null]);
+    const [dateType, setDateType] = useState('');
+    const [statusValue, setStatusValue] = useState('Pending'); // or '' for all
 
+
+    const handleFilterButtonClick = (status) => {
+        setStatusValue(status);
+        setFilterValues(prev => ({
+            ...prev,
+            status: status // Update status when a button is clicked
+        }));
+        setCurrentPage(1); // Reset to the first page
+    };   
+    
     return (
     <MainContainer>
         <div className="row h-100 m-0">
             {/* Left Side */}
             <div className="p-4 col-md-3 col-lg-2 h-100 overflow-auto" style={{width: '30%',display: 'flex', flexDirection: 'column', borderRight: '5px solid var(--tforange-color)'}}>
-                <Calendar setHomeDateRange={setHomeDateRange} setFilterValues={setFilterValues}/>
+                <Calendar setHomeDateRange={setHomeDateRange} setFilterValues={setFilterValues} setDateType={setDateType}/>
             </div>
 
             {/* Right Content */}
             <div className="p-4 h-100 overflow-auto " style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
                 {/* Filters */}
-                <FilterPanel />
+                {/* <FilterPanel /> */}
+                <div className='mb-3 d-flex gap-2'>
+                    {["","Pending", "Approved", "Rejected", "Requests this Month"].map((status) => (
+                        <button key={status}          
+                                className={`btn ${statusValue === status ? 'btn-warning' : 'btn-outline-warning'}`}
+                                onClick={() => handleFilterButtonClick(status)}>
+                                {status}
+                        </button>
+                    ))
+                    }
+                </div>
 
                 {/* Header - Requests + Searchbar + Filter */}
                 <div
@@ -105,7 +125,14 @@ function Home() {
                         
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView} />
-                        <FiltersModal view={filterView} setFilterView={setFilterView} setFilterValues={setFilterValues} setCurrentPage={setCurrentPage} dateRangeStart={homeDateRange[0]} dateRangeEnd={homeDateRange[1]}/>
+                        <FiltersModal 
+                        view={filterView} 
+                        setFilterView={setFilterView} 
+                        setFilterValues={setFilterValues} 
+                        setCurrentPage={setCurrentPage} dateRangeStart={homeDateRange[0]} dateRangeEnd={homeDateRange[1]} dateType={dateType}
+                        status={statusValue}
+                        setStatusValue={setStatusValue}
+                        />
                     </div>
                 </div>
 
