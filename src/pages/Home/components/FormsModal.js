@@ -11,7 +11,6 @@ export default function FormsModal({view, setFormsView}) {
         setFormsView(false);
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
     const [searchValue, setSearchValue] = useState('');
 
     // Filter the forms based on searchValue
@@ -34,7 +33,7 @@ export default function FormsModal({view, setFormsView}) {
 
             <Modal.Body>
                 <div className="d-flex justify-content-center">
-                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
+                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={()=>{}}/>
                 </div>
                     {
                         filteredForms.map(item => 
