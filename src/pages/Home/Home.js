@@ -57,7 +57,8 @@ function Home() {
     );
 
     // Calendar Date Ranges
-    const [dateRange, setDateRange] = useState([null, null]);
+    const [homeDateRange, setHomeDateRange] = useState([null, null]);
+    const [dateType, setDateType] = useState(''); // 'submitted' or 'created'
     const [statusValue, setStatusValue] = useState('Pending'); // or '' for all
 
 

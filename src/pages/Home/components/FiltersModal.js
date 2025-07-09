@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { departments, formTypes, status, reasons } from "./filterData";
 import { useEffect } from "react";
 import "../../../App.scss";
-import { useEffect } from "react";
 
 export default function FiltersModal({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd, dateType, status, setStatusValue}) {
 
@@ -124,11 +123,11 @@ export default function FiltersModal({view, setFilterView, setFilterValues, setC
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
                                         <option value=''>Select Status</option>
-                                        {
+                                        {/* {
                                             status.map(item => 
                                                 <option value={item.name}>{item.name}</option>        
                                             )
-                                        } */}
+                                        }  */}
 
                                         <option value="Pending">Pending</option>
                                         <option value="Approved">Approved</option>
