@@ -39,10 +39,7 @@ function Home() {
     const requestsPerPage = 10;
     
     // State for filter and search values
-    const [filterValues, setFilterValues] = useState(
-
-        
-    );
+    const [filterValues, setFilterValues] = useState();
     const [searchValue, setSearchValue] = useState('');
     
     // Filter the request based on filterValues + searchValue
@@ -62,6 +59,16 @@ function Home() {
     const [dateRange, setDateRange] = useState([null, null]);
     const [statusValue, setStatusValue] = useState('Pending'); // or '' for all
 
+
+    const handleFilterButtonClick = (status) => {
+        setStatusValue(status);
+        setFilterValues(prev => ({
+            ...prev,
+            status: status // Update status when a button is clicked
+        }));
+        setCurrentPage(1); // Reset to the first page
+    };   
+    
     return (
     <MainContainer>
         <div className="row h-100 m-0">
@@ -76,10 +83,10 @@ function Home() {
                 {/* Filters */}
                 {/* <FilterPanel /> */}
                 <div className='mb-3 d-flex gap-2'>
-                    {["Total","Pending", "Approved", "Rejected", "Requests this Month"].map((status) => (
+                    {["","Pending", "Approved", "Rejected", "Requests this Month"].map((status) => (
                         <button key={status}          
                                 className={`btn ${statusValue === status ? 'btn-warning' : 'btn-outline-warning'}`}
-                                onClick={() => setStatusValue(status)}>
+                                onClick={() => handleFilterButtonClick(status)}>
                                 {status}
                         </button>
                     ))

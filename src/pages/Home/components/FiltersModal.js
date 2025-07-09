@@ -39,6 +39,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
 
     const resetValues = () => {
         reset()
+        setValue("status", '');
     }
 
     // const submitValues = (values) => {
@@ -119,7 +120,7 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                                 // }}
                                     
                                     >
-                                        <option></option>
+                                        <option value=""></option>
                                         {/* <option value="">Select status...</option> */}
                                         {/* {
                                             status.map(item => 
@@ -130,6 +131,8 @@ export default function DashboardFilter({view, setFilterView, setFilterValues, s
                                         <option value="Pending">Pending</option>
                                         <option value="Approved">Approved</option>
                                         <option value="Rejected">Rejected</option>
+                                        <option value="Draft">Draft</option>
+
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
