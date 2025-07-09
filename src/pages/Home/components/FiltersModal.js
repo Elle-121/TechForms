@@ -1,9 +1,19 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { departments, formTypes, status, reasons } from "./filterData";
+import { departments, formTypes, reasons } from "./filterData";
 import { useEffect } from "react";
 
-export default function FiltersModal({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd, dateType, status, setStatusValue}) {
+export default function FiltersModal({
+    view, 
+    setFilterView, 
+    setFilterValues, 
+    setCurrentPage, 
+    dateRangeStart, 
+    dateRangeEnd, 
+    dateType, 
+    status, 
+    setStatusValue
+}) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -86,13 +96,6 @@ export default function FiltersModal({view, setFilterView, setFilterValues, setC
         reset()
         setValue("status", '');
     }
-
-    // const submitValues = (values) => {
-    //     setFilterValues(values)
-    //     setStatusValue(values.status)
-    //     setCurrentPage(1); // Reset to first page when filter is applied
-    //     console.log(values)
-    // }
 
     const submitValues = (values) => {
         setFilterValues(values);  // Update the filters from the modal
