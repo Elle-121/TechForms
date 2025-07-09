@@ -2,7 +2,7 @@ import MainContainer from '../../components/MainContainer';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-// TODO fix CSS organization (i.e., class names)
+// TODO Add Timed Resend Button Function
 
 function TwoFactorAuth(){
     let navigate = useNavigate();
@@ -17,46 +17,64 @@ function TwoFactorAuth(){
     }
 
     return (
-        <MainContainer>
+        <MainContainer navVisible={false}>
         <div className="row h-100 m-0">
 
-            <div className="border p-4 h-100 overflow-auto" style={{display: 'flex',justifyContent: 'center',}}>
-                <div className="login-form-container">
-                    <header className="login-form-header">
-                        <h1>Enter Your OTP Code</h1>
-                        <p><em>Enter the OTP we sent to <strong>{dummyData.phoneNumber}</strong></em></p>
+            <div className="h-100" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    top: '50px'}}>
+                <div className="login-container">
+                    <header className="login-header">
+                        <h1 className="login-header__h1">Enter Your OTP Code</h1>
+                        <p>Enter the OTP we sent to <strong>{dummyData.phoneNumber}</strong></p>
                     </header>
 
-                    <form action='' method='get' className='login-form'> {/* TODO fill in action and method attributes */}
-                        <div className='form-row'>
-                            <input id='otp1' name='otp1' type='number'
-                                placeholder="0"/>
-                            <input id='otp2' name='otp2' type='number'
-                                placeholder="0"/>
-                            <input id='otp3' name='otp3' type='number'
-                                placeholder="0"/>
-                            <input id='otp4' name='otp4' type='number'
-                                placeholder="0"/>
-                            <input id='otp5' name='otp5' type='number'
-                                placeholder="0"/>
-                            <input id='otp6' name='otp6' type='number'
-                                placeholder="0"/>
+                    <form action='' method='get' className="login-form"> {/* TODO fill in action and method attributes */}
+                        <fieldset className='form-row'>
+                            <div className="otp-input">
+                                <input className="otp-input__number" id='otp1'
+                                    name='otp1' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                                <input className="otp-input__number" id='otp2'
+                                    name='otp2' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                                <input className="otp-input__number" id='otp3'
+                                    name='otp3' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                                <input className="otp-input__number" id='otp4'
+                                    name='otp4' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                                <input className="otp-input__number" id='otp5'
+                                    name='otp5' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                                <input className="otp-input__number" id='otp6'
+                                    name='otp6' type='text' placeholder="0"
+                                    maxlength="1" size="1"/>
+                            </div>
+                            {/* FIXME the input boxes should go to next*/}
+
+                            <legend className="form-legend">
+                                Resend available in <strong>{dummyData.timeTillOTP}
+                                </strong> seconds. {/* TODO Format Time */}
+                                <button type="button" className="login-form__link">Resend OTP</button>
+                            </legend>
+
+                        </fieldset>
+
+                        <div className="button-row">
+                            <Link to="/reset-password" className="button-row__button
+                            button-row__button--negate">Back</Link>
+                            <button type="submit" className="button-row__button button-row__button--affirm"
+                            onClick={handleSubmit}>Reset</button>
                         </div>
-
-                        <p>Resend available in {dummyData.timeTillOTP} seconds</p>
-                        <button type="button">Resend OTP</button>
-
-                        <div className='form-row'>
-                            <Link to="/reset-password" className="button-neg">Back</Link>
-                            <button type="submit" className="button-affirm" onClick={handleSubmit}>Reset</button>
-                        </div>
-
-                        
                     </form>
                 </div>
             </div>
 
         </div>
+     
 
          </MainContainer>
     );

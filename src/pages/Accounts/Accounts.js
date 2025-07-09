@@ -5,15 +5,17 @@ import MainContainer from "../../components/MainContainer";
 import SearchBar from "../../components/SearchBar";
 import Pagination from '../../components/Pagination';
 import AccountList from "./AccountList";
+import EditForm from "./components/EditForm";
 
 // data
 import { dummyData } from "./dummyData";
 import RegisterForm from './components/RegisterForm';
-import { set } from "react-hook-form";
 
 export default function Accounts(){
 
-    const [formView, setFormView] = useState(false)
+    const [formView, setFormView] = useState(false);
+    const [editView, setEditView] = useState(false);
+    const [accountId, setAccountId] = useState(false);
     
     const openFormView = () => {
         setFormView(true);
@@ -59,7 +61,8 @@ export default function Accounts(){
                     <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
 
-                <AccountList data={paginatedRequests}/>
+                <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} />
+                <EditForm view={editView} setEditView={setEditView} data={dummyData[accountId]} />
 
                 <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
