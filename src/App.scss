@@ -101,16 +101,16 @@
 
   // TODO: Add variable for this red
   &--red {
-    background-color: #ee3737;
+    background-color: #DC3545;
 
     &:hover {
-      background-color: #be1d1d;
+      background-color: #C82333;
     }
 
     &:active {
       background-color: white;
-      color: #ee3737;
-      border-color: #ee3737;
+      color: #DC3545;
+      border-color: #DC3545;
     }
   }
 
@@ -212,6 +212,10 @@
   &:hover {
     fill: var(--tforange-color)
   }
+}
+
+.modal {
+  z-index: 1050;
 }
 
 /* Notifications Button */

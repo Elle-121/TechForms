@@ -3,6 +3,7 @@ import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { departments } from "../../Home/components/filterData";
+import DeleteModal from "./DeleteModal";
 
 export default function EditForm({view, setEditView, data}) {
 
@@ -50,6 +51,11 @@ export default function EditForm({view, setEditView, data}) {
         reset();
     }
 
+    const [deleteView, setDeleteView] = useState(false);
+    const handleDelete = () => {
+        setDeleteView(true);
+    }
+
     // Reset Edit Form after succesful form submission
     useEffect(() => {
         reset();
@@ -62,7 +68,7 @@ export default function EditForm({view, setEditView, data}) {
 
     return ( 
 
-        <Modal show={view} size="lg" className="form-modal">
+        <Modal show={view} size="lg" centered className="form-modal">
             <Modal.Body className="my-4">
                 <div className="tf-form-title mt-2 mb-4">
                     <h1 className="tf-header text-black">Edit User</h1>
@@ -290,7 +296,8 @@ export default function EditForm({view, setEditView, data}) {
                             <div className="d-flex justify-content-between w-100">
                                 <button type="button" className="btn-pill btn-pill--cancel" onClick={handleCancel}>Cancel</button>
                                 <div className="d-flex gap-2">
-                                    <button type="button" className="btn-pill btn-pill--red">Delete</button>
+                                    <button type="button" className="btn-pill btn-pill--red" onClick={handleDelete}>Delete</button>
+                                    <DeleteModal view={deleteView} setView={setDeleteView} />
                                     <button type="submit" className='btn-pill btn-pill--orange'>Submit</button>
                                 </div>
                             </div>
