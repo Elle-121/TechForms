@@ -56,6 +56,8 @@ function Home() {
     // Calendar Date Ranges
     const [dateRange, setDateRange] = useState([null, null]);
     const [dateType, setDateType] = useState('');
+
+    // Filter Status
     const [statusValue, setStatusValue] = useState('');
 
 
@@ -104,7 +106,7 @@ function Home() {
                         {/* Filter Button */}
                         <button
                             type="button"
-                            onClick={openFilterView}
+                            onClick={() => setFilterView(true)}
                             style={{
                                 background: 'none',
                                 border: 'none',
@@ -149,7 +151,7 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="add-btn position-fixed" onClick={openFormsView} style={{bottom: '20px', right: '20px'}}>+</button>
+        <button className="add-btn position-fixed" onClick={() => setFormsView(true)} style={{bottom: '20px', right: '20px'}}>+</button>
     </MainContainer>
     );
 }
