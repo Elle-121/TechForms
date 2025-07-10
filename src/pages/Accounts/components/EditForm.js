@@ -11,7 +11,7 @@ export default function EditForm({view, setEditView, data}) {
     const [formValues, setFormValues] = useState();
 
     // Initialize form
-    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful, isDirty }, setError, clearErrors } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isDirty }, setError, clearErrors } = useForm({
         defaultValues: {
             firstName: "",
             middleName: "",
@@ -36,7 +36,6 @@ export default function EditForm({view, setEditView, data}) {
             console.log(values);
             setFormValues(values);
             setEditView(false);
-            reset();
         } else {
             setError("formError", {
                 type: "manual",
@@ -45,23 +44,24 @@ export default function EditForm({view, setEditView, data}) {
         }
     }
 
-    // Close and reset Edit Form modal
+    // Reset changes if cancel button is pressed
     const handleCancel = () => {
         setEditView(false);
         reset();
     }
 
+    // Open delete confirmation modal
     const [deleteView, setDeleteView] = useState(false);
     const handleDelete = () => {
         setDeleteView(true);
     }
 
-    // Reset Edit Form after succesful form submission
+    // Reset Edit Form viewing mode is changed
     useEffect(() => {
         reset();
-    }, [isSubmitSuccessful])
+    }, [view])
 
-    // Clear form error
+    // Clear error once change is made to the form
     useEffect(() => {
         clearErrors("formError");
     }, [isDirty])
@@ -297,12 +297,12 @@ export default function EditForm({view, setEditView, data}) {
                                 <button type="button" className="btn-pill btn-pill--cancel" onClick={handleCancel}>Cancel</button>
                                 <div className="d-flex gap-2">
                                     <button type="button" className="btn-pill btn-pill--red" onClick={handleDelete}>Delete</button>
-                                    <DeleteModal view={deleteView} setView={setDeleteView} />
                                     <button type="submit" className='btn-pill btn-pill--orange'>Submit</button>
                                 </div>
                             </div>
                         </div>
                     </Form>
+                    <DeleteModal view={deleteView} setView={setDeleteView} setEditView={setEditView} />
                 </div>
             </Modal.Body>
         </Modal>

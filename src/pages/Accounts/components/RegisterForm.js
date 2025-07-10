@@ -40,7 +40,7 @@ export default function RegisterForm({view, setFormView}) {
 
     return ( 
 
-        <Modal show={view} size="lg" className="form-modal">
+        <Modal show={view} size="lg" className="form-modal" centered>
             <Modal.Body className="my-4">
                 <div className="tf-form-title mt-2 mb-4">
                     <h1 className="tf-header text-black">Register User</h1>
