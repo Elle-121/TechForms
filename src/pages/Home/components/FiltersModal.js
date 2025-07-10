@@ -1,9 +1,19 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { departments, formTypes, status, reasons } from "./filterData";
+import { departments, formTypes, reasons } from "./filterData";
 import { useEffect } from "react";
 
-export default function FiltersModal({view, setFilterView, setFilterValues, setCurrentPage, dateRangeStart, dateRangeEnd, dateType, status, setStatusValue}) {
+export default function FiltersModal({
+    view, 
+    setFilterView, 
+    setFilterValues, 
+    setCurrentPage, 
+    dateRangeStart, 
+    dateRangeEnd, 
+    dateType, 
+    status, 
+    setStatusValue
+}) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -87,13 +97,6 @@ export default function FiltersModal({view, setFilterView, setFilterValues, setC
         setValue("status", '');
     }
 
-    // const submitValues = (values) => {
-    //     setFilterValues(values)
-    //     setStatusValue(values.status)
-    //     setCurrentPage(1); // Reset to first page when filter is applied
-    //     console.log(values)
-    // }
-
     const submitValues = (values) => {
         setFilterValues(values);  // Update the filters from the modal
         setStatusValue(values.status);  // Update the status
@@ -107,7 +110,13 @@ export default function FiltersModal({view, setFilterView, setFilterValues, setC
     return ( 
 
         <Modal show={view} size="lg">
-            <Modal.Body className="mt-2 mb-2">
+            <Modal.Header className="border-bottom-0">
+                <button type='button' className="hover-underline d-flex align-items-center p-0" onClick={()=>setFilterView(false)}>
+                    <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>
+                    <span style={{ color: '#EE9337', fontSize: '14px' }}>Back</span>
+                </button>
+            </Modal.Header>
+            <Modal.Body className="mt-0 mb-2">
                 <div>
                     <Form onSubmit={handleSubmit(submitValues)}>
                         <Row>
