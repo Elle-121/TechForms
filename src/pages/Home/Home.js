@@ -56,7 +56,7 @@ function Home() {
     // Calendar Date Ranges
     const [dateRange, setDateRange] = useState([null, null]);
     const [dateType, setDateType] = useState('');
-    const [statusValue, setStatusValue] = useState('Pending'); // or '' for all
+    const [statusValue, setStatusValue] = useState('');
 
 
     const handleFilterButtonClick = (status) => {
