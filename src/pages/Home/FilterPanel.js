@@ -4,6 +4,7 @@ import bookmarkicon from '../../assets/BookmarkIcon.svg'
 import smallcheckicon from '../../assets/SmallcheckIcon.svg'
 import totalreqicon from '../../assets/TotalReqIcon.svg'
 import rejectedicon from '../../assets/RejectedIcon.svg'
+import dummyData from './dummyData';
 
 
 // Syles for the Cards
@@ -37,29 +38,35 @@ const styles = {
   },
 };
 
-// Request Stats Data
-const requestStats = [
-  { icon: archiveicon, label: 'Total Requests', count: 12 },
-  { icon: bookmarkicon, label: 'Pending Requests', count: 5 },
-  { icon: smallcheckicon, label: 'Approved Requests', count: 7 },
-  { icon: rejectedicon, label: 'Rejected Requests', count: 21 },
-  { icon: totalreqicon, label: 'Requests This Month', count: 3 },
 
+// Request Stats Data
+const totalCount = dummyData.length;
+const pendingCount = dummyData.filter(req => req.status === 'Pending').length;
+const approvedCount = dummyData.filter(req => req.status === 'Approved').length;
+const rejectedCount = dummyData.filter(req => req.status === 'Rejected').length;
+
+const requestStats = [
+  { icon: archiveicon, label: 'Total Requests', count: totalCount },
+  { icon: bookmarkicon, label: 'Pending Requests', count: pendingCount },
+  { icon: smallcheckicon, label: 'Approved Requests', count: approvedCount },
+  { icon: rejectedicon, label: 'Rejected Requests', count: rejectedCount },
+  // { icon: totalreqicon, label: 'Requests This Month', count: 3 },
 ];
 
-function onFilter(filter) {
-    return;
-  }
+// function onFilter(filter) {
+//     return;
+//   }
 
 // Functions -- Filter Card and Filter Panels
 // FilterCard component
-function FilterCard({ icon, label, count, onClick }) {
+function FilterCard({ icon, label, count, onClick, active }) {
     const [hovered, setHovered] = useState(false);
   
-    const cardStyle = hovered
+    // Apply hover style if hovered OR active
+    const cardStyle = (hovered || active)
       ? { ...styles.card, ...styles.hover }
       : styles.card;
-    const countStyle = hovered
+    const countStyle = (hovered || active)
       ? { ...styles.count, color: '#fff' }
       : styles.count;
   
@@ -70,30 +77,40 @@ function FilterCard({ icon, label, count, onClick }) {
         onMouseLeave={() => setHovered(false)}
         onClick={onClick} 
       >
-        <img src={icon}
+        <img 
+          src={icon}
           style={{
-              filter: hovered ? 'brightness(0) invert(1)' : 'none',
-              transition: 'filter 0.3s',
-              marginBottom: '0.5rem',
-              height: '32px', 
-          }}/>
+            filter: (hovered || active) ? 'brightness(0) invert(1)' : 'none',
+            transition: 'filter 0.3s',
+            marginBottom: '0.5rem',
+            height: '32px',
+          }}
+          alt={label}
+        />
         <div style={styles.label}>{label}</div>
         <div style={countStyle}>{count}</div>
       </div>
     );
   }
   
-  function FilterPanels({activeFilter }) {
-    const filterKeys = ['ALL', 'Pending', 'Approved', 'Rejected', 'ThisMonth'];
+  function FilterPanels({activeFilter, setActiveFilter, statusValue, handleFilterButtonClick }) {
+
+    console.log('activeFilter:', activeFilter, 'statusValue:', statusValue);
+
+    const filterKeys = ['', 'Pending', 'Approved', 'Rejected'];
     return (
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
         {requestStats.map((stat, idx) => (
             <div style={{ flex: 1 }} key={stat.label}>
-            <FilterCard
-              {...stat}
-              active={activeFilter === filterKeys[idx]}
-              onClick={() => onFilter(filterKeys[idx])}
-            />
+              <FilterCard
+                {...stat}
+                onClick={() => {
+                  setActiveFilter(filterKeys[idx]);
+                  if (handleFilterButtonClick) handleFilterButtonClick(filterKeys[idx]);
+                }}              
+                active={activeFilter === filterKeys[idx]}
+
+                />
           </div>
         ))}
       </div>
@@ -101,4 +118,3 @@ function FilterCard({ icon, label, count, onClick }) {
   }
   export default FilterPanels;
 
-  
