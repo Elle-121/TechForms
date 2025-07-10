@@ -56,34 +56,39 @@ export default function FiltersModal({
         };
 
         if (dateType && (dateRangeStart || dateRangeEnd)) {
-            console.log("Setting date fields for type:", dateType);
             clearAllDateFields();
             if (dateType === 'submitted') {
                 console.log("Setting submitted date fields");
                 setValue('submitted_start', dateRangeStart ? dateRangeStart.toLocaleDateString('en-CA') : '');
                 setValue('submitted_end', dateRangeEnd ? dateRangeEnd.toLocaleDateString('en-CA') : '');
+                setCurrentPage(1);
             } else if (dateType === 'departure') {
                 console.log("Setting departure date fields");
                 setValue('departure_start', dateRangeStart ? dateRangeStart.toLocaleDateString('en-CA') : '');
                 setValue('departure_end', dateRangeEnd ? dateRangeEnd.toLocaleDateString('en-CA') : '');
+                setCurrentPage(1);
             } else if (dateType === 'return') {
                 console.log("Setting return date fields");
                 setValue('return_start', dateRangeStart ? dateRangeStart.toLocaleDateString('en-CA') : '');
                 setValue('return_end', dateRangeEnd ? dateRangeEnd.toLocaleDateString('en-CA') : '');
+                setCurrentPage(1);
             } else if (dateType === 'business_start') {
                 console.log("Setting start business date fields");
                 setValue('start_business_start', dateRangeStart ? dateRangeStart.toLocaleDateString('en-CA') : '');
                 setValue('start_business_end', dateRangeEnd ? dateRangeEnd.toLocaleDateString('en-CA') : '');
+                setCurrentPage(1);
             } else if (dateType === 'business_end') {
                 console.log("Setting end business date fields");
                 setValue('end_business_start', dateRangeStart ? dateRangeStart.toLocaleDateString('en-CA') : '');
                 setValue('end_business_end', dateRangeEnd ? dateRangeEnd.toLocaleDateString('en-CA') : '');
+                setCurrentPage(1);
             }
         } else if (!dateRangeStart && !dateRangeEnd) {
             // If both dates are cleared, clear all date fields
             clearAllDateFields();
+            setCurrentPage(1);
         }
-    }, [dateRangeStart, dateRangeEnd, dateType, setValue]);
+    }, [dateRangeStart, dateRangeEnd, dateType, setValue, setCurrentPage]);
 
     useEffect(() => {
         if (status){
