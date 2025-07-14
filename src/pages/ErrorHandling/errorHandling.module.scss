@@ -3,13 +3,35 @@
 //     border: 1px red solid;
 // }
 
-.o-error-layout {
+.o-error-layout { // Layouts the main content container within the page
+    outline: 1px red solid;
+
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
-.o-error-container {
+.c-figure {
+    &__image {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+    }
+}
+
+.c-error { // Layouts the inner content
+    outline: 1px red solid; 
+
+    align-items: center;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+
+    &__heading {
+        font-size: 2em;
+        font-weight: bold;
+    }
+    &__message{
+        font-size: 1.2em;
+    }
 }
+
