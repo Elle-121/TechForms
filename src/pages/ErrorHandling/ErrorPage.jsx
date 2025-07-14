@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom";
 import MainContainer from "../../components/MainContainer";
-import "./errorHandling.scss";
+import "./errorHandling.module.scss";
 
 export default function ErrorBoundary() {
   const error = useRouteError();
