@@ -130,6 +130,7 @@ function Home() {
                             dateType={dateType}
                             status={statusValue}
                             setStatusValue={setStatusValue}
+                            setActiveFilter={setActiveFilter}
                         />
                     </div>
                 </div>
