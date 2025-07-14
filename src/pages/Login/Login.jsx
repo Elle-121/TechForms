@@ -14,7 +14,6 @@ function Login(){
 
     return (
         <MainContainer navVisible={false}>
-            
         <div className="row h-100 m-0">
             <div className="col-md-3 col-lg-2"
                 style={{ width: '50%',

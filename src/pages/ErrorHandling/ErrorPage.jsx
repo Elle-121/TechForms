@@ -7,9 +7,8 @@ import errorImage from "../../assets/ErrorPageImage.png";
 
 
 export default function ErrorBoundary() {
-  const error = useRouteError();
-
-  console.error(error);
+    const error = useRouteError();
+    console.error(error);
 
     if (isRouteErrorResponse(error)) {
         if (error.status === 404) {
