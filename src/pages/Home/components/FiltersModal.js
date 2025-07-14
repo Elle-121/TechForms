@@ -12,7 +12,8 @@ export default function FiltersModal({
     dateRangeEnd, 
     dateType, 
     status, 
-    setStatusValue
+    setStatusValue,
+    setActiveFilter
 }) {
 
     const { register, handleSubmit, reset, setValue } = useForm({
@@ -105,7 +106,9 @@ export default function FiltersModal({
     const submitValues = (values) => {
         setFilterValues(values);  // Update the filters from the modal
         setStatusValue(values.status);  // Update the status
+        setActiveFilter(values.status);
         setCurrentPage(1);  // Reset to the first page
+
         // setFilterView(false);  // Close the modal
         console.log(values);
     }
