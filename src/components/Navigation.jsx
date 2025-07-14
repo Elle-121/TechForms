@@ -24,6 +24,8 @@ function Navigation() {
   const userMenuRef = useRef(null);
   const notifMenuRef = useRef(null);
 
+  const notifCount = dummyNotifs.filter(n => !n.read).length
+
   const handleOutsideClick = (e) => {
     if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
       setShowUserMenu(false);
@@ -53,7 +55,38 @@ function Navigation() {
         
         <div ref={notifMenuRef} className={`custom-dropdown-notif ${showNotifMenu ? 'open' : ''}`}>
           <div className="dropdown-toggle" onClick={() => setShowNotifMenu(!showNotifMenu)}>
-            <img src={notificationsIcon} width={icon_size} alt="Display Notifications Button" />
+            {/* <img src={notificationsIcon} width={icon_size} alt="Display Notifications Button" /> */}
+         
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <img src={notificationsIcon} width={icon_size} alt="Display Notifications Button" />
+
+              {/* Notification dot */}
+              {notifCount > 0 && (
+                <span
+                  className="notif-badge"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    transform: 'translate(50%, -50%)',
+                    backgroundColor: 'orange',
+                    color: 'white',
+                    borderRadius: '50%',
+                    padding: '0.2em 0.5em',
+                    fontSize: '0.65rem',
+                    fontWeight: 'bold',
+                    lineHeight: 1,
+                    minWidth: '18px',
+                    textAlign: 'center'
+                  }}
+                >
+                  {notifCount > 99 ? '99+' : notifCount}
+                </span>
+              )}
+            </div>
+          
+          
+          
           </div>
 
           <div className="dropdown-menu" style={{ maxHeight: '500px', overflowY: 'auto', minWidth: '300px' }}>
