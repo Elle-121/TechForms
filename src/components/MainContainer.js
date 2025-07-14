@@ -1,6 +1,3 @@
-// export default MainContainer
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
 import Header from './Header'
 
 const styles = {

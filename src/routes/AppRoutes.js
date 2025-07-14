@@ -11,7 +11,6 @@ import Review from "../pages/Review/Review";
 import TwoFactorAuth from "../pages/Login/TwoFactorAuth";
 import ErrorBoundary from "../pages/ErrorHandling/ErrorPage";
 
-
 const router = createBrowserRouter([ // A JSON formatted route list
   {
     path: "/",
