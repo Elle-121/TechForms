@@ -1,6 +1,6 @@
 import { Container, Navbar } from 'react-bootstrap';
 import './Header.scss';
-import Navigation from './Navigation';
+import NavItems from './NavItems';
 import { Link } from 'react-router-dom';
 
 // Assets
@@ -17,7 +17,7 @@ function Header({ navVisible = true }) {
           <img src={companyIcon} alt="TechFactors Logo" height="50" className="me-2" />
         </Link>
 
-        {navVisible && <Navigation/>}
+        {navVisible && <NavItems/>}
       </Container>
     </Navbar>
   );

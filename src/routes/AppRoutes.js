@@ -15,7 +15,7 @@ const router = createBrowserRouter([ // A JSON formatted route list
   {
     path: "/",
     Component: Home,
-    ErrorBoundary: ErrorBoundary,
+    ErrorBoundary: ErrorBoundary, // component and handler for errors
   },
   {
     path: "login",

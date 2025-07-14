@@ -1,11 +1,10 @@
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 import MainContainer from "../../components/MainContainer";
 import styles from "./errorHandling.module.scss";
+import Accordion from "../../components/Accordion";
 
+import errorImage from "../../assets/ErrorPageImage.png";
 
-function accordion() {
-    
-}
 
 export default function ErrorBoundary() {
   const error = useRouteError();
@@ -30,26 +29,24 @@ export default function ErrorBoundary() {
         }
     }
     else {
-        error.message = "Error outside of React Router Bounds"
+        error.message = "Error but not a React Router one"
     }
   
 
   return (
     <MainContainer navVisible={false}>
-        <div className={styles['o-error-main']}>
+        <div className={styles['o-error-layout']}>
             <div className={styles['o-error-container']}>
                 <figure>
-                    <img alt="TechForms Error Image"></img>
+                    <img src={errorImage} alt="Funny thing to show error"></img>
                 </figure>
                 <h1>Oops! Sorry, an error has occurred.</h1>
                 <p>{error.message}</p>
-                <div className={styles['o-accordion-main']}>
-                    <div>
-                        <input type="radio"/>
-                        <label>Error Details</label>
-                        <li></li>
-                    </div>
-                </div>
+                <Accordion title="Error Details">
+                    <ul>
+                        <li>{JSON.stringify(error)}</li>
+                    </ul>
+                </Accordion>
             </div>
         </div>
         {/* <div className="row h-100 m-0">

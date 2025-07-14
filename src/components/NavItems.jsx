@@ -11,7 +11,7 @@ import image from '../assets/PNGIcon.svg'
 import dummyNotifs from './dummyNotifs.js'
 
 
-function Navigation() {
+function NavItems() {
   
   // constants
   const icon_size = 30;
@@ -144,4 +144,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default NavItems;

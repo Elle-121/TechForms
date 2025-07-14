@@ -1,6 +1,5 @@
 import MainContainer from "../../components/MainContainer";
-import Calendar from "../Home/Calendar";
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import notifData from './dummyNotifs.js'; 
 import image from '../../assets/PNGIcon.svg'

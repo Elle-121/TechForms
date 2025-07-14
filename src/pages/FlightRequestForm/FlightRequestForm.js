@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 //components
 import MainContainer from '../../components/MainContainer';
@@ -8,9 +9,15 @@ import FlightRequestComponent from './components/FlightRequestComponent';
 
 
 export default function FlightRequestForm() {
+    let navigate = useNavigate();
 
-    const home = async () => {
-        window.location.href = "/";
+    const navigateHome = () => {
+        navigate("/");
+    }
+
+    const navigateBooking = () => {
+        // navigate("/request/:id/booking-details");
+        // TODO Add navigate to associated booking details **page**
     }
 
     return(
@@ -26,14 +33,19 @@ export default function FlightRequestForm() {
                     
                     {/* Back and Proceed Button */}
                     <div className="d-flex justify-content-between align-items-center">
-                        <button type='button' className="hover-underline d-flex align-items-center" onClick={home}>
+                        <button type='button' className="hover-underline d-flex align-items-center"
+                            onClick={navigateHome}>
                             <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>
                             <span style={{ color: '#EE9337', fontSize: '14px' }}>Back</span>
                         </button>
 
-                        <button type='button' className="hover-underline d-flex align-items-center">
+                        <button type='button' className="hover-underline d-flex align-items-center"
+                            onClick={navigateBooking}>
                             <span style={{ color: '#EE9337', fontSize: '14px' }}>Booking Details</span>
                             <i className="bi bi-chevron-right" style={{ fontSize: '18px', color: '#EE9337' }}></i>
+                            {/* TODO Add disappear if no booking details.
+                                Possibly add non-editable version of form.
+                                Possibly improve UI consistency? */}
                         </button>
                     </div>
 
