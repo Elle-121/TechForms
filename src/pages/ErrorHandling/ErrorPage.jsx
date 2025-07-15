@@ -1,4 +1,4 @@
-import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom";
 import MainContainer from "../../components/MainContainer";
 import styles from "./errorHandling.module.scss";
 import Callout from "../../components/Callout";
@@ -35,19 +35,20 @@ export default function ErrorBoundary() {
   return (
     <MainContainer navVisible={false}>
         <div className={styles['o-error-layout']}>
-            <div className={styles['c-error']}>
+            <article className={styles['c-error']}>
                 <figure>
                     <img className={styles['c-figure__image']} src={errorImage}
                         alt="Funny thing to show error"></img>
                 </figure>
                 <h1 className={styles['c-error__heading']}>Oops! Sorry, an error has occurred.</h1>
                 <p className={styles['c-error__message']}>{error.message}</p>
+                <Link to="/">Return Home</Link>
                 <Callout title="Error Details">
                     <ul>
                         <li>{JSON.stringify(error)}</li>
                     </ul>
                 </Callout>
-            </div>
+            </article>
         </div>
     </MainContainer>
   );

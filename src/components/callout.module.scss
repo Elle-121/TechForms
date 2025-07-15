@@ -1,11 +1,19 @@
 
-c-callout {
+.c-callout {
     outline: 1px red solid; 
     display: flex;
-    color: red;
+    flex-direction: column;
 
-    &__header{
-        font-size: 50px;
+    &__toggle {
+        
+    }
+
+    &__header {
+        
+    }
+
+    &__content {
+
     }
 }
 
