@@ -1,19 +1,44 @@
 
+@import '../App.scss';
+
+
+
 .c-callout {
-    outline: 1px red solid; 
-    display: flex;
-    flex-direction: column;
+     
+    // border: 1px var(--tfblue-color) solid;
+    // border-radius: 15px;
+    // box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    // display: flex;
+    // flex-direction: column;
+    // gap: 1rem 0rem;
+    // overflow: hidden; // To make inner header background color curve to border radius
+    // width: 70ch;
+    
 
     &__toggle {
         
     }
 
     &__header {
+        // background-color: var(--tfblue-color-tint-8);
+        // border-bottom: 1px var(--tfblue-color-tint-2) dashed;
+        // cursor: pointer;
+        // padding: 0.75rem 1rem 0.75rem 1rem;
+        &:hover{
+            background-color: var(--tfblue-color-tint-7);
+        }
+    }
+    
+    &__heading {
+        // align-items: center;
+        // cursor: pointer;
+        // display: flex;
+        // font-size: 1.5rem;
+        // gap: 0rem 0.75rem;
         
     }
-
     &__content {
-
+        display: none;
     }
 }
 

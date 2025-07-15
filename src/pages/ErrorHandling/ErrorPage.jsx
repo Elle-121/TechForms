@@ -36,7 +36,7 @@ export default function ErrorBoundary() {
     <MainContainer navVisible={false}>
         <div className={styles['o-error-layout']}>
             <article className={styles['c-error']}>
-                <figure>
+                <figure className={styles['c-figure']}>
                     <img className={styles['c-figure__image']} src={errorImage}
                         alt="Funny thing to show error"></img>
                 </figure>

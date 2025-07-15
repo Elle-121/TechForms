@@ -306,7 +306,7 @@ export default function FiltersModal({
                         <div>
                             <Row>
                                 <Col className="text-end">
-                                    <input className='button-neg ms-2' type='reset' onClick={resetValues} value='Clear'/>                            
+                                    <input className='btn-pill btn-pill--cancel ms-2' type='reset' onClick={resetValues} value='Clear'/>                            
                                     <button className='button-affirm ms-2' type='submit' onClick={()=>setFilterView(false)}>Apply</button>
                                 </Col>
                             </Row>

@@ -3,7 +3,11 @@
 :root {
   --tforange-color: #EE9337;
   --tfblue-color: #033C7C;
-  --tfblue-color-tint-2: #3a6297; // Generated from: https://colorkit.co/color-shades-generator/033c7c/
+  
+  // Generated from: https://colorkit.co/color-shades-generator/033c7c/
+  --tfblue-color-tint-2: #3a6297; 
+  --tfblue-color-tint-7: #b2c2d9;
+  --tfblue-color-tint-8: #cbd6e5;
 
   --tfaffirm-hover: #CF6E0C;
   --tfneg-hover: #EEDBC7;
@@ -28,6 +32,19 @@
   --tf-red-bg: #FFA892;
   --tf-red-dark-bg: #FF5C5C;
 
+}
+
+/* Resets and Remove Styles */
+
+button, input {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+  margin: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 /* Colors Styles */
