@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form';
 
 // components
 import MainContainer from '../../components/MainContainer';
-import BookingForm from '../../components/BookingForm';
+import BookingForm from './components/BookingForm';
 import RejectModal from './components/RejectModal';
 import PreviewFR from './components/PreviewFR';
+import BookingModal from './components/BookingModal';
 
 export default function Review() {
 
@@ -62,7 +63,8 @@ export default function Review() {
                     </div>
                 </Form>
                 <RejectModal view={reject} setView={setReject} />
-                <BookingForm view={formView} setFormView={setFormView} notes={notes}/>
+                {/* <BookingForm view={formView} setFormView={setFormView} notes={notes} /> */}
+                <BookingModal view={formView} setFormView={setFormView} notes={notes} preview={false} /> 
             </div>
 
             {/* Right Content */}
