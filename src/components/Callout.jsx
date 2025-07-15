@@ -1,21 +1,35 @@
+import { useState } from "react";
 import styles from "./callout.module.scss";
 
 // Third Party Components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
+// TODO Fix moving div when expand
+
 export default function Callout({ children, title }) {
-    console.log(styles);
+
+    const [showContent, setShowContent] = useState(false);
+
+    const toggleContent = () => {
+        setShowContent(!showContent);
+    }
+
     return (
         <div className={styles['c-callout']}>
-            <button className={styles['c-callout__header']}>
+            <button className={styles['c-callout__header']} onClick={toggleContent}>
                 <div className={styles['c-callout__heading']}>
-                    <FontAwesomeIcon icon={faChevronRight}
-                        className={styles['c-callout__toggle']}/>
                     <span>{title}</span>
+                    <FontAwesomeIcon icon={faChevronRight}
+                        className={
+                            showContent ? styles['c-callout__toggle--reveal'] :
+                            styles['c-callout__toggle']
+                        }/>
                 </div>
             </button>
-            <article className={styles['c-callout__content']}>
+            <article className={
+                showContent ? styles['c-callout__content--reveal'] : styles['c-callout__content']
+                }>
                 {children}
             </article>
         </div>

@@ -41,8 +41,7 @@ export default function ErrorBoundary() {
                         alt="Funny thing to show error"></img>
                 </figure>
                 <h1 className={styles['c-error__heading']}>Oops! Sorry, an error has occurred.</h1>
-                <p className={styles['c-error__message']}>{error.message}</p>
-                <Link to="/">Return Home</Link>
+                <p className={styles['c-error__message']}>{error.message} <Link to="/">Return Home</Link></p>
                 <Callout title="Error Details">
                     <ul>
                         <li>{JSON.stringify(error)}</li>
