@@ -2,7 +2,6 @@ import MainContainer from '../../components/MainContainer';
 import { Link, useNavigate } from 'react-router-dom';
 import loginImage from "../../assets/LoginImage.jpeg"
 
-// TODO: Separate Logo and NavBar
 // TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
 
 function Login(){
@@ -15,8 +14,6 @@ function Login(){
 
     return (
         <MainContainer navVisible={false}>
-        {/* TODO Modify Header to remove navbar portion  */}
-        <Link to="/nothing">Test Error Page</Link>
         <div className="row h-100 m-0">
             <div className="col-md-3 col-lg-2"
                 style={{ width: '50%',
@@ -57,8 +54,8 @@ function Login(){
                                 placeholder="Enter password"
                                 className="form-row__input-text"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <Link to="/reset-password" className="login-form__link
-                            login-text--small">Forgot your password?</Link>
+                            <Link to="/reset-password" className="login-text--small">
+                                Forgot your password?</Link>
                         </div>
 
                         <div className='button-row'>

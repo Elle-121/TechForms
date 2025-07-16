@@ -1,5 +1,5 @@
 // export default Home;
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';

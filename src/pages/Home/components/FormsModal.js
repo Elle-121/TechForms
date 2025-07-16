@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Modal } from "react-bootstrap";
 import { forms } from "./filterData";
+import { useNavigate } from 'react-router-dom';
 
 //component
 import SearchBar from '../../../components/SearchBar';
 
 export default function FormsModal({view, setFormsView}) {
+    let navigate = useNavigate();
 
     const closeFormsView = () => {
         setFormsView(false);
@@ -38,7 +40,7 @@ export default function FormsModal({view, setFormsView}) {
                     {
                         filteredForms.map(item => 
                             <div className="d-flex justify-content-center">
-                                <button className="forms-modal-option w-50 mt-2 mb-2" onClick={async () => {window.location.href = item.route}}>{item.name}</button>
+                                <button className="forms-modal-option w-50 mt-2 mb-2" onClick={async () => { navigate(item.route) } }>{item.name}</button>
                             </div>
                         )
                     }
