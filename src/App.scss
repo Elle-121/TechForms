@@ -47,6 +47,23 @@ button, input {
 	outline: inherit;
 }
 
+/* Globals */
+
+a {
+  text-decoration: none;
+  text-align: right;
+  font-weight: bold;
+  color: var(--tfblue-color);
+
+  // Reset Button Stylings
+  background-color: inherit;
+  border: none;
+
+  &:hover {
+    color:var(--tfblue-color-tint-2);
+  }
+}
+
 /* Colors Styles */
 .text-tforange {color: var(--tforange-color);}
 .text-tfblue {color: var(--tfblue-color);}
@@ -803,22 +820,6 @@ button, input {
   &:invalid{
       border: 1px solid #D55C5F;
       color: #D55C5F;
-  }
-}
-
-
-.login-form__link {
-  text-decoration: none;
-  text-align: right;
-  font-weight: bold;
-  color: var(--tfblue-color);
-
-  // Reset Button Stylings
-  background-color: inherit;
-  border: none;
-
-  &:hover {
-    color:var(--tfblue-color-tint-2);
   }
 }
 

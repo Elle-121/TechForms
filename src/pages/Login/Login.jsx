@@ -54,8 +54,8 @@ function Login(){
                                 placeholder="Enter password"
                                 className="form-row__input-text"/>
                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-                            <Link to="/reset-password" className="login-form__link
-                            login-text--small">Forgot your password?</Link>
+                            <Link to="/reset-password" className="login-text--small">
+                                Forgot your password?</Link>
                         </div>
 
                         <div className='button-row'>
