@@ -47,9 +47,14 @@ button, input {
 	outline: inherit;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 /* Globals */
 
-a {
+.link { // 
   text-decoration: none;
   text-align: right;
   font-weight: bold;
