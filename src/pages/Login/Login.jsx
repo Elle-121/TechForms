@@ -15,18 +15,19 @@ import styles from "./login.module.scss";
 const schemaValidator = z.object({
     username: z.email(
         {
-            error: "Oops this is not an email address",
+            message: "Oops this is not an email address",
         }
     ),
     password: z.string(
         {
-            error: "This doesn't seem right..."
+            message: "This doesn't seem right..."
         }).min(1,
         {
-            error: "It's empty!"
+            message: "It's empty!"
         }
         ),
 });
+
 
 function Login(){
     let navigate = useNavigate();
@@ -48,7 +49,6 @@ function Login(){
             
         }
     }
-
     return (
         <MainContainer navVisible={false}>
         <div className="row h-100 m-0">
@@ -77,8 +77,8 @@ function Login(){
                             Manage all your TechFactors forms right here!</p>
                     </header>
 
-                    <form action='' method='get' className={styles['login-form']}
-                        onSubmit={handleSubmit(onSubmit)}> {/* TODO fill in action and method attributes */}
+                    <form className={styles['login-form']}
+                        onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles['form-row']}>
                             <label htmlFor='username'>Username / TechFactors Email
                                 {errors.username && (
@@ -89,10 +89,10 @@ function Login(){
                                 placeholder="Enter Username or TechFactors email"
                                 className={styles["form-row__input-text"]}
                                 {...register("username")}/>
-                            {errors.username && (<p>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                            <span className={styles['error-text']}>&nbsp;{errors.username.message}</span>
-                            </p>)} 
+                            <p style={{ visibility: errors.username ? 'visible' : 'hidden' }}>
+                                <FontAwesomeIcon icon={faTriangleExclamation} />
+                                <span className={styles['error-text']}>&nbsp;{errors.username?.message}</span>
+                            </p>
                         </div>
                         <div className={styles['form-row']}>
                             <label htmlFor='password'>Password
@@ -104,10 +104,10 @@ function Login(){
                                 placeholder="Enter password"
                                 className={styles["form-row__input-text"]}
                                 {...register("password")}/>
-                            {errors.password && (<p>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                            <span className={styles['error-text']}>&nbsp;{errors.password.message}</span>
-                            </p>)}                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
+                            <p style={{ visibility: errors.password ? 'visible' : 'hidden' }}>
+                                <FontAwesomeIcon icon={faTriangleExclamation} />
+                                <span className={styles['error-text']}>&nbsp;{errors.password?.message}</span>
+                            </p>                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
                             <Link to="/reset-password" className={styles["login-form__link"]}>
                                 Forgot your password?</Link>
                         </div>
@@ -117,10 +117,10 @@ function Login(){
                             disabled={isSubmitting}>Log In</button>
                         </div>
                         {errors.root && (
-                            <div>{errors.root.message}</div>
+                            <div>{errors.root?.message}</div>
                         )}
 
-                        
+            
                     </form>
                 </div>
             </div>
