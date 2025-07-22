@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Modal } from "react-bootstrap";
 import { forms } from "./filterData";
+import { useNavigate } from 'react-router-dom';
 
 //component
 import SearchBar from '../../../components/SearchBar';
 
 export default function FormsModal({view, setFormsView}) {
+    let navigate = useNavigate();
 
     const closeFormsView = () => {
         setFormsView(false);
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
     const [searchValue, setSearchValue] = useState('');
 
     // Filter the forms based on searchValue
@@ -20,7 +21,7 @@ export default function FormsModal({view, setFormsView}) {
     );
 
     return ( 
-        <Modal show={view} size='lg'>
+        <Modal show={view} size='lg' centered>
             <Modal.Header style={{borderBottom:'none'}}>
                 {/* Back Button */}
                 <div className="position-relative w-100">
@@ -34,12 +35,12 @@ export default function FormsModal({view, setFormsView}) {
 
             <Modal.Body>
                 <div className="d-flex justify-content-center">
-                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
+                    <SearchBar setSearchValue={setSearchValue} setCurrentPage={()=>{}}/>
                 </div>
                     {
                         filteredForms.map(item => 
                             <div className="d-flex justify-content-center">
-                                <button className="forms-modal-option w-50 mt-2 mb-2" onClick={async () => {window.location.href = item.route}}>{item.name}</button>
+                                <button className="forms-modal-option w-50 mt-2 mb-2" onClick={async () => { navigate(item.route) } }>{item.name}</button>
                             </div>
                         )
                     }

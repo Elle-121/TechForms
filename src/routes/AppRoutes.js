@@ -10,13 +10,13 @@ import FlightRequestForm from "../pages/FlightRequestForm/FlightRequestForm";
 import Review from "../pages/Review/Review";
 import TwoFactorAuth from "../pages/Login/TwoFactorAuth";
 import ErrorBoundary from "../pages/ErrorHandling/ErrorPage";
-
+import BookingDetails from "../pages/BookingDetails/BookingDetails";
 
 const router = createBrowserRouter([ // A JSON formatted route list
   {
     path: "/",
     Component: Home,
-    ErrorBoundary: ErrorBoundary,
+    ErrorBoundary: ErrorBoundary, // component and handler for errors
   },
   {
     path: "login",
@@ -49,6 +49,10 @@ const router = createBrowserRouter([ // A JSON formatted route list
   {
     path: "review",
     Component: Review,
+  },
+  {
+    path: "booking-details",
+    Component: BookingDetails,
   },
 ]);
 

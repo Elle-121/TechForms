@@ -6,7 +6,7 @@ import MainContainer from '../../components/MainContainer';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../../components/Pagination'; // Assuming you have a Pagination component
 import RequestList from './RequestList'; // Assuming you have a RequestList component
-import FilterPanel from './FilterPanel'; // Assuming you have a FilterPanel component
+import FilterPanels from './FilterPanel'; // Assuming you have a FilterPanel component
 import Calendar from './Calendar';
 
 // Popup Modal
@@ -20,17 +20,9 @@ import filterData from './components/FilterFunction.js';
 import dummyData from './dummyData';
 
 function Home() {
-    // Function to open the forms modal
+    // Forms and Filters Modal
     const [formsView, setFormsView] = useState(false)
-    const openFormsView = () => {
-        setFormsView(true);
-    }
-
-    // Function to open the filter view
     const [filterView, setFilterView] = useState(false)
-    const openFilterView = () => {
-        setFilterView(true);
-    }
 
     // State for pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -56,8 +48,10 @@ function Home() {
     // Calendar Date Ranges
     const [dateRange, setDateRange] = useState([null, null]);
     const [dateType, setDateType] = useState('');
-    const [statusValue, setStatusValue] = useState('');
 
+    // Filter Status
+    const [statusValue, setStatusValue] = useState('');
+    const [activeFilter, setActiveFilter] = useState('');
 
     const handleFilterButtonClick = (status) => {
         setStatusValue(status);
@@ -80,8 +74,9 @@ function Home() {
             <div className="p-4 h-100 overflow-auto " style={{width: '70%',display: 'flex',flexDirection: 'column',}}>
              
                 {/* Filters */}
-                {/* <FilterPanel /> */}
-                <div className='mb-3 d-flex gap-2'>
+                <FilterPanels activeFilter={activeFilter} setActiveFilter={setActiveFilter} statusValue={statusValue} handleFilterButtonClick={handleFilterButtonClick}/>
+
+                {/* <div className='mb-3 d-flex gap-2'>
                     {["","Pending", "Approved", "Rejected", "Requests this Month"].map((status) => (
                         <button key={status}          
                                 className={`btn ${statusValue === status ? 'btn-warning' : 'btn-outline-warning'}`}
@@ -90,7 +85,7 @@ function Home() {
                         </button>
                     ))
                     }
-                </div>
+                </div> */}
 
                 {/* Header - Requests + Searchbar + Filter */}
                 <div
@@ -104,7 +99,7 @@ function Home() {
                         {/* Filter Button */}
                         <button
                             type="button"
-                            onClick={openFilterView}
+                            onClick={() => setFilterView(true)}
                             style={{
                                 background: 'none',
                                 border: 'none',
@@ -135,6 +130,7 @@ function Home() {
                             dateType={dateType}
                             status={statusValue}
                             setStatusValue={setStatusValue}
+                            setActiveFilter={setActiveFilter}
                         />
                     </div>
                 </div>
@@ -149,7 +145,7 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="add-btn position-fixed" onClick={openFormsView} style={{bottom: '20px', right: '20px'}}>+</button>
+        <button className="add-btn position-fixed" onClick={() => setFormsView(true)} style={{bottom: '20px', right: '20px'}}>+</button>
     </MainContainer>
     );
 }

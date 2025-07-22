@@ -1,19 +1,26 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-// Actions linked to each status as well as their icons and classes
-const statusActions = {
-    Draft:  [{ label: 'Edit', icon: 'bi-pencil', className: 'text-tforange' }],
-    Pending:[{ label: 'View Details', icon: 'bi-eye', className: 'text-tforange' }],
-    Rejected: [{ label: 'Resubmit', icon: 'bi-pencil', className: 'text-tforange' }],
-    Approved: [
-        { label: 'View Details', icon: 'bi-eye', className: 'text-tforange' },
-        { label: 'View Booking', icon: 'bi-journal-bookmark', className: 'text-tfblue' }
-      ]
-}
+import { useNavigate } from 'react-router-dom';
 
 function BookingList({data}) {
+    let navigate = useNavigate();
+
+    const viewBooking = () => {
+        navigate("/booking-details")
+    }
+
+    // Actions linked to each status as well as their icons and classes
+    const statusActions = {
+        Draft:  [{ label: 'Edit', icon: 'bi-pencil', className: 'text-tforange', onClick: '' }],
+        Pending:[{ label: 'View Details', icon: 'bi-eye', className: 'text-tforange', onClick: '' }],
+        Rejected: [{ label: 'Resubmit', icon: 'bi-pencil', className: 'text-tforange', onClick: '' }],
+        Approved: [
+            { label: 'View Details', icon: 'bi-eye', className: 'text-tforange', onClick: '' },
+            { label: 'View Booking', icon: 'bi-journal-bookmark', className: 'text-tfblue', onClick: viewBooking }
+        ]
+    }
+
+
   return (
     <div style={{ overflowY: 'auto' }} className=" border-black">
     {data.map((item) => (
@@ -49,6 +56,7 @@ function BookingList({data}) {
                     key={idx}
                     className={`btn btn-sm ${action.className} d-flex align-items-center`}
                     style={{ fontSize: '0.85rem', padding: '0px 5px' }}
+                    onClick={action.onClick}
                 >
                     <i className={`bi ${action.icon} me-1`}></i> {action.label}
                 </button>
