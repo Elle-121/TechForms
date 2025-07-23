@@ -38,5 +38,5 @@ export default class FlierAPI extends Base {
     //         method: 'GET',
     //     })
     // }
-
-        }
+    
+}
