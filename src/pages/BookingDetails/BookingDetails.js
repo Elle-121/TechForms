@@ -1,11 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //components
 import MainContainer from '../../components/MainContainer';
 import BookingForm from '../../components/BookingForm';
-import { useNavigate } from 'react-router-dom';
 
 export default function BookingDetails() {
 
@@ -15,7 +14,6 @@ export default function BookingDetails() {
     
     const handleBack = () => {
         navigate("/flight-request-form");
-
     }
 
     return(
@@ -37,7 +35,7 @@ export default function BookingDetails() {
 
                     </div>
 
-                    <BookingForm view={formView} setFormView={setFormView} notes={""} preview={true} />
+                    <BookingForm view={formView} setFormView={setFormView} preview={true}/>
                 </Col>
 
                 {/*Right Content Additional Form Content Goes Here*/}
