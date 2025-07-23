@@ -106,3 +106,18 @@ export const forms = [
         "route": "/grievance-form"
     },
 ]
+
+export const approver = [
+    {
+        "name": "ARC"
+    },
+    {
+        "name": "JDLC"
+    },
+    {
+        "name": "ATP"
+    },
+    {
+        "name": "DFS"
+    }
+]
