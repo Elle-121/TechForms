@@ -4,7 +4,7 @@ export default class FormTypeAPI extends Base {
     
     addFormType = async (data) => {
         return this.sendRequest({
-            path: '/api/v1/form_type/create',
+            path: '/api/v1/form_type',
             method: 'POST',
             data
         })

@@ -1,11 +1,11 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useApprovers } from '../../../context/ApproversContext';
 import { useDepartments } from '../../../context/DepartmentsContext';
 import { usePurposeOfTravel } from '../../../context/PurposeOfTravelContext';
 import { useStatusType } from "../../../context/StatusContext";
-import { useFormType } from "../../../context/FormTypeContext";
+// import { useFormType } from "../../../context/FormTypeContext";
 
 export default function FiltersModal({
     view, 
@@ -25,7 +25,7 @@ export default function FiltersModal({
     const { departments, departmentsLoading, departmentsError } = useDepartments();
     const { purposes, purposesLoading, purposesError } = usePurposeOfTravel();
     const { statusTypes, statusTypeLoading, statusTypeError } = useStatusType();
-    const { formTypes, formTypeLoading, formTypeError } = useFormType();
+    // const { formTypes, formTypeLoading, formTypeError } = useFormType();
     
 
     const { register, handleSubmit, reset, setValue } = useForm({
@@ -176,7 +176,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
                                     <Form.Select {...register("form_type")}>
                                         <option value=''>Select Form Type</option>
-                                        {
+                                        {/* {
                                             formTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : (
@@ -184,7 +184,7 @@ export default function FiltersModal({
                                                     <option value={item.form_name}>{item.form_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>

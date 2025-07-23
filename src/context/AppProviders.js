@@ -2,7 +2,7 @@ import { ApproversProvider } from "./ApproversContext";
 import { DepartmentsProvider } from "./DepartmentsContext";
 import { PurposeOfTravelProvider } from "./PurposeOfTravelContext";
 import { StatusTypeProvider } from "./StatusContext";
-import { FormTypeProvider } from "./FormTypeContext";   
+// import { FormTypeProvider } from "./FormTypeContext";   
 
 const AppProviders = ({ children }) => {
     return (
@@ -10,9 +10,9 @@ const AppProviders = ({ children }) => {
             <DepartmentsProvider>
                 <PurposeOfTravelProvider>
                     <StatusTypeProvider>
-                        <FormTypeProvider>
+                        {/* <FormTypeProvider> */}
                             {children}
-                        </FormTypeProvider>
+                        {/* </FormTypeProvider> */}
                     </StatusTypeProvider>
                 </PurposeOfTravelProvider>
             </DepartmentsProvider>

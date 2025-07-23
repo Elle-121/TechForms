@@ -4,7 +4,7 @@ export default class StatusTypeAPI extends Base {
     
     addStatusType = async (data) => {
         return this.sendRequest({
-            path: '/api/v1/status_type/create',
+            path: '/api/v1/status_type',
             method: 'POST',
             data
         })
