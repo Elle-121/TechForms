@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3002/api-docs/"
+const BASE_URL = "http://localhost:3002"
 export default class Base {
   sendRequest = async ({path, method = 'GET', data = {}, base, headers}) => {
     let url = base ? base + path : BASE_URL + path;
