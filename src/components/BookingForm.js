@@ -26,7 +26,7 @@ export default function BookingForm({view, setFormView, preview, notes}) {
 
     // Get booking details by id
     const getBookingDetails = async(id) => {
-        const response = await new BookingDetailsAPI().getBookingDetailsById(id)
+        const response = await new BookingDetailsAPI().getBookingDetails(id)
         if (response?.ok) {
             reset(response.data)
         } else console.log(response.statusMessage)
@@ -34,7 +34,7 @@ export default function BookingForm({view, setFormView, preview, notes}) {
 
     // Submit booking details
     const submitBookingDetails = async(values) => {
-        const response = await new BookingDetailsAPI().submitBookingDetails(values)
+        const response = await new BookingDetailsAPI().addBookingDetails(values)
         if (response?.ok) {
             console.log("Booking Details submitted!")
         } else console.log(response.statusMessage)
