@@ -10,6 +10,13 @@ export default class PurposeOfTravelAPI extends Base {
         })
     }
 
+    getAllPurposeOFTravel = async () => {
+        return this.sendRequest({
+            path: `/api/v1/purpose_of_travel/all`,
+            method: 'GET',
+        })
+    }
+
     getPurposeOFTravel = async (purpose_id) => {
         return this.sendRequest({
             path: `/api/v1/purpose_of_travel/${purpose_id}`,
@@ -31,12 +38,5 @@ export default class PurposeOfTravelAPI extends Base {
                     method: 'DELETE',
                 })
             }
-            
-    // getAllPurposeOFTravel = async () => {
-    //     return this.sendRequest({
-    //         path: `/api/v1/purpose_of_travel/all`,
-    //         method: 'GET',
-    //     })
-    // }
 
 }

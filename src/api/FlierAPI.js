@@ -10,6 +10,13 @@ export default class FlierAPI extends Base {
         })
     }
 
+    getAllFlier = async () => {
+        return this.sendRequest({
+            path: `/api/v1/flier/all`,
+            method: 'GET',
+        })
+    }
+
     getFlier = async (flier_id) => {
         return this.sendRequest({
             path: `/api/v1/flier/${flier_id}`,
@@ -31,12 +38,5 @@ export default class FlierAPI extends Base {
                     method: 'DELETE',
                 })
             }
-            
-    // getAllFlier = async () => {
-    //     return this.sendRequest({
-    //         path: `/api/v1/flier/all`,
-    //         method: 'GET',
-    //     })
-    // }
-    
+
 }

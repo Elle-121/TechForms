@@ -10,6 +10,13 @@ export default class RequestAPI extends Base {
         })
     }
 
+    getAllRequest = async () => {
+        return this.sendRequest({
+            path: `/api/v1/request/all`,
+            method: 'GET',
+        })
+    }
+
     getRequest = async (request_id) => {
         return this.sendRequest({
             path: `/api/v1/request/${request_id}`,
@@ -31,12 +38,5 @@ export default class RequestAPI extends Base {
                     method: 'DELETE',
                 })
             }
-            
-    // getAllRequest = async () => {
-    //     return this.sendRequest({
-    //         path: `/api/v1/request/all`,
-    //         method: 'GET',
-    //     })
-    // }
-
+    
 }
