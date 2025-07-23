@@ -25,18 +25,18 @@ export default class PurposeOfTravelAPI extends Base {
     }
     
     updatePurposeOFTravel = async (purpose_id, data) => {
-            return this.sendRequest({
-                    path: `/api/v1/purpose_of_travel/${purpose_id}`,
-                    method: 'PUT',
-                    data
-                })
+        return this.sendRequest({
+            path: `/api/v1/purpose_of_travel/${purpose_id}`,
+            method: 'PUT',
+            data
+        })
     }
 
     deletePurposeOFTravel = async (purpose_id) => {
-            return this.sendRequest({
-                    path: `/api/v1/purpose_of_travel/${purpose_id}`,
-                    method: 'DELETE',
-                })
-            }
+        return this.sendRequest({
+            path: `/api/v1/purpose_of_travel/${purpose_id}`,
+            method: 'DELETE',
+        })
+    }
 
 }

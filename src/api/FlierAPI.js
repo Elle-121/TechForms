@@ -25,18 +25,18 @@ export default class FlierAPI extends Base {
     }
     
     updateFlier = async (flier_id, data) => {
-            return this.sendRequest({
-                    path: `/api/v1/flier/${flier_id}`,
-                    method: 'PUT',
-                    data
-                })
+        return this.sendRequest({
+            path: `/api/v1/flier/${flier_id}`,
+            method: 'PUT',
+            data
+        })
     }
 
     deleteFlier = async (flier_id) => {
-            return this.sendRequest({
-                    path: `/api/v1/flier/${flier_id}`,
-                    method: 'DELETE',
-                })
-            }
+        return this.sendRequest({
+            path: `/api/v1/flier/${flier_id}`,
+            method: 'DELETE',
+        })
+    }
 
 }

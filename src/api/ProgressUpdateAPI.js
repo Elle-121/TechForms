@@ -25,18 +25,18 @@ export default class ProgressUpdateAPI extends Base {
     }
     
     updateProgressUpdate = async (update_id, data) => {
-            return this.sendRequest({
-                    path: `/api/v1/progress_update/${update_id}`,
-                    method: 'PUT',
-                    data
-                })
+        return this.sendRequest({
+            path: `/api/v1/progress_update/${update_id}`,
+            method: 'PUT',
+            data
+        })
     }
 
     deleteProgressUpdate = async (update_id) => {
-            return this.sendRequest({
-                    path: `/api/v1/progress_update/${update_id}`,
-                    method: 'DELETE',
-                })
-            }
+        return this.sendRequest({
+            path: `/api/v1/progress_update/${update_id}`,
+            method: 'DELETE',
+        })
+    }
 
 }

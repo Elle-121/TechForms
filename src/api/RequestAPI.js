@@ -25,18 +25,18 @@ export default class RequestAPI extends Base {
     }
     
     updateRequest = async (request_id, data) => {
-            return this.sendRequest({
-                    path: `/api/v1/request/${request_id}`,
-                    method: 'PUT',
-                    data
-                })
+        return this.sendRequest({
+            path: `/api/v1/request/${request_id}`,
+            method: 'PUT',
+            data
+        })
     }
 
     deleteRequest = async (request_id) => {
-            return this.sendRequest({
-                    path: `/api/v1/request/${request_id}`,
-                    method: 'DELETE',
-                })
-            }
+        return this.sendRequest({
+            path: `/api/v1/request/${request_id}`,
+            method: 'DELETE',
+        })
+    }
     
 }
