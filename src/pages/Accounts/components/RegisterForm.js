@@ -3,7 +3,7 @@ import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 // API
-import DepartmentAPI from "../../../api/Departments";
+import DepartmentAPI from "../../../api/DepartmentAPI";
 
 export default function RegisterForm({view, setFormView}) {
 

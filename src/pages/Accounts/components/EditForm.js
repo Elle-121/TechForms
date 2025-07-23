@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import DeleteModal from "./DeleteModal";
 
 // API
-import DepartmentAPI from "../../../api/Departments";
+import DepartmentAPI from "../../../api/DepartmentAPI";
 
 export default function EditForm({view, setEditView, data}) {
 
