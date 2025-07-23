@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
-import { departments } from "../../Home/components/filterData";
+
+// Components
 import DeleteModal from "./DeleteModal";
+
+// API
+import DepartmentAPI from "../../../api/Departments";
 
 export default function EditForm({view, setEditView, data}) {
 
-    // Log form values
     const [formValues, setFormValues] = useState();
+    const [departments, setDepartments] = useState();
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isDirty }, setError, clearErrors } = useForm({
@@ -24,11 +27,19 @@ export default function EditForm({view, setEditView, data}) {
             password: "",
         }
     })
+    
+    // Get all departments
+    const getAllDepartments = async() => {
+        const response = await new DepartmentAPI().getAllDepartments()
+        if (response?.ok) {
+            setDepartments(response.data)
+        } else console.log(response.statusMessage)
+    }
 
-    // Prefill account details to edit
+    // Load API on page load
     useEffect(() => {
-        reset(data);
-    }, [data, reset]);
+        getAllDepartments()
+    }, [])
 
     // Submit form 
     const displayValues = (values) => {
@@ -44,7 +55,12 @@ export default function EditForm({view, setEditView, data}) {
         }
     }
 
-    // Reset changes if cancel button is pressed
+    // Prefill account details to edit
+    useEffect(() => {
+        reset(data);
+    }, [data, reset]);
+
+    // Reset changes and close modal
     const handleCancel = () => {
         setEditView(false);
         reset();
@@ -56,7 +72,7 @@ export default function EditForm({view, setEditView, data}) {
         setDeleteView(true);
     }
 
-    // Reset Edit Form viewing mode is changed
+    // Reset Edit Form when viewing mode is changed
     useEffect(() => {
         reset();
     }, [view])
@@ -199,8 +215,8 @@ export default function EditForm({view, setEditView, data}) {
                                         className={`${errors.department ? "input-invalid" : ""}`}>
                                         <option disabled value=''>Select Department</option>
                                         {
-                                            departments.map(item => 
-                                                <option value={item.name}>{item.name}</option>)
+                                            departments?.map((item, idx) => 
+                                                <option key={idx} value={item.department_name}>{item.department_name}</option>)
                                         }
                                     </Form.Select>
                                     
