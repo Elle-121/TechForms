@@ -19,25 +19,16 @@ export default function FiltersModal({
     setActiveFilter
 }) {
 
-    const [approvers, setApprovers] = useState([]);
+    const [approvers, setApprovers] = useState();
 
     const HandleGetAllApprover = async () => {
-        try {
-            const response = await new ApproverAPI().getAllApprover();
-            if (response?.ok) {
-                console.log(response.data);
-                setApprovers(response.data);
-                console.log('ok naman');
-            } else {
-                console.log(response.statusMessage);
-            }
-        } catch (error) {
-            console.error('Error fetching approvers:', error);
-        }
+        const response = await new ApproverAPI().getAllApprover();
+        if (response?.ok) {
+            setApprovers(response.data);
+        } else console.log(response.statusMessage);
     }
 
     useEffect(() => {
-        console.log("FiltersModal mounted, attempting to fetch approvers.");
         HandleGetAllApprover();
     }, []);
 
@@ -301,7 +292,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>To be approved by</Form.Label>
                                     <div key={`inline-radio`} className="mb-3">
                                     {
-                                        approvers.map(item =>                                                 
+                                        approvers?.map(item =>                                                 
                                                 <Form.Check {...register("approved_by")}
                                                     inline
                                                     label={item.approver_name}

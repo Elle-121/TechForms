@@ -1,6 +1,6 @@
-const BASE_URL = "localhost:3002"
+const BASE_URL = "http://localhost:3002"
 export default class Base {
-  sendRequest = async ({path, method = 'GET', data = {}, base, headers, signal}) => {
+  sendRequest = async ({path, method = 'GET', data = {}, base, headers}) => {
     let url = base ? base + path : BASE_URL + path;
 
     let config = {
@@ -8,10 +8,9 @@ export default class Base {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        Authorization: `Bearer ${await window.localStorage.getItem("token")}`,
+        // Authorization: `Bearer ${await window.localStorage.getItem("token")}`,
       },
       method: method,
-      signal: signal,
     };
 
     if (headers) config = {...config, headers};
