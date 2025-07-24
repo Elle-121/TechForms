@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 
 //import fetch functions
 import { fetchDepartments } from "../../../queryFunctions/fetchDepartments";
+import { fetchFormTypes } from "../../../queryFunctions/fetchFormTypes";
+
 
 export default function FiltersModal({
     view, 
@@ -22,6 +24,11 @@ export default function FiltersModal({
     const {data: departments, isPending: departmentsLoading, isError: departmentsError } = useQuery({
         queryFn: () => fetchDepartments(),
         queryKey: ["departments"],
+    });
+
+    const {data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useQuery({
+        queryFn: () => fetchFormTypes(),
+        queryKey: ["formTypes"],
     });
 
     const { register, handleSubmit, reset, setValue } = useForm({
@@ -174,7 +181,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
                                     <Form.Select {...register("form_type")}>
                                         <option value=''>Select Form Type</option>
-                                        {/* {
+                                        {
                                             formTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : formTypeError ? (
@@ -184,7 +191,7 @@ export default function FiltersModal({
                                                     <option value={item.form_name}>{item.form_name}</option>        
                                                 )
                                             )
-                                        } */}
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
