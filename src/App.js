@@ -1,14 +1,16 @@
 import React from "react";
 import AppRoutes from "./routes/AppRoutes";
-import AppProviders from "./context/AppProviders";
 import "./App.scss";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <React.StrictMode>  
-      <AppProviders>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
         <AppRoutes />
-      </AppProviders>
+      </QueryClientProvider>
     </React.StrictMode>
   );
 }
