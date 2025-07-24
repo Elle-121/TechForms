@@ -6,6 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 //import fetch functions
 import { fetchDepartments } from "../../../queryFunctions/fetchDepartments";
 import { fetchFormTypes } from "../../../queryFunctions/fetchFormTypes";
+import { fetchStatusTypes } from  "../../../queryFunctions/fetchStatusTypes";
+import { fetchPurposeOfTravels } from  "../../../queryFunctions/fetchPurposeOfTravels";
+import { fetchApprovers } from  "../../../queryFunctions/fetchApprovers";
 
 
 export default function FiltersModal({
@@ -21,16 +24,38 @@ export default function FiltersModal({
     setActiveFilter
 }) {
 
+    // Queries
     const {data: departments, isPending: departmentsLoading, isError: departmentsError } = useQuery({
         queryFn: () => fetchDepartments(),
         queryKey: ["departments"],
+        staleTime: Infinity,
     });
 
     const {data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useQuery({
         queryFn: () => fetchFormTypes(),
         queryKey: ["formTypes"],
+        staleTime: Infinity,
     });
 
+    const {data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useQuery({
+        queryFn: () => fetchStatusTypes(),
+        queryKey: ["statusTypes"],
+        staleTime: Infinity,
+    });
+
+    const {data: purposes, isPending: purposesLoading, isError: purposesError } = useQuery({
+        queryFn: () => fetchPurposeOfTravels(),
+        queryKey: ["purposes"],
+        staleTime: Infinity,
+    });
+
+    const {data: approvers, isPending: approversLoading, isError: approversError } = useQuery({
+        queryFn: () => fetchApprovers(),
+        queryKey: ["approvers"],
+        staleTime: Infinity,
+    });
+
+    // Filter useForm
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
             requestor: '',
@@ -127,8 +152,6 @@ export default function FiltersModal({
         // setFilterView(false);  // Close the modal
         console.log(values);
     }
-    
-    
 
     return ( 
         <Modal show={view} size="lg" centered>
@@ -201,7 +224,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
                                         <option value=''>Select Status</option>                                        
-                                        {/* {
+                                        {
                                             statusTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : statusTypeError ? (
@@ -211,7 +234,7 @@ export default function FiltersModal({
                                                 <option value={item.status_name}>{item.status_name}</option>        
                                                 )
                                             )
-                                        } */}
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -221,17 +244,17 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
                                         <option value=''>Select Purpose</option>                                        
-                                        {/* {
+                                        {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
-                                            ) : purposesError ? (
+                                            ) : purposesError ? (                            
                                                 <option value='' disabled>Error Loading Purposes</option>
                                             ) : (
                                                 purposes.map(item => 
                                                     <option value={item.purpose_name}>{item.purpose_name}</option>        
                                                 )
                                             )
-                                        } */}
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -307,7 +330,7 @@ export default function FiltersModal({
                             <Col>
                                 <Form.Group className="mb-3 text-center">
                                     <Form.Label className='filter-form-label'>To be approved by</Form.Label>                                                                                      
-                                    {/* {
+                                    {
                                         approversLoading ? (                                            
                                             <p>Loading...</p>
                                         ) : approversError ? (
@@ -326,7 +349,7 @@ export default function FiltersModal({
                                                 ))}
                                             </div>
                                         )
-                                    } */}
+                                    }
                                 </Form.Group>
                             </Col>
                         </Row>

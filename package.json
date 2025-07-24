@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^5.1.1",
     "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-query-devtools": "^5.83.0",
     "bootstrap": "^5.3.7",
     "cra-template": "1.3.0",
     "date-fns": "^4.1.0",
