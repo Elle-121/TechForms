@@ -5,8 +5,8 @@ const ApproversContext = createContext();
 
 export const ApproversProvider = ({ children }) => {
     const [approvers, setApprovers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [approversLoading, setLoading] = useState(true);
+    const [approversError, setApproversError] = useState(null);
 
     const fetchApprovers = async () => {
         try {
@@ -16,11 +16,11 @@ export const ApproversProvider = ({ children }) => {
                 setApprovers(response.data);
             } else {
                 console.error(response.statusMessage);
-                setError(response.statusMessage);
+                setApproversError(response.statusMessage);
             }
         } catch (err) {
             console.error("Error fetching approvers:", err);
-            setError(err.message || "Unknown error");
+            setApproversError(err.message || "Unknown error");
         } finally {
             setLoading(false);
         }
@@ -31,7 +31,7 @@ export const ApproversProvider = ({ children }) => {
     }, []);
 
     return (
-        <ApproversContext.Provider value={{ approvers, loading, error, refresh: fetchApprovers }}>
+        <ApproversContext.Provider value={{ approvers, approversLoading, approversError, refresh: fetchApprovers }}>
             {children}
         </ApproversContext.Provider>
     );

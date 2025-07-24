@@ -212,7 +212,7 @@ export default function FiltersModal({
                                 <Form.Group className="mb-3">
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
-                                        <option value=''>Select Purpose</option>
+                                        <option value=''>Select Purpose</option>                                        
                                         {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
@@ -296,12 +296,12 @@ export default function FiltersModal({
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3 text-center">
-                                    <Form.Label className='filter-form-label'>To be approved by</Form.Label>
+                                    <Form.Label className='filter-form-label'>To be approved by</Form.Label>                                                                                      
                                     {
-                                        approversLoading ? (
+                                        approversLoading ? (                                            
                                             <p>Loading...</p>
                                         ) : (
-                                            <div key={`inline-radio`} className="mb-3">
+                                            <div key={`inline-radio`} className="mb-3">                                                
                                                 {approvers?.map(item => (
                                                     <Form.Check
                                                         key={item.id} // Add a key to avoid React warnings
