@@ -1,13 +1,10 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { useApprovers } from '../../../context/ApproversContext';
-import { useDepartments } from '../../../context/DepartmentsContext';
-import { usePurposeOfTravel } from '../../../context/PurposeOfTravelContext';
-import { useStatusType } from "../../../context/StatusContext";
-import { useFormType } from "../../../context/FormTypeContext";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import FormTypeAPI from "../../../api/FormTypeAPI";
+//import fetch functions
+import { fetchDepartments } from "../../../queryFunctions/fetchDepartments";
 
 export default function FiltersModal({
     view, 
@@ -22,40 +19,10 @@ export default function FiltersModal({
     setActiveFilter
 }) {
 
-    // initialize contexts
-    const { approvers, approversLoading, approversError } = useApprovers();
-    const { departments, departmentsLoading, departmentsError } = useDepartments();
-    const { purposes, purposesLoading, purposesError } = usePurposeOfTravel();
-    const { statusTypes, statusTypeLoading, statusTypeError } = useStatusType();
-    // const { formTypes, formTypeLoading, formTypeError } = useFormType();
-    
-    const [formTypes, setFormTypes] = useState([]);
-    const [formTypeLoading, setLoading] = useState(true);
-    const [formTypeError, setError] = useState(null);
-
-    const fetchFormTypes = async () => {
-            try {
-                setLoading(true);
-                const response = await new FormTypeAPI().getAllFormType();
-                if (response?.ok) {
-                    setFormTypes(response.data);
-                } else {
-                    console.error(response.statusMessage);
-                    setError(response.statusMessage);
-                }
-            } catch (err) {
-                console.error("Error fetching form types:", err);
-                setError(err.message || "Unknown error");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-    useEffect(() => {
-        fetchFormTypes();
-    }, []);
-
-    console.log(`Fetched Data from Form Types: ${formTypes}`);
+    const {data: departments, isPending: departmentsLoading, isError: departmentsError } = useQuery({
+        queryFn: () => fetchDepartments(),
+        queryKey: ["departments"],
+    });
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -191,7 +158,7 @@ export default function FiltersModal({
                                             ) : departmentsError ? (
                                                 <option value='' disabled>Error Loading Departments</option>
                                             ) : (
-                                                departments.map(item => 
+                                                departments?.map(item => 
                                                 <option value={item.department_name}>{item.department_name}</option>        
                                                 )
                                             )
@@ -227,7 +194,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
                                         <option value=''>Select Status</option>                                        
-                                        {
+                                        {/* {
                                             statusTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : statusTypeError ? (
@@ -237,8 +204,7 @@ export default function FiltersModal({
                                                 <option value={item.status_name}>{item.status_name}</option>        
                                                 )
                                             )
-                                        }
-
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -248,7 +214,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
                                         <option value=''>Select Purpose</option>                                        
-                                        {
+                                        {/* {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : purposesError ? (
@@ -258,7 +224,7 @@ export default function FiltersModal({
                                                     <option value={item.purpose_name}>{item.purpose_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -334,7 +300,7 @@ export default function FiltersModal({
                             <Col>
                                 <Form.Group className="mb-3 text-center">
                                     <Form.Label className='filter-form-label'>To be approved by</Form.Label>                                                                                      
-                                    {
+                                    {/* {
                                         approversLoading ? (                                            
                                             <p>Loading...</p>
                                         ) : approversError ? (
@@ -353,7 +319,7 @@ export default function FiltersModal({
                                                 ))}
                                             </div>
                                         )
-                                    }
+                                    } */}
                                 </Form.Group>
                             </Col>
                         </Row>
