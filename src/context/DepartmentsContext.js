@@ -6,7 +6,7 @@ const DepartmentsContext = createContext();
 export const DepartmentsProvider = ({ children }) => {
     const [departments, setDepartments] = useState([]);
     const [departmentsLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [departmentsError, setError] = useState(null);
 
     const fetchDepartments = async () => {
         try {
@@ -31,7 +31,7 @@ export const DepartmentsProvider = ({ children }) => {
     }, []);
 
     return (
-        <DepartmentsContext.Provider value={{ departments, departmentsLoading, error, refresh: fetchDepartments }}>
+        <DepartmentsContext.Provider value={{ departments, departmentsLoading, departmentsError, refresh: fetchDepartments }}>
             {children}
         </DepartmentsContext.Provider>
     );

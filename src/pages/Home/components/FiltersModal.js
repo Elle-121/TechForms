@@ -1,11 +1,13 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useApprovers } from '../../../context/ApproversContext';
 import { useDepartments } from '../../../context/DepartmentsContext';
 import { usePurposeOfTravel } from '../../../context/PurposeOfTravelContext';
 import { useStatusType } from "../../../context/StatusContext";
-// import { useFormType } from "../../../context/FormTypeContext";
+import { useFormType } from "../../../context/FormTypeContext";
+
+import FormTypeAPI from "../../../api/FormTypeAPI";
 
 export default function FiltersModal({
     view, 
@@ -27,6 +29,33 @@ export default function FiltersModal({
     const { statusTypes, statusTypeLoading, statusTypeError } = useStatusType();
     // const { formTypes, formTypeLoading, formTypeError } = useFormType();
     
+    const [formTypes, setFormTypes] = useState([]);
+    const [formTypeLoading, setLoading] = useState(true);
+    const [formTypeError, setError] = useState(null);
+
+    const fetchFormTypes = async () => {
+            try {
+                setLoading(true);
+                const response = await new FormTypeAPI().getAllFormType();
+                if (response?.ok) {
+                    setFormTypes(response.data);
+                } else {
+                    console.error(response.statusMessage);
+                    setError(response.statusMessage);
+                }
+            } catch (err) {
+                console.error("Error fetching form types:", err);
+                setError(err.message || "Unknown error");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+    useEffect(() => {
+        fetchFormTypes();
+    }, []);
+
+    console.log(`Fetched Data from Form Types: ${formTypes}`);
 
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
@@ -159,6 +188,8 @@ export default function FiltersModal({
                                         {
                                             departmentsLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
+                                            ) : departmentsError ? (
+                                                <option value='' disabled>Error Loading Departments</option>
                                             ) : (
                                                 departments.map(item => 
                                                 <option value={item.department_name}>{item.department_name}</option>        
@@ -179,6 +210,8 @@ export default function FiltersModal({
                                         {/* {
                                             formTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
+                                            ) : formTypeError ? (
+                                                <option value='' disabled>Error Loading Form Types</option>
                                             ) : (
                                                 formTypes.map(item => 
                                                     <option value={item.form_name}>{item.form_name}</option>        
@@ -197,6 +230,8 @@ export default function FiltersModal({
                                         {
                                             statusTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
+                                            ) : statusTypeError ? (
+                                                <option value='' disabled>Error Loading Status Types</option>
                                             ) : (
                                                 statusTypes.map(item => 
                                                 <option value={item.status_name}>{item.status_name}</option>        
@@ -216,8 +251,10 @@ export default function FiltersModal({
                                         {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
+                                            ) : purposesError ? (
+                                                <option value='' disabled>Error Loading Purposes</option>
                                             ) : (
-                                                purposes?.map(item => 
+                                                purposes.map(item => 
                                                     <option value={item.purpose_name}>{item.purpose_name}</option>        
                                                 )
                                             )
@@ -300,9 +337,11 @@ export default function FiltersModal({
                                     {
                                         approversLoading ? (                                            
                                             <p>Loading...</p>
+                                        ) : approversError ? (
+                                            <p>Error Loading Approvers</p>
                                         ) : (
                                             <div key={`inline-radio`} className="mb-3">                                                
-                                                {approvers?.map(item => (
+                                                {approvers.map(item => (
                                                     <Form.Check
                                                         key={item.id} // Add a key to avoid React warnings
                                                         {...register("approved_by")}

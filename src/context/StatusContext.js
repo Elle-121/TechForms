@@ -6,7 +6,7 @@ const StatusTypeContext = createContext();
 export const StatusTypeProvider = ({ children }) => {
     const [statusTypes, setStatusTypes] = useState([]);
     const [statusTypeLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [statusTypeError, setError] = useState(null);
 
     const fetchStatusTypes = async () => {
         try {
@@ -31,7 +31,7 @@ export const StatusTypeProvider = ({ children }) => {
     }, []);
 
     return (
-        <StatusTypeContext.Provider value={{ statusTypes, statusTypeLoading, error, refresh: fetchStatusTypes }}>
+        <StatusTypeContext.Provider value={{ statusTypes, statusTypeLoading, statusTypeError, refresh: fetchStatusTypes }}>
             {children}
         </StatusTypeContext.Provider>
     );

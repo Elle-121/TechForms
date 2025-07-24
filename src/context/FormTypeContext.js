@@ -6,7 +6,7 @@ const FormTypeContext = createContext();
 export const FormTypeProvider = ({ children }) => {
     const [formTypes, setFormTypes] = useState([]);
     const [formTypeLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [formTypeError, setError] = useState(null);
 
     const fetchFormTypes = async () => {
         try {
@@ -31,7 +31,7 @@ export const FormTypeProvider = ({ children }) => {
     }, []);
 
     return (
-        <FormTypeContext.Provider value={{ formTypes, formTypeLoading, error, refresh: fetchFormTypes }}>
+        <FormTypeContext.Provider value={{ formTypes, formTypeLoading, formTypeError, refresh: fetchFormTypes }}>
             {children}
         </FormTypeContext.Provider>
     );

@@ -6,7 +6,7 @@ const PurposeOfTravelContext = createContext();
 export const PurposeOfTravelProvider = ({ children }) => {
     const [purposes, setPurposes] = useState([]);
     const [purposesLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [purposesError, setError] = useState(null);
 
     const fetchPurposes = async () => {
         try {
@@ -31,7 +31,7 @@ export const PurposeOfTravelProvider = ({ children }) => {
     }, []);
 
     return (
-        <PurposeOfTravelContext.Provider value={{ purposes, purposesLoading, error, refresh: fetchPurposes }}>
+        <PurposeOfTravelContext.Provider value={{ purposes, purposesLoading, purposesError, refresh: fetchPurposes }}>
             {children}
         </PurposeOfTravelContext.Provider>
     );
