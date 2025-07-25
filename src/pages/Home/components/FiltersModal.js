@@ -20,8 +20,8 @@ export default function FiltersModal({
 
     const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
     // const { data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useFormTypes();
-    const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
-    const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
+    // const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
+    // const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
     const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
 
     // Filter useForm
@@ -193,7 +193,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Status</Form.Label>
                                     <Form.Select {...register("status")}>
                                         <option value=''>Select Status</option>                                        
-                                        {
+                                        {/* {
                                             statusTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : statusTypeError ? (
@@ -203,7 +203,7 @@ export default function FiltersModal({
                                                 <option value={item.status_name}>{item.status_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -213,7 +213,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
                                         <option value=''>Select Purpose</option>                                        
-                                        {
+                                        {/* {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : purposesError ? (                            
@@ -223,7 +223,7 @@ export default function FiltersModal({
                                                     <option value={item.purpose_name}>{item.purpose_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>

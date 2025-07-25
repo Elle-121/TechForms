@@ -6,8 +6,8 @@ const CurrentUserID = 8;
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [userLoading, setLoading] = useState(true);
+    const [userError, setError] = useState(null);
 
     const fetchUser = async () => {
         try {
@@ -32,7 +32,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, loading, error, refresh: fetchUser }}>
+        <UserContext.Provider value={{ user, userLoading, userError, refresh: fetchUser }}>
             {children}
         </UserContext.Provider>
     );
