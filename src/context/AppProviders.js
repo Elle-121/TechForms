@@ -1,10 +1,13 @@
-import { UserProvider } from "./UserContext";
+import { UserProvider } from "./UserProfileContext";
+import { UserCredentialsProvider } from "./UserCredentialsContext";
 
-const AppProviders = ({ children }) => {
+const AppProviders = ({ userID, children }) => {
     return (
-        <UserProvider>
-            {children}                        
-        </UserProvider>
+        <UserCredentialsProvider credentialsID={userID}>
+            <UserProvider>
+                {children}                        
+            </UserProvider>
+        </UserCredentialsProvider>
     );
 };
 

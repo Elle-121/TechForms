@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
                 setError(response.statusMessage);
             }
         } catch (err) {
-            console.error("Error fetching approvers:", err);
+            console.error("Error fetching User Profile:", err);
             setError(err.message || "Unknown error");
         } finally {
             setLoading(false);

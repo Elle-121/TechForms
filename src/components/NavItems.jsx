@@ -9,7 +9,7 @@ import image from '../assets/PNGIcon.svg';
 
 // import data
 import dummyNotifs from './dummyNotifs.js';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../context/UserProfileContext.js';
 
 
 function NavItems() {
@@ -19,8 +19,8 @@ function NavItems() {
   // constants
   const icon_size = 30;
   const profile_icon_size = 40;
-  const profile_name = user?.profile_name;
-  const profile_role = user?.profile_role;
+  const profile_name = userLoading ? 'Loading User...' : `${user.first_name} ${user.last_name}`;
+  const profile_role = userLoading ? '' : user.Role.role_name;
 
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);

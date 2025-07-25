@@ -8,9 +8,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 const queryClient = new QueryClient();
 
 function App() {
+  const userID = 3;
+
   return (
     <React.StrictMode>
-      <AppProviders>
+      <AppProviders userID={userID}>
         <QueryClientProvider client={queryClient}>
           <AppRoutes />
           <ReactQueryDevtools initialIsOpen={false} /> {/*remove during deployment*/}

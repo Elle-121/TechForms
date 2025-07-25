@@ -1,14 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, FormGroup } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // data
+import { useUser } from '../context/UserProfileContext';
 import { departments, reasons } from "../pages/Home/components/filterData";
 
 export default function FlightRequestComponent() {
-    
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { user, userLoading, userError } = useUser();
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
             defaultValues: {
                 requestor: '',
                 email: '',
@@ -33,7 +35,17 @@ export default function FlightRequestComponent() {
                 approved_by: '',
                 remarks: ''
             }
-    })
+    });
+
+    useEffect(() => {
+        if (!userLoading) {
+            reset({
+                requestor: `${user.first_name} ${user.last_name}` || "",
+                // email: user.email || "",
+                department: user.Department.department_name || ""
+            });
+        }
+    }, [user, reset, userLoading]);
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
@@ -50,6 +62,11 @@ export default function FlightRequestComponent() {
     const submitValues = (values) => {
         console.log(values)
     }
+
+    if (userLoading) return (
+        <div class="spinner-border mt-5" role="status">
+        </div>
+    );
 
     return (
         <>
@@ -88,7 +105,7 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <Form.Group>
                                     <Form.Label className='fr-form-label'>Requestor Employee Name</Form.Label>
-                                    <Form.Control className={`${errors.requestor ? "input-invalid" : ""}`} {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" />
+                                    <Form.Control className={`${errors.requestor ? "input-invalid" : ""}`} {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" disabled/>
                                     {errors.requestor && (
                                         <div className="error-msg">
                                             {errors.requestor.message}
@@ -99,7 +116,7 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                    <Form.Control className={`${errors.email ? "input-invalid" : ""}`} {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" />
+                                    <Form.Control className={`${errors.email ? "input-invalid" : ""}`} {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" disabled/>
                                     {errors.email && (
                                         <div className="error-msg">
                                             {errors.email.message}
@@ -112,13 +129,7 @@ export default function FlightRequestComponent() {
                         <Row className='mb-2'>
                             <Form.Group>
                                 <Form.Label className='fr-form-label'>Department</Form.Label>
-                                <Form.Select className={`${errors.department ? "input-invalid" : ""}`} {...register("department", {required: 'Department is required'})}>
-                                    {
-                                        departments.map(item => 
-                                            <option value={item.name}>{item.name}</option>        
-                                        )
-                                    }
-                                </Form.Select>
+                                <Form.Control className={`${errors.department ? "input-invalid" : ""}`} {...register("department", {required: 'Department is required'})} disabled/>
                                 {errors.department && (
                                         <div className="error-msg">
                                             {errors.department.message}

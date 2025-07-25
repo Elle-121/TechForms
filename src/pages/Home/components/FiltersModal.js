@@ -18,11 +18,11 @@ export default function FiltersModal({
     setActiveFilter
 }) {
 
-    const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
+    // const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
     // const { data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useFormTypes();
     // const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
     // const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
-    const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
+    // const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
 
     // Filter useForm
     const { register, handleSubmit, reset, setValue } = useForm({
@@ -151,7 +151,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Department</Form.Label>
                                     <Form.Select {...register("department")}>
                                         <option value=''>Select Department</option>                                
-                                        {
+                                        {/* {
                                             departmentsLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : departmentsError ? (
@@ -161,7 +161,7 @@ export default function FiltersModal({
                                                 <option value={item.department_name}>{item.department_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -299,7 +299,7 @@ export default function FiltersModal({
                             <Col>
                                 <Form.Group className="mb-3 text-center">
                                     <Form.Label className='filter-form-label'>To be approved by</Form.Label>                                                                                      
-                                    {
+                                    {/* {
                                         approversLoading ? (                                            
                                             <p>Loading...</p>
                                         ) : approversError ? (
@@ -318,7 +318,7 @@ export default function FiltersModal({
                                                 ))}
                                             </div>
                                         )
-                                    }
+                                    } */}
                                 </Form.Group>
                             </Col>
                         </Row>
