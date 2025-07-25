@@ -222,7 +222,11 @@ p {
 
 /* Accounts Page */
 .accounts-table {
-  height: 464.800px;
+  height: 448.800px;
+
+  .spinner-container{
+    height: 396px;
+  }
 }
 
 .nav-tabs,

@@ -45,7 +45,7 @@ export default function AccountList({data, setEditView, setAccountId, isLoading}
                     }
                 </table>
                 { isLoading &&
-                    <div className='d-flex justify-content-center align-items-center h-100'>
+                    <div className='d-flex justify-content-center align-items-center spinner-container'>
                         <Spinner animation="border" variant="secondary" />
                     </div>
                 }
