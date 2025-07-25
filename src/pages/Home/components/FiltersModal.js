@@ -43,11 +43,11 @@ export default function FiltersModal({
         staleTime: Infinity,
     });
 
-    const {data: purposes, isPending: purposesLoading, isError: purposesError } = useQuery({
-        queryFn: () => fetchPurposeOfTravels(),
-        queryKey: ["purposes"],
-        staleTime: Infinity,
-    });
+    // const {data: purposes, isPending: purposesLoading, isError: purposesError } = useQuery({
+    //     queryFn: () => fetchPurposeOfTravels(),
+    //     queryKey: ["purposes"],
+    //     staleTime: Infinity,
+    // });
 
     const {data: approvers, isPending: approversLoading, isError: approversError } = useQuery({
         queryFn: () => fetchApprovers(),
@@ -244,7 +244,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Purpose of Travel</Form.Label>
                                     <Form.Select {...register("purpose")}>
                                         <option value=''>Select Purpose</option>                                        
-                                        {
+                                        {/* {
                                             purposesLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : purposesError ? (                            
@@ -254,7 +254,7 @@ export default function FiltersModal({
                                                     <option value={item.purpose_name}>{item.purpose_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
