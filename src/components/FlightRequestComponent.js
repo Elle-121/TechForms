@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // data
-import { useUser } from '../context/UserProfileContext';
-import { departments, reasons } from "../pages/Home/components/filterData";
+import { useUserCredentials } from '../context/UserCredentialsContext';
+import { reasons } from "../pages/Home/components/filterData";
 
 export default function FlightRequestComponent() {
-    const { user, userLoading, userError } = useUser();
+    const { userCredentials, userCredentialsLoading, userCredentialsError } = useUserCredentials();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
             defaultValues: {
@@ -38,14 +38,14 @@ export default function FlightRequestComponent() {
     });
 
     useEffect(() => {
-        if (!userLoading) {
+        if (!userCredentialsLoading) {
             reset({
-                requestor: `${user.first_name} ${user.last_name}` || "",
-                // email: user.email || "",
-                department: user.Department.department_name || ""
+                requestor: `${userCredentials.UserProfile.first_name} ${userCredentials.UserProfile.last_name}` || "",
+                email: userCredentials.email || "",
+                department: userCredentials.UserProfile.Department.department_name || "",
             });
         }
-    }, [user, reset, userLoading]);
+    }, [userCredentials, reset, userCredentialsLoading]);
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
@@ -63,7 +63,7 @@ export default function FlightRequestComponent() {
         console.log(values)
     }
 
-    if (userLoading) return (
+    if (userCredentialsLoading) return (
         <div class="spinner-border mt-5" role="status">
         </div>
     );

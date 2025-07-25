@@ -9,18 +9,17 @@ import image from '../assets/PNGIcon.svg';
 
 // import data
 import dummyNotifs from './dummyNotifs.js';
-import { useUser } from '../context/UserProfileContext.js';
+import { useUserCredentials } from '../context/UserCredentialsContext.js';
 
 
 function NavItems() {
-  
-  const { user, userLoading, userError } = useUser();
+  const { userCredentials, userCredentialsLoading, userCredentialsError } = useUserCredentials();
 
   // constants
   const icon_size = 30;
   const profile_icon_size = 40;
-  const profile_name = userLoading ? 'Loading User...' : `${user.first_name} ${user.last_name}`;
-  const profile_role = userLoading ? '' : user.Role.role_name;
+  const profile_name = userCredentialsLoading ? 'Loading User...' : `${userCredentials.UserProfile.first_name} ${userCredentials.UserProfile.last_name}`;
+  const profile_role = userCredentialsLoading ? '' : userCredentials.UserProfile.Role.role_name;
 
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);

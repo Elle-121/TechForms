@@ -9,9 +9,9 @@ export const UserCredentialsProvider = ({ credentialsID, children }) => {
     const [userCredentialsError, setError] = useState(null);
 
     const fetchUserCredentials = useCallback(async () => {
-        try {
+        try {        
             setLoading(true);
-            const response = await new UserCredentialsAPI().getUserProfile(credentialsID);
+            const response = await new UserCredentialsAPI().getUserCredentials(credentialsID);
             if (response?.ok) {
                 setUserCredentials(response.data);
             } else {
