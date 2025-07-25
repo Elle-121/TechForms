@@ -3,12 +3,11 @@ import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 // API
-import DepartmentAPI from "../../../api/DepartmentAPI";
+import { useDepartments } from "../../../queryFunctions/StaticDataQueries";
 
 export default function RegisterForm({view, setFormView}) {
 
     const [formValues, setFormValues] = useState();
-    const [departments, setDepartments] = useState();
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
@@ -25,18 +24,22 @@ export default function RegisterForm({view, setFormView}) {
         }
     })
 
-    // Get all departments
-    const getAllDepartments = async() => {
-        const response = await new DepartmentAPI().getAllDepartments()
-        if (response?.ok) {
-            setDepartments(response.data)
-        } else console.log(response.statusMessage)
-    }
+    const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
 
-    // Load API on page load
-    useEffect(() => {
-        getAllDepartments()
-    }, [])
+    // const [departments, setDepartments] = useState();
+
+    // // Get all departments
+    // const getAllDepartments = async() => {
+    //     const response = await new DepartmentAPI().getAllDepartments()
+    //     if (response?.ok) {
+    //         setDepartments(response.data)
+    //     } else console.log(response.statusMessage)
+    // }
+
+    // // Load API on page load
+    // useEffect(() => {
+    //     getAllDepartments()
+    // }, [])
 
     // Submit form
     const displayValues = (values) => {
