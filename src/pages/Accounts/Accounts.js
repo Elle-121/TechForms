@@ -8,9 +8,6 @@ import AccountList from "./AccountList";
 import RegisterForm from './components/RegisterForm';
 import EditForm from "./components/EditForm";
 
-// data
-import { dummyData } from "./dummyData";
-
 // API
 import UserCredentialsAPI from "../../api/UserCredentialsAPI";
 
@@ -47,12 +44,6 @@ export default function Accounts(){
     const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
 
-    // Filter Dummy Data
-    // const filteredAccounts = dummyData.filter(item => role ? item.role_name===role : item.role_name).filter(item => {
-    //     const fullname = `${item.first_name} ${item.last_ame}`;
-    //     return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
-    // });
-
     // Filter Accounts Data
     const filteredAccounts = accounts?.filter(item => role ? item.role_name===role : item.role_name).filter(item => {
         const fullname = `${item.first_name} ${item.last_ame}`;
@@ -86,7 +77,7 @@ export default function Accounts(){
                 </div>
                 
                 <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} isLoading={isLoading} />
-                <EditForm view={editView} setEditView={setEditView} data={dummyData[accountId]} />
+                <EditForm view={editView} setEditView={setEditView} data={""} />
 
                 <div className="border-black d-flex justify-content-center mb-0" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
