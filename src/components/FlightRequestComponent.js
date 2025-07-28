@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 
 // data
 import { useUserCredentials } from '../context/UserCredentialsContext';
-import { reasons } from "../pages/Home/components/filterData";
+import { usePurposesOfTravel, useApprovers } from '../queryFunctions/StaticDataQueries';
 
 export default function FlightRequestComponent() {
     const { userCredentials, userCredentialsLoading, userCredentialsError } = useUserCredentials();
+    const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
+    const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
             defaultValues: {
@@ -21,7 +23,7 @@ export default function FlightRequestComponent() {
                 birthday1: '',
                 extensions1: '',
                 title1: '',
-                purpose: '',
+                purpose: [],
                 purpose_others: '',
                 departure_city: '',
                 departure_date: '',
@@ -49,7 +51,7 @@ export default function FlightRequestComponent() {
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
-    const [remarksView, setRemarksView] = useState(true);
+    const [remarksView, setRemarksView] = useState(true); //should be initially false, only true when there is a remark
     const hasErrors = Object.keys(errors).length > 0;
     
     const validatePurpose = (value, formValues) => {
@@ -61,6 +63,36 @@ export default function FlightRequestComponent() {
     
     const submitValues = (values) => {
         console.log(values)
+
+        // const flier_values = {
+        //     first_name: values.first_name1,
+        //     middle_name: values.middle_name1,
+        //     last_name: values.last_name1,
+        //     birthday: birthday1,
+        //     extensions: extensions1,
+        //     title: title1,
+        // }
+
+        // create flier
+        // const flier_id = await 
+
+        // const flight_request_values = {
+        //     profile_id: userCredentials.UserProfile.id,
+        //     flier_id: 0,
+        //     purpose_id: 0,
+        //     purpose_others: "string",
+        //     start_business: "2025-07-28",
+        //     end_business: "2025-07-28",
+        //     departure_date: "2025-07-28",
+        //     departure_time: "string",
+        //     departure_city: "string",
+        //     return_date: "2025-07-28",
+        //     return_time: "string",
+        //     return_city: "string",
+        //     approver_id: 0,
+        //     remarks: "string",
+        //     booking_id: 0       
+        // }
     }
 
     if (userCredentialsLoading) return (
@@ -232,10 +264,11 @@ export default function FlightRequestComponent() {
                                 <Col>
                                     <div key={`default-checkbox`} className="mb-3">
                                         {
-                                            reasons.slice(0, 6).map(item => 
+                                            purposes.slice(0, 6).map(item => 
                                                 <Form.Check {...register("purpose", {validate: validatePurpose})}
-                                                    label={item.name}
-                                                    value={item.name}
+                                                    key={item.id}
+                                                    label={item.purpose_name}
+                                                    value={item.id} //purpose_id starts at 3
                                                     type="checkbox"
                                                 />        
                                             )
@@ -246,10 +279,11 @@ export default function FlightRequestComponent() {
                                 <Col>                                        
                                     <div key={`default-checkbox`} className="mb-3">
                                         {
-                                            reasons.slice(6, 12).map(item => 
+                                            purposes.slice(6, 12).map(item => 
                                                 <Form.Check {...register("purpose", {validate: validatePurpose})}
-                                                    label={item.name}
-                                                    value={item.name}
+                                                    key={item.id}
+                                                    label={item.purpose_name}
+                                                    value={item.id}
                                                     type="checkbox"
                                                 />        
                                             )
@@ -439,7 +473,18 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <FormGroup className='fr-form-label'>
                                     <div key={`inline-radio`} className="mb-5">
-                                        <Form.Check {...register("approved_by", {required: "Approver is required"})}
+                                    {
+                                        approvers.map(item => (
+                                            <Form.Check {...register("approved_by", {required: "Approver is required"})}
+                                                inline
+                                                label={item.approver_name}
+                                                value={item.approver_name}
+                                                type="radio"
+                                                id={`inline-radio-${item.id}`}
+                                            />
+                                        ))
+                                    }
+                                        {/* <Form.Check {...register("approved_by", {required: "Approver is required"})}
                                             inline
                                             label="ARC"
                                             value="ARC"
@@ -466,7 +511,7 @@ export default function FlightRequestComponent() {
                                             value="DFS"
                                             type="radio"
                                             id={`inline-radio-3`}
-                                        />
+                                        /> */}
                                         
                                         {errors.approved_by && (
                                             <div className="error-msg">
