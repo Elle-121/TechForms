@@ -20,6 +20,7 @@ export default function Accounts(){
     const [editView, setEditView] = useState(false);
     const [accountId, setAccountId] = useState(false);
     const [accounts, setAccounts] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     
     const openFormView = () => {
         setFormView(true);
@@ -28,8 +29,9 @@ export default function Accounts(){
     const getAllAccounts = async() => {
         const response = await new UserCredentialsAPI().getAllUserCredentials()
         if (response?.ok) {
-            setAccounts(response.data)
             console.log(response.data)
+            setAccounts(response.data)
+            setIsLoading(false)
         } else console.log(response.statusMessage)
     }
 
@@ -46,15 +48,15 @@ export default function Accounts(){
     const requestsPerPage = 10;
 
     // Filter Dummy Data
-    const filteredDummy = dummyData.filter(item => role ? item.role===role : item.role).filter(item => {
-        const fullname = `${item.firstName} ${item.lastName}`;
-        return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
-    });
+    // const filteredAccounts = dummyData.filter(item => role ? item.role_name===role : item.role_name).filter(item => {
+    //     const fullname = `${item.first_name} ${item.last_ame}`;
+    //     return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
+    // });
 
-    // Filter Dummy Data
-    const filteredAccounts = accounts?.filter(item => role ? item?.role_name===role : item?.role_name).filter(item => {
-        const fullname = `${item.first_name} ${item.last_name}`;
-        return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department_name.toLowerCase().includes(searchValue.toLowerCase())
+    // Filter Accounts Data
+    const filteredAccounts = accounts?.filter(item => role ? item.role_name===role : item.role_name).filter(item => {
+        const fullname = `${item.first_name} ${item.last_ame}`;
+        return !searchValue || fullname?.toLowerCase().includes(searchValue.toLowerCase()) || item.department?.toLowerCase().includes(searchValue.toLowerCase())
     });
 
     const totalPages = Math.ceil(filteredAccounts?.length / requestsPerPage);
@@ -71,7 +73,7 @@ export default function Accounts(){
 
     return (
         <MainContainer>
-            <div className="mx-5 my-3">
+            <div className="mx-5 my-2">
                 <h1 className="tf-header">Account Management</h1>
                 
                 <div className="d-flex justify-content-between mb-3">
@@ -82,11 +84,11 @@ export default function Accounts(){
                     </div>
                     <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
-
-                <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} />
+                
+                <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} isLoading={isLoading} />
                 <EditForm view={editView} setEditView={setEditView} data={dummyData[accountId]} />
 
-                <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
+                <div className="border-black d-flex justify-content-center mb-0" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
                 </div>
             </div>
