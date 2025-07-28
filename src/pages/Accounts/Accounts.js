@@ -26,7 +26,6 @@ export default function Accounts(){
     const getAllAccounts = async() => {
         const response = await new UserCredentialsAPI().getAllUserCredentials()
         if (response?.ok) {
-            console.log(response.data)
             setAccounts(response.data)
             setIsLoading(false)
         } else console.log(response.statusMessage)
