@@ -5,10 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 
 import MainContainer from '../../components/MainContainer';
 import loginImage from "../../assets/LoginImage.jpeg"
@@ -57,7 +55,6 @@ function FormContainer(){
 
     return (
     <Form className={styles['login-form']} onSubmit={handleSubmit(onSubmit)}>
-        
         <Form.Group className={styles['form-row']} controlId="formUsername">
             <Form.Label>
                 Username / TechFactors Email
@@ -76,17 +73,17 @@ function FormContainer(){
             </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword" className={styles['form-row']} >
+        <Form.Group controlId="formPassword" className={styles['form-row']} >
             <Form.Label>
                 Password
                 {errors.password && (
                  <span className={styles['error-text']}> *</span>
                  )}
             </Form.Label>
-                <Form.Control type="password"
-                    placeholder="Enter Password"
-                    className={styles["form-row__input-text"]}
-                    {...register("password")}/>
+            <Form.Control type="password"
+                placeholder="Enter Password"
+                className={styles["form-row__input-text"]}
+                {...register("password")}/>
             <Form.Text style={{ visibility: errors.password ? 'visible' : 'hidden' }}>
                  <FontAwesomeIcon icon={faTriangleExclamation} />
                  <span className={styles['error-text']}>&nbsp;{errors.password?.message}</span>
@@ -111,7 +108,7 @@ function FormContainer(){
 }
 
 
-export default function Login(){
+function Login(){
     return (
     <MainContainer navVisible={false}>
         <div className="row h-100 m-0">
@@ -148,3 +145,5 @@ export default function Login(){
     );
 }
 
+
+export default Login
