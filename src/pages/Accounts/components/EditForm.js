@@ -15,11 +15,11 @@ export default function EditForm({view, setEditView, data}) {
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isDirty }, setError, clearErrors } = useForm({
         defaultValues: {
-            firstName: "",
-            middleName: "",
-            lastName: "",
-            department: "",
-            role: "",
+            first_name: "",
+            middle_name: "",
+            last_name: "",
+            department_name: "",
+            role_name: "",
             email: "",
             phone: "",
             username: "",
@@ -89,8 +89,8 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>First Name</Form.Label>
-                                    <Form.Control className={`${errors.firstName ? "input-invalid" : ""}`} type="text" placeholder="First Name" 
-                                        {...register("firstName", {
+                                    <Form.Control className={`${errors.first_name ? "input-invalid" : ""}`} type="text" placeholder="First Name" 
+                                        {...register("first_name", {
                                             required : "This field is required.",
                                             maxLength: {
                                                 value: 50,
@@ -102,8 +102,8 @@ export default function EditForm({view, setEditView, data}) {
                                             }
                                     })}/>
                                     
-                                    {errors.firstName && 
-                                        <span className="error-msg">{errors.firstName.message}</span>
+                                    {errors.first_name && 
+                                        <span className="error-msg">{errors.first_name.message}</span>
                                     }
                                 </Form.Group>
                             </Col>
@@ -112,8 +112,8 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-optional'>Middle Name</Form.Label>
-                                    <Form.Control className={`${errors.middleName ? "input-invalid" : ""}`} type="text" placeholder="Middle Name" 
-                                        {...register("middleName", {
+                                    <Form.Control className={`${errors.middle_name ? "input-invalid" : ""}`} type="text" placeholder="Middle Name" 
+                                        {...register("middle_name", {
                                             maxLength: {
                                                 value: 50,
                                                 message: "Max characters reached."
@@ -124,8 +124,8 @@ export default function EditForm({view, setEditView, data}) {
                                             }
                                     })}/>
                                     
-                                    {errors.middleName && 
-                                        <span className="error-msg">{errors.middleName.message}</span>
+                                    {errors.middle_name && 
+                                        <span className="error-msg">{errors.middle_name.message}</span>
                                     }
                                 </Form.Group>                            
                             </Col>
@@ -134,8 +134,8 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Last Name</Form.Label>
-                                    <Form.Control className={`${errors.lastName ? "input-invalid" : ""}`} type="text" placeholder="Last Name" 
-                                        {...register("lastName", {
+                                    <Form.Control className={`${errors.last_name ? "input-invalid" : ""}`} type="text" placeholder="Last Name" 
+                                        {...register("last_name", {
                                             required : "This field is required.",
                                             maxLength: {
                                                 value: 50,
@@ -147,8 +147,8 @@ export default function EditForm({view, setEditView, data}) {
                                             }
                                     })}/>
                                     
-                                    {errors.lastName && 
-                                        <span className="error-msg">{errors.lastName.message}</span>
+                                    {errors.last_name && 
+                                        <span className="error-msg">{errors.last_name.message}</span>
                                     }
                                 </Form.Group>                            
                             </Col>
@@ -199,17 +199,17 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Department</Form.Label>
-                                    <Form.Select {...register("department", {required : "This field is required."})}
-                                        className={`${errors.department ? "input-invalid" : ""}`}>
+                                    <Form.Select {...register("department_name", {required : "This field is required."})}
+                                        className={`${errors.department_name ? "input-invalid" : ""}`}>
                                         <option disabled value=''>Select Department</option>
                                         {
                                             departments?.map((item, idx) => 
-                                                <option key={idx} value={item.department_name}>{item.department_name}</option>)
+                                                <option key={idx} value={idx + 1}>{item.department_name}</option>)
                                         }
                                     </Form.Select>
                                     
-                                    {errors.department && 
-                                        <span className="error-msg">{errors.department.message}</span>
+                                    {errors.department_name && 
+                                        <span className="error-msg">{errors.department_name.message}</span>
                                     }
                                 </Form.Group>
                             </Col>
@@ -218,11 +218,11 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Role</Form.Label>
-                                    <Form.Select {...register("role", {required : "This field is required."})}
-                                        className={`${errors.role ? "input-invalid" : ""}`} >
+                                    <Form.Select {...register("role_Name", {required : "This field is required."})}
+                                        className={`${errors.role_name ? "input-invalid" : ""}`} >
                                         <option disabled value="">Select Role</option>
-                                        <option value="HR">HR</option>
-                                        <option value="Employee">Employee</option>
+                                        <option value="1">HR</option>
+                                        <option value="2">Employee</option>
                                     </Form.Select>
 
                                     {errors.role && 
