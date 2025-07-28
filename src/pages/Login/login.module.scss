@@ -73,13 +73,25 @@
   &__input-text {
     // Box Model
     border: 1px solid black;
-    border-radius: 15px;
     field-sizing: content;
     padding: 10px;
+  }
 
-    &:invalid{
-        border: 1px solid #D55C5F;
-        color: #D55C5F;
+  &__input-button {
+    composes: form-row__input-text;
+
+    background-color: inherit;
+    color: inherit;
+
+    &:hover {
+      background-color: inherit;
+      border: 1px solid black;
+      color: inherit;
+    }
+
+    &:active {
+      background-color: black;
+      color: inherit;
     }
   }
 }
@@ -189,8 +201,4 @@
   // Text
   font-size: inherit;
   text-align: center;
-}
-
-.input_button {
-  
 }

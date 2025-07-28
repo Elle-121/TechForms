@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
@@ -6,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -35,6 +37,7 @@ const schemaValidator = z.object({
 
 
 function FormContainer(){
+    let [passwordHidden, setPasswordHidden] = useState(true);
     let navigate = useNavigate();
     const { register,
         handleSubmit,
@@ -53,6 +56,10 @@ function FormContainer(){
         catch (error) {
 
         }
+    }
+
+    const handlePasswordReveal = () => {
+        setPasswordHidden(!passwordHidden); 
     }
 
     return (
@@ -76,17 +83,26 @@ function FormContainer(){
             </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword" className={styles['form-row']} >
+        <Form.Group controlId="formPassword" className={styles['form-row']} >
             <Form.Label>
                 Password
                 {errors.password && (
                  <span className={styles['error-text']}> *</span>
                  )}
             </Form.Label>
-                <Form.Control type="password"
+            <InputGroup>
+                <Form.Control type={passwordHidden ? "password" : "text"}
                     placeholder="Enter Password"
                     className={styles["form-row__input-text"]}
                     {...register("password")}/>
+                <Button type="button" className={styles['form-row__input-button']}
+                    onClick={handlePasswordReveal}>
+                    {passwordHidden ?
+                        <FontAwesomeIcon icon={faEye} /> : 
+                        <FontAwesomeIcon icon={faEyeSlash} />
+                    }
+                </Button>
+            </InputGroup>
             <Form.Text style={{ visibility: errors.password ? 'visible' : 'hidden' }}>
                  <FontAwesomeIcon icon={faTriangleExclamation} />
                  <span className={styles['error-text']}>&nbsp;{errors.password?.message}</span>
