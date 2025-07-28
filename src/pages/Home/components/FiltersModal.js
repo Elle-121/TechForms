@@ -21,8 +21,8 @@ export default function FiltersModal({
 
     const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
     const { data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useFormTypes();
-    // const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
     const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
+    // const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
     // const { data: approvers, isPending: approversLoading, isError: approversError, refetch: refetchApprovers } = useApprovers(false);
 
     // Filter useForm
@@ -197,7 +197,7 @@ export default function FiltersModal({
                                         <option value=''>Select Status</option>                                        
                                         {
                                             statusTypes?.map(item => 
-                                                <option value={item.status_name}>{item.status_name}</option>
+                                                <option value={item.name}>{item.name}</option>
                                             )
                                         }
                                         {/* {
