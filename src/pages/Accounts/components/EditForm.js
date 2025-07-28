@@ -18,12 +18,13 @@ export default function EditForm({view, setEditView, data}) {
             first_name: "",
             middle_name: "",
             last_name: "",
-            department_name: "",
-            role_name: "",
+            department_id: "",
+            role_id: "",
             email: "",
             phone: "",
             username: "",
             password: "",
+            profile_photo: "",
         }
     })
 
@@ -43,10 +44,15 @@ export default function EditForm({view, setEditView, data}) {
         }
     }
 
-    // Prefill account details to edit
     useEffect(() => {
-        reset(data);
-    }, [data, reset]);
+        console.log(data)
+        reset(data)
+    }, [data])
+
+    // Prefill account details to edit
+    // useEffect(() => {
+    //     reset(data);
+    // }, [data, reset]);
 
     // Reset changes and close modal
     const handleCancel = () => {
@@ -199,8 +205,8 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Department</Form.Label>
-                                    <Form.Select {...register("department_name", {required : "This field is required."})}
-                                        className={`${errors.department_name ? "input-invalid" : ""}`}>
+                                    <Form.Select {...register("department_id", {required : "This field is required.", valueAsNumber: true})}
+                                        className={`${errors.department_id ? "input-invalid" : ""}`}>
                                         <option disabled value=''>Select Department</option>
                                         {
                                             departments?.map((item, idx) => 
@@ -208,8 +214,8 @@ export default function EditForm({view, setEditView, data}) {
                                         }
                                     </Form.Select>
                                     
-                                    {errors.department_name && 
-                                        <span className="error-msg">{errors.department_name.message}</span>
+                                    {errors.department_id && 
+                                        <span className="error-msg">{errors.department_id.message}</span>
                                     }
                                 </Form.Group>
                             </Col>
@@ -218,15 +224,15 @@ export default function EditForm({view, setEditView, data}) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label className='fr-form-label input-required'>Role</Form.Label>
-                                    <Form.Select {...register("role_Name", {required : "This field is required."})}
-                                        className={`${errors.role_name ? "input-invalid" : ""}`} >
+                                    <Form.Select {...register("role_id", {required : "This field is required.", valueAsNumber: true})}
+                                        className={`${errors.role_id ? "input-invalid" : ""}`} >
                                         <option disabled value="">Select Role</option>
-                                        <option value="1">HR</option>
-                                        <option value="2">Employee</option>
+                                        <option value={1}>HR</option>
+                                        <option value={2}>Employee</option>
                                     </Form.Select>
 
-                                    {errors.role && 
-                                        <span className="error-msg">{errors.role.message}</span>
+                                    {errors.role_id && 
+                                        <span className="error-msg">{errors.role_id.message}</span>
                                     }
                                 </Form.Group>
                             </Col>
