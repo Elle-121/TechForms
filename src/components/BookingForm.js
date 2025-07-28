@@ -1,73 +1,40 @@
 import { Form, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
-// API
-import BookingDetailsAPI from "../api/BookingDetailsAPI";
+export default function BookingForm({view, setFormView, notes, preview}) {
 
-export default function BookingForm({view, setFormView, preview, notes}) {
-    
-    let navigate = useNavigate();
-    let id = 1;
+    const [formValues, setFormValues] = useState();
 
-    // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
         defaultValues: {
-            departure_ref_no: "",
-            departure_cost: "",
-            departure_ticket_path: "",
-            return_ref_no: "",
-            return_cost: "",
-            return_ticket_path: "",
+            departureRef: "",
+            departureCost: "",
+            departureTicket: "",
+            returnRef: "",
+            returnCost: "",
+            returnTicket: "",
             notes: "",
         }
     })
 
-    // Get booking details by id
-    const getBookingDetails = async(id) => {
-        const response = await new BookingDetailsAPI().getBookingDetails(id)
-        if (response?.ok) {
-            reset(response.data)
-        } else console.log(response.statusMessage)
-    }
-
-    // Submit booking details
-    const submitBookingDetails = async(values) => {
-        const response = await new BookingDetailsAPI().addBookingDetails(values)
-        if (response?.ok) {
-            console.log("Booking Details submitted!")
-        } else console.log(response.statusMessage)
-    }
-
-    // Load API on page load
     useEffect(() => {
-        if (preview) getBookingDetails(id)
-    }, [])
-    
-    // Add input notes on the form
-    useEffect(() => {
-        if (!isSubmitSuccessful && !preview) reset({ notes: notes });
+        if (!isSubmitSuccessful) reset({ notes: notes });
     }, [view])
 
-    // Reset form upon successful form submission
     useEffect(() => {
         reset();
     }, [isSubmitSuccessful])
 
-    // Submit form
+    const home = async () => {
+        window.location.href = "/";
+    }
+
     const displayValues = (values) => {
         console.log(values);
-
-        // Temporary fix for other booking details fields
-        delete(values.notes)
-        values.departure_ticket_path = '/sample.pdf'
-        values.return_ticket_path = '/sample.pdf'
-
-        submitBookingDetails(values);
-
+        setFormValues(values);
         setFormView(false);
-        navigate("/");
+        home();
     }
 
     return (
@@ -105,8 +72,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='fr-form-label input-required'>Booking Reference No.</Form.Label>
-                            <Form.Control type="text" placeholder="Reference No." className={`${errors.departure_ref_no ? "input-invalid" : ""}`} 
-                                {...register("departure_ref_no", {
+                            <Form.Control type="text" placeholder="Reference No." className={`${errors.departureRef ? "input-invalid" : ""}`} 
+                                {...register("departureRef", {
                                     required: "This field is required.",
                                     pattern : {
                                         value: /^[a-zA-Z0-9\s_\-']+$/,
@@ -114,8 +81,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                     }
                             })}/>
 
-                            {errors.departure_ref_no && 
-                                <span className="error-msg">{errors.departure_ref_no.message}</span>
+                            {errors.departureRef && 
+                                <span className="error-msg">{errors.departureRef.message}</span>
                             }
                         </Form.Group>
                     </Col>
@@ -123,9 +90,9 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                     <Col>
                         <Form.Group className="mb-3">
                             <Form.Label className='fr-form-label input-required'>Cost</Form.Label>
-                            <Form.Control type="number" placeholder="Php" className={`${errors.departure_cost ? "input-invalid" : ""}`} 
+                            <Form.Control type="number" placeholder="Php" className={`${errors.departureCost ? "input-invalid" : ""}`} 
 
-                                {...register("departure_cost", {
+                                {...register("departureCost", {
                                     required : "This field is required.",
                                     min: {
                                         value: 0,
@@ -133,8 +100,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                     }
                             })}/>
                             
-                            {errors.departure_cost && 
-                                <span className="error-msg">{errors.departure_cost.message}</span>
+                            {errors.departureCost && 
+                                <span className="error-msg">{errors.departureCost.message}</span>
                             }
                         </Form.Group>
                     </Col>
@@ -144,8 +111,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                 <Row>
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label className='fr-form-label input-required'>Ticket</Form.Label>
-                        <Form.Control type="file" className={`${errors.departure_ticket_path ? "input-invalid" : ""}`} 
-                            {...register("departure_ticket_path", {
+                        <Form.Control type="file" className={`${errors.departureTicket ? "input-invalid" : ""}`} 
+                            {...register("departureTicket", {
                                 required : "This field is required.",
                                 validate: {
                                     fileType: (files) =>
@@ -155,8 +122,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                 }
                         })}/>
                         
-                        {errors.departure_ticket_path && 
-                            <span className="error-msg">{errors.departure_ticket_path.message}</span>
+                        {errors.departureTicket && 
+                            <span className="error-msg">{errors.departureTicket.message}</span>
                         }
                     </Form.Group>
                 </Row>
@@ -172,8 +139,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='fr-form-label input-required'>Booking Reference No.</Form.Label>
-                            <Form.Control type="text" placeholder="Reference No." className={`${errors.return_ref_no ? "input-invalid" : ""}`} 
-                                {...register("return_ref_no", {
+                            <Form.Control type="text" placeholder="Reference No." className={`${errors.returnRef ? "input-invalid" : ""}`} 
+                                {...register("returnRef", {
                                     required : "This field is required.",
                                     pattern : {
                                         value: /^[a-zA-Z0-9\s_\-']+$/,
@@ -181,8 +148,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                     }
                             })}/>
                             
-                            {errors.return_ref_no && 
-                                <span className="error-msg">{errors.return_ref_no.message}</span>
+                            {errors.returnRef && 
+                                <span className="error-msg">{errors.returnRef.message}</span>
                             }
                         </Form.Group>
                     </Col>
@@ -190,8 +157,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                     <Col>
                         <Form.Group className="mb-3">
                             <Form.Label className='fr-form-label input-required'>Cost</Form.Label>
-                            <Form.Control type="number" placeholder="Php"className={`${errors.return_cost ? "input-invalid" : ""}`} 
-                                {...register("return_cost", {
+                            <Form.Control type="number" placeholder="Php"className={`${errors.returnCost ? "input-invalid" : ""}`} 
+                                {...register("returnCost", {
                                     required : "This field is required.",
                                     min: {
                                         value: 0,
@@ -199,8 +166,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                     }
                             })}/>
                             
-                            {errors.return_cost && 
-                                <span className="error-msg">{errors.return_cost.message}</span>
+                            {errors.returnCost && 
+                                <span className="error-msg">{errors.returnCost.message}</span>
                             }
                         </Form.Group>
                     </Col>
@@ -210,8 +177,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                 <Row>
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label className='fr-form-label input-required'>Ticket</Form.Label>
-                        <Form.Control type="file" className={`${errors.return_ticket_path ? "input-invalid" : ""}`} 
-                            {...register("return_ticket_path", {
+                        <Form.Control type="file" className={`${errors.returnTicket ? "input-invalid" : ""}`} 
+                            {...register("returnTicket", {
                                 required : "This field is required.",
                                 validate: {
                                     fileType: (files) =>
@@ -221,8 +188,8 @@ export default function BookingForm({view, setFormView, preview, notes}) {
                                 }
                         })}/>
                         
-                        {errors.return_ticket_path && 
-                            <span className="error-msg">{errors.return_ticket_path.message}</span>
+                        {errors.returnTicket && 
+                            <span className="error-msg">{errors.returnTicket.message}</span>
                         }
                     </Form.Group>
                 </Row>

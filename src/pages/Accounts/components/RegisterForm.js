@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-
-// API
-import DepartmentAPI from "../../../api/DepartmentAPI";
+import { useEffect } from "react";
+import { departments } from "../../Home/components/filterData";
 
 export default function RegisterForm({view, setFormView}) {
 
     const [formValues, setFormValues] = useState();
-    const [departments, setDepartments] = useState();
 
-    // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
         defaultValues: {
             firstName: "",
@@ -25,33 +22,18 @@ export default function RegisterForm({view, setFormView}) {
         }
     })
 
-    // Get all departments
-    const getAllDepartments = async() => {
-        const response = await new DepartmentAPI().getAllDepartments()
-        if (response?.ok) {
-            setDepartments(response.data)
-        } else console.log(response.statusMessage)
-    }
-
-    // Load API on page load
-    useEffect(() => {
-        getAllDepartments()
-    }, [])
-
-    // Submit form
     const displayValues = (values) => {
         console.log(values);
         setFormValues(values);
         setFormView(false);
+        reset();
     }
 
-    // Reset changes and close modal
     const handleCancel = () => {
         setFormView(false);
         reset();
     }
 
-    // Reset form upon successful form submission
     useEffect(() => {
         reset();
     }, [isSubmitSuccessful])
@@ -189,8 +171,8 @@ export default function RegisterForm({view, setFormView}) {
                                         className={`${errors.department ? "input-invalid" : ""}`}>
                                         <option disabled value=''>Select Department</option>
                                         {
-                                            departments?.map((item, idx) => 
-                                                <option key={idx} value={item.department_name}>{item.department_name}</option>)
+                                            departments.map(item => 
+                                                <option value={item.name}>{item.name}</option>)
                                         }
                                     </Form.Select>
                                     

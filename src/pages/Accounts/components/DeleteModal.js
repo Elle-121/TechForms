@@ -43,7 +43,7 @@ export default function DeleteModal ({ view, setView, setEditView }) {
                     <Form onSubmit={handleSubmit(displayValues)}>
                         <Form.Group className={showError ? "": "mb-4"} controlId="formBasicPassword">
                             <Form.Label>Please enter your password to confirm user deletion.</Form.Label>
-                            <Form.Control className={`${errors.password && showError ? "input-invalid" : ""}`} type="password" placeholder="Enter password"
+                            <Form.Control className={`${errors.password ? "input-invalid" : ""}`} type="password" placeholder="Enter password"
                                 {...register("password", {
                                     required : "Password cannot be empty.",
                                     validate: value => value === password || "Incorrect password."

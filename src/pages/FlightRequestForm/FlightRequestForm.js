@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 //components
 import MainContainer from '../../components/MainContainer';
 import ProgressLadder from './components/ProgressLadder';
-import FlightRequestComponent from '../../components/FlightRequestComponent';
+import FlightRequestComponent from './components/FlightRequestComponent';
 
 
 export default function FlightRequestForm() {

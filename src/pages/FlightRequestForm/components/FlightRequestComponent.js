@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // data
-import { departments, reasons } from "../pages/Home/components/filterData";
+import { departments, reasons } from "../../Home/components/filterData";
 
 export default function FlightRequestComponent() {
     
