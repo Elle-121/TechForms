@@ -29,21 +29,6 @@ export default function EditForm({view, setEditView, data}) {
 
     const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
 
-    // const [departments, setDepartments] = useState();
-
-    // // Get all departments
-    // const getAllDepartments = async() => {
-    //     const response = await new DepartmentAPI().getAllDepartments()
-    //     if (response?.ok) {
-    //         setDepartments(response.data)
-    //     } else console.log(response.statusMessage)
-    // }
-
-    // // Load API on page load
-    // useEffect(() => {
-    //     getAllDepartments()
-    // }, [])
-
     // Submit form 
     const displayValues = (values) => {
         if (isDirty) {
