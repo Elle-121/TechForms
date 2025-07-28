@@ -4,25 +4,22 @@ import { useForm } from "react-hook-form";
 
 // API
 import { useDepartments } from "../../../queryFunctions/StaticDataQueries";
-import UserProfileAPI from "../../../api/UserProfileAPI";
+import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
 export default function RegisterForm({view, setFormView}) {
-
-    const [formValues, setFormValues] = useState();
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
         defaultValues: {
+            username: "",
+            password: "",
+            email: "",
+            phone: "",
             first_name: "",
             middle_name: "",
             last_name: "",
             department_id: "",
             role_id: "",
-            email: "",
-            phone: "",
-            username: "",
-            password: "",
-            profile_id: "",
             profile_photo: "",
         }
     })
@@ -32,8 +29,16 @@ export default function RegisterForm({view, setFormView}) {
     // Submit form
     const displayValues = (values) => {
         console.log(values);
-        setFormValues(values);
+        submitUserData(values);
         setFormView(false);
+    }
+
+    // Add user to database
+    const submitUserData = async(values) => {
+        const response = await new UserCredentialsAPI().addUserCredentials(values)
+        if (response?.ok) {
+            console.log("User added!")
+        } else console.log(response.statusMessage)
     }
 
     // Reset changes and close modal
