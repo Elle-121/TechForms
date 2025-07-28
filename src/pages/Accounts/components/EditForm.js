@@ -7,23 +7,22 @@ import DeleteModal from "./DeleteModal";
 
 // API
 import { useDepartments } from "../../../queryFunctions/StaticDataQueries";
+import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
 export default function EditForm({view, setEditView, data}) {
-
-    const [formValues, setFormValues] = useState();
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isDirty }, setError, clearErrors } = useForm({
         defaultValues: {
+            username: "",
+            password: "",
+            email: "",
+            phone: "",
             first_name: "",
             middle_name: "",
             last_name: "",
             department_id: "",
             role_id: "",
-            email: "",
-            phone: "",
-            username: "",
-            password: "",
             profile_photo: "",
         }
     })
@@ -34,7 +33,7 @@ export default function EditForm({view, setEditView, data}) {
     const displayValues = (values) => {
         if (isDirty) {
             console.log(values);
-            setFormValues(values);
+            submitUserData(values.id, values);
             setEditView(false);
         } else {
             setError("formError", {
@@ -44,15 +43,18 @@ export default function EditForm({view, setEditView, data}) {
         }
     }
 
+    // Update user on database
+    const submitUserData = async(id, values) => {
+        const response = await new UserCredentialsAPI().updateUserCredentials(id, values)
+        if (response?.ok) {
+            console.log("User updated!")
+        } else console.log(response.statusMessage)
+    }
+
     useEffect(() => {
         console.log(data)
         reset(data)
     }, [data])
-
-    // Prefill account details to edit
-    // useEffect(() => {
-    //     reset(data);
-    // }, [data, reset]);
 
     // Reset changes and close modal
     const handleCancel = () => {
