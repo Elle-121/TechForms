@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, FormGroup } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { RequestAPI } from "../api/RequestAPI";
+import RequestAPI from '../api/RequestAPI';
 
 // data
 import { useUserCredentials } from '../context/UserCredentialsContext';
