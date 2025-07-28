@@ -1,25 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainContainer from "../../components/MainContainer";
 
 // components
 import SearchBar from "../../components/SearchBar";
 import Pagination from '../../components/Pagination';
 import AccountList from "./AccountList";
+import RegisterForm from './components/RegisterForm';
 import EditForm from "./components/EditForm";
 
 // data
 import { dummyData } from "./dummyData";
-import RegisterForm from './components/RegisterForm';
+
+// API
+import UserCredentialsAPI from "../../api/UserCredentialsAPI";
 
 export default function Accounts(){
 
     const [formView, setFormView] = useState(false);
     const [editView, setEditView] = useState(false);
     const [accountId, setAccountId] = useState(false);
+    const [accounts, setAccounts] = useState();
     
     const openFormView = () => {
         setFormView(true);
     }
+
+    const getAllAccounts = async() => {
+        const response = await new UserCredentialsAPI().getAllUserCredentials()
+        if (response?.ok) {
+            setAccounts(response.data)
+            console.log(response.data)
+        } else console.log(response.statusMessage)
+    }
+
+    useEffect(() => {
+        getAllAccounts();
+    }, [])
 
     // State for role and search
     const [searchValue, setSearchValue] = useState('');
@@ -29,15 +45,21 @@ export default function Accounts(){
     const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
 
-    // Filter Data
-    const filteredData = dummyData.filter(item => role ? item.role===role : item.role).filter(item => {
+    // Filter Dummy Data
+    const filteredDummy = dummyData.filter(item => role ? item.role===role : item.role).filter(item => {
         const fullname = `${item.firstName} ${item.lastName}`;
         return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
     });
 
-    const totalPages = Math.ceil(filteredData.length / requestsPerPage);
+    // Filter Dummy Data
+    const filteredAccounts = accounts?.filter(item => role ? item?.role_name===role : item?.role_name).filter(item => {
+        const fullname = `${item.first_name} ${item.last_name}`;
+        return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department_name.toLowerCase().includes(searchValue.toLowerCase())
+    });
 
-    const paginatedRequests = filteredData.slice(
+    const totalPages = Math.ceil(filteredAccounts?.length / requestsPerPage);
+
+    const paginatedRequests = filteredAccounts?.slice(
     (currentPage - 1) * requestsPerPage,
     currentPage * requestsPerPage
     );

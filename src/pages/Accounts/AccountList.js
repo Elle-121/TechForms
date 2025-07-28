@@ -23,15 +23,15 @@ export default function AccountList({data, setEditView, setAccountId}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, idx) => {
+                    {data?.map((item, idx) => {
                         return (
                             <tr key={item.id}>
-                                <td>{item.firstName + " " + item.lastName}</td>
+                                <td>{item.first_name + " " + item.last_name}</td>
                                 <td>{item.email}</td>
                                 <td>{item.phone}</td>
                                 <td>{item.username}</td>
-                                <td>{item.department}</td>
-                                <td>{item.role}</td>
+                                <td>{item.department_name}</td>
+                                <td>{item.role_name}</td>
                                 <td>
                                     <EditIcon onClick={() => handleEdit(idx)} width={20} height={20} className="btn-edit" />
                                 </td>
