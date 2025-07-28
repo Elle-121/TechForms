@@ -211,7 +211,7 @@ export default function EditForm({view, setEditView, data}) {
                                         <option disabled value=''>Select Department</option>
                                         {
                                             departments?.map((item, idx) => 
-                                                <option key={idx} value={idx + 1}>{item.department_name}</option>)
+                                                <option key={idx} value={item.id}>{item.department_name}</option>)
                                         }
                                     </Form.Select>
                                     
