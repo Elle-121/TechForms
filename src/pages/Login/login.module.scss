@@ -78,19 +78,18 @@
   }
 
   &__input-button {
-    composes: form-row__input-text;
-
-    background-color: inherit;
+    border: 1px solid black;
+    background-color: transparent;
     color: inherit;
 
     &:hover {
-      background-color: inherit;
       border: 1px solid black;
+      background-color: inherit;
       color: inherit;
     }
 
     &:active {
-      background-color: black;
+      background-color: transparent;
       color: inherit;
     }
   }
