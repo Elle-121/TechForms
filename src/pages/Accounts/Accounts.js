@@ -15,7 +15,7 @@ export default function Accounts(){
 
     const [formView, setFormView] = useState(false);
     const [editView, setEditView] = useState(false);
-    const [accountId, setAccountId] = useState(false);
+    const [data, setData] = useState(false);
     const [accounts, setAccounts] = useState();
     const [isLoading, setIsLoading] = useState(true);
     
@@ -76,8 +76,8 @@ export default function Accounts(){
                     <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
                 
-                <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} isLoading={isLoading} />
-                <EditForm view={editView} setEditView={setEditView} data={""} />
+                <AccountList data={paginatedRequests} setEditView={setEditView} setData={setData} isLoading={isLoading} />
+                <EditForm view={editView} setEditView={setEditView} data={data} />
 
                 <div className="border-black d-flex justify-content-center mb-0" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>

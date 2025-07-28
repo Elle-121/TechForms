@@ -1,10 +1,10 @@
 import { ReactComponent as EditIcon } from '../../assets/EditIcon.svg';
 import { Spinner } from 'react-bootstrap';
 
-export default function AccountList({data, setEditView, setAccountId, isLoading}) {
+export default function AccountList({data, setEditView, setData, isLoading}) {
 
-    const handleEdit = (idx) => {
-        setAccountId(idx);
+    const handleEdit = (item) => {
+        setData(item);
         setEditView(true);
     }
 
@@ -36,7 +36,7 @@ export default function AccountList({data, setEditView, setAccountId, isLoading}
                                         <td>{item.department_name}</td>
                                         <td>{item.role_name}</td>
                                         <td>
-                                            <EditIcon onClick={() => handleEdit(idx)} width={20} height={20} className="btn-edit" />
+                                            <EditIcon onClick={() => handleEdit(item)} width={20} height={20} className="btn-edit" />
                                         </td>
                                     </tr>
                                 )
