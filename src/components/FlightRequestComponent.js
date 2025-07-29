@@ -57,7 +57,7 @@ export default function FlightRequestComponent() {
             {remarksView && (
             <div className="form-box form-box-remarks mb-3 w-100 d-flex align-items-center py-3 px-4 gap-4">
                 <i className="bi bi-exclamation-triangle-fill fs-1"/>
-                <p className='text-start m-0'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus sem ultricies tellus maximus, quis mollis mi suscipit. Sed efficitur sapien et sollicitudin volutpat. Maecenas sodales nulla vitae efficitur venenatis. Aliquam erat volutpat. Aenean scelerisque sagittis felis, eget viverra quam pellentesque nec. Aenean ut congue ipsum. </p>
+                <p className='text-start m-0'>Additional travel information needed.</p>
                 {/* <p className='text-start m-0'>{request.remarks}</p> */}
             </div>
             )}
