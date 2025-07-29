@@ -1,18 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, FormGroup } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import RequestAPI from '../api/RequestAPI';
 
 // data
-import { departments, reasons } from "../pages/Home/components/filterData";
+import { useUserCredentials } from '../context/UserCredentialsContext';
+import { usePurposesOfTravel, useApprovers } from '../queryFunctions/StaticDataQueries';
 
 export default function FlightRequestComponent() {
-    
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { userCredentials, userCredentialsLoading, userCredentialsError } = useUserCredentials();
+    const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
+    const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
             defaultValues: {
                 requestor: '',
                 email: '',
                 department: '',
+                profile_id: 0,
                 first_name1: '',
                 middle_name1: '',
                 last_name1: '',
@@ -31,13 +37,27 @@ export default function FlightRequestComponent() {
                 end_business: '',
                 extra_baggage: '',
                 approved_by: '',
-                remarks: ''
+                remarks: '',
+                status_id: 0,
             }
-    })
+    });
+
+    useEffect(() => {
+        if (!userCredentialsLoading) {
+            reset({
+                requestor: `${userCredentials.UserProfile.first_name} ${userCredentials.UserProfile.last_name}` || "",
+                email: userCredentials.email || "",
+                department: userCredentials.UserProfile.Department.department_name || "",
+                profile_id: userCredentials.id || 0,
+                status_id: 2, //pending by default, change to draft (id: 5) when submitted through draft 
+                remarks: '',
+            });
+        }
+    }, [userCredentials, reset, userCredentialsLoading]);
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
-    const [remarksView, setRemarksView] = useState(true);
+    const [remarksView, setRemarksView] = useState(true); //should be initially false, only true when there is a remark
     const hasErrors = Object.keys(errors).length > 0;
     
     const validatePurpose = (value, formValues) => {
@@ -46,10 +66,25 @@ export default function FlightRequestComponent() {
         return (purposes.length > 0 || othersValid) || "Please select at least one purpose of travel or specify 'Others'.";
     }
 
-    
+    const submitRequest = async(values) => {
+        const response = await new RequestAPI().addRequest(values);
+        if (!response.ok) {
+            throw new Error(response.statusMessage || "Failed to create new request");
+        }
+        return response.data;
+    };
+
     const submitValues = (values) => {
-        console.log(values)
+        values.purpose = values.purpose[0];
+        console.log(values);
+        submitRequest(values);
+        // TO DO: Include creation of an Update in ProgressUpdate Model
     }
+
+    if (userCredentialsLoading) return (
+        <div class="spinner-border mt-5" role="status">
+        </div>
+    );
 
     return (
         <>
@@ -88,7 +123,7 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <Form.Group>
                                     <Form.Label className='fr-form-label'>Requestor Employee Name</Form.Label>
-                                    <Form.Control className={`${errors.requestor ? "input-invalid" : ""}`} {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" />
+                                    <Form.Control className={`${errors.requestor ? "input-invalid" : ""}`} {...register("requestor", {required: 'Requestor name is required'})} type="text" placeholder="Name of Requestor" disabled/>
                                     {errors.requestor && (
                                         <div className="error-msg">
                                             {errors.requestor.message}
@@ -99,7 +134,7 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label className='fr-form-label'>Company Email</Form.Label>
-                                    <Form.Control className={`${errors.email ? "input-invalid" : ""}`} {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" />
+                                    <Form.Control className={`${errors.email ? "input-invalid" : ""}`} {...register("email", {required: 'Email is required'})} type="email" placeholder="email@techfactors.com" disabled/>
                                     {errors.email && (
                                         <div className="error-msg">
                                             {errors.email.message}
@@ -112,13 +147,7 @@ export default function FlightRequestComponent() {
                         <Row className='mb-2'>
                             <Form.Group>
                                 <Form.Label className='fr-form-label'>Department</Form.Label>
-                                <Form.Select className={`${errors.department ? "input-invalid" : ""}`} {...register("department", {required: 'Department is required'})}>
-                                    {
-                                        departments.map(item => 
-                                            <option value={item.name}>{item.name}</option>        
-                                        )
-                                    }
-                                </Form.Select>
+                                <Form.Control className={`${errors.department ? "input-invalid" : ""}`} {...register("department", {required: 'Department is required'})} disabled/>
                                 {errors.department && (
                                         <div className="error-msg">
                                             {errors.department.message}
@@ -221,10 +250,11 @@ export default function FlightRequestComponent() {
                                 <Col>
                                     <div key={`default-checkbox`} className="mb-3">
                                         {
-                                            reasons.slice(0, 6).map(item => 
+                                            purposes?.slice(0, 6).map(item => 
                                                 <Form.Check {...register("purpose", {validate: validatePurpose})}
-                                                    label={item.name}
-                                                    value={item.name}
+                                                    key={item.id}
+                                                    label={item.purpose_name}
+                                                    value={item.id} //purpose_id starts at 3
                                                     type="checkbox"
                                                 />        
                                             )
@@ -235,10 +265,11 @@ export default function FlightRequestComponent() {
                                 <Col>                                        
                                     <div key={`default-checkbox`} className="mb-3">
                                         {
-                                            reasons.slice(6, 12).map(item => 
+                                            purposes?.slice(6, 12).map(item => 
                                                 <Form.Check {...register("purpose", {validate: validatePurpose})}
-                                                    label={item.name}
-                                                    value={item.name}
+                                                    key={item.id}
+                                                    label={item.purpose_name}
+                                                    value={item.id}
                                                     type="checkbox"
                                                 />        
                                             )
@@ -428,35 +459,17 @@ export default function FlightRequestComponent() {
                             <Col>
                                 <FormGroup className='fr-form-label'>
                                     <div key={`inline-radio`} className="mb-5">
-                                        <Form.Check {...register("approved_by", {required: "Approver is required"})}
-                                            inline
-                                            label="ARC"
-                                            value="ARC"
-                                            type="radio"
-                                            id={`inline-radio-1`}
-                                        />
-                                        <Form.Check {...register("approved_by")}
-                                            inline
-                                            label="JDLC"
-                                            value="JDLC"
-                                            type="radio"
-                                            id={`inline-radio-2`}
-                                        />
-                                        <Form.Check {...register("approved_by")}
-                                            inline
-                                            label="ATP"
-                                            value="ATP"
-                                            type="radio"
-                                            id={`inline-radio-3`}
-                                        />
-                                        <Form.Check {...register("approved_by")}
-                                            inline
-                                            label="DFS"
-                                            value="DFS"
-                                            type="radio"
-                                            id={`inline-radio-3`}
-                                        />
-                                        
+                                        {
+                                            approvers?.map(item => (
+                                                <Form.Check {...register("approved_by", {required: "Approver is required"})}
+                                                    inline
+                                                    label={item.approver_name}
+                                                    value={item.id}
+                                                    type="radio"
+                                                    id={`inline-radio-${item.id}`}
+                                                />
+                                            ))
+                                        }      
                                         {errors.approved_by && (
                                             <div className="error-msg">
                                                 {errors.approved_by.message}

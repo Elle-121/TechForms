@@ -31,14 +31,17 @@ export default function FlightRequestForm() {
                 {/*Center Content*/}
                 <Col xs={7} className="text-center">
                     
-                    {/* Back and Proceed Button */}
+                    
                     <div className="d-flex justify-content-between align-items-center">
+
+                        {/* Back Button */}
                         <button type='button' className="hover-underline d-flex align-items-center"
                             onClick={navigateHome}>
                             <i className="bi bi-chevron-left" style={{ fontSize: '18px', color: '#EE9337' }}></i>
                             <span style={{ color: '#EE9337', fontSize: '14px' }}>Back</span>
                         </button>
 
+                        {/* Proceed Button */}
                         <button type='button' className="hover-underline d-flex align-items-center"
                             onClick={navigateBooking}>
                             <span style={{ color: '#EE9337', fontSize: '14px' }}>Booking Details</span>
@@ -47,6 +50,7 @@ export default function FlightRequestForm() {
                                 Possibly add non-editable version of form.
                                 Possibly improve UI consistency? */}
                         </button>
+                        
                     </div>
 
                     {/* Flight Request Form */}

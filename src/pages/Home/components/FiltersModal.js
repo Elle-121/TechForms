@@ -1,6 +1,7 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { approvers, statusTypes } from "./filterData";
 
 // Import custom hooks for StaticDataQueries
 import { useDepartments, useFormTypes, useStatusTypes, usePurposesOfTravel, useApprovers } from "../../../queryFunctions/StaticDataQueries";
@@ -19,10 +20,10 @@ export default function FiltersModal({
 }) {
 
     const { data: departments, isPending: departmentsLoading, isError: departmentsError } = useDepartments();
-    // const { data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useFormTypes();
-    const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
+    const { data: formTypes, isPending: formTypeLoading, isError: formTypeError } = useFormTypes();
     const { data: purposes, isPending: purposesLoading, isError: purposesError } = usePurposesOfTravel();
-    const { data: approvers, isPending: approversLoading, isError: approversError } = useApprovers();
+    // const { data: statusTypes, isPending: statusTypeLoading, isError: statusTypeError } = useStatusTypes();
+    // const { data: approvers, isPending: approversLoading, isError: approversError, refetch: refetchApprovers } = useApprovers(false);
 
     // Filter useForm
     const { register, handleSubmit, reset, setValue } = useForm({
@@ -120,6 +121,7 @@ export default function FiltersModal({
 
         // setFilterView(false);  // Close the modal
         console.log(values);
+        
     }
 
     return ( 
@@ -173,7 +175,7 @@ export default function FiltersModal({
                                     <Form.Label className='filter-form-label'>Form Type</Form.Label>
                                     <Form.Select {...register("form_type")}>
                                         <option value=''>Select Form Type</option>
-                                        {/* {
+                                        {
                                             formTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : formTypeError ? (
@@ -183,7 +185,7 @@ export default function FiltersModal({
                                                     <option value={item.form_name}>{item.form_name}</option>        
                                                 )
                                             )
-                                        } */}
+                                        }
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -194,6 +196,11 @@ export default function FiltersModal({
                                     <Form.Select {...register("status")}>
                                         <option value=''>Select Status</option>                                        
                                         {
+                                            statusTypes?.map(item => 
+                                                <option value={item.name}>{item.name}</option>
+                                            )
+                                        }
+                                        {/* {
                                             statusTypeLoading ? (
                                                 <option value='' disabled>Loading Options...</option>
                                             ) : statusTypeError ? (
@@ -203,7 +210,7 @@ export default function FiltersModal({
                                                 <option value={item.status_name}>{item.status_name}</option>        
                                                 )
                                             )
-                                        }
+                                        } */}
                                     </Form.Select>
                                 </Form.Group>
                             </Col>
@@ -298,8 +305,20 @@ export default function FiltersModal({
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3 text-center">
-                                    <Form.Label className='filter-form-label'>To be approved by</Form.Label>                                                                                      
-                                    {
+                                    <Form.Label className='filter-form-label'>To be approved by</Form.Label>     
+                                    <div key={`inline-radio`} className="mb-3">                                                
+                                        {approvers?.map(item => (
+                                            <Form.Check
+                                                key={item.id} // Add a key to avoid React warnings
+                                                {...register("approved_by")}
+                                                inline
+                                                label={item.name}
+                                                value={item.name}
+                                                type="radio"
+                                            />
+                                        ))}
+                                    </div>                                                                                 
+                                    {/* {
                                         approversLoading ? (                                            
                                             <p>Loading...</p>
                                         ) : approversError ? (
@@ -318,7 +337,7 @@ export default function FiltersModal({
                                                 ))}
                                             </div>
                                         )
-                                    }
+                                    } */}
                                 </Form.Group>
                             </Col>
                         </Row>
