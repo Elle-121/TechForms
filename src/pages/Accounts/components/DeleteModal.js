@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // API
 import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
-export default function DeleteModal ({ view, setView, setEditView, setRefresh, userId }) {
+export default function DeleteModal ({ view, setView, setEditView, setRefresh, setIsLoading, userId }) {
 
     const password = "admin123";
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, watch } = useForm({
@@ -15,6 +15,7 @@ export default function DeleteModal ({ view, setView, setEditView, setRefresh, u
     })
 
     const handleDelete = () => {
+        setIsLoading(true)
         deleteUser(userId);
         setView(false);
         setEditView(false);

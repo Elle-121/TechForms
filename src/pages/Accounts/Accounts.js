@@ -37,7 +37,6 @@ export default function Accounts(){
 
     useEffect(() => {
         if (refresh) {
-            setIsLoading(true)
             getAllAccounts()
         }
     }, [refresh])
@@ -83,7 +82,7 @@ export default function Accounts(){
                 </div>
                 
                 <AccountList data={paginatedRequests} setEditView={setEditView} setData={setData} isLoading={isLoading} />
-                <EditForm view={editView} setEditView={setEditView} setRefresh={setRefresh} data={data} />
+                <EditForm view={editView} setEditView={setEditView} setRefresh={setRefresh} setIsLoading={setIsLoading} data={data} />
 
                 <div className="border-black d-flex justify-content-center mb-0" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
@@ -91,7 +90,7 @@ export default function Accounts(){
             </div>
 
             <button onClick={openFormView} className="btn rounded-circle position-fixed" style={{ color:'white', bottom: '20px', right: '20px', width: '50px', height: '50px', fontSize: '24px', backgroundColor: 'var(--tforange-color)'}}>+</button>
-            <RegisterForm view={formView} setFormView={setFormView} setRefresh={setRefresh} />
+            <RegisterForm view={formView} setFormView={setFormView} setRefresh={setRefresh} setIsLoading={setIsLoading} />
         
         </MainContainer>
     );
