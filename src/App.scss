@@ -380,6 +380,17 @@ p {
   }
 }
 
+.copy-form-link {
+  color: var(--tforange-color);
+  font-size: 1.1rem; // Determines Icon Size (FontAwesome Implementation)
+  font-weight: bold;
+
+  &:active { // Gives responsive interaction
+    font-size: 1.2rem;
+  }
+
+}
+
 .btn-review {
   border: 2px solid;
   border-color: transparent;
