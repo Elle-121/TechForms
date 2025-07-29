@@ -36,8 +36,9 @@ export default function FlightRequestComponent() {
                 start_business: '',
                 end_business: '',
                 extra_baggage: '',
-                approved_by: 0,
+                approved_by: '',
                 remarks: '',
+                status_id: 0,
             }
     });
 
@@ -48,6 +49,7 @@ export default function FlightRequestComponent() {
                 email: userCredentials.email || "",
                 department: userCredentials.UserProfile.Department.department_name || "",
                 profile_id: userCredentials.id || 0,
+                status_id: 2, //pending by default, change to draft (id: 5) when submitted through draft 
                 remarks: '',
             });
         }
@@ -55,7 +57,7 @@ export default function FlightRequestComponent() {
 
     const [othersChecked, setOthersChecked] = useState(false);
     const [othersValue, setOthersValue] = useState("");
-    const [remarksView, setRemarksView] = useState(false); //should be initially false, only true when there is a remark
+    const [remarksView, setRemarksView] = useState(true); //should be initially false, only true when there is a remark
     const hasErrors = Object.keys(errors).length > 0;
     
     const validatePurpose = (value, formValues) => {
@@ -64,8 +66,8 @@ export default function FlightRequestComponent() {
         return (purposes.length > 0 || othersValid) || "Please select at least one purpose of travel or specify 'Others'.";
     }
 
-    const submitRequest = async (values) => {
-        const response = await new RequestAPI().addRequest();
+    const submitRequest = async(values) => {
+        const response = await new RequestAPI().addRequest(values);
         if (!response.ok) {
             throw new Error(response.statusMessage || "Failed to create new request");
         }
@@ -73,10 +75,10 @@ export default function FlightRequestComponent() {
     };
 
     const submitValues = (values) => {
-        values.approved_by = parseInt(values.approved_by);
-        values.purpose = values.purpose.toString();
+        values.purpose = values.purpose[0];
         console.log(values);
         submitRequest(values);
+        // TO DO: Include creation of an Update in ProgressUpdate Model
     }
 
     if (userCredentialsLoading) return (
@@ -459,7 +461,7 @@ export default function FlightRequestComponent() {
                                     <div key={`inline-radio`} className="mb-5">
                                         {
                                             approvers?.map(item => (
-                                                <Form.Check {...register("approved_by", {required: "Approver is required", valueAsNumber: true})}
+                                                <Form.Check {...register("approved_by", {required: "Approver is required"})}
                                                     inline
                                                     label={item.approver_name}
                                                     value={item.id}
