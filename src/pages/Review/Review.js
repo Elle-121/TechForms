@@ -59,7 +59,7 @@ export default function Review() {
                     {/* Add pop-up for reject */}
                     <div className='d-flex justify-content-center gap-2 btn-group-review'>
                         <button type='submit' onClick={() => setReject(true)} className='btn-reject py-1'>Reject</button>
-                        <button type='submit' onClick={() => setReject(false)} className='btn-add py-1'>Add Booking Details</button>
+                        <button type='submit' onClick={() => setReject(false)} className='btn-add py-1'>Approve</button>
                     </div>
                 </Form>
                 <RejectModal view={reject} setView={setReject} />
