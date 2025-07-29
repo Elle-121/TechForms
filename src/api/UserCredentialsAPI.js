@@ -2,7 +2,7 @@ import Base from './Base';
 
 export default class UserCredentialsAPI extends Base {
     
-    addUserCredentials = async (id, data) => {
+    addUserCredentials = async (data) => {
         return this.sendRequest({
             path: '/api/v1/user_credentials/create',
             method: 'POST',

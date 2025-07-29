@@ -1,25 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainContainer from "../../components/MainContainer";
 
 // components
 import SearchBar from "../../components/SearchBar";
 import Pagination from '../../components/Pagination';
 import AccountList from "./AccountList";
+import RegisterForm from './components/RegisterForm';
 import EditForm from "./components/EditForm";
 
-// data
-import { dummyData } from "./dummyData";
-import RegisterForm from './components/RegisterForm';
+// API
+import UserCredentialsAPI from "../../api/UserCredentialsAPI";
 
 export default function Accounts(){
 
     const [formView, setFormView] = useState(false);
     const [editView, setEditView] = useState(false);
-    const [accountId, setAccountId] = useState(false);
+    const [data, setData] = useState(false);
+    const [accounts, setAccounts] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     
     const openFormView = () => {
         setFormView(true);
     }
+
+    const getAllAccounts = async() => {
+        const response = await new UserCredentialsAPI().getAllUserCredentials()
+        if (response?.ok) {
+            setAccounts(response.data)
+            setIsLoading(false)
+        } else console.log(response.statusMessage)
+    }
+
+    useEffect(() => {
+        getAllAccounts();
+    }, [])
 
     // State for role and search
     const [searchValue, setSearchValue] = useState('');
@@ -29,15 +43,15 @@ export default function Accounts(){
     const [currentPage, setCurrentPage] = useState(1);
     const requestsPerPage = 10;
 
-    // Filter Data
-    const filteredData = dummyData.filter(item => role ? item.role===role : item.role).filter(item => {
-        const fullname = `${item.firstName} ${item.lastName}`;
-        return !searchValue || fullname.toLowerCase().includes(searchValue.toLowerCase()) || item.department.toLowerCase().includes(searchValue.toLowerCase())
+    // Filter Accounts Data
+    const filteredAccounts = accounts?.filter(item => role ? item.role_name===role : item.role_name).filter(item => {
+        const fullname = `${item.first_name} ${item.last_ame}`;
+        return !searchValue || fullname?.toLowerCase().includes(searchValue.toLowerCase()) || item.department?.toLowerCase().includes(searchValue.toLowerCase())
     });
 
-    const totalPages = Math.ceil(filteredData.length / requestsPerPage);
+    const totalPages = Math.ceil(filteredAccounts?.length / requestsPerPage);
 
-    const paginatedRequests = filteredData.slice(
+    const paginatedRequests = filteredAccounts?.slice(
     (currentPage - 1) * requestsPerPage,
     currentPage * requestsPerPage
     );
@@ -49,7 +63,7 @@ export default function Accounts(){
 
     return (
         <MainContainer>
-            <div className="mx-5 my-3">
+            <div className="mx-5 my-2">
                 <h1 className="tf-header">Account Management</h1>
                 
                 <div className="d-flex justify-content-between mb-3">
@@ -60,11 +74,11 @@ export default function Accounts(){
                     </div>
                     <SearchBar setSearchValue={setSearchValue} setCurrentPage={setCurrentPage}/>
                 </div>
+                
+                <AccountList data={paginatedRequests} setEditView={setEditView} setData={setData} isLoading={isLoading} />
+                <EditForm view={editView} setEditView={setEditView} data={data} />
 
-                <AccountList data={paginatedRequests} setEditView={setEditView} setAccountId={setAccountId} />
-                <EditForm view={editView} setEditView={setEditView} data={dummyData[accountId]} />
-
-                <div className="border-black  d-flex justify-content-center" style={{ padding: 5, marginTop: 'auto'}}>
+                <div className="border-black d-flex justify-content-center mb-0" style={{ padding: 5, marginTop: 'auto'}}>
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
                 </div>
             </div>
