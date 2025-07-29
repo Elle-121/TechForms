@@ -16,6 +16,9 @@ import FormsModal from './components/FormsModal.js';
 // Import filterData function
 import filterData from './components/FilterFunction.js';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 // Dummy Data
 import dummyData from './dummyData';
 
@@ -147,7 +150,10 @@ function Home() {
         </div>
 
         {/* Floating Action Button */}
-        <button className="add-btn position-fixed" onClick={() => setFormsView(true)} style={{bottom: '20px', right: '20px'}}>+</button>
+        <button className="add-btn position-fixed" onClick={() => setFormsView(true)} style={{bottom: '20px', right: '20px'}}>
+            <FontAwesomeIcon icon={faPlus}/>
+            <span>Submit New Form</span>
+        </button>
     </MainContainer>
     );
 }
