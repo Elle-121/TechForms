@@ -2,21 +2,33 @@ import { Modal, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 
-export default function DeleteModal ({ view, setView, setEditView }) {
+// API
+import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
+export default function DeleteModal ({ view, setView, setEditView, userId }) {
+
+    const password = "admin123";
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, watch } = useForm({
         defaultValues: {
             password: "",
         }
     })
-    
-    const password = "admin123";
-    const displayValues = () => {
+
+    const handleDelete = () => {
+        deleteUser(userId);
         setView(false);
         setEditView(false);
     }
     
     const [showError, setShowError] = useState(false);
+
+        
+    const deleteUser = async(id) => {
+        const response = await new UserCredentialsAPI().deleteUserCredentials(id)
+        if (response?.ok) {
+            console.log(`User ${id} deleted!`)
+        } else console.log(response.statusMessage)
+    }
 
     // Show error message after submit button is pressed
     useEffect(() => {
@@ -40,7 +52,7 @@ export default function DeleteModal ({ view, setView, setEditView }) {
             <Modal show={view} size="md" centered>
                 <Modal.Body className="mt-2 text-center p-4">
                     <h5 className="fr-form-label mb-3">Delete this user?</h5>
-                    <Form onSubmit={handleSubmit(displayValues)}>
+                    <Form onSubmit={handleSubmit(handleDelete)}>
                         <Form.Group className={showError ? "": "mb-4"} controlId="formBasicPassword">
                             <Form.Label>Please enter your password to confirm user deletion.</Form.Label>
                             <Form.Control className={`${errors.password && showError ? "input-invalid" : ""}`} type="password" placeholder="Enter password"

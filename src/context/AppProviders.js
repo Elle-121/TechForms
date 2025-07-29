@@ -1,22 +1,10 @@
-import { ApproversProvider } from "./ApproversContext";
-import { DepartmentsProvider } from "./DepartmentsContext";
-import { PurposeOfTravelProvider } from "./PurposeOfTravelContext";
-import { StatusTypeProvider } from "./StatusContext";
-// import { FormTypeProvider } from "./FormTypeContext";   
+import { UserCredentialsProvider } from "./UserCredentialsContext";
 
-const AppProviders = ({ children }) => {
+const AppProviders = ({ userID, children }) => {
     return (
-        <ApproversProvider>
-            <DepartmentsProvider>
-                <PurposeOfTravelProvider>
-                    <StatusTypeProvider>
-                        {/* <FormTypeProvider> */}
-                            {children}
-                        {/* </FormTypeProvider> */}
-                    </StatusTypeProvider>
-                </PurposeOfTravelProvider>
-            </DepartmentsProvider>
-        </ApproversProvider>
+        <UserCredentialsProvider credentialsID={userID}>
+            {children}
+        </UserCredentialsProvider>
     );
 };
 

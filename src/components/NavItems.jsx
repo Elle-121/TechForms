@@ -2,22 +2,24 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import homeIcon from '../assets/HomeIcon.svg'
-import notificationsIcon from '../assets/NotificationsIcon.svg'
-import accountsIcon from '../assets/AccountsIcon.svg'
-import image from '../assets/PNGIcon.svg'
+import homeIcon from '../assets/HomeIcon.svg';
+import notificationsIcon from '../assets/NotificationsIcon.svg';
+import accountsIcon from '../assets/AccountsIcon.svg';
+import image from '../assets/PNGIcon.svg';
 
-// notifs
-import dummyNotifs from './dummyNotifs.js'
+// import data
+import dummyNotifs from './dummyNotifs.js';
+import { useUserCredentials } from '../context/UserCredentialsContext.js';
 
 
 function NavItems() {
-  
+  const { userCredentials, userCredentialsLoading, userCredentialsError } = useUserCredentials();
+
   // constants
   const icon_size = 30;
   const profile_icon_size = 40;
-  const dummy_profile = 'Rayu Ma Masakit';
-  const dummy_role = 'Employee';
+  const profile_name = userCredentialsLoading ? 'Loading User...' : `${userCredentials.UserProfile.first_name} ${userCredentials.UserProfile.last_name}`;
+  const profile_role = userCredentialsLoading ? '' : userCredentials.UserProfile.Role.role_name;
 
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);
@@ -128,8 +130,8 @@ function NavItems() {
             <div className="d-flex align-items-center">
               <img src={image} width={profile_icon_size} height={profile_icon_size} className="me-2" alt="User" />
               <div className="d-flex flex-column text-start">
-                <span className="fw-bold">{dummy_profile}</span>
-                <span className="text-muted">{dummy_role}</span>
+                <span className="fw-bold">{profile_name}</span>
+                <span className="text-muted">{profile_role}</span>
               </div>
             </div>
           </div>

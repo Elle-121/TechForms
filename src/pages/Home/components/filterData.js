@@ -58,7 +58,7 @@ export const formTypes = [
     }
 ]
 
-export const status = [
+export const statusTypes = [
     {
         "name": "Pending"
     },
@@ -107,7 +107,7 @@ export const forms = [
     },
 ]
 
-export const approver = [
+export const approvers = [
     {
         "name": "ARC"
     },

@@ -221,6 +221,14 @@ p {
 }
 
 /* Accounts Page */
+.accounts-table {
+  height: 448.800px;
+
+  .spinner-container{
+    height: 396px;
+  }
+}
+
 .nav-tabs,
 .btn-role {
   padding: 8px 16px;
@@ -662,7 +670,7 @@ p {
   }
 
   &-remarks {
-    background-color: var(--tf-yellow-bg);
+    background-color: #6d6d6c;
   }
 }
 

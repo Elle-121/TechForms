@@ -123,6 +123,7 @@ function Home() {
                         
                         {/* Modals */}
                         <FormsModal view={formsView} setFormsView={setFormsView} />
+                    
                         <FiltersModal 
                             view={filterView} 
                             setFilterView={setFilterView} 
@@ -135,6 +136,7 @@ function Home() {
                             setStatusValue={setStatusValue}
                             setActiveFilter={setActiveFilter}
                         />
+                        
                     </div>
                 </div>
 
