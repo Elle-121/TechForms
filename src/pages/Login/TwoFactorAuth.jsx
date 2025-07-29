@@ -2,10 +2,14 @@ import MainContainer from '../../components/MainContainer';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from "./login.module.scss";
 
+import OtpInput from '../../components/OtpInput';
+
 
 // TODO Add Timed Resend Button Function
 
-function TwoFactorAuth(){
+
+
+export default function TwoFactorAuth(){
     let navigate = useNavigate();
     const dummyData = {
         phoneNumber: "+63 967 702 9444",
@@ -32,37 +36,9 @@ function TwoFactorAuth(){
                         <p>Enter the OTP we sent to <strong>{dummyData.phoneNumber}</strong></p>
                     </header>
 
-                    <form action='' method='get' className={styles["login-form"]}> {/* TODO fill in action and method attributes */}
-                        <fieldset className={styles['form-row']}>
-                            <div className={styles["otp-input"]}>
-                                <input className={styles["otp-input__number"]} id='otp1'
-                                    name='otp1' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                                <input className={styles["otp-input__number"]} id='otp2'
-                                    name='otp2' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                                <input className={styles["otp-input__number"]} id='otp3'
-                                    name='otp3' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                                <input className={styles["otp-input__number"]} id='otp4'
-                                    name='otp4' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                                <input className={styles["otp-input__number"]} id='otp5'
-                                    name='otp5' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                                <input className={styles["otp-input__number"]} id='otp6'
-                                    name='otp6' type='text' placeholder="0"
-                                    maxlength="1" size="1"/>
-                            </div>
-                            {/* FIXME the input boxes should go to next*/}
+                    <form action='' method='get' className={styles["login-form"]}>
 
-                            <legend className={styles["form-legend"]}>
-                                Resend available in <strong>{dummyData.timeTillOTP}
-                                </strong> seconds. {/* TODO Format Time */}
-                                <button type="button" className="link">Resend OTP</button>
-                            </legend>
-
-                        </fieldset>
+                        <OtpInput dummyData={dummyData}/>
 
                         <div className={styles["button-row"]}>
                             <Link to="/reset-password" className={styles["button-row__button--negate"]}>Back</Link>
@@ -79,6 +55,3 @@ function TwoFactorAuth(){
          </MainContainer>
     );
 }
-
-
-export default TwoFactorAuth;

@@ -2,6 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+
 function BookingList({data}) {
     let navigate = useNavigate();
 
@@ -27,6 +30,17 @@ function BookingList({data}) {
         ]
     }
 
+    const getFormLink = async () => {
+
+        const link = "http://localhost:3000/review"; // TODO Generate proper link
+
+        try {
+            await navigator.clipboard.writeText(link); 
+        }
+        catch (error) {
+            console.error(error.message);
+        }
+    }
 
   return (
     <div style={{ overflowY: 'auto' }} className=" border-black">
@@ -38,7 +52,18 @@ function BookingList({data}) {
         >
             {/* Subject and date */}
             <div style={{ flex: 2, minWidth: '200px', maxWidth: '500px' }} className="">
-                <div className="fw-bold" style={{fontSize:'1.25rem'}}>{item.subject}</div> 
+                <div className="fw-bold" style={
+                    {
+                        alignItems: 'center',
+                        display: 'flex',
+                        fontSize:'1.25rem',
+                        gap: '0rem 0.5rem'
+                    }}>
+                    <span>{item.subject}</span>
+                    <button type="button" className="copy-form-link" onClick={getFormLink}>
+                        <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
+                    </button>
+                </div> 
                 <div className="text-muted" style={{ fontSize: '0.85rem' }}>
                     <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
                 </div>

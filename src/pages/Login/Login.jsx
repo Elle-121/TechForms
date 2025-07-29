@@ -16,14 +16,14 @@ import MainContainer from '../../components/MainContainer';
 import loginImage from "../../assets/LoginImage.jpeg"
 import styles from "./login.module.scss";
 
-// TODO: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
+// TODO: Eager Validation as outlined here: https://www.reddit.com/r/webdev/comments/nr9rso/how_to_validate_forms_properly_some_useful_dos/
 
 const schemaValidator = z.object({
     username: 
         z.union([ // First Checks if Username. If @ is included, starts checking full email regex
                 z.string({error: "TypeError: Not a string"})
-                    .refine((val) => 
-                        !z.string().includes("@").safeParse(val).success, 
+                    .refine((username) => 
+                        !z.string().includes("@").safeParse(username).success, 
                         { error: "Oops this is not a valid email address"}) // If Error, UX assumes user is trying to input an email
                     .nonempty({ error: "It's empty! "}),
                 z.email({ error: "Oops this is not a valid email address"}) // Checks full email regex
@@ -54,7 +54,7 @@ function FormContainer(){
             navigate("/");
         }
         catch (error) {
-
+            console.log(errors);
         }
     }
 
@@ -106,8 +106,7 @@ function FormContainer(){
             <Form.Text style={{ visibility: errors.password ? 'visible' : 'hidden' }}>
                  <FontAwesomeIcon icon={faTriangleExclamation} />
                  <span className={styles['error-text']}>&nbsp;{errors.password?.message}</span>
-             </Form.Text>                             {/* TODO Add Unhide Password https://www.wmcsoft.com/blog/how-to-implement-a-password-reveal*/}
-
+             </Form.Text>        
 
             <Link to="/reset-password" className={styles["login-form__link"]}>
                 Forgot your password?</Link>
@@ -118,10 +117,6 @@ function FormContainer(){
             <Button type="submit" className={styles["button-row__button--affirm"]}
                 disabled={isSubmitting}>Log In</Button> {/* TODO Modify Bootstrap default styling */}
         </Form.Group>
-
-        {errors.root && (
-             <div>{errors.root?.message}</div>
-        )}
     </Form>
     );
 }
