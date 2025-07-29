@@ -70,7 +70,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         }}
       />
      
-      <span className="fw-medium">of {totalPages}</span>
+      <span className="fw-medium">of {totalPages ? totalPages : 1}</span>
 
       {/* Next Arrow */}
       <button className="btn p-1" onClick={goToNextPage} disabled={currentPage === totalPages}>

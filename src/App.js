@@ -1,14 +1,18 @@
 import React from "react";
 import AppRoutes from "./routes/AppRoutes";
-import AppProviders from "./context/AppProviders";
 import "./App.scss";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <React.StrictMode>  
-      <AppProviders>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
         <AppRoutes />
-      </AppProviders>
+        <ReactQueryDevtools initialIsOpen={false} /> {/*remove during deployment*/}
+      </QueryClientProvider>
     </React.StrictMode>
   );
 }
