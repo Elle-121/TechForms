@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useDepartments } from "../../../queryFunctions/StaticDataQueries";
 import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
-export default function RegisterForm({view, setFormView}) {
+export default function RegisterForm({view, setFormView, setRefresh, setIsLoading}) {
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isSubmitSuccessful } } = useForm({
@@ -28,6 +28,7 @@ export default function RegisterForm({view, setFormView}) {
 
     // Submit form
     const displayValues = (values) => {
+        setIsLoading(true)
         console.log(values);
         submitUserData(values);
         setFormView(false);
@@ -37,6 +38,7 @@ export default function RegisterForm({view, setFormView}) {
     const submitUserData = async(values) => {
         const response = await new UserCredentialsAPI().addUserCredentials(values)
         if (response?.ok) {
+            setRefresh(true)
             console.log("User added!")
         } else console.log(response.statusMessage)
     }
