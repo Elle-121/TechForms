@@ -313,7 +313,7 @@ export default function EditForm({view, setEditView, data}) {
                             </div>
                         </div>
                     </Form>
-                    <DeleteModal view={deleteView} setView={setDeleteView} setEditView={setEditView} />
+                    <DeleteModal view={deleteView} setView={setDeleteView} setEditView={setEditView} userId={data.id}/>
                 </div>
             </Modal.Body>
         </Modal>

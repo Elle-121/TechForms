@@ -9,10 +9,17 @@ function BookingList({data}) {
         navigate("/booking-details")
     }
 
+    const viewReview = () => {
+        navigate("/review")
+    }
+
     // Actions linked to each status as well as their icons and classes
     const statusActions = {
         Draft:  [{ label: 'Edit', icon: 'bi-pencil', className: 'text-tforange', onClick: '' }],
-        Pending:[{ label: 'View Details', icon: 'bi-eye', className: 'text-tforange', onClick: '' }],
+        Pending:[
+            { label: 'View Details', icon: 'bi-eye', className: 'text-tforange', onClick: '' },
+            { label: 'Review', icon: 'bi-clipboard-check', className: 'text-tfblue', onClick: viewReview }
+        ],
         Rejected: [{ label: 'Resubmit', icon: 'bi-pencil', className: 'text-tforange', onClick: '' }],
         Approved: [
             { label: 'View Details', icon: 'bi-eye', className: 'text-tforange', onClick: '' },
