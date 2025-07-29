@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // API
 import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
-export default function DeleteModal ({ view, setView, setEditView, userId }) {
+export default function DeleteModal ({ view, setView, setEditView, setRefresh, userId }) {
 
     const password = "admin123";
     const { register, handleSubmit, reset, formState: { errors, isSubmitting }, watch } = useForm({
@@ -26,6 +26,7 @@ export default function DeleteModal ({ view, setView, setEditView, userId }) {
     const deleteUser = async(id) => {
         const response = await new UserCredentialsAPI().deleteUserCredentials(id)
         if (response?.ok) {
+            setRefresh(true)
             console.log(`User ${id} deleted!`)
         } else console.log(response.statusMessage)
     }

@@ -9,7 +9,7 @@ import DeleteModal from "./DeleteModal";
 import { useDepartments } from "../../../queryFunctions/StaticDataQueries";
 import UserCredentialsAPI from "../../../api/UserCredentialsAPI";
 
-export default function EditForm({view, setEditView, data}) {
+export default function EditForm({view, setEditView, setRefresh, data}) {
 
     // Initialize form
     const { register, handleSubmit, reset, formState: { errors, isValid, isSubmitted, isDirty }, setError, clearErrors } = useForm({
@@ -47,6 +47,7 @@ export default function EditForm({view, setEditView, data}) {
     const submitUserData = async(id, values) => {
         const response = await new UserCredentialsAPI().updateUserCredentials(id, values)
         if (response?.ok) {
+            setRefresh(true)
             console.log("User updated!")
         } else console.log(response.statusMessage)
     }
@@ -313,7 +314,7 @@ export default function EditForm({view, setEditView, data}) {
                             </div>
                         </div>
                     </Form>
-                    <DeleteModal view={deleteView} setView={setDeleteView} setEditView={setEditView} userId={data.id}/>
+                    <DeleteModal view={deleteView} setView={setDeleteView} setEditView={setEditView} setRefresh={setRefresh} userId={data.id}/>
                 </div>
             </Modal.Body>
         </Modal>
