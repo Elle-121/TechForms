@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // Dummy Data
-import dummyData from './dummyData';
+import { dummyData } from './dummyData.js';
 
 function Home() {
     // Forms and Filters Modal
@@ -38,7 +38,11 @@ function Home() {
     // Filter the request based on filterValues + searchValue
     const filteredData = dummyData
     .filter(item => filterData(item, filterValues))
-    .filter(item =>!searchValue || item.subject.toLowerCase().includes(searchValue.toLowerCase()));
+    .filter(item =>!searchValue || 
+        item?.FlightRequest?.purpose_others?.toLowerCase().includes(searchValue.toLowerCase()) || 
+        item?.FlightRequest?.PurposeOfTravel?.purpose_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item?.FormType.form_name.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
     const totalPages = Math.ceil(filteredData.length / requestsPerPage);
 

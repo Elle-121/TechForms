@@ -4,7 +4,7 @@ import bookmarkicon from '../../assets/BookmarkIcon.svg'
 import smallcheckicon from '../../assets/SmallcheckIcon.svg'
 import totalreqicon from '../../assets/TotalReqIcon.svg'
 import rejectedicon from '../../assets/RejectedIcon.svg'
-import dummyData from './dummyData';
+import { dummyData } from './dummyData';
 
 
 // Syles for the Cards
@@ -41,9 +41,9 @@ const styles = {
 
 // Request Stats Data
 const totalCount = dummyData.length;
-const pendingCount = dummyData.filter(req => req.status === 'Pending').length;
-const approvedCount = dummyData.filter(req => req.status === 'Approved').length;
-const rejectedCount = dummyData.filter(req => req.status === 'Rejected').length;
+const pendingCount = dummyData.filter(req => req.StatusType.status_name === 'Pending').length;
+const approvedCount = dummyData.filter(req => req.StatusType.status_name === 'Approved').length;
+const rejectedCount = dummyData.filter(req => req.StatusType.status_name === 'Rejected').length;
 
 const requestStats = [
   { icon: archiveicon, label: 'Total Requests', count: totalCount },
