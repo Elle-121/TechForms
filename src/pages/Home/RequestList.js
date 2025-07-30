@@ -59,31 +59,33 @@ function BookingList({data}) {
                         fontSize:'1.25rem',
                         gap: '0rem 0.5rem'
                     }}>
-                    <span>{item.subject}</span>
+                    <span>{item?.FlightRequest ? 
+                        (item.FlightRequest.purpose_others ? item.FlightRequest.purpose_others : item.FlightRequest.PurposeOfTravel.purpose_name) : 
+                        item.FormType.form_name}</span>
                     <button type="button" className="copy-form-link" onClick={getFormLink}>
                         <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
                     </button>
                 </div> 
                 <div className="text-muted" style={{ fontSize: '0.85rem' }}>
-                    <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.date}</span>
+                    <span className='' style={{color: 'var(--tf-gray-2)', fontStyle:'italic', fontWeight:500}}>Submitted on: {item.created_at}</span>
                 </div>
             </div>
 
             {/* Form Type */}
             <div style={{ flex: 2, minWidth: '120px', maxWidth: '200px', textAlign: 'center',whiteSpace: 'normal',wordBreak: 'break-word', display: 'block',}} className="">
                 <span className="badge badge-formtype" style={{whiteSpace: 'normal',  wordBreak: 'break-word', display: 'inline-block', }}>
-                    {item.formType}
+                    {item.FormType.form_name}
                 </span>
             </div>
 
             {/* Status Badge */}
             <div style={{ flex: 1, minWidth: '120px', maxWidth: '160px', textAlign: 'center' }} className=''>
-                <span className={`badge status-badge status-${item.status.toLowerCase()}`}> {item.status} </span>
+                <span className={`badge status-badge status-${item.StatusType.status_name.toLowerCase()}`}> {item.StatusType.status_name} </span>
             </div>
 
             {/* Action links */}
             <div className="d-flex flex-column align-items-start " style={{ flex: 1, maxWidth: '150px' }}>
-                {statusActions[item.status]?.map((action, idx) => (
+                {statusActions[item.StatusType.status_name]?.map((action, idx) => (
                 <button
                     key={idx}
                     className={`btn btn-sm ${action.className} d-flex align-items-center`}
